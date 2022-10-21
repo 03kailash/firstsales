@@ -4,6 +4,7 @@ import AppBar from "@mui/material/AppBar";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import EmailDomain from "./Emails &domain/EmailDomain";
+import Workspace from "./WorkSpace/Workspace";
 import Billing from "./Billing/Billing";
 
 export default function Settings() {
@@ -76,8 +77,9 @@ export default function Settings() {
               borderWidth: "0px 0px thin",
             }}
           />
-         {state.emaildomain && <EmailDomain/>}
-         {state.billing && <Billing/>}
+          {state.workspace && <Workspace />}
+          {state.emaildomain && <EmailDomain />}
+          {state.billing && <Billing />}
         </div>
       </div>
     </div>

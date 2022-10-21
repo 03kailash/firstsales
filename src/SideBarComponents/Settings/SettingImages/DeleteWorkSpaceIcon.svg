@@ -1,0 +1,26 @@
+<svg width="190" height="188" viewBox="0 0 190 188" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_3552_64123" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="190" height="156">
+<rect width="190" height="156" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask0_3552_64123)">
+<rect x="28" y="33" width="127" height="167" rx="4" fill="#EDEFF5"/>
+<rect x="40" y="49" width="21" height="6" rx="3" fill="#FF9800"/>
+<rect x="40" y="67" width="21" height="6" rx="3" fill="black" fill-opacity="0.12"/>
+<rect x="40" y="82" width="21" height="6" rx="3" fill="black" fill-opacity="0.12"/>
+<rect x="40" y="95" width="21" height="6" rx="3" fill="black" fill-opacity="0.12"/>
+<rect x="72" y="67" width="19" height="6" rx="3" fill="black" fill-opacity="0.12"/>
+<rect x="72" y="82" width="40" height="6" rx="3" fill="black" fill-opacity="0.12"/>
+<rect x="72" y="95" width="40" height="6" rx="3" fill="black" fill-opacity="0.12"/>
+<rect x="72" y="108" width="40" height="6" rx="3" fill="black" fill-opacity="0.12"/>
+<rect x="72" y="121" width="40" height="6" rx="3" fill="black" fill-opacity="0.12"/>
+<rect x="72" y="134" width="40" height="6" rx="3" fill="black" fill-opacity="0.12"/>
+<rect x="120" y="82" width="22" height="6" rx="3" fill="black" fill-opacity="0.12"/>
+<rect x="120" y="95" width="22" height="6" rx="3" fill="#2E7D32"/>
+<rect x="120" y="108" width="22" height="6" rx="3" fill="black" fill-opacity="0.12"/>
+<rect x="120" y="121" width="22" height="6" rx="3" fill="#1976D2"/>
+<rect x="120" y="134" width="22" height="6" rx="3" fill="black" fill-opacity="0.12"/>
+<rect x="120" y="147" width="22" height="6" rx="3" fill="black" fill-opacity="0.12"/>
+</g>
+<circle cx="49" cy="151" r="37" fill="#FFE0B2"/>
+<path d="M38 163.833C38 165.85 39.65 167.5 41.6667 167.5H56.3334C58.35 167.5 60 165.85 60 163.833V141.833H38V163.833ZM43.8117 152.082C43.0967 151.367 43.0967 150.212 43.8117 149.497C44.5267 148.782 45.6817 148.782 46.3967 149.497L49 152.082L51.585 149.497C52.3 148.782 53.455 148.782 54.17 149.497C54.885 150.212 54.885 151.367 54.17 152.082L51.585 154.667L54.17 157.252C54.885 157.967 54.885 159.122 54.17 159.837C53.455 160.552 52.3 160.552 51.585 159.837L49 157.252L46.415 159.837C45.7 160.552 44.545 160.552 43.83 159.837C43.115 159.122 43.115 157.967 43.83 157.252L46.415 154.667L43.8117 152.082ZM60 136.333H55.4167L54.115 135.032C53.785 134.702 53.3084 134.5 52.8317 134.5H45.1684C44.6917 134.5 44.215 134.702 43.885 135.032L42.5834 136.333H38C36.9917 136.333 36.1667 137.158 36.1667 138.167C36.1667 139.175 36.9917 140 38 140H60C61.0084 140 61.8334 139.175 61.8334 138.167C61.8334 137.158 61.0084 136.333 60 136.333Z" fill="black" fill-opacity="0.6"/>
+</svg>

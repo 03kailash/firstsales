@@ -1,0 +1,84 @@
+.delmodal {
+  background-color: rgb(255, 255, 255);
+  color: rgba(0, 0, 0, 0.87);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 4px;
+  box-shadow: rgb(0 0 0 / 31%) 0px 0px 1px 0px,
+    rgb(0 0 0 / 25%) 0px 3px 4px -2px;
+  margin: 32px;
+  position: relative;
+  overflow-y: auto;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+  max-width: 900px;
+  width: calc(100% - 64px);
+  position: absolute;
+}
+.modalflexdiv {
+  display: flex;
+}
+.deletemodaldiv1 {
+  max-width: 338px;
+  width: 338px;
+}
+.deletemodaldiv2 {
+  padding: 88px;
+  background-color: rgb(245, 245, 245);
+  width: 563px;
+  max-width: 563px;
+  height: 100%;
+}
+.goingtodelete {
+  font-size: 1.5rem;
+  line-height: 1.334;
+  letter-spacing: 0em;
+  color: rgba(0, 0, 0, 0.87);
+}
+.deletecontent {
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  color: rgba(0, 0, 0, 0.87);
+  margin-top: 40px;
+}
+.cannotundonediv {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+  align-items: center;
+  gap: 10px;
+}
+.deletework2 {
+  color: rgb(255, 255, 255) !important;
+  background-color: rgb(244, 67, 54) !important;
+  text-transform: inherit !important;
+  padding: 6px 16px !important;
+  margin-top: 40px !important;
+}
+.deletework2:hover {
+  background-color: rgb(198, 40, 40) !important;
+  box-shadow: rgb(0 0 0 / 31%) 0px 0px 1px 0px,
+    rgb(0 0 0 / 25%) 0px 3px 4px -2px !important;
+}
+.cannotundone {
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
+}
+@media screen and (max-width: 600px) {
+  .modalflexdiv {
+    display: block;
+  }
+  .deletemodaldiv2 {
+    width: 100%;
+    max-width: 100%;
+    padding: 40px;
+  }
+  .deletemodaldiv1 {
+    width: 100%;
+    max-width: 100%;
+  }
+}
