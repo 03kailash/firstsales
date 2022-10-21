@@ -1,0 +1,40 @@
+.sentcontainerdiv {
+  display: flex;
+  margin: 32px 0px;
+  gap: 93px;
+}
+.temptime {
+  background-color: rgb(245, 245, 245);
+  padding: 16px 24px;
+  border-radius: 4px;
+  align-items: center;
+  display: flex;
+  height: 72px;
+}
+.timehead {
+  font-size: 0.75rem;
+  line-height: 1.66;
+  letter-spacing: 0.03333em;
+  color: rgba(0, 0, 0, 0.6);
+}
+.sentselect {
+  max-width: 284px;
+  width: 284px;
+}
+.sentinputdiv {
+  display: flex;
+  padding-top: 32px;
+  gap: 16px;
+}
+@media screen and (max-width: 900px) {
+  .sentcontainerdiv {
+    display: inherit;
+  }
+  .sentinputdiv {
+    display: inherit;
+  }
+  .sentselect {
+    width: 100%;
+    padding-top: 16px;
+  }
+}

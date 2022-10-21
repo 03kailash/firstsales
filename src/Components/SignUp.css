@@ -1,0 +1,115 @@
+body {
+  font-family: "Arial";
+  color: #3b3b3b;
+  background: #909090;
+}
+.container {
+  max-width: 350px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 30px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 3px 3px -2px #424242, 0px 3px 4px 0px #616161,
+    0px 1px 8px 0px #757575;
+}
+
+.firstlogo {
+  max-width: 80%;
+  max-height: 100%;
+}
+.imagediv {
+  padding: 48px 0px 24px 0px;
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+.modalbody {
+  position: relative;
+  padding: 15px;
+}
+.spantext {
+  padding-top: 8px;
+  padding-bottom: 12px;
+  display: block;
+  font-size: 16px;
+  font-family: Roboto;
+}
+.emailhead {
+  font-weight: 600;
+  font-family: Roboto;
+  font-size: 14px;
+  letter-spacing: 0.17px;
+  color: #000000;
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+}
+.inputfield {
+  width: 92%;
+  height: 30px;
+  line-height: 32px;
+  color: #555555;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  margin: 8px 0 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  padding: 6px 12px;
+}
+
+::placeholder {
+  color: #55555599;
+}
+
+.inputfield:focus {
+  border-color: #ff8e00;
+  outline: 0;
+  box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 60%);
+}
+.forgotpass {
+  color: #337ab7;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+.forgotpass:hover {
+  text-decoration: underline;
+}
+.signupbtn {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 32px 0px 24px 0px;
+  height: 40px;
+  width: 100%;
+  color: #ffffff;
+  border-width: 0px !important;
+  background-color: #ff8e00 !important;
+  border-color: #ff8e00 !important;
+  outline-color: #b26300 !important;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+.lastp {
+  text-align: center;
+  margin: 0 0 10px;
+  font-size: 14px;
+}
+.signuplink {
+  color: #337ab7;
+  text-decoration: none;
+}
+.signuplink:hover {
+  color: #23527c;
+  text-decoration: underline;
+}
+
+.success {
+  font-size: 14px;
+  color: #43a047;
+}
+
+.fail {
+  font-size: 14px;
+  color: #e53935;
+}

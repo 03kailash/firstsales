@@ -1,0 +1,22 @@
+.setdiv {
+  max-width: 900px;
+  width: 900px;
+  padding: 32px 8px 112px;
+}
+.sethead {
+  font-size: 1.5rem;
+  line-height: 1.334;
+  letter-spacing: 0em;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.87);
+  margin-top: 6px;
+}
+.SettingHead > div > span {
+  background-color: #ff8e00;
+}
+.setactiveTab {
+  color: #ff8e00 !important;
+}
+.setinactiveTab {
+  color: #00000099 !important;
+}

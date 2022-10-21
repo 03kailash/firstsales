@@ -1,0 +1,102 @@
+.logoImg {
+  height: 92px;
+  width: 220px;
+  margin: 13px 0px;
+}
+.fullImg {
+  width: 228px;
+  height: 55.91px;
+  margin: 0px 16px;
+  border-radius: 7px;
+  padding: 0px 8px;
+  border: 1px;
+  border-radius: 11 px;
+  background-color: #f3f3f3;
+  overflow-wrap: break-word;
+  display: flex;
+  align-items: center;
+}
+.fullImg:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+.EmsBar {
+  width: 228px;
+  height: 92px;
+
+  background-color: transparent;
+  outline: 0px;
+  border: 0px;
+  cursor: pointer;
+  vertical-align: middle;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  text-decoration: none;
+  min-width: 0px;
+  box-sizing: border-box;
+  text-align: left;
+  padding: 8px 16px;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 8px;
+  margin: 8px 16px;
+}
+.EmsBar:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+.SupportBox {
+  text-align: center;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0px 21px;
+  margin-top: 48px;
+}
+.SupportDiv {
+  width: 220px;
+  height: 28px;
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  padding-left: 36px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.8125rem;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  min-width: 64px;
+  padding: 3px 9px;
+  border-radius: 4px;
+  border: 1px solid;
+  color: inherit;
+  text-transform: none;
+}
+.contant {
+  background-color: transparent;
+  outline: 0px;
+  border: 0px;
+  cursor: pointer;
+  user-select: none;
+  vertical-align: middle;
+  appearance: none;
+  color: inherit;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  text-decoration: none;
+  min-width: 0px;
+  box-sizing: border-box;
+  text-align: left;
+  padding: 8px 16px;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 8px;
+  margin: 8px 0px;
+}
+.ListBtn {
+  margin: 0px 15px !important;
+  border-radius: 5px !important;
+}
+.ListBtn:focus {
+  background-color: rgb(255, 255, 255) !important;
+  font-weight: 700 !important;
+}

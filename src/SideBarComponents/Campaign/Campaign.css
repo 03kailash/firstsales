@@ -1,0 +1,130 @@
+.Campcontainerdiv {
+  padding-top: 32px;
+  width: 1000px;
+  margin-left: auto;
+  box-sizing: border-box;
+  margin-right: auto;
+  display: block;
+}
+.Campcontentdiv {
+  display: flex;
+  align-items: center;
+  width: 1000px;
+}
+.Campsearchinput {
+  color: currentcolor;
+  border: none !important;
+  box-sizing: content-box;
+  background: rgb(243, 243, 243);
+  height: 23px;
+  margin: 0px;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  min-width: 0px;
+  width: 364px;
+  border-radius: 5px !important;
+  animation-duration: 10ms;
+  padding: 8.5px 2px 8.5px 14px;
+}
+::placeholder {
+  font-size: 15px;
+  color: rgb(130, 130, 130);
+}
+.Campsearchinput:focus {
+  border-color: orange;
+}
+.Campaignbtn {
+  text-transform: inherit !important;
+  background-color: #ff8e00 !important;
+  color: #ffffff !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  padding: 6px 16px !important;
+}
+.Campaignbtn:hover {
+  background-color: rgb(178, 99, 0) !important;
+  box-shadow: rgb(0 0 0 / 31%) 0px 0px 1px 0px,
+    rgb(0 0 0 / 25%) 0px 3px 4px -2px !important;
+}
+.Camparchivebtn {
+  margin-left: 12px !important;
+  text-transform: none !important;
+}
+.Camparchivelogo {
+  height: 20px !important;
+}
+
+.Campsearchinput:focus-visible {
+  outline: none;
+}
+
+.Campicon {
+  background: rgb(245, 245, 245);
+  cursor: pointer;
+  margin-right: 15px;
+}
+.Campicon:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 50%;
+}
+.Campclosebtn {
+  margin: 16px 16px 8px;
+  cursor: pointer;
+}
+.Campclosebtn:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 50%;
+}
+.Campnewtemphead {
+  align-items: center !important;
+  font-size: 22px;
+  line-height: 1.334;
+  letter-spacing: 0em;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.87);
+  margin: 56px 0px 24px;
+}
+.Campnewtembody {
+  margin: 0px;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  color: rgba(0, 0, 0, 0.87);
+  padding: 0px 13px !important;
+  margin-left: 4px;
+}
+.Camptitleinput {
+  width: 355px !important;
+  padding: 6px 16px !important;
+  margin-left: 4px;
+}
+.newCampaignbtn {
+  width: 324px !important;
+  text-transform: inherit !important;
+  background-color: #ff8e00 !important;
+  color: #ffffff !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  padding: 6px 16px !important;
+}
+.newCampaignbtn:hover {
+  background-color: rgb(178, 99, 0) !important;
+  box-shadow: rgb(0 0 0 / 31%) 0px 0px 1px 0px,
+    rgb(0 0 0 / 25%) 0px 3px 4px -2px !important;
+}
+
+.MuiChip-deleteIcon {
+  font-size: 15px !important;
+}
+.MuiChip-label {
+  padding-left: 8px !important;
+}
+.CampName {
+  font-weight: 400;
+  font-size: 2.125rem;
+  line-height: 1.235;
+  letter-spacing: 0.00735em;
+  color: rgba(0, 0, 0, 0.87);
+  padding-bottom: 48px !important;
+}

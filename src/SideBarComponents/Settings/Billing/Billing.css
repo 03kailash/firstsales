@@ -1,0 +1,116 @@
+.textPlan{
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5;
+    letter-spacing: 0.00938em;
+    color: rgba(0, 0, 0, 0.87);
+}
+.firstPlan{
+    padding-top: 32px !important;
+    display: flex;
+    gap: 0px 16px !important;
+}
+.TrailPlan{
+    width: 295px !important;
+    height: 171px !important;
+    padding: 24px !important;
+    background-color: rgb(245, 245, 245) !important;
+    border-radius: 4px !important;
+}
+.textYouhave{
+    margin: 16px 0px 0px !important;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 400 !important;
+    font-size: 1rem;
+    line-height: 1.75;
+    letter-spacing: 0.00938em !important;
+}
+.trailDay{
+    font-family: Roboto, Helvetica, Arial, sans-serif !important;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    letter-spacing: 0.0075em;
+    font-weight: 700 !important;
+    color: rgba(0, 0, 0, 0.87) !important;
+}
+.trailChip{
+    color: rgb(255, 255, 255) !important;
+    background-color: rgb(76, 175, 80) !important;
+}
+.planDiv{
+    width: 442px!important;
+    height: 171px !important;
+    padding: 24px !important;
+    background-color: rgb(245, 245, 245) !important;
+    border-radius: 4px !important;
+    display: flex;
+}
+.MonthPlanText{
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 1.66;
+    letter-spacing: 0.03333em;
+    color: rgba(0, 0, 0, 0.6);
+    padding-top: 0px;
+}
+.PlanPrice{
+    margin: 8px 0px 0px;
+    font-family: Roboto, Helvetica, Arial, sans-serif !important;
+    font-size: 1.25rem !important;
+    line-height: 1.6;
+    letter-spacing: 0.0075em;
+    font-weight: 700 !important;
+    color: rgba(0, 0, 0, 0.87) !important;
+}
+.NextPayment{
+    font-family: Roboto, Helvetica, Arial, sans-serif !important;
+    font-size: 0.875rem !important;
+    line-height: 1.43;
+    letter-spacing: 0.01071em;
+    font-weight: 700 !important;
+    color: rgba(0, 0, 0, 0.6) !important;
+}
+.Changeplan{
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.75;
+    letter-spacing: 0.02857em;
+    padding: 6px 16px;
+    border-radius: 4px !important;
+    color: rgb(255, 255, 255) !important;
+    background-color: rgb(255, 142, 0) !important;
+    text-transform: inherit !important;   
+}
+.ChangePlanDiv{
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 48px !important;
+   
+}
+.Cancelplan{
+    width: 156px!important;
+   margin-top: 8px !important;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 0.8125rem;
+    line-height: 1.75;
+    letter-spacing: 0.02857em;
+    padding: 4px 5px;
+    border-radius: 4px;
+    color: rgb(244, 67, 54) !important;
+    text-transform:inherit !important;
+}
+.Plans{
+    margin: 0px;
+    padding: 32px 0px;
+    font-family: Roboto, Helvetica, Arial, sans-serif !important;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5;
+    letter-spacing: 0.00938em;
+    color: rgba(0, 0, 0, 0.87) !important;
+}

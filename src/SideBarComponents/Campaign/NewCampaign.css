@@ -1,0 +1,274 @@
+.steps {
+  margin: 0px;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  font-weight: 400;
+  font-size: 18px !important;
+  color: rgba(0, 0, 0, 0.87);
+}
+.steppers {
+  width: 1067px !important;
+}
+.StappActive {
+  width: 1068px !important;
+  height: 27px !important;
+  margin-left: 119px !important;
+}
+.CampaignName1 {
+  width: 1300px !important;
+  height: 32px !important ;
+  margin: 0px;
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  letter-spacing: 0.0075em;
+  text-align: center !important;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.CampaignName {
+  width: 1300px !important;
+  height: 490px !important;
+  margin: 32px 0px !important;
+}
+.Inputfeild {
+  width: 1300px !important;
+  height: 40px !important;
+  display: flex;
+  justify-content: center !important;
+  margin-top: 32px !important;
+}
+.CampaignInput {
+  width: 300px !important;
+  color: currentcolor;
+  border: 0px;
+  box-sizing: content-box;
+  height: 1.4375em;
+  margin: 0px;
+  display: block;
+  padding: 8.5px 14px;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.4375em;
+  letter-spacing: 0.00938em;
+  color: rgba(0, 0, 0, 0.87);
+  box-sizing: border-box;
+  cursor: text;
+  border-radius: 4px;
+}
+.TextActtachad {
+  margin: 40px 0px 32px !important;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  letter-spacing: 0.0075em;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.87);
+}
+.TextStatus {
+  width: 624.34px !important;
+  height: 36.5px !important;
+  display: flex;
+  justify-content: center !important;
+}
+.TableRow {
+  width: 642.34px !important;
+  padding: 16px 0px 32px !important;
+  font-weight: 400;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgb(224, 224, 224);
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 12px !important;
+}
+.AddBtnn {
+  margin-top: 24px !important;
+  font-weight: 500;
+  font-size: 14px !important;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  border: 1px solid rgba(255, 142, 0, 0.5);
+  color: rgb(255, 142, 0) !important;
+}
+.TextnoMail {
+  margin-top: 16px !important;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.66;
+  letter-spacing: 0.03333em;
+  color: rgba(0, 0, 0, 0.87);
+}
+.NextBTn {
+  background-color: #ff8e00 !important;
+  color: #ffffff !important;
+  width: 150px;
+}
+.chipAnd {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 10px !important;
+  color: rgb(156, 39, 176) !important;
+  background-color: rgba(156, 39, 176, 0.3) !important;
+  font-size: 13px !important;
+  height: 24px !important;
+}
+
+.TextContact {
+  width: 100% !important;
+  height: 32px !important ;
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  letter-spacing: 0.0075em;
+  text-align: center !important;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.divContainer {
+  margin-top: 48px !important;
+  padding-left: 16px !important;
+  width: 822px !important;
+  min-height: 322px !important;
+}
+.divContainer1 {
+  width: 402px !important;
+  height: 110px !important;
+  margin: 16px 0px 48px !important;
+  border-radius: 4px;
+  box-shadow: none;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  background-color: rgb(229, 246, 253);
+  display: flex;
+  justify-content: center;
+  padding: 6px 16px;
+  color: rgb(1, 67, 97);
+}
+.DeleteDiv1 {
+  margin-top: 16px !important;
+  width: 806ps !important;
+  min-height: 125px !important;
+  background-color: #e3f2fd !important ;
+  padding: 16px !important;
+}
+.ADDORBTN {
+  color: rgb(255, 255, 255) !important;
+  background-color: rgb(2, 136, 209) !important;
+}
+.If {
+  width: 35px !important;
+  height: 32px !important;
+  font-size: 0.8125rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px !important;
+  height: 32px;
+  color: rgb(255, 255, 255) !important;
+  background-color: rgb(2, 136, 209) !important;
+  border-radius: 16px !important;
+}
+.ADDnadBtn {
+  color: #ae59c3 !important;
+  border-color: #ae59c3 !important;
+  font-size: 14px !important;
+}
+.SideDiv {
+  width: 410px !important;
+  height: 414px !important;
+  padding: 16px 0px 0px 16px !important;
+}
+.p {
+  margin: 0px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.6;
+  letter-spacing: 0.0075em;
+  color: rgba(0, 0, 0, 0.87);
+}
+.Side1 {
+  width: 415px !important;
+  min-height: 350px !important;
+  margin-top: 14px !important;
+  padding: 8px !important;
+  background-color: #f7f7f7;
+}
+.CreateBtn {
+  margin: 40px 0px !important;
+}
+.Button {
+  text-transform: inherit !important;
+  color: rgba(0, 0, 0, 0.87) !important;
+  border-color: rgba(0, 0, 0, 0.87) !important;
+}
+.square {
+  max-width: 346px !important;
+  min-height: 250px !important;
+  padding: 8px !important;
+  background-color: rgb(255, 255, 255);
+  color: rgba(0, 0, 0, 0.87);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 4px;
+  box-shadow: rgb(0 0 0 / 31%) 0px 0px 1px 0px,
+    rgb(0 0 0 / 25%) 0px 11px 20px -8 !important;
+}
+.squareDiv {
+  width: 100% !important;
+  min-width: 87px !important;
+  background-color: rgb(102, 187, 106);
+  padding: 24px 8px;
+  text-align: center !important;
+  border-radius: 4px !important;
+}
+.rootID {
+  margin: 0px !important;
+  font-size: 9px;
+  opacity: 0.7;
+}
+.SquareChildDiv {
+  margin: 0px;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  color: rgba(0, 0, 0, 0.87);
+}
+.change {
+  text-align: center;
+  margin-top: 20px;
+  margin: 25px 0px !important;
+  color: #ff8e00;
+}
+.toggle {
+  display: flex;
+  justify-content: center;
+  padding-top: 18px;
+  padding-bottom: 10px;
+  height: 60px;
+  text-transform: inherit !important;
+}
+.Tooglebtn {
+  display: flex;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 0.8125rem;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  border-radius: 4px;
+  color: rgb(255, 255, 255) !important;
+  background-color: rgb(255, 142, 0);
+  box-shadow: rgb(0 0 0 / 31%) 0px 0px 1px 0px,
+    rgb(0 0 0 / 25%) 0px 2px 2px -2px;
+  text-transform: inherit !important;
+}
+.timePiker {
+  height: 40px !important;
+}

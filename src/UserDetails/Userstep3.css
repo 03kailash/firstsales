@@ -1,0 +1,72 @@
+.usercontainerstep3 {
+  /* width: 555px;
+  height: 665px; */
+  max-width: 100%;
+  min-height: 685px;
+
+  max-height: 100%;
+  background-color: rgb(255, 255, 255);
+  color: rgba(0, 0, 0, 0.87);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 4px;
+  box-shadow: rgb(0 0 0 / 31%) 0px 0px 1px 0px,
+    rgb(0 0 0 / 25%) 0px 7px 16px -4px;
+  overflow: hidden;
+  padding: 32px;
+}
+.step3head {
+  margin: 32px 0px 32px;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  letter-spacing: 0.0075em;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.87);
+}
+.userinput {
+  width: 300px;
+}
+
+.createworkspace {
+  margin: 32px 0px;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  letter-spacing: 0.0075em;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.btnNext {
+  color: white !important;
+  background-color: rgb(255 142 0) !important;
+  max-width: 300px;
+  width: 100%;
+  margin: 24px auto !important;
+  text-transform: capitalize !important;
+}
+
+.laterbtn {
+  margin: 24px auto;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  min-width: 64px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: rgb(30, 136, 229);
+  text-transform: none;
+}
+.laterbtn:hover {
+  background-color: rgba(30, 136, 229, 0.04);
+}
+.applipass {
+  color: rgb(1, 67, 97);
+}

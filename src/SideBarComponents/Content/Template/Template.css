@@ -1,0 +1,127 @@
+.containerdiv {
+  padding-top: 32px;
+  width: 100%;
+  margin-left: auto;
+  box-sizing: border-box;
+  margin-right: auto;
+  display: block;
+}
+.contentdiv {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+}
+.twobtn {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  padding-left: 32px;
+}
+.searchinput {
+  color: currentcolor;
+  border: none;
+  box-sizing: content-box;
+  background: rgb(243, 243, 243);
+  height: 23px;
+  margin: 0px;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  min-width: 0px;
+  width: 364px;
+  border-radius: 5px !important;
+  animation-duration: 10ms;
+  padding: 8.5px 2px 8.5px 14px;
+}
+::placeholder {
+  font-size: 15px;
+  color: rgb(130, 130, 130);
+}
+.searchinput:focus {
+  border-color: orange;
+}
+.templatebtn {
+  text-transform: inherit !important;
+  background-color: #ff8e00 !important;
+  color: #ffffff !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  padding: 6px 16px !important;
+}
+.templatebtn:hover {
+  background-color: rgb(178, 99, 0) !important;
+  box-shadow: rgb(0 0 0 / 31%) 0px 0px 1px 0px,
+    rgb(0 0 0 / 25%) 0px 3px 4px -2px !important;
+}
+.archivebtn {
+  margin-left: 12px !important;
+  text-transform: none !important;
+}
+.archivelogo {
+  height: 20px !important;
+  margin-right: 5px !important;
+}
+
+.searchinput:focus-visible {
+  outline: none;
+}
+
+.icon {
+  background: rgb(245, 245, 245);
+  cursor: pointer;
+  margin-right: 15px;
+}
+.icon:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 50%;
+}
+.closebtn {
+  margin: 16px 16px 8px;
+  cursor: pointer;
+}
+.closebtn:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 50%;
+}
+.newtemphead {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-size: 22px;
+  line-height: 1.334;
+  letter-spacing: 0em;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.87);
+  margin: 0px 0px 24px;
+}
+.titleinput {
+  width: 100%;
+}
+.newtemplatebtn {
+  text-transform: inherit !important;
+  background-color: #ff8e00 !important;
+  color: #ffffff !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  padding: 6px 16px !important;
+}
+.newtemplatebtn:hover {
+  background-color: rgb(178, 99, 0) !important;
+  box-shadow: rgb(0 0 0 / 31%) 0px 0px 1px 0px,
+    rgb(0 0 0 / 25%) 0px 3px 4px -2px !important;
+}
+
+.MuiChip-deleteIcon {
+  font-size: 15px !important;
+}
+.MuiChip-label {
+  padding-left: 8px !important;
+}
+@media screen and (max-width: 915px) {
+  .templatecontainer {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .twobtn {
+    display: grid;
+    justify-content: end;
+  }
+}

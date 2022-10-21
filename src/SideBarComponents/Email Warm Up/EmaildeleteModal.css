@@ -1,0 +1,9 @@
+.emaildeletebtn {
+  color: rgb(255, 255, 255);
+  background-color: rgb(244, 67, 54);
+  text-transform: inherit !important;
+  padding: 6px 16px !important;
+}
+.emaildeletebtn:hover {
+  background-color: rgb(198, 40, 40) !important;
+}

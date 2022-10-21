@@ -1,0 +1,36 @@
+.userhead {
+  min-height: 100vh;
+  overflow: hidden;
+  background: rgb(243, 243, 243);
+  padding: 16px 8px 32px;
+  display: flex;
+  align-items: center;
+  flex-flow: column nowrap;
+}
+.firstlogouser {
+  width: 180px;
+  margin: 16px 0px 32px;
+}
+.cancelbtn {
+  color: rgb(255, 142, 0) !important;
+  font-weight: 500 !important;
+  font-size: 0.875rem !important;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  text-transform: capitalize !important;
+  margin-top: 40px !important;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
+.steps > span > .Mui-active :first-child {
+  color: rgb(255, 142, 0);
+}
+.steps > span > .Mui-completed :first-child {
+  color: rgb(255, 142, 0);
+}
+@media only screen and (min-width: 600px) {
+  .stepContainer {
+    min-width: 450px !important;
+    max-width: 500px;
+  }
+}

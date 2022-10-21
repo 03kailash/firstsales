@@ -1,0 +1,38 @@
+.EmailContainerdiv {
+  width: 900px;
+  max-height: 100%;
+  padding: 32px 8px 0px;
+}
+.Emailheading {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1.5rem;
+  line-height: 1.334;
+  letter-spacing: 0em;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.87);
+  margin-bottom: 24px;
+}
+.addwarmbtn {
+  text-transform: inherit !important;
+  border: 1px solid rgba(255, 142, 0, 0.5) !important;
+  color: rgb(255, 142, 0) !important;
+  padding: 5px 15px !important;
+}
+.addwarmbtn:hover {
+  background-color: rgba(255, 142, 0, 0.04) !important;
+}
+.loadingline {
+  max-width: 656px;
+  width: 100%;
+  padding: 16px 0px 8px;
+}
+.pageNo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+@media screen and (max-width: 600px) {
+  .pageNo {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,52 @@
+.top_Div {
+  width: 100%;
+  background-color: #fafbfb;
+  display: flex;
+  justify-content: center;
+}
+.Profile_Container {
+  width: 400px;
+  height: 785px;
+  border: 5px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  margin-top: 20px;
+  padding: 16px 16px 24px;
+  border: 1px;
+}
+.img_full {
+  text-align: center;
+  width: 100%;
+  margin: 0px;
+  padding: 0px 127px;
+}
+.select_img {
+  color: #ff8e00;
+  text-align: center;
+}
+
+.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
+  width: 246px;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.4375em;
+}
+.RedioBtn {
+  width: 368px;
+  height: 149px;
+  margin: 16px 0px 8px 0px;
+}
+
+.inputfield:focus {
+  border-color: #ff8e00 !important;
+}
+.Btn {
+  margin-left: 335px;
+  border-color: #ff8e00 !important;
+  color: #ff8e00 !important;
+  display: flex;
+  justify-content: center;
+}
+.Mui-checked {
+  color: #ff8e00 !important;
+}

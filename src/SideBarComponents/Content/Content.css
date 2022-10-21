@@ -1,0 +1,9 @@
+.tabHead > div > span {
+  background-color: #ff8e00;
+}
+.activeTab {
+  color: #ff8e00 !important;
+}
+.inactiveTab {
+  color: #00000099 !important;
+}

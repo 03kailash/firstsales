@@ -1,0 +1,51 @@
+.streamalert {
+  width: 100%;
+  margin-bottom: 44px;
+}
+.eventsdiv {
+  display: block;
+}
+.eventcomponents {
+  background-color: rgb(255, 255, 255);
+  color: rgba(0, 0, 0, 0.87);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  display: flex;
+
+  width: 100%;
+  padding: 16px 40px;
+  min-height: 78px;
+}
+.headdiv1 {
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  color: rgba(0, 0, 0, 0.87);
+  cursor: pointer;
+}
+.headdiv2 {
+  font-size: 0.875rem;
+  cursor: pointer;
+  line-height: 1.43;
+  color: rgba(0, 0, 0, 0.87);
+}
+.techbtn {
+  text-transform: inherit !important;
+  color: rgb(255, 142, 0) !important;
+  padding: 4px 6px !important;
+  font-weight: 500 !important;
+}
+.techbtn:hover {
+  background-color: rgba(255, 142, 0, 0.04) !important;
+}
+.verticalline {
+  height: 24px;
+  width: 60px;
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+}
+.eventpageno {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

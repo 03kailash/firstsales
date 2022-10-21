@@ -1,0 +1,51 @@
+.ProductBtn {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 500 !important;
+  font-size: 0.955rem !important;
+  line-height: 1.57;
+  letter-spacing: 0.00714em;
+  color: rgba(0, 0, 0, 0.87) !important;
+  background-color: #ffff !important;
+}
+.ProductBtn:focus {
+  background-color: #e8f0f7 !important;
+}
+.ProductBtn:hover {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+.BtnIcon {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentcolor;
+  flex-shrink: 0;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.25rem !important;
+}
+.ProductText {
+  padding: 0px 0px 0px 6px !important;
+}
+.filter {
+  width: 100%;
+  min-height: 88px;
+  background-color: #f2f3f3;
+  display: flex;
+  align-items: center;
+}
+.EmailSenttext {
+  padding-left: 20px !important;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 18px !important;
+  line-height: 1.6;
+  letter-spacing: 0.0075em;
+  color: rgba(0, 0, 0, 0.87) !important;
+}
+.arrowIcon {
+  width: 100%;
+  max-height: 448px;
+  background-color: #ffff;
+  display: flex;
+  padding: 16px;
+}
