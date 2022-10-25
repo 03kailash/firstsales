@@ -11,7 +11,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import ListItemText from "@mui/material/ListItemText";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 import AddContact from "./AddContact/AddContact";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
@@ -147,18 +147,22 @@ function Contact() {
           />
 
           <div className="btnn">
-            <Button
-              variant="outlined"
-              color="warning"
-              className="btn11"
-              onClick={handleOpen}
-            >
-              Export
-            </Button>
-            <Button color="warning" className="btn2" onClick={handleOpenAdd}>
-              <AddOutlinedIcon />
-              Add Contact
-            </Button>
+            <div>
+              <Button
+                variant="outlined"
+                color="warning"
+                className="btn11"
+                onClick={handleOpen}
+              >
+                Export
+              </Button>
+            </div>
+            <div>
+              <Button color="warning" className="btn2" onClick={handleOpenAdd}>
+                <AddOutlinedIcon fontSize="20px" />
+                Add Contact
+              </Button>
+            </div>
           </div>
         </div>
 
@@ -231,6 +235,7 @@ function Contact() {
         <div className="group">
           <div>Group action :</div>
           <Button
+          size="small"
             variant="outlined"
             style={{
               textTransform: "capitalize",

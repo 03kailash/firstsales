@@ -7,6 +7,7 @@ import Userdetail from "./UserDetails/Userdetail";
 import Emailverify from "./Components/Emailverify";
 import ChangePass from "./Components/ChangePass";
 import SideBar from "./SideBar/SideBar";
+import Payment from "./SideBarComponents/Settings/Billing/Payment";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route path="/Emailverify" element={<Emailverify />} />
       <Route path="/ChangePass" element={<ChangePass />} />
       <Route path="/Dashboard" element={<SideBar />} />
+      <Route path='payment' element={<Payment/>}/>
     </Routes>
   );
 }

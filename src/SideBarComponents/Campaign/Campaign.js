@@ -105,9 +105,7 @@ function Campaign() {
   };
 
   return (
-    <div
-      style={{ justifyContent: "center", display: "grid", padding: "0px 40px" }}
-    >
+    <div style={{ justifyContent: "center", display: "grid", padding: "0px 40px" }}>
       <div className="Campcontainerdiv">
         <div className="CampName">Campaigns</div>
         <div className="Campcontentdiv">

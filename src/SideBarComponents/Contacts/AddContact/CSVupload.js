@@ -316,7 +316,7 @@ function CSVupload(props) {
                           <p style={{ marginBottom: "0px" }}>Contact no.</p>
                           <div style={{ display: "flex" }}>
                             <FormControl
-                              className="css-11qfo8z-MuiInputBase-root-MuiOutlinedInput-root"
+                              sx={{ width: "320px" }}
                               color="warning"
                             >
                               <OutlinedInput />

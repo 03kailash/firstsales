@@ -36,6 +36,7 @@ function Profile() {
           <br />
           <div className="FirstName">
             <TextField
+              size="mediu"
               id="outlined-number"
               label="First Name"
               type="text"
@@ -59,11 +60,12 @@ function Profile() {
             />
           </div>
           <br />
-          <div className="css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root ">
+          <div>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <Stack spacing={3}>
                 <DesktopDatePicker
                   label="BirthDay"
+                  backgroundColor="warning"
                   inputFormat="MM/DD/YYYY"
                   value={value}
                   onChange={handleChange}
@@ -75,7 +77,7 @@ function Profile() {
           <br />
           <div className="RedioBtn">
             <FormControl>
-              <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
+              <FormLabel id="demo-radio-buttons-group-label" style={{color:'#ff8e00'}}>Gender</FormLabel>
               <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
                 defaultValue="female"

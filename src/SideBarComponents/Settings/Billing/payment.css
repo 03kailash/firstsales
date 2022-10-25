@@ -1,0 +1,25 @@
+.ContainerDivTop{
+    width: 100% !important;
+    display: flex;
+}
+.logodiv{
+    width: 50% !important;
+    display: flex;
+    justify-content: start;
+    background-color: #F3F3F3;
+}
+.textFirstSales{
+    font-size: 16px;
+    color: hsla(0,0%,10%,.6);
+}
+.day7{
+    font-size: 36px !important;
+    font-weight: 600px !important;
+}
+.imgDiv{
+    height: 300px;
+    margin: 32px 0;
+    -webkit-order: 2;
+    order: 2;
+    width: 300px;
+}

@@ -66,7 +66,7 @@ function Export(props) {
       >
         <Fade in={props.open}>
           <Box sx={style}>
-            <div style={{ paddingBottom: "10px" }}>
+            <div className="requestDataDiv" style={{ paddingBottom: "10px" }}>
               <Button className="Request_Data" onClick={handleOpenEx}>
                 Request New Data Export
               </Button>

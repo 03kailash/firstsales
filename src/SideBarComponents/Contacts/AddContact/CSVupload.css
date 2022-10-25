@@ -227,13 +227,9 @@
 } */
 .closeIcon {
   width: 40px !important;
-  height: 40px !important;
+ font-size: 26px !important;
   margin-left: 10px !important;
+  margin-top: 10px !important;
   font-weight: 500 !important;
-}
-.css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-active {
-  color: #ff8e00 !important;
-}
-.css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-completed {
-  color: #ff8e00 !important;
+  color: rgba(0, 0, 0, 0.54) !important;
 }

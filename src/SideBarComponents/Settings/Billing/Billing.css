@@ -73,6 +73,7 @@
     color: rgba(0, 0, 0, 0.6) !important;
 }
 .Changeplan{
+    width: 150px !important;
     font-family: Roboto, Helvetica, Arial, sans-serif;
     font-weight: 500;
     font-size: 0.875rem;
@@ -113,4 +114,73 @@
     line-height: 1.5;
     letter-spacing: 0.00938em;
     color: rgba(0, 0, 0, 0.87) !important;
+}
+.MonthlyPlans{
+    display:flex;
+    width: 100% !important;
+    max-height: 158px !important;
+    height: 158px !important;
+    background-color: #F3F3F3;
+    padding: 24px !important;
+    margin-bottom: 32px !important;
+}
+.thirty{
+    font-size: 28px !important;
+    
+}
+.Months{
+    margin: 8px 0px !important ;
+    font-family: Roboto, Helvetica, Arial, sans-serif !important ;
+    font-weight: 500 !important;
+    font-size: 0.875rem !important;
+    line-height: 1.57;
+    letter-spacing: 0.00714em;
+    color: rgba(0, 0, 0, 0.87) !important;
+}
+.days{
+    margin-top: 10px;
+    font-family: Roboto, Helvetica, Arial, sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    line-height: 1.5;
+    letter-spacing: 0.00938em;
+    color: rgba(0, 0, 0, 0.87) !important;
+}
+.userAccountText{
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 1.66;
+    letter-spacing: 0.03333em;
+    color: rgba(0, 0, 0, 0.6);
+    text-align: center;
+}
+.buttonadd{
+    width: 40px !important;
+    height: 40px !important;
+    display: flex;
+    justify-content: center;
+}
+.check{
+    font-size: 14px !important;
+    display: flex !important;
+    justify-content: start !important;
+    align-items: center !important;
+    margin-bottom:8px !important;
+}
+.CheckBtn{
+    margin-right: 8px!important;
+    font-size: 16px !important;
+    color: rgb(76, 175, 80);
+}
+.choosePlan{
+    text-transform: inherit;
+    background-color:#ff8e00 !important;
+    color: #ffffff !important;
+    height: 40px;
+    text-transform: inherit !important;
+}
+.infinityBtn{
+    margin-right: 4px!important;
+    font-size: 14px !important; 
 }
