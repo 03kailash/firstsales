@@ -268,7 +268,10 @@ function SideBar() {
   return (
     <div>
       {ismobile && (
-        <AppBar position="static">
+        <AppBar
+          position="static"
+          style={{ backgroundColor: "rgb(255, 142, 0)" }}
+        >
           <Toolbar>
             <IconButton
               size="large"

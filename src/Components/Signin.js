@@ -25,7 +25,9 @@ export default function Signin() {
         <Link to="/ForgotPass" className="forgotpass">
           Forgot your password?
         </Link>
-        <button className="signinbtn">Sign in</button>
+        <Link to="/dashboard">
+          <button className="signinbtn">Sign in</button>
+        </Link>
         <br />
         <div>
           <p className="lastp">

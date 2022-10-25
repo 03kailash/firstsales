@@ -11,7 +11,7 @@ import Select from "@mui/material/Select";
 export default function EmailCreateModal({ open, close }) {
   return (
     <Drawer anchor={"right"} open={open} onClose={close}>
-      <Box sx={{ width: 385 }} role="presentation">
+      <Box role="presentation">
         <ClearOutlinedIcon
           color="action"
           className="closebtn"

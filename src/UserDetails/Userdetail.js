@@ -9,6 +9,7 @@ import Userstep1 from "./Userstep1";
 import Userstep2 from "./Userstep2";
 import Button from "@mui/material/Button";
 import Userstep3 from "./Userstep3";
+import { Link } from "react-router-dom";
 
 const steps = ["Step 1", "Step 2", "Step 3"];
 export default function Userdetail() {
@@ -69,7 +70,11 @@ export default function Userdetail() {
           steps={steps}
         />
       )}
-      {activeStep === 0 && <Button className="cancelbtn">Cancel</Button>}
+      {activeStep === 0 && (
+        <Link to="/Signup" style={{ textDecoration: "none" }}>
+          <Button className="cancelbtn">Cancel</Button>
+        </Link>
+      )}
     </div>
   );
 }

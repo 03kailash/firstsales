@@ -26,8 +26,8 @@
   margin: 0px;
   -webkit-tap-highlight-color: transparent;
   display: block;
-  min-width: 0px;
-  width: 364px;
+  max-width: 364px;
+  width: 100%;
   border-radius: 5px !important;
   animation-duration: 10ms;
   padding: 8.5px 2px 8.5px 14px;
@@ -114,7 +114,7 @@
 .MuiChip-label {
   padding-left: 8px !important;
 }
-@media screen and (max-width: 915px) {
+@media screen and (max-width: 900px) {
   .templatecontainer {
     width: 100%;
   }
@@ -123,5 +123,17 @@
   .twobtn {
     display: grid;
     justify-content: end;
+  }
+}
+@media screen and (max-width: 600px) {
+  .contentdiv {
+    display: flex !important;
+    flex-direction: column;
+  }
+  .searchinput {
+    max-width: 100% !important;
+  }
+  .authorinput {
+    max-width: 100% !important;
   }
 }

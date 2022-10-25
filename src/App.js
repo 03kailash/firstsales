@@ -11,13 +11,13 @@ import SideBar from "./SideBar/SideBar";
 function App() {
   return (
     <Routes>
-      <Route path="/SignIn" element={<Signin />} />
+      <Route path="/" element={<Signin />} />
       <Route path="/SignUp" element={<SignUp />} />
       <Route path="/ForgotPass" element={<ForgotPass />} />
       <Route path="/Userdetail" element={<Userdetail />} />
       <Route path="/Emailverify" element={<Emailverify />} />
       <Route path="/ChangePass" element={<ChangePass />} />
-      <Route path="/" element={<SideBar />} />
+      <Route path="/Dashboard" element={<SideBar />} />
     </Routes>
   );
 }

@@ -10,12 +10,17 @@ import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 
 export default function WorkspaceDelete({ isOpen, isClose }) {
   return (
-    <Modal keepMounted open={isOpen} onClose={isClose}>
+    <Modal
+      sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      keepMounted
+      open={isOpen}
+      onClose={isClose}
+    >
       <Box className="delmodal">
         <div className="modalflexdiv">
           <div className="deletemodaldiv1">
             <div>
-              <IconButton style={{ margin: "8px" }}>
+              <IconButton style={{ margin: "8px" }} onClick={isClose}>
                 <CloseIcon color="action" />
               </IconButton>
             </div>

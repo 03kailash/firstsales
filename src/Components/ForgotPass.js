@@ -1,6 +1,7 @@
 import React from "react";
 import firstsales from "../Images/firstsales.jpg";
 import "./ForgotPass.css";
+import { Link } from "react-router-dom";
 
 export default function Forgotpass() {
   return (
@@ -20,7 +21,9 @@ export default function Forgotpass() {
         <br />
         <input className="emailverify" placeholder="Email" type={"email"} />
 
-        <button className="resetpassbtn">Reset my password</button>
+        <Link to="/Changepass">
+          <button className="resetpassbtn">Reset my password</button>
+        </Link>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import firstsales from "../Images/firstsales.jpg";
 import "./ChangePass.css";
 
@@ -68,7 +69,10 @@ export default function ChangePass() {
           {check.len ? <span>✓</span> : <span>✖</span>} Passwords must match
         </div>
 
-        <button className="changepassbtn">Change password</button>
+        <Link to="/">
+          {" "}
+          <button className="changepassbtn">Change password</button>
+        </Link>
       </div>
     </div>
   );

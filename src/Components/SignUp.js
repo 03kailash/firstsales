@@ -55,12 +55,14 @@ export default function SignUp() {
           least 9 characters
         </div>
 
-        <button className="signupbtn">Sign up</button>
+        <Link to="/Userdetail">
+          <button className="signupbtn">Sign up</button>
+        </Link>
         <br />
         <div>
           <p className="lastp">
             <span>Already have an account?</span>&nbsp;
-            <Link to="/SignIn" className="signuplink">
+            <Link to="/" className="signuplink">
               Sign in
             </Link>
           </p>

@@ -105,6 +105,7 @@ export default function Signature() {
                 display: "flex",
                 alignItems: "center",
                 borderRadius: "5px",
+                width: "100%",
               }}
             >
               <input type="text" placeholder="Search" className="searchinput" />
@@ -239,7 +240,7 @@ export default function Signature() {
           <FormControl
             sx={{ mt: 1, mb: 1 }}
             size="small"
-            style={{ width: "205px" }}
+            className="authorinput"
           >
             <InputLabel id="demo-select-small" color="warning">
               Author

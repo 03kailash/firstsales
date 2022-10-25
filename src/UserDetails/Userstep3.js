@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
+import { Link } from "react-router-dom";
 
 export default function Userstep3(props) {
   return (
@@ -97,11 +98,23 @@ export default function Userstep3(props) {
             paddingTop: "8px",
           }}
         >
-          <Button onClick={props.handleNext} className="btnNext">
-            <span>
-              {props.activeStep === props.steps.length - 1 ? "Finish" : "Next"}
-            </span>
-          </Button>
+          <Link
+            to="/Dashboard"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              textDecoration: "none",
+              width: "100%",
+            }}
+          >
+            <Button onClick={props.handleNext} className="btnNext">
+              <span>
+                {props.activeStep === props.steps.length - 1
+                  ? "Finish"
+                  : "Next"}
+              </span>
+            </Button>
+          </Link>
         </div>
         <div
           style={{
@@ -110,7 +123,9 @@ export default function Userstep3(props) {
             paddingTop: "8px",
           }}
         >
-          <button className="laterbtn">I'll do it later</button>
+          <Link to="/Dashboard">
+            <button className="laterbtn">I'll do it later</button>
+          </Link>
         </div>
       </div>
     </div>

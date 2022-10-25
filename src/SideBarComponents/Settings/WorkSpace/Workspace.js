@@ -68,6 +68,7 @@ export default function Workspace() {
               id="outlined-number"
               label="Timezone"
               type="text"
+              color="warning"
               InputLabelProps={{
                 shrink: true,
               }}
@@ -156,8 +157,8 @@ export default function Workspace() {
               style={{
                 display: "flex",
                 alignItems: "center",
-                maxWidth: "435px",
-                width: "435px",
+                maxWidth: "100%",
+                width: deletelink ? "435px" : "100%",
                 justifyContent: "end",
               }}
             >
@@ -184,6 +185,7 @@ export default function Workspace() {
               <TableBody>
                 {rows.map((row) => (
                   <TableRow
+                    hover
                     key={row.user}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     onClick={() => {
