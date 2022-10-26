@@ -54,18 +54,21 @@ function ExportView(props) {
                 color: "#ffffff",
                 marginLeft: "200px",
                 marginTop: "10px",
+                textTransform: "inherit"
               }}
             >
               Download Export
             </Button>
           </div>
           <div style={{ paddingTop: "30px" }}>
-            <Button variant="outlined" color="warning">
+            <Button variant="outlined" color="warning"
+              style={{ textTransform: "inherit" }}
+            >
               Delete
             </Button>
             <Button
               color="warning"
-              style={{ marginLeft: "350px" }}
+              style={{ marginLeft: "350px", textTransform: "inherit" }}
               onClick={() => {
                 props.handleCloseView();
               }}

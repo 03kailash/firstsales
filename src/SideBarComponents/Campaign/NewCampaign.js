@@ -37,6 +37,7 @@ import dayjs from "dayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import AddEmailModal from "./AddEmailModel";
 
 const columns = [
   { id: "Mail Account", label: "Mail Account", minWidth: "150px" },
@@ -92,6 +93,9 @@ function NewCampaign(props) {
   const handleChangeeee = (newValue) => {
     setValue(newValue);
   };
+  const [openAddModel, setOpenAddModel] = React.useState(false);
+  const handleOpenAddModel = () => setOpenAddModel(true);
+  const handleCloseAddModel = () => setOpenAddModel(false);
 
   return (
     <div>
@@ -101,8 +105,9 @@ function NewCampaign(props) {
             anchor={"right"}
             open={props.Newopen}
             onClose={props.handleNewclose}
+            className='AddCampaignDrawer'
           >
-            <Box sx={{ width: 1300 }} role="presentation">
+            <Box role="presentation">
               <ClearOutlinedIcon
                 color="action"
                 className="closebtn"
@@ -247,6 +252,11 @@ function NewCampaign(props) {
                                 variant="outlined"
                                 color="warning"
                                 className="AddBtnn"
+                                onClick={()=>{
+                                  handleOpenAddModel();
+                                  setOpenAddModel(true);
+                                }}
+                                
                               >
                                 <AddOutlinedIcon fontSize="22px " /> Add mail
                                 Account to campaign
@@ -940,6 +950,7 @@ function NewCampaign(props) {
           </Drawer>
         </div>
       </React.Fragment>
+      <AddEmailModal  openAddModel={openAddModel} handleCloseAddModel={handleCloseAddModel}/>
     </div>
   );
 }

@@ -92,6 +92,7 @@
   letter-spacing: 0.02857em;
   border: 1px solid rgba(255, 142, 0, 0.5);
   color: rgb(255, 142, 0) !important;
+  text-transform: inherit !important;
 }
 .TextnoMail {
   margin-top: 16px !important;
@@ -271,4 +272,10 @@
 }
 .timePiker {
   height: 40px !important;
+}
+
+.AddCampaignDrawer  > div:nth-child(3){
+  box-sizing: border-box;
+  width: 1337px;
+  max-width: 95%;
 }

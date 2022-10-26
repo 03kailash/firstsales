@@ -145,8 +145,9 @@ function Campaign() {
                 anchor={"right"}
                 open={open2}
                 onClose={() => setOpen2(false)}
+                className='NewCampaignDrawer'
               >
-                <Box sx={{ width: 422 }} role="presentation">
+                <Box role="presentation">
                   <ClearOutlinedIcon
                     color="action"
                     className="Campclosebtn"

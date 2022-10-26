@@ -16,7 +16,8 @@ import TableViewRoundedIcon from "@mui/icons-material/TableViewRounded";
 import RefreshRoundedIcon from "@mui/icons-material/RefreshRounded";
 import ArrowUpwardOutlinedIcon from "@mui/icons-material/ArrowUpwardOutlined";
 import LinearProgress from "@mui/material/LinearProgress";
-import Box from "@mui/material/Box";
+import Tooltip from '@mui/material/Tooltip';
+import HelpIcon from '@mui/icons-material/Help';
 function Reports() {
   const [product, setproduct] = useState(false);
   const [Engage, setEngage] = useState(false);
@@ -546,12 +547,19 @@ function Reports() {
                   height: "53px",
                 }}
               >
-                <span className="EmailSenttext">Engagements by Day</span>
+                <div>
+                  <span className="EmailSenttext">Engagements by Day</span>
+                  <Tooltip title="Displays all engagements on the specified date. This may include engagements with any email even if sent on a previous day.">
+                    <IconButton>
+                      <HelpIcon className="HelpIcon" />
+                    </IconButton>
+                  </Tooltip>
+                </div>
                 <div
                   style={{
                     display: "flex",
                     justifyContent: "end",
-                    width: "75%",
+                    width: "70%",
                   }}
                 >
                   <KeyboardArrowDownOutlinedIcon />
@@ -610,14 +618,22 @@ function Reports() {
                   height: "53px",
                 }}
               >
-                <span className="EmailSenttext">Engagements by Sent Date</span>
+                <div className="EmailSenttext">
+                  Engagements by Sent Date
+                  <Tooltip title="Displays engagements for any email sent on the specified date, even if the engagement occurs at a later date.">
+                    <IconButton>
+                      <HelpIcon className="HelpIcon" />
+                    </IconButton>
+                  </Tooltip>
+                </div>
                 <div
                   style={{
                     display: "flex",
                     justifyContent: "end",
-                    width: "69%",
+                    width: "64%",
                   }}
                 >
+
                   <KeyboardArrowDownOutlinedIcon />
                 </div>
               </div>
@@ -674,14 +690,21 @@ function Reports() {
                   height: "53px",
                 }}
               >
-                <span className="EmailSenttext">
-                  Engagements by First Email
-                </span>
+                <div>
+                  <span className="EmailSenttext">
+                    Engagements by First Email
+                  </span>
+                  <Tooltip title="Displays the engagement data for recipients who received their first email on the specified date, even if they engage with a different email later in the series.">
+                    <IconButton>
+                      <HelpIcon className="HelpIcon" />
+                    </IconButton>
+                  </Tooltip>
+                </div>
                 <div
                   style={{
                     display: "flex",
                     justifyContent: "end",
-                    width: "68%",
+                    width: "63%",
                   }}
                 >
                   <KeyboardArrowDownOutlinedIcon />
@@ -744,12 +767,19 @@ function Reports() {
                   height: "53px",
                 }}
               >
-                <span className="EmailSenttext">Contacts Activity</span>
+                <div>
+                  <span className="EmailSenttext">Contacts Activity</span>
+                  <Tooltip title="Shows activity around contact for the specified date. This may include status changes for contacts even if contacts were created on past dates.">
+                    <IconButton>
+                      <HelpIcon className="HelpIcon" />
+                    </IconButton>
+                  </Tooltip>
+                </div>
                 <div
                   style={{
                     display: "flex",
                     justifyContent: "end",
-                    width: "80%",
+                    width: "74%",
                   }}
                 >
                   <KeyboardArrowDownOutlinedIcon />
@@ -808,14 +838,21 @@ function Reports() {
                   height: "53px",
                 }}
               >
-                <span className="EmailSenttext">
-                  Contacts Activity by Created Date
-                </span>
+                <div>
+                  <span className="EmailSenttext">
+                    Contacts Activity by Created Date
+                  </span>
+                  <Tooltip title="Displays the status of all contacts created on the specified date, even if the status changes at a later date.">
+                    <IconButton>
+                      <HelpIcon className="HelpIcon" />
+                    </IconButton>
+                  </Tooltip>
+                </div>
                 <div
                   style={{
                     display: "flex",
                     justifyContent: "end",
-                    width: "64%",
+                    width: "58%",
                   }}
                 >
                   <KeyboardArrowDownOutlinedIcon />

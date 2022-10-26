@@ -1,9 +1,11 @@
 .ContainerDivTop{
     width: 100% !important;
     display: flex;
+    justify-content: center;
+    background-color: #F3F3F3;
+    padding-top: 32px !important;
 }
 .logodiv{
-    width: 50% !important;
     display: flex;
     justify-content: start;
     background-color: #F3F3F3;
@@ -17,9 +19,19 @@
     font-weight: 600px !important;
 }
 .imgDiv{
+    display: flex;
+    align-items: center;
     height: 300px;
     margin: 32px 0;
-    -webkit-order: 2;
     order: 2;
     width: 300px;
+}
+.paymentMethod{
+    width: 100% ;
+    padding-top: 32px !important;
+   background-color:#ffffff;  
+}
+.details{
+    font-size: 20px !important;
+    padding-bottom: 20px !important;
 }

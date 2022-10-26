@@ -20,6 +20,9 @@ import TablePagination from '@mui/material/TablePagination';
 import SMTPModel from './EmailDomainModel/SMTPModel';
 import IMAPModel from './EmailDomainModel/IMAPModel';
 import DomainModel from './EmailDomainModel/DomainModel';
+import DomainEditModal from './EmailDomainModel/Model/DomainEditModel';
+// import DomainDel from "./EmailDomainModel/Model/DomainDel"
+
 
 function createData(Email, MailLimit, UsedMail) {
   return { Email, MailLimit, UsedMail };
@@ -29,6 +32,15 @@ const rows = [
   createData(),
 ];
 export default function EmailDomain() {
+
+  const [Domainedit, setDomainedit] = useState(false);
+  const closeDomainedit = () => {
+    setDomainedit(false);
+  };
+  // const [domaindel, setdomaindel] = useState(false);
+  // const closedomaindel = () => {
+  //   setdomaindel(false);
+  // };
  const[smtp,setsmtp]=useState(false);
  const closeSmtp=()=>{
   setsmtp(false)
@@ -117,7 +129,7 @@ export default function EmailDomain() {
                         <MenuItem
                           onClick={() => {
                             menuclose();
-
+                            setDomainedit(true)
                           }}
                           style={{ gap: "12px" }}
                         >
@@ -152,7 +164,7 @@ export default function EmailDomain() {
                         <MenuItem
                           onClick={() => {
                             menuclose();
-
+                            // setdomaindel(true);
                           }}
                           style={{ gap: "12px" }}
                         >
@@ -409,6 +421,10 @@ export default function EmailDomain() {
       <SMTPModel isopen={smtp} isclose={closeSmtp}/>
       <IMAPModel isopen={imap} isclose={closeimap}/>
       <DomainModel isopen={domain} isclose={closedomain}/>
+
+    
+      {/* <DomainDel isOpen={domaindel} isClose={closedomaindel} /> */}
+      <DomainEditModal open={Domainedit} close={closeDomainedit} />
    </div>
   )
 }

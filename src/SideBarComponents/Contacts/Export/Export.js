@@ -24,7 +24,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(filters: string, count: number) {
+function createData(filters: string , count: number) {
   return { filters, count };
 }
 
@@ -97,7 +97,7 @@ function Export(props) {
                         variant="outlined"
                         color="warning"
                         align="right"
-                        style={{ marginTop: "10px" }}
+                        style={{ marginTop: "10px",textTransform:"inherit" }}
                         onClick={handleOpenView}
                       >
                         View

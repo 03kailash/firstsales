@@ -128,3 +128,8 @@
   color: rgba(0, 0, 0, 0.87);
   padding-bottom: 48px !important;
 }
+.NewCampaignDrawer > div:nth-child(3) {
+  box-sizing: border-box;
+  width: 422px;
+  max-width: 90%;
+}

@@ -7,7 +7,8 @@ import Userdetail from "./UserDetails/Userdetail";
 import Emailverify from "./Components/Emailverify";
 import ChangePass from "./Components/ChangePass";
 import SideBar from "./SideBar/SideBar";
-import Payment from "./SideBarComponents/Settings/Billing/Payment";
+import Payment from "./SideBarComponents/Payment/Payment";
+
 
 function App() {
   return (

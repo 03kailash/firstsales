@@ -6,7 +6,6 @@ import AddIcon from "@mui/icons-material/Add";
 import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
 import Typography from "@mui/material/Typography";
-import Pagination from "@mui/material/Pagination";
 import EmailCreateModal from "./EmailCreateModal";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -195,8 +194,6 @@ export default function EmailWarm() {
           <IconButton>
             <KeyboardArrowRightIcon />
           </IconButton>
-
-          {/* <Pagination count={10} page={page} onChange={handleChange} /> */}
         </div>
       </div>
       <EmailCreateModal open={emailCreate} close={closeEmailCreate} />
