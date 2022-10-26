@@ -31,6 +31,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import { FixedSizeList } from "react-window";
 import Subjectedit from "./Subjectedit";
+import { IconButton, InputAdornment } from "@mui/material";
 
 function renderRow(props) {
   const { index, style } = props;
@@ -147,15 +148,20 @@ export default function Subject() {
                 <Button className="templatebtn" onClick={() => setOpen(true)}>
                   Create new subject
                 </Button>
-                <Drawer anchor={"right"} open={open} onClose={handleClose}>
-                  <Box sx={{ width: 662 }} role="presentation">
+                <Drawer
+                  anchor={"right"}
+                  open={open}
+                  onClose={handleClose}
+                  className="newtempdrawer"
+                >
+                  <Box role="presentation">
                     <ClearOutlinedIcon
                       color="action"
                       className="closebtn"
                       onClick={handleClose}
                     />
                     <br />
-                    <div style={{ width: "100%", padding: "0px 32px" }}>
+                    <div className="submaindiv">
                       <div className="tempbuilderhead">Create new Subject</div>
                       <div style={{ display: "flex", alignItems: "center" }}>
                         <TextField
@@ -166,25 +172,31 @@ export default function Subject() {
                           InputLabelProps={{
                             shrink: true,
                           }}
+                          InputProps={{
+                            endAdornment: (
+                              <InputAdornment position="end">
+                                <IconButton style={{ padding: "5px" }}>
+                                  <EmojiEmotionsIcon
+                                    color="action"
+                                    style={{
+                                      opacity: "50%",
+                                    }}
+                                    onClick={() => {
+                                      if (emoji) {
+                                        setEmoji(false);
+                                      } else {
+                                        setEmoji(true);
+                                      }
+                                    }}
+                                  />
+                                </IconButton>
+                              </InputAdornment>
+                            ),
+                          }}
                           size="small"
                           className="titleinput"
                           value={selectedEmoji}
                           onChange={(e) => setSelectedEmoji(e.target.value)}
-                        />
-                        <EmojiEmotionsIcon
-                          color="action"
-                          style={{
-                            position: "absolute",
-                            right: "50px",
-                            opacity: "50%",
-                          }}
-                          onClick={() => {
-                            if (emoji) {
-                              setEmoji(false);
-                            } else {
-                              setEmoji(true);
-                            }
-                          }}
                         />
                       </div>
                       <div

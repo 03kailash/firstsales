@@ -4,12 +4,42 @@ import firstsales from "../Images/firstsales.jpg";
 import { Link } from "react-router-dom";
 
 export default function SignUp() {
-  const [check, setCheck] = useState({
-    lc: false,
-    uc: false,
-    num: false,
-    len: false,
-  });
+  const handleChange = (event) => {
+    var pass = event.target.value;
+    var regLc = /(?=.*?[a-z])/;
+    var regUc = /(?=.*?[A-Z])/;
+    var regNum = /(?=.*?[0-9])/;
+    var regLen = /.{9,}/;
+
+    if (regLc.test(pass)) {
+      setLc(true);
+    } else {
+      setLc(false);
+    }
+
+    if (regUc.test(pass)) {
+      setUc(true);
+    } else {
+      setUc(false);
+    }
+    if (regNum.test(pass)) {
+      setNum(true);
+    } else {
+      setNum(false);
+    }
+
+    if (regLen.test(pass)) {
+      setLen(true);
+    } else {
+      setLen(false);
+    }
+  };
+
+  const [lc, setLc] = useState(false);
+  const [uc, setUc] = useState(false);
+  const [num, setNum] = useState(false);
+  const [len, setLen] = useState(false);
+
   return (
     <div className="container">
       <div className="imagediv">
@@ -28,31 +58,26 @@ export default function SignUp() {
           className="inputfield"
           type={"password"}
           onChange={(event) => {
-            if (event.target.value.length >= 9) {
-              setCheck({ ...check, len: true });
-            } else {
-              setCheck({ ...check, len: false });
-            }
+            handleChange(event);
           }}
         />
         <br />
         <br />
 
-        <div className={check.lc ? "success" : "fail"}>
-          {check.lc ? <span>✓</span> : <span>✖</span>} Password must contain a
-          lower case letter
+        <div className={lc ? "success" : "fail"}>
+          {lc ? <span>✓</span> : <span>✖</span>} Password must contain a lower
+          case letter
         </div>
-        <div className={check.uc ? "success" : "fail"}>
-          {check.uc ? <span>✓</span> : <span>✖</span>} Password must contain an
-          upper case letter
+        <div className={uc ? "success" : "fail"}>
+          {uc ? <span>✓</span> : <span>✖</span>} Password must contain an upper
+          case letter
         </div>
-        <div className={check.num ? "success" : "fail"}>
-          {check.num ? <span>✓</span> : <span>✖</span>} Password must contain a
-          number
+        <div className={num ? "success" : "fail"}>
+          {num ? <span>✓</span> : <span>✖</span>} Password must contain a number
         </div>
-        <div className={check.len ? "success" : "fail"}>
-          {check.len ? <span>✓</span> : <span>✖</span>} Password must contain at
-          least 9 characters
+        <div className={len ? "success" : "fail"}>
+          {len ? <span>✓</span> : <span>✖</span>} Password must contain at least
+          9 characters
         </div>
 
         <Link to="/Userdetail">

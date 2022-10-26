@@ -1,0 +1,5 @@
+.emaileditdrawer > div:nth-child(3) {
+  box-sizing: border-box;
+  width: 385px;
+  max-width: 90%;
+}

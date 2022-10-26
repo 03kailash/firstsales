@@ -26,6 +26,7 @@ import Chip from "@mui/material/Chip";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import data from "@emoji-mart/data";
 import Signatureedit from "./Signatureedit";
+import { IconButton, InputAdornment } from "@mui/material";
 
 const columns = [
   { id: "Signature", label: "Signature", minWidth: "532px" },
@@ -130,15 +131,16 @@ export default function Signature() {
                   anchor={"right"}
                   open={open2}
                   onClose={() => setOpen2(false)}
+                  className="newtempdrawer"
                 >
-                  <Box sx={{ width: 660 }} role="presentation">
+                  <Box role="presentation">
                     <ClearOutlinedIcon
                       color="action"
                       className="closebtn"
                       onClick={() => setOpen2(false)}
                     />
                     <br />
-                    <div style={{ width: "100%", padding: "0px 32px" }}>
+                    <div className="signmaindiv">
                       <div className="newtemphead">Create new Signature</div>
 
                       <div style={{ display: "flex", alignItems: "center" }}>
@@ -150,25 +152,31 @@ export default function Signature() {
                           InputLabelProps={{
                             shrink: true,
                           }}
+                          InputProps={{
+                            endAdornment: (
+                              <InputAdornment position="end">
+                                <IconButton style={{ padding: "5px" }}>
+                                  <EmojiEmotionsIcon
+                                    color="action"
+                                    style={{
+                                      opacity: "50%",
+                                    }}
+                                    onClick={() => {
+                                      if (emoji) {
+                                        setEmoji(false);
+                                      } else {
+                                        setEmoji(true);
+                                      }
+                                    }}
+                                  />
+                                </IconButton>
+                              </InputAdornment>
+                            ),
+                          }}
                           size="small"
                           className="titleinput"
                           value={selectedEmoji}
                           onChange={(e) => setSelectedEmoji(e.target.value)}
-                        />
-                        <EmojiEmotionsIcon
-                          color="action"
-                          style={{
-                            position: "absolute",
-                            right: "50px",
-                            opacity: "50%",
-                          }}
-                          onClick={() => {
-                            if (emoji) {
-                              setEmoji(false);
-                            } else {
-                              setEmoji(true);
-                            }
-                          }}
                         />
                       </div>
                       <div

@@ -30,15 +30,17 @@ export default function SentAnalytics() {
   return (
     <div style={{ padding: "0px 8px" }}>
       <div className="sentcontainerdiv">
-        <span className="temptime">
-          <AccessTimeIcon color="warning" style={{ marginRight: "16px" }} />
-          <span className="timehead">
-            Current time at selected timezone:
-            <br /> October 17, 2022 3:31 PM
+        <div className="temptimediv">
+          <span className="temptime">
+            <AccessTimeIcon color="warning" style={{ marginRight: "16px" }} />
+            <span className="timehead">
+              Current time at selected timezone:
+              <br /> October 17, 2022 3:31 PM
+            </span>
           </span>
-        </span>
-        <div>
-          <Alert severity="info">
+        </div>
+        <div className="sentanaalertdiv">
+          <Alert severity="info" className="sentanaalert">
             <AlertTitle
               style={{ color: "rgba(0, 0, 0, 0.87)", fontWeight: "600" }}
             >

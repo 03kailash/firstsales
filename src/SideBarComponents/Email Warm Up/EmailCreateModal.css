@@ -1,0 +1,9 @@
+.emailcreatedrawer > div:nth-child(3) {
+  box-sizing: border-box;
+  width: 385px;
+  max-width: 90%;
+}
+.emailcreatemaindiv {
+  width: 100%;
+  padding: 0px 32px;
+}

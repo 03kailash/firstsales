@@ -17,6 +17,7 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import AnalyticsOutlinedIcon from "@mui/icons-material/AnalyticsOutlined";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import Menu from "@mui/material/Menu";
+// import Pagination from "@mui/material/Pagination";
 import MenuItem from "@mui/material/MenuItem";
 import CreateIcon from "@mui/icons-material/Create";
 import PauseCircleOutlineIcon from "@mui/icons-material/PauseCircleOutline";
@@ -24,6 +25,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import PlayCircleFilledWhiteOutlinedIcon from "@mui/icons-material/PlayCircleFilledWhiteOutlined";
 import EmaildeleteModal from "./EmaildeleteModal";
 import EmailEditModal from "./EmailEditModal";
+import Snackbar from "@mui/material/Snackbar";
 
 function createData(name, calories, fat, carbs) {
   return { name, calories, fat, carbs };
@@ -58,6 +60,11 @@ export default function EmailWarm() {
   const [page, setPage] = React.useState(1);
   const handleChange = (event, value) => {
     setPage(value);
+  };
+  const [snackOpen, setSnackOpen] = React.useState(false);
+
+  const handleClicksnack = () => {
+    setSnackOpen(true);
   };
   return (
     <div
@@ -99,93 +106,97 @@ export default function EmailWarm() {
             <LinearProgress color="warning" />
           </Box>
         </div>
-        <Table aria-label="caption table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Mail account & IMAP</TableCell>
-              <TableCell align="right"></TableCell>
-              <TableCell align="left">Processing</TableCell>
-              <TableCell align="right"></TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <TableRow key={row.name}>
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
-                <TableCell align="right">
-                  {
-                    <>
-                      <IconButton>
-                        <AnalyticsOutlinedIcon color="action" />
-                      </IconButton>
-                      <IconButton onClick={handleClick}>
-                        <MoreVertOutlinedIcon color="action" />
-                      </IconButton>
-                    </>
-                  }
-                  <Menu
-                    id="fade-menu"
-                    MenuListProps={{
-                      "aria-labelledby": "fade-button",
-                    }}
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={menuclose}
-                  >
-                    <MenuItem
-                      onClick={() => {
-                        menuclose();
-                        setEmailwarmedit(true);
-                      }}
-                      style={{ gap: "12px" }}
-                    >
-                      <CreateIcon color="action" /> Edit
-                    </MenuItem>
-                    {pause && (
-                      <MenuItem
-                        onClick={() => {
-                          menuclose();
-                          setRun(true);
-                          setPause(false);
-                        }}
-                        style={{ gap: "12px" }}
-                      >
-                        <PauseCircleOutlineIcon color="action" />
-                        Pause
-                      </MenuItem>
-                    )}
-                    {run && (
-                      <MenuItem
-                        onClick={() => {
-                          menuclose();
-                          setPause(true);
-                          setRun(false);
-                        }}
-                        style={{ gap: "12px" }}
-                      >
-                        <PlayCircleFilledWhiteOutlinedIcon color="action" />
-                        Run
-                      </MenuItem>
-                    )}
-                    <MenuItem
-                      onClick={() => {
-                        menuclose();
-                        setEmaildel(true);
-                      }}
-                      style={{ gap: "12px" }}
-                    >
-                      <DeleteIcon color="action" /> Delete
-                    </MenuItem>
-                  </Menu>
-                </TableCell>
+        <div style={{ width: "100%", overflowX: "auto" }}>
+          <Table aria-label="caption table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Mail account & IMAP</TableCell>
+                <TableCell align="right">&nbsp;</TableCell>
+                <TableCell align="left">Processing</TableCell>
+                <TableCell align="right">&nbsp;</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHead>
+            <TableBody>
+              {rows.map((row) => (
+                <TableRow key={row.name}>
+                  <TableCell component="th" scope="row">
+                    {row.name}
+                  </TableCell>
+                  <TableCell align="right">{row.calories}</TableCell>
+                  <TableCell align="right">{row.fat}</TableCell>
+                  <TableCell align="right">
+                    {
+                      <>
+                        <IconButton>
+                          <AnalyticsOutlinedIcon color="action" />
+                        </IconButton>
+                        <IconButton onClick={handleClick}>
+                          <MoreVertOutlinedIcon color="action" />
+                        </IconButton>
+                      </>
+                    }
+                    <Menu
+                      id="fade-menu"
+                      MenuListProps={{
+                        "aria-labelledby": "fade-button",
+                      }}
+                      anchorEl={anchorEl}
+                      open={open}
+                      onClose={menuclose}
+                    >
+                      <MenuItem
+                        onClick={() => {
+                          menuclose();
+                          setEmailwarmedit(true);
+                        }}
+                        style={{ gap: "12px" }}
+                      >
+                        <CreateIcon color="action" /> Edit
+                      </MenuItem>
+                      {pause && (
+                        <MenuItem
+                          onClick={() => {
+                            menuclose();
+                            setRun(true);
+                            setPause(false);
+                            handleClicksnack();
+                          }}
+                          style={{ gap: "12px" }}
+                        >
+                          <PauseCircleOutlineIcon color="action" />
+                          Pause
+                        </MenuItem>
+                      )}
+                      {run && (
+                        <MenuItem
+                          onClick={() => {
+                            menuclose();
+                            setPause(true);
+                            setRun(false);
+                            handleClicksnack();
+                          }}
+                          style={{ gap: "12px" }}
+                        >
+                          <PlayCircleFilledWhiteOutlinedIcon color="action" />
+                          Run
+                        </MenuItem>
+                      )}
+                      <MenuItem
+                        onClick={() => {
+                          menuclose();
+                          setEmaildel(true);
+                        }}
+                        style={{ gap: "12px" }}
+                      >
+                        <DeleteIcon color="action" /> Delete
+                      </MenuItem>
+                    </Menu>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
         <div className="pageNo">
           <Typography>Page: {page}</Typography>
           <IconButton>
@@ -194,11 +205,18 @@ export default function EmailWarm() {
           <IconButton>
             <KeyboardArrowRightIcon />
           </IconButton>
+          {/* <Pagination count={10} page={page} onChange={handleChange} /> */}
         </div>
       </div>
       <EmailCreateModal open={emailCreate} close={closeEmailCreate} />
       <EmaildeleteModal isOpen={emaildel} isClose={closeEmailDelete} />
       <EmailEditModal open={emailwarmedit} close={closeEmailwarmedit} />
+      <Snackbar
+        open={snackOpen}
+        autoHideDuration={4000}
+        onClose={() => setSnackOpen(false)}
+        message="Warming updated"
+      />
     </div>
   );
 }

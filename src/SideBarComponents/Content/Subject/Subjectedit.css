@@ -1,0 +1,27 @@
+.subeditdrawer > div:nth-child(3) {
+  box-sizing: border-box;
+  width: 662px;
+  max-width: 90%;
+  z-index: 1210;
+}
+.subeditmaindiv {
+  padding: 0px 32px;
+  width: 100%;
+}
+.archivebtnsubedit {
+  text-transform: inherit !important;
+}
+.subedittwobtndiv {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 48px 0px;
+}
+@media screen and (max-width: 600px) {
+  .subedittwobtndiv {
+    display: grid;
+  }
+  .subeditmaindiv {
+    padding: 0px 16px;
+  }
+}

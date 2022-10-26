@@ -127,15 +127,16 @@ export default function Template() {
                   anchor={"right"}
                   open={open2}
                   onClose={() => setOpen2(false)}
+                  className="newtempdrawer"
                 >
-                  <Box sx={{ width: 660 }} role="presentation">
+                  <Box role="presentation">
                     <ClearOutlinedIcon
                       color="action"
                       className="closebtn"
                       onClick={() => setOpen2(false)}
                     />
                     <br />
-                    <div style={{ width: "100%", padding: "0px 32px" }}>
+                    <div className="tempmaindiv">
                       <div className="newtemphead">Create new Template</div>
 
                       <TextField

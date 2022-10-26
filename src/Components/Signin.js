@@ -14,7 +14,7 @@ export default function Signin() {
       <div className="modalbody">
         <span className="spantext">Sign in with your email and password</span>
         <label className="emailhead">Email</label>
-        <input className="inputfield" placeholder="name@host.com" />
+        <input className="inputfield" placeholder="name@host.com" required />
         <label className="emailhead">Password</label>
         <input
           placeholder="Password"

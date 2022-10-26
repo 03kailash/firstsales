@@ -7,9 +7,30 @@
 .Archivesavebtndiv {
   display: flex !important;
   justify-content: center !important;
-  margin-top: 48px !important;
+  margin: 48px 0px !important;
   gap: 15px !important;
+}
+.bodyeditmaindiv {
+  width: 100%;
+  padding: 0px 32px;
+}
+.archivebtnbodyedit {
+  text-transform: inherit !important;
 }
 .showgifs:hover {
   background-color: rgba(255, 142, 0, 0.04) !important;
+}
+@media screen and (max-width: 600px) {
+  .Archivesavebtndiv {
+    display: grid !important;
+  }
+  .bodyeditmaindiv {
+    padding: 0px 16px;
+  }
+}
+.bodyeditdrawer > div:nth-child(3) {
+  box-sizing: border-box;
+  width: 860px;
+  max-width: 90%;
+  z-index: 1210;
 }

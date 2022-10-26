@@ -1,7 +1,7 @@
 .sentcontainerdiv {
   display: flex;
   margin: 32px 0px;
-  gap: 93px;
+  justify-content: space-between;
 }
 .temptime {
   background-color: rgb(245, 245, 245);
@@ -10,6 +10,8 @@
   align-items: center;
   display: flex;
   height: 72px;
+  max-width: 285px;
+  width: 100%;
 }
 .timehead {
   font-size: 0.75rem;
@@ -37,5 +39,18 @@
     width: 100%;
     padding-top: 16px;
     max-width: 100%;
+  }
+  .sentanaalert {
+    width: 100%;
+    max-width: 506px;
+  }
+  .sentanaalertdiv {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+  }
+  .temptimediv {
+    display: flex;
+    justify-content: center;
   }
 }

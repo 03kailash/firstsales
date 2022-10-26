@@ -1,4 +1,4 @@
-.tabHead > div > span {
+px.tabHead > div > span {
   background-color: #ff8e00;
 }
 .activeTab {
@@ -12,4 +12,12 @@
 }
 .erroralert {
   letter-spacing: normal !important;
+}
+.analyticsmaindiv2 {
+  max-height: 100%;
+}
+@media screen and (max-width: 900px) {
+  .analyticsmaindiv2 {
+    width: 100%;
+  }
 }

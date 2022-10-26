@@ -28,17 +28,14 @@ export default function Analytics() {
         backgroundColor: "#fafbfb",
       }}
     >
-      <div
-        style={{
-          maxHeight: "100%",
-        }}
-      >
+      <div className="analyticsmaindiv2">
         <div className="emailtabs">
           <div
             style={{
               paddingTop: "32px",
               display: "flex",
               justifyContent: "center",
+              overflowX: "auto",
             }}
           >
             <div>

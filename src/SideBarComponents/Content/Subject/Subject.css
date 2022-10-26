@@ -17,6 +17,10 @@
   justify-content: end;
   padding-left: 32px;
 }
+.submaindiv {
+  width: 100%;
+  padding: 0px 32px;
+}
 .searchinput {
   color: currentcolor;
   border: none;
@@ -135,5 +139,8 @@
   }
   .authorinput {
     max-width: 100% !important;
+  }
+  .submaindiv {
+    padding: 0px 16px;
   }
 }

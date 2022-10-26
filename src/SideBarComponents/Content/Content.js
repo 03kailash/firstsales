@@ -22,13 +22,7 @@ export default function Content() {
   return (
     <div style={{ height: "100vh", width: "100%", backgroundColor: "#fafbfb" }}>
       <div style={{ padding: "0px 8px" }}>
-        <div
-          style={{
-            justifyContent: "center",
-            display: "flex",
-            paddingTop: "32px",
-          }}
-        >
+        <div className="contentmaindiv">
           <div style={{ display: "flex", justifyContent: "center" }}>
             <AppBar
               position="static"

@@ -7,3 +7,9 @@
 .inactiveTab {
   color: #00000099 !important;
 }
+.contentmaindiv {
+  display: flex;
+  justify-content: center;
+  padding-top: 32px;
+  overflow-x: auto;
+}

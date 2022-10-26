@@ -32,6 +32,10 @@
   animation-duration: 10ms;
   padding: 8.5px 2px 8.5px 14px;
 }
+.bodymaindiv {
+  width: 100%;
+  padding: 0px 32px;
+}
 ::placeholder {
   font-size: 15px;
   color: rgb(130, 130, 130);
@@ -135,5 +139,8 @@
   }
   .authorinput {
     max-width: 100% !important;
+  }
+  .bodymaindiv {
+    padding: 0px 16px;
   }
 }

@@ -114,7 +114,7 @@ export default function Workspace() {
                   className="linkinput"
                   InputProps={{
                     endAdornment: (
-                      <InputAdornment position="start">
+                      <InputAdornment position="end">
                         <IconButton style={{ padding: "5px" }}>
                           <FileCopyOutlinedIcon style={{ fontSize: "14px" }} />
                         </IconButton>
