@@ -85,17 +85,18 @@
   background-color: rgb(255, 142, 0) !important;
   box-shadow: rgb(0 0 0 / 31%) 0px 0px 1px 0px,
     rgb(0 0 0 / 25%) 0px 2px 2px -2px;
-  text-transform: none;
+  text-transform: inherit !important;
   width: 234px;
 }
 .closeBtnHead {
   width: 852px !important;
-  height: 97px !important;
+  height: 40px !important;
   display: flex;
   align-items: center;
   padding: 0px 8px 8px;
   justify-content: center;
   flex: 0 0 auto;
+  text-transform: inherit !important;
 }
 
 .Closebtn {
@@ -104,7 +105,7 @@
   border-radius: 4px;
   border: 1px solid rgba(2, 136, 209, 0.5) !important;
   color: rgb(2, 136, 209) !important;
-
+  text-transform: inherit !important;
   width: 234px !important;
   height: 36px !important;
 }

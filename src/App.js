@@ -8,6 +8,7 @@ import Emailverify from "./Components/Emailverify";
 import ChangePass from "./Components/ChangePass";
 import SideBar from "./SideBar/SideBar";
 import Payment from "./SideBarComponents/Payment/Payment";
+import Workshop from "./WorkshopModel/Workshop";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
       <Route path="/ChangePass" element={<ChangePass />} />
       <Route path="/Dashboard" element={<SideBar />} />
       <Route path='payment' element={<Payment/>}/>
+      <Route path="workshop" element={<Workshop/>}/>
     </Routes>
   );
 }

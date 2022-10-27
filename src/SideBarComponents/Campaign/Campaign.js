@@ -23,7 +23,7 @@ import TextField from "@mui/material/TextField";
 import Snackbar from "@mui/material/Snackbar";
 import Chip from "@mui/material/Chip";
 import NewCampaign from "./NewCampaign";
-
+import AddIcon from '@mui/icons-material/Add';
 const columns = [
   { id: "campaign", label: "campaign", minWidth: "150px" },
   {
@@ -139,14 +139,14 @@ function Campaign() {
           >
             <React.Fragment>
               <Button className="Campaignbtn" onClick={() => setOpen2(true)}>
-                Add Campaign
+               <AddIcon className="AddBtnCampaign"/> Create Campaign
               </Button>
               <Drawer
                 anchor={"right"}
                 open={open2}
                 onClose={() => setOpen2(false)}
                 className='NewCampaignDrawer'
-              >
+              > 
                 <Box role="presentation">
                   <ClearOutlinedIcon
                     color="action"

@@ -41,6 +41,8 @@ function Reports() {
           style={{ textTransform: "inherit" }}
           onClick={() => {
             setproduct(true);
+            setEngage(false);
+            setcontana(false);
           }}
         >
           <AccessibilityNewIcon className="BtnIcon" />
@@ -51,6 +53,8 @@ function Reports() {
           style={{ textTransform: "inherit" }}
           onClick={() => {
             setEngage(true);
+            setproduct(false);
+            setcontana(false);
           }}
         >
           <StarRoundedIcon className="BtnIcon" />
@@ -61,6 +65,8 @@ function Reports() {
           style={{ textTransform: "inherit" }}
           onClick={() => {
             setcontana(true);
+            setproduct(false);
+            setEngage(false);
           }}
         >
           <GroupIcon className="BtnIcon" />

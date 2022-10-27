@@ -21,8 +21,9 @@
   padding: 0px 127px;
 }
 .select_img {
-  color: #ff8e00;
-  text-align: center;
+  color: #ff8e00 !important;
+  text-align: center !important;
+  padding-top: 14px !important;
 }
 
 .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
