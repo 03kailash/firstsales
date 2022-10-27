@@ -21,8 +21,8 @@ function App() {
       <Route path="/Emailverify" element={<Emailverify />} />
       <Route path="/ChangePass" element={<ChangePass />} />
       <Route path="/Dashboard" element={<SideBar />} />
-      <Route path='payment' element={<Payment/>}/>
-      <Route path="workshop" element={<Workshop/>}/>
+      <Route path='/payment' element={<Payment/>}/>
+      <Route path="/workspace" element={<Workshop/>}/>
     </Routes>
   );
 }

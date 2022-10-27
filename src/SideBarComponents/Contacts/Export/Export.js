@@ -30,18 +30,7 @@ function createData(filters: string , count: number) {
 
 const rows = [createData("Frozen yoghurt", 10), createData("fger getg", 10)];
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  height: 342,
-  width: 900,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+
 
 function Export(props) {
   const [openEx, setOpenEx] = React.useState(false);
@@ -63,9 +52,10 @@ function Export(props) {
         BackdropProps={{
           timeout: 500,
         }}
+        style={{display:"flex",justifyContent:"center",alignItems:"center"}}
       >
-        <Fade in={props.open}>
-          <Box sx={style}>
+        <Fade in={props.open} >
+          <Box className="exportmodalbox">
             <div className="requestDataDiv" style={{ paddingBottom: "10px" }}>
               <Button className="Request_Data" onClick={handleOpenEx}>
                 Request New Data Export
@@ -75,7 +65,7 @@ function Export(props) {
 
             <TableContainer component={Paper}>
               <Table
-                sx={{ minWidth: 900, height: 32 }}
+                sx={{ maxWidth: 900, height: 32 }}
                 aria-label="customized table"
               >
                 <TableHead height="32px">

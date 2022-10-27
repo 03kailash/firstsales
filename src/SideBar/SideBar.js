@@ -35,6 +35,8 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import Settings from "../SideBarComponents/Settings/Settings";
+import { Link } from "react-router-dom";
+
 
 const drawerWidth = 278;
 
@@ -46,7 +48,7 @@ function SideBar() {
   const [analytic, setAnalytic] = useState(false);
   const [emailwarm, setEmailwarm] = useState(false);
   const [setting, setSetting] = useState(false);
-
+ 
   const ismobile = useMediaQuery("(max-width: 1200px)");
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -71,9 +73,11 @@ function SideBar() {
         <Avatar src="/broken-image.jpg" />
       </div>
       <hr style={{ width: "210px", margin: "8px 24px" }} />
+      <Link to="/workspace">
       <div className="EmsBar">
         <span>Ems</span>
       </div>
+      </Link>
       <Divider />
       <List>
         {["Contacts"].map((text, index) => (
@@ -355,6 +359,7 @@ function SideBar() {
           </Drawer>
         </Box>
       </Drawer>
+     
     </div>
   );
 }

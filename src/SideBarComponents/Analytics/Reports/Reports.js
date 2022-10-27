@@ -19,6 +19,7 @@ import LinearProgress from "@mui/material/LinearProgress";
 import Tooltip from '@mui/material/Tooltip';
 import HelpIcon from '@mui/icons-material/Help';
 function Reports() {
+  const [timerange, setTimerange] = useState("l7d");
   const [product, setproduct] = useState(false);
   const [Engage, setEngage] = useState(false);
   const [contana, setcontana] = useState(false);
@@ -72,31 +73,37 @@ function Reports() {
           <GroupIcon className="BtnIcon" />
           <span className="ProductText">Contacts Reports</span>
         </Button>
-        <FormControl sx={{ m: 1, minWidth: 150 }}>
-          <InputLabel
-            id="demo-simple-select-helper-label"
-            style={{ color: "#ff8e00", maxWidth: "90px" }}
-            size="small"
-          >
-            <span className="ProductText">Time Range</span>
-          </InputLabel>
-          <Select
-            labelId="demo-simple-select-helper-label"
-            id="demo-simple-select-helper"
-            value={age}
-            label="Time Range"
-            onChange={handleChangee}
-            size="small"
-            color="warning"
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Last month</MenuItem>
-            <MenuItem value={20}>last 7 day</MenuItem>
-            <MenuItem value={30}>Last 5 day</MenuItem>
-          </Select>
-        </FormControl>
+        <div style={{ maxWidth: "178px" }}>
+              <FormControl size="small" color="warning" fullWidth>
+                <InputLabel id="demo-controlled-open-select-label">
+                  Time range
+                </InputLabel>
+                <Select
+                  native
+                  labelId="demo-controlled-open-select-label"
+                  id="demo-controlled-open-select"
+                  label="Time range"
+                  value={timerange}
+                  onChange={(event) => {
+                    setTimerange(event.target.value);
+                  }}
+                >
+                  <option value={"l7d"}>Last 7 days</option>
+                  <option value={"l14d"}>Last 14 days</option>
+                  <option value={"l30d"}>Last 30 days</option>
+                  <option value={"l90d"}>Last 90 days</option>
+                  <option value={"lw"}>Last week</option>
+                  <option value={"l6w"}>Last 6 week</option>
+                  <option value={"mtd"}>Month to date</option>
+                  <option value={"lm"}>Last month</option>
+                  <option value={"l3m"}>Last 3 month</option>
+                  <option value={"l6m"}>Last 6 month</option>
+                  <option value={"l12m"}>Last 12 month</option>
+                  <option value={"ytd"}>Year to date</option>
+                  <option value={"ly"}>Last year</option>
+                </Select>
+              </FormControl>
+            </div>
         <Button
           variant="outlined"
           style={{ textTransform: "inherit" }}
@@ -112,7 +119,7 @@ function Reports() {
           <span className="ProductText">Filter</span>
         </Button>
       </div>
-      <hr style={{ margin: "0px" }} />
+      <hr style={{ marginTop:"24px",marginBottom:'0px' }} />
       {filter && (
         <div className="filter">
           <div style={{ display: "flex", alignItems: "center" }}>
@@ -555,7 +562,7 @@ function Reports() {
               >
                 <div>
                   <span className="EmailSenttext">Engagements by Day</span>
-                  <Tooltip title="Displays all engagements on the specified date. This may include engagements with any email even if sent on a previous day.">
+                  <Tooltip placement="right-start" title="Displays all engagements on the specified date. This may include engagements with any email even if sent on a previous day.">
                     <IconButton>
                       <HelpIcon className="HelpIcon" />
                     </IconButton>
@@ -626,7 +633,7 @@ function Reports() {
               >
                 <div className="EmailSenttext">
                   Engagements by Sent Date
-                  <Tooltip title="Displays engagements for any email sent on the specified date, even if the engagement occurs at a later date.">
+                  <Tooltip  placement="right-start" title="Displays engagements for any email sent on the specified date, even if the engagement occurs at a later date.">
                     <IconButton>
                       <HelpIcon className="HelpIcon" />
                     </IconButton>
@@ -700,7 +707,7 @@ function Reports() {
                   <span className="EmailSenttext">
                     Engagements by First Email
                   </span>
-                  <Tooltip title="Displays the engagement data for recipients who received their first email on the specified date, even if they engage with a different email later in the series.">
+                  <Tooltip  placement="right-start" title="Displays the engagement data for recipients who received their first email on the specified date, even if they engage with a different email later in the series.">
                     <IconButton>
                       <HelpIcon className="HelpIcon" />
                     </IconButton>
@@ -775,7 +782,7 @@ function Reports() {
               >
                 <div>
                   <span className="EmailSenttext">Contacts Activity</span>
-                  <Tooltip title="Shows activity around contact for the specified date. This may include status changes for contacts even if contacts were created on past dates.">
+                  <Tooltip  placement="right-start" title="Shows activity around contact for the specified date. This may include status changes for contacts even if contacts were created on past dates.">
                     <IconButton>
                       <HelpIcon className="HelpIcon" />
                     </IconButton>
@@ -848,7 +855,7 @@ function Reports() {
                   <span className="EmailSenttext">
                     Contacts Activity by Created Date
                   </span>
-                  <Tooltip title="Displays the status of all contacts created on the specified date, even if the status changes at a later date.">
+                  <Tooltip  placement="right-start" title="Displays the status of all contacts created on the specified date, even if the status changes at a later date.">
                     <IconButton>
                       <HelpIcon className="HelpIcon" />
                     </IconButton>

@@ -105,237 +105,239 @@ function Campaign() {
   };
 
   return (
-    <div style={{ justifyContent: "center", display: "grid", padding: "0px 40px" }}>
-      <div className="Campcontainerdiv">
-        <div className="CampName">Campaigns</div>
-        <div className="Campcontentdiv">
-          <div
-            style={{
-              background: "rgb(245, 245, 245)",
-              display: "flex",
-              alignItems: "center",
-              borderRadius: "5px",
-            }}
-          >
-            <input
-              type="text"
-              placeholder="Search"
-              className="Campsearchinput"
-            />
-            <TuneOutlinedIcon
-              color="action"
-              className="Campicon"
-              onClick={() => {
-                if (author) {
-                  setAuthor(false);
-                } else {
-                  setAuthor(true);
-                }
-              }}
-            />
-          </div>
-          <div
-            style={{ display: "flex", justifyContent: "end", width: "100%" }}
-          >
-            <React.Fragment>
-              <Button className="Campaignbtn" onClick={() => setOpen2(true)}>
-               <AddIcon className="AddBtnCampaign"/> Create Campaign
-              </Button>
-              <Drawer
-                anchor={"right"}
-                open={open2}
-                onClose={() => setOpen2(false)}
-                className='NewCampaignDrawer'
-              > 
-                <Box role="presentation">
-                  <ClearOutlinedIcon
-                    color="action"
-                    className="Campclosebtn"
-                    onClick={() => setOpen2(false)}
-                  />
-                  <br />
-                  <div style={{ width: "100%", padding: "0px 32px" }}>
-                    <div className="Campnewtemphead"> New Campaign</div>
-                    <p className="Campnewtembody">Campaign name</p>
-                    <TextField
-                      type="text"
-                      id="outlined-size-small"
-                      color="warning"
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                      size="small"
-                      className="Camptitleinput"
-                    />
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        marginTop: "10px",
-                      }}
-                    >
-                      <Button
-                        className="newCampaignbtn"
-                        onClick={() => {
-                          handleNewopen();
-                          setNewopen(true);
-                        }}
-                      >
-                        Create New Campaign
-                      </Button>
-                    </div>
-                  </div>
-                </Box>
-              </Drawer>
-            </React.Fragment>
-
-            <Button
-              variant="outlined"
-              className="Camparchivebtn"
-              onClick={() => {
-                if (btn2) {
-                  setBtn2(false);
-                } else {
-                  setBtn2(true);
-                }
+    <div className="CampaignmainDiv">
+      <div style={{ justifyContent: "center", display: "grid", padding: "0px 40px" }}>
+        <div className="Campcontainerdiv">
+          <div className="CampName">Campaigns</div>
+          <div className="Campcontentdiv">
+            <div
+              style={{
+                background: "rgb(245, 245, 245)",
+                display: "flex",
+                alignItems: "center",
+                borderRadius: "5px",
               }}
             >
-              {btn2 ? (
-                <> Back to campaign </>
-              ) : (
-                <>
-                  <Inventory2OutlinedIcon className="Camparchivelogo" /> Show
-                  archive
-                </>
-              )}
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      {author && (
-        <FormControl
-          sx={{ mt: 1, mb: 1 }}
-          size="small"
-          style={{ width: "205px" }}
-        >
-          <InputLabel id="demo-select-small" color="warning">
-            Author
-          </InputLabel>
-          <Select
-            labelId="demo-select-small"
-            id="demo-select-small"
-            value={aut}
-            label="Author"
-            color="warning"
-          >
-            <MenuItem
-              value={"kailash"}
-              onClick={() => {
-                setChip(true);
-              }}
-            >
-              kailash choudhary
-            </MenuItem>
-          </Select>
-        </FormControl>
-      )}
-      {chip && (
-        <div
-          sx={{
-            flexWrap: "wrap",
-            listStyle: "none",
-          }}
-        >
-          {chipData.map((data, index) => {
-            return (
-              <Chip
-                key={index}
-                label={data.label}
-                onDelete={() => {
-                  setChip(false);
-                }}
-                style={{
-                  backgroundColor: "#673ab7",
-                  color: "#fafbfb ",
-                  height: "24px",
-                  width: "163px ",
-                  marginTop: "12px",
-                  maxWidth: "100%",
-                  fontSize: " 12px",
+              <input
+                type="text"
+                placeholder="Search"
+                className="Campsearchinput"
+              />
+              <TuneOutlinedIcon
+                color="action"
+                className="Campicon"
+                onClick={() => {
+                  if (author) {
+                    setAuthor(false);
+                  } else {
+                    setAuthor(true);
+                  }
                 }}
               />
-            );
-          })}
-        </div>
-      )}
-      <div style={{ width: "1000px" }}>
-        <div style={{ justifyContent: "center", display: "flex" }}>
-          <Box sx={{ width: "910px", paddingTop: "64px" }}>
-            <LinearProgress color="warning" />
-          </Box>
-        </div>
-        <Paper sx={{ width: "100%", overflow: "hidden" }}>
-          <TableContainer sx={{ maxHeight: 440 }}>
-            <Table stickyHeader aria-label="sticky table">
-              <TableHead>
-                <TableRow>
-                  {columns.map((column) => (
-                    <TableCell
-                      key={column.id}
-                      align={column.align}
-                      style={{ minWidth: column.minWidth }}
-                    >
-                      {column.label}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row) => {
-                    return (
-                      <TableRow
-                        hover
-                        role="checkbox"
-                        tabIndex={-1}
-                        key={row.code}
+            </div>
+            <div
+              style={{ display: "flex", justifyContent: "end", width: "100%" }}
+            >
+              <React.Fragment>
+                <Button className="Campaignbtn" onClick={() => setOpen2(true)}>
+                  <AddIcon className="AddBtnCampaign" /> Create Campaign
+                </Button>
+                <Drawer
+                  anchor={"right"}
+                  open={open2}
+                  onClose={() => setOpen2(false)}
+                  className='NewCampaignDrawer'
+                >
+                  <Box role="presentation">
+                    <ClearOutlinedIcon
+                      color="action"
+                      className="Campclosebtn"
+                      onClick={() => setOpen2(false)}
+                    />
+                    <br />
+                    <div style={{ width: "100%", padding: "0px 32px" }}>
+                      <div className="Campnewtemphead"> New Campaign</div>
+                      <p className="Campnewtembody">Campaign name</p>
+                      <TextField
+                        type="text"
+                        id="outlined-size-small"
+                        color="warning"
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                        size="small"
+                        className="Camptitleinput"
+                      />
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          marginTop: "10px",
+                        }}
                       >
-                        {columns.map((column) => {
-                          const value = row[column.id];
-                          return (
-                            <TableCell key={column.id} align={column.align}>
-                              {column.format && typeof value === "number"
-                                ? column.format(value)
-                                : value}
-                            </TableCell>
-                          );
-                        })}
-                      </TableRow>
-                    );
-                  })}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Paper>
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 100]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
+                        <Button
+                          className="newCampaignbtn"
+                          onClick={() => {
+                            handleNewopen();
+                            setNewopen(true);
+                          }}
+                        >
+                          Create New Campaign
+                        </Button>
+                      </div>
+                    </div>
+                  </Box>
+                </Drawer>
+              </React.Fragment>
+
+              <Button
+                variant="outlined"
+                className="Camparchivebtn"
+                onClick={() => {
+                  if (btn2) {
+                    setBtn2(false);
+                  } else {
+                    setBtn2(true);
+                  }
+                }}
+              >
+                {btn2 ? (
+                  <> Back to campaign </>
+                ) : (
+                  <>
+                    <Inventory2OutlinedIcon className="Camparchivelogo" /> Show
+                    archive
+                  </>
+                )}
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {author && (
+          <FormControl
+            sx={{ mt: 1, mb: 1 }}
+            size="small"
+            style={{ width: "205px" }}
+          >
+            <InputLabel id="demo-select-small" color="warning">
+              Author
+            </InputLabel>
+            <Select
+              labelId="demo-select-small"
+              id="demo-select-small"
+              value={aut}
+              label="Author"
+              color="warning"
+            >
+              <MenuItem
+                value={"kailash"}
+                onClick={() => {
+                  setChip(true);
+                }}
+              >
+                kailash choudhary
+              </MenuItem>
+            </Select>
+          </FormControl>
+        )}
+        {chip && (
+          <div
+            sx={{
+              flexWrap: "wrap",
+              listStyle: "none",
+            }}
+          >
+            {chipData.map((data, index) => {
+              return (
+                <Chip
+                  key={index}
+                  label={data.label}
+                  onDelete={() => {
+                    setChip(false);
+                  }}
+                  style={{
+                    backgroundColor: "#673ab7",
+                    color: "#fafbfb ",
+                    height: "24px",
+                    width: "163px ",
+                    marginTop: "12px",
+                    maxWidth: "100%",
+                    fontSize: " 12px",
+                  }}
+                />
+              );
+            })}
+          </div>
+        )}
+        <div style={{ width: "1000px" }}>
+          <div style={{ justifyContent: "center", display: "flex" }}>
+            <Box sx={{ width: "910px", paddingTop: "64px" }}>
+              <LinearProgress color="warning" />
+            </Box>
+          </div>
+          <Paper sx={{ width: "100%", overflow: "hidden" }}>
+            <TableContainer sx={{ maxHeight: 440 }}>
+              <Table stickyHeader aria-label="sticky table">
+                <TableHead>
+                  <TableRow>
+                    {columns.map((column) => (
+                      <TableCell
+                        key={column.id}
+                        align={column.align}
+                        style={{ minWidth: column.minWidth }}
+                      >
+                        {column.label}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {rows
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((row) => {
+                      return (
+                        <TableRow
+                          hover
+                          role="checkbox"
+                          tabIndex={-1}
+                          key={row.code}
+                        >
+                          {columns.map((column) => {
+                            const value = row[column.id];
+                            return (
+                              <TableCell key={column.id} align={column.align}>
+                                {column.format && typeof value === "number"
+                                  ? column.format(value)
+                                  : value}
+                              </TableCell>
+                            );
+                          })}
+                        </TableRow>
+                      );
+                    })}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Paper>
+          <TablePagination
+            rowsPerPageOptions={[10, 25, 100]}
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </div>
+        <Snackbar
+          open={snackOpen}
+          autoHideDuration={4000}
+          onClose={() => setSnackOpen(false)}
+          message=" Add Campaign"
         />
+        <NewCampaign Newopen={Newopen} handleNewclose={handleNewclose} />
       </div>
-      <Snackbar
-        open={snackOpen}
-        autoHideDuration={4000}
-        onClose={() => setSnackOpen(false)}
-        message=" Add Campaign"
-      />
-      <NewCampaign Newopen={Newopen} handleNewclose={handleNewclose} />
     </div>
   );
 }
