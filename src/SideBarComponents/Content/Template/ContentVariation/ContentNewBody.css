@@ -1,0 +1,15 @@
+.ContentNewBodydrawer > div:nth-child(3) {
+  box-sizing: border-box;
+  width: 662px;
+  max-width: 90%;
+  z-index: 1210;
+}
+.ContentNewBodymaindiv {
+  width: 100%;
+  padding: 0px 32px;
+}
+@media screen and (max-width: 600px) {
+  .ContentNewBodymaindiv {
+    padding: 0px 16px;
+  }
+}

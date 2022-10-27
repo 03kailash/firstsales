@@ -40,9 +40,7 @@ export default function EventStream() {
 
             <div className="headdiv2">TEAM_MEMBER_ADD</div>
           </div>
-          <div
-            style={{ display: "flex", justifyContent: "end", width: "100%" }}
-          >
+          <div className="techbtndiv">
             <Button className="techbtn">Technical details</Button>
           </div>
         </div>
@@ -55,9 +53,7 @@ export default function EventStream() {
 
             <div className="headdiv2">TEMPLATED_BODY_ADD</div>
           </div>
-          <div
-            style={{ display: "flex", justifyContent: "end", width: "100%" }}
-          >
+          <div className="techbtndiv">
             <Button className="techbtn">Technical details</Button>
           </div>
         </div>

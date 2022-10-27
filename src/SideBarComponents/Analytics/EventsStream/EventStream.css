@@ -44,8 +44,21 @@
   width: 60px;
   border-right: 1px solid rgba(0, 0, 0, 0.12);
 }
+.techbtndiv {
+  display: flex;
+  justify-content: end;
+  width: 100%;
+}
 .eventpageno {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+@media screen and (max-width: 600px) {
+  .eventcomponents {
+    display: block;
+  }
+  .techbtndiv {
+    justify-content: start;
+  }
 }

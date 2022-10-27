@@ -105,3 +105,33 @@
   width: 533px;
   max-width: 533px;
 }
+.teammaindiv {
+  width: 582px;
+  max-width: 582px;
+}
+.getbtnshowswitchdiv {
+  display: flex;
+  margin-bottom: 32px;
+  justify-content: space-between;
+}
+@media screen and (max-width: 900px) {
+  .workfirstdiv {
+    flex-flow: column;
+    gap: 0px;
+    row-gap: 24px;
+  }
+  .teamfirstdiv {
+    flex-flow: column;
+    gap: 0px;
+    row-gap: 24px;
+  }
+  .deletefirstdiv {
+    flex-flow: column;
+    gap: 0px;
+    row-gap: 24px;
+  }
+  .teammaindiv {
+    width: 100%;
+    max-width: 100%;
+  }
+}

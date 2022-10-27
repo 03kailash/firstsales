@@ -20,6 +20,7 @@ import SettingMemberModal from "./SettingMemberModal";
 import DeleteIcon from "@mui/icons-material/Delete";
 import InputAdornment from "@mui/material/InputAdornment";
 import Alert from "@mui/material/Alert";
+import Snackbar from "@mui/material/Snackbar";
 
 function createData(user, role) {
   return { user, role };
@@ -38,6 +39,26 @@ export default function Workspace() {
   const closeDeleteWorkspace = () => {
     setDeletework(false);
   };
+  const [snackOpen, setSnackOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setSnackOpen(true);
+  };
+  const [snackOpen2, setSnackOpen2] = React.useState(false);
+
+  const handleClick2 = () => {
+    setSnackOpen2(true);
+  };
+  const [snackOpen3, setSnackOpen3] = React.useState(false);
+
+  const handleClick3 = () => {
+    setSnackOpen3(true);
+  };
+  const [snackOpen4, setSnackOpen4] = React.useState(false);
+
+  const handleClick4 = () => {
+    setSnackOpen4(true);
+  };
   return (
     <div>
       <div className="workfirstdiv">
@@ -45,7 +66,12 @@ export default function Workspace() {
           <div className="workheading">Workspace</div>
           <span className="workcode">
             ws-lsOeqtOxAyBhqz522w9oHdUh{" "}
-            <IconButton style={{ padding: "5px" }}>
+            <IconButton
+              style={{ padding: "5px" }}
+              onClick={() => {
+                handleClick4();
+              }}
+            >
               <FileCopyOutlinedIcon style={{ fontSize: "14px" }} />
             </IconButton>
           </span>
@@ -85,7 +111,14 @@ export default function Workspace() {
               <br /> October 17, 2022 3:31 PM
             </span>
           </span>
-          <Button className="Saveworkbtn">Save</Button>
+          <Button
+            className="Saveworkbtn"
+            onClick={() => {
+              handleClick3();
+            }}
+          >
+            Save
+          </Button>
         </div>
       </div>
       <hr
@@ -98,7 +131,7 @@ export default function Workspace() {
       />
       <div className="teamfirstdiv">
         <div className="teamheading">Team Members</div>
-        <div style={{ maxWidth: "582px", width: "582px" }}>
+        <div className="teammaindiv">
           <LinearProgress color="warning" style={{ marginBottom: "8px" }} />
           {getlink && (
             <div>
@@ -129,6 +162,7 @@ export default function Workspace() {
                     onClick={() => {
                       setDeletelink(true);
                       setGetlink(false);
+                      handleClick2();
                     }}
                   >
                     <DeleteIcon color="action" />
@@ -140,7 +174,7 @@ export default function Workspace() {
               </Alert>
             </div>
           )}
-          <div style={{ display: "flex", marginBottom: "32px" }}>
+          <div className="getbtnshowswitchdiv">
             {" "}
             {deletelink && (
               <Button
@@ -148,6 +182,7 @@ export default function Workspace() {
                 onClick={() => {
                   setGetlink(true);
                   setDeletelink(false);
+                  handleClick();
                 }}
               >
                 Get invitation link
@@ -158,8 +193,9 @@ export default function Workspace() {
                 display: "flex",
                 alignItems: "center",
                 maxWidth: "100%",
-                width: deletelink ? "435px" : "100%",
+                width: deletelink ? "" : "100%",
                 justifyContent: "end",
+                marginRight: "16px",
               }}
             >
               <Switch disabled color="warning" />
@@ -233,6 +269,31 @@ export default function Workspace() {
       </div>
       <WorkspaceDelete isOpen={deletework} isClose={closeDeleteWorkspace} />
       <SettingMemberModal isOpen={teamModal} isClose={closeTeamModal} />
+
+      <Snackbar
+        open={snackOpen}
+        autoHideDuration={4000}
+        onClose={() => setSnackOpen(false)}
+        message="Invitation link created"
+      />
+      <Snackbar
+        open={snackOpen2}
+        autoHideDuration={4000}
+        onClose={() => setSnackOpen2(false)}
+        message="Invitation link deleted"
+      />
+      <Snackbar
+        open={snackOpen3}
+        autoHideDuration={4000}
+        onClose={() => setSnackOpen3(false)}
+        message="Workspace updated"
+      />
+      <Snackbar
+        open={snackOpen4}
+        autoHideDuration={4000}
+        onClose={() => setSnackOpen4(false)}
+        message="Copied:"
+      />
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./ConVarAddBody.css";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Drawer from "@mui/material/Drawer";
@@ -80,15 +81,20 @@ export default function ConVarAddBody({ open, close }) {
 
   return (
     <React.Fragment>
-      <Drawer anchor={"right"} open={open} onClose={close}>
-        <Box sx={{ width: 830 }} role="presentation">
+      <Drawer
+        anchor={"right"}
+        open={open}
+        onClose={close}
+        className="convaraddbodydrawer"
+      >
+        <Box role="presentation">
           <ClearOutlinedIcon
             color="action"
             className="closebtn"
             onClick={close}
           />
           <br />
-          <div style={{ width: "100%", padding: "0px 32px" }}>
+          <div className="convaraddbodymaindiv">
             <div className="tempbuilderhead">Add Body Block</div>
 
             <Button
@@ -118,7 +124,7 @@ export default function ConVarAddBody({ open, close }) {
               <input
                 type="text"
                 placeholder="Search"
-                className="searchinput"
+                className="searchinputconvaraddbody"
                 style={{ width: "100%" }}
               />
               <TuneOutlinedIcon

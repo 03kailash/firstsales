@@ -8,13 +8,12 @@
   margin: 0px 0px 24px;
 }
 .titlefield {
-  width: 423px;
+  max-width: 400px;
 }
-
-.inputIcon {
-  height: 40px !important;
-  position: absolute;
-  right: 480px;
+.tempbuiltdrawer > div:nth-child(3) {
+  box-sizing: border-box;
+  width: 1337px;
+  max-width: 90%;
 }
 
 .Savetemplatebtn {
@@ -179,4 +178,10 @@
   line-height: 1.66;
   letter-spacing: 0.03333em;
   margin: 4px 0px;
+}
+.contentvariationtabs > div > div > .Mui-selected {
+  color: #ff8e00 !important;
+}
+.contentvariationtabs > div > .MuiTabs-indicator {
+  background-color: #ff8e00;
 }

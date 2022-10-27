@@ -1,0 +1,32 @@
+.convaraddbodydrawer > div:nth-child(3) {
+  box-sizing: border-box;
+  width: 832px;
+  max-width: 90%;
+}
+.convaraddbodymaindiv {
+  width: 100%;
+  padding: 0px 32px;
+}
+@media screen and (max-width: 600px) {
+  .convaraddbodymaindiv {
+    padding: 0px 16px;
+  }
+}
+.searchinputconvaraddbody {
+  color: currentcolor;
+  border: none;
+  box-sizing: content-box;
+  background: rgb(243, 243, 243);
+  height: 23px;
+  margin: 0px;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  border-radius: 5px !important;
+  animation-duration: 10ms;
+  padding: 8.5px 2px 8.5px 14px;
+}
+.searchinputconvaraddbody:focus-visible {
+  outline: none;
+}

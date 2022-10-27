@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import "./TemplateEditsubject.css";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import TextField from "@mui/material/TextField";
-import { Button } from "@mui/material";
+import { Button, IconButton, InputAdornment } from "@mui/material";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import data from "@emoji-mart/data";
@@ -31,17 +32,28 @@ export default function TemplateEditsubject({ isopen, isclose }) {
   const [selectedEmoji, setSelectedEmoji] = useState("");
   return (
     <React.Fragment>
-      <Drawer anchor={"right"} open={isopen} onClose={isclose}>
-        <Box sx={{ width: 662 }} role="presentation">
+      <Drawer
+        anchor={"right"}
+        open={isopen}
+        onClose={isclose}
+        className="tempeditsubdrawer"
+      >
+        <Box role="presentation">
           <ClearOutlinedIcon
             color="action"
             className="closebtn"
             onClick={isclose}
           />
           <br />
-          <div style={{ width: "100%", padding: "0px 32px" }}>
+          <div className="tempeditsubmaindiv">
             <div className="tempbuilderhead">Subject editing</div>
-            <div style={{ display: "flex", alignItems: "center" }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                paddingTop: "16px",
+              }}
+            >
               <TextField
                 label="Subject"
                 type="text"
@@ -54,16 +66,26 @@ export default function TemplateEditsubject({ isopen, isclose }) {
                 className="titleinput"
                 value={selectedEmoji}
                 onChange={(e) => setSelectedEmoji(e.target.value)}
-              />
-              <EmojiEmotionsIcon
-                color="action"
-                style={{ position: "absolute", right: "50px", opacity: "50%" }}
-                onClick={() => {
-                  if (emoji) {
-                    setEmoji(false);
-                  } else {
-                    setEmoji(true);
-                  }
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton style={{ padding: "5px" }}>
+                        <EmojiEmotionsIcon
+                          color="action"
+                          style={{
+                            opacity: "50%",
+                          }}
+                          onClick={() => {
+                            if (emoji) {
+                              setEmoji(false);
+                            } else {
+                              setEmoji(true);
+                            }
+                          }}
+                        />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
                 }}
               />
             </div>
@@ -85,7 +107,7 @@ export default function TemplateEditsubject({ isopen, isclose }) {
                 style={{
                   textTransform: "initial",
                   color: "#000000DE",
-                  marginTop: "10px",
+                  marginTop: "4px",
                 }}
                 onClick={() => {
                   if (addplace) {
@@ -128,28 +150,19 @@ export default function TemplateEditsubject({ isopen, isclose }) {
                 </FixedSizeList>
               </Box>
             )}
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                marginTop: "36px",
-                gap: "15px",
-              }}
-            >
-              <Button variant="outlined" className="archivebtn">
+            <div className="tempeditsubtwobtndiv">
+              <Button
+                variant="outlined"
+                className="archivetempeditsubbtn"
+                onClick={() => {
+                  isclose();
+                }}
+              >
                 <Inventory2OutlinedIcon className="archivelogo" /> Move to
                 Archive
               </Button>
 
-              <Button
-                variant="outlined"
-                style={{
-                  width: "205px",
-                  borderColor: "#000000DE",
-                  textTransform: "capitalize",
-                  color: "black",
-                }}
-              >
+              <Button variant="outlined" className="Savetempeditsubbtn">
                 Save
               </Button>
             </div>

@@ -28,6 +28,7 @@ export default function Settings() {
             style={{
               display: "flex",
               justifyContent: "center",
+              overflowX: "auto",
             }}
           >
             <div>

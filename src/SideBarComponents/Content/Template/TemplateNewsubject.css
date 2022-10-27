@@ -1,0 +1,14 @@
+.tempnewsubdrawer > div:nth-child(3) {
+  box-sizing: border-box;
+  width: 662px;
+  max-width: 90%;
+}
+.tempnewsubmaindiv {
+  width: 100%;
+  padding: 0px 32px;
+}
+@media screen and (max-width: 600px) {
+  .tempnewsubmaindiv {
+    padding: 0px 16px;
+  }
+}

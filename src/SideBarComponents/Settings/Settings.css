@@ -20,3 +20,16 @@
 .setinactiveTab {
   color: #00000099 !important;
 }
+@media screen and (max-width: 1200px) {
+  .setactiveTab {
+    width: 295px;
+    max-width: 295px;
+  }
+  .setinactiveTab {
+    width: 295px;
+    max-width: 295px;
+  }
+  .sethead {
+    display: none;
+  }
+}

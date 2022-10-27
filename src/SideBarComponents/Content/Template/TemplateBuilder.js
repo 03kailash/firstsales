@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./TemplateBuilder.css";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -41,6 +41,7 @@ import CreateIcon from "@mui/icons-material/Create";
 import PauseCircleOutlineIcon from "@mui/icons-material/PauseCircleOutline";
 import IconButton from "@mui/material/IconButton";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import { InputAdornment } from "@mui/material";
 
 const arr = [
   {
@@ -133,10 +134,23 @@ export default function TemplateBuilder({ isOpen, isClose }) {
     setContentdelModal(false);
   };
 
+  useEffect(() => {
+    if (sliderCount !== 1)
+      setSliderArr((oldarray) => [
+        ...oldarray,
+        `Content Variation #${sliderCount}`,
+      ]);
+  }, [sliderCount]);
+
   return (
     <React.Fragment>
-      <Drawer anchor={"right"} open={isOpen} onClose={isClose}>
-        <Box sx={{ width: 1335 }} role="presentation">
+      <Drawer
+        anchor={"right"}
+        open={isOpen}
+        onClose={isClose}
+        className="tempbuiltdrawer"
+      >
+        <Box role="presentation">
           <ClearOutlinedIcon
             color="action"
             className="closebtn"
@@ -146,10 +160,19 @@ export default function TemplateBuilder({ isOpen, isClose }) {
           <div style={{ width: "100%", padding: "0px 48px" }}>
             <div className="tempbuilderhead">Template Builder</div>
             <div
-              style={{ alignItems: "center", display: "flex", gap: "276px" }}
+              style={{
+                alignItems: "center",
+                display: "flex",
+                justifyContent: "space-between",
+              }}
             >
               <Button className="Savetemplatebtn">Save template</Button>
-              <div style={{ alignItems: "center", display: "flex" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
                 <TextField
                   type="text"
                   id="outlined-size-small"
@@ -160,8 +183,16 @@ export default function TemplateBuilder({ isOpen, isClose }) {
                   size="small"
                   className="titlefield"
                   placeholder="Template's Title"
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton style={{ padding: "5px" }}>
+                          <CreateOutlinedIcon color="action" />
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
                 />
-                <CreateOutlinedIcon color="action" className="inputIcon" />
               </div>
               <Button
                 className="movearchive"
@@ -504,6 +535,7 @@ export default function TemplateBuilder({ isOpen, isClose }) {
                         variant="scrollable"
                         scrollButtons="auto"
                         style={{ padding: "0px 50px" }}
+                        className="contentvariationtabs"
                       >
                         {sliderArr.map((item) => {
                           return (
@@ -528,12 +560,11 @@ export default function TemplateBuilder({ isOpen, isClose }) {
                         <Tab
                           onClick={() => {
                             setSliderCount(sliderCount + 1);
-                            setSliderArr((oldarray) => [
-                              ...oldarray,
-                              `Content Variation #${sliderCount}`,
-                            ]);
                           }}
                           label="Add Content Variation"
+                          style={{ textTransform: "none" }}
+                          icon={<AddIcon />}
+                          iconPosition="start"
                         />
                       </Tabs>
                       {contentdata && (

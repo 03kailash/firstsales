@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./ContentNewBody.css";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
@@ -14,15 +15,20 @@ export default function ContentNewBody({ isopen, isclose }) {
 
   return (
     <React.Fragment>
-      <Drawer anchor={"right"} open={isopen} onClose={isclose}>
-        <Box sx={{ width: 662 }} role="presentation">
+      <Drawer
+        anchor={"right"}
+        open={isopen}
+        onClose={isclose}
+        className="ContentNewBodydrawer"
+      >
+        <Box role="presentation">
           <ClearOutlinedIcon
             color="action"
             className="closebtn"
             onClick={isclose}
           />
           <br />
-          <div style={{ width: "100%", padding: "0px 32px" }}>
+          <div className="ContentNewBodymaindiv">
             <div className="tempbuilderhead">Create new Body Block</div>
             <div style={{ display: "flex", alignItems: "center" }}>
               <TextField

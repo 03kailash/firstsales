@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./EmailWarm.css";
 import Alert from "@mui/material/Alert";
-import { Button, IconButton } from "@mui/material";
+import { Button, IconButton, Tooltip } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
@@ -26,6 +26,7 @@ import PlayCircleFilledWhiteOutlinedIcon from "@mui/icons-material/PlayCircleFil
 import EmaildeleteModal from "./EmaildeleteModal";
 import EmailEditModal from "./EmailEditModal";
 import Snackbar from "@mui/material/Snackbar";
+import WarmUpAnalyticsModal from "./WarmUpAnalyticsModal";
 
 function createData(name, calories, fat, carbs) {
   return { name, calories, fat, carbs };
@@ -37,6 +38,10 @@ export default function EmailWarm() {
   const [emailwarmedit, setEmailwarmedit] = useState(false);
   const closeEmailwarmedit = () => {
     setEmailwarmedit(false);
+  };
+  const [warmupana, setWarmupana] = useState(false);
+  const closeWarmUpana = () => {
+    setWarmupana(false);
   };
   const [emaildel, setEmaildel] = useState(false);
   const closeEmailDelete = () => {
@@ -127,9 +132,19 @@ export default function EmailWarm() {
                   <TableCell align="right">
                     {
                       <>
-                        <IconButton>
-                          <AnalyticsOutlinedIcon color="action" />
-                        </IconButton>
+                        <Tooltip
+                          title="Warm up analytics"
+                          placement="top"
+                          arrow
+                        >
+                          <IconButton
+                            onClick={() => {
+                              setWarmupana(true);
+                            }}
+                          >
+                            <AnalyticsOutlinedIcon color="action" />
+                          </IconButton>
+                        </Tooltip>
                         <IconButton onClick={handleClick}>
                           <MoreVertOutlinedIcon color="action" />
                         </IconButton>
@@ -211,6 +226,7 @@ export default function EmailWarm() {
       <EmailCreateModal open={emailCreate} close={closeEmailCreate} />
       <EmaildeleteModal isOpen={emaildel} isClose={closeEmailDelete} />
       <EmailEditModal open={emailwarmedit} close={closeEmailwarmedit} />
+      <WarmUpAnalyticsModal open={warmupana} close={closeWarmUpana} />
       <Snackbar
         open={snackOpen}
         autoHideDuration={4000}

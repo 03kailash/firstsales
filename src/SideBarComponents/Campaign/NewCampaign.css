@@ -274,7 +274,7 @@
   height: 40px !important;
 }
 
-.AddCampaignDrawer  > div:nth-child(3){
+.AddCampaignDrawer > div:nth-child(3) {
   box-sizing: border-box;
   width: 1337px;
   max-width: 95%;

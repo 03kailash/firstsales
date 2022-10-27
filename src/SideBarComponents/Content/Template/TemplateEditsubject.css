@@ -1,0 +1,38 @@
+.tempeditsubmaindiv {
+  width: 100%;
+  padding: 0px 32px;
+}
+.tempeditsubdrawer > div:nth-child(3) {
+  box-sizing: border-box;
+  width: 662px;
+  max-width: 90%;
+  z-index: 1210;
+}
+@media screen and (max-width: 600px) {
+  .tempeditsubmaindiv {
+    padding: 0px 16px;
+  }
+  .tempeditsubtwobtndiv {
+    display: grid !important;
+  }
+}
+.tempeditsubtwobtndiv {
+  display: flex;
+  justify-content: center;
+  margin: 48px 0px;
+  gap: 15px;
+}
+.archivetempeditsubbtn {
+  text-transform: inherit !important;
+  width: 210px;
+  max-width: 210px;
+}
+.Savetempeditsubbtn {
+  text-transform: inherit !important;
+  color: rgb(255, 255, 255) !important;
+  background-color: rgb(255, 142, 0) !important;
+  padding: 6px 16px !important;
+  width: 210px;
+  max-width: 210px;
+  border: 0px !important;
+}

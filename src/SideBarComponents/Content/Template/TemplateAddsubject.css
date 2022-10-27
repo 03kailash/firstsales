@@ -1,0 +1,32 @@
+.builderaddsubdrawer > div:nth-child(3) {
+  box-sizing: border-box;
+  width: 832px;
+  max-width: 90%;
+}
+.builderaddsubmaindiv {
+  width: 100%;
+  padding: 0px 32px;
+}
+@media screen and (max-width: 600px) {
+  .builderaddsubmaindiv {
+    padding: 0px 16px;
+  }
+}
+.searchinputbuilderaddsub {
+  color: currentcolor;
+  border: none;
+  box-sizing: content-box;
+  background: rgb(243, 243, 243);
+  height: 23px;
+  margin: 0px;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+
+  width: 100%;
+  border-radius: 5px !important;
+  animation-duration: 10ms;
+  padding: 8.5px 2px 8.5px 14px;
+}
+.searchinputbuilderaddsub:focus-visible {
+  outline: none;
+}

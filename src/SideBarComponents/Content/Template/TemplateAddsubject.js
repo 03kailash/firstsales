@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./TemplateAddsubject.css";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Drawer from "@mui/material/Drawer";
@@ -80,15 +81,20 @@ export default function TemplateAddsubject({ open, close }) {
 
   return (
     <React.Fragment>
-      <Drawer anchor={"right"} open={open} onClose={close}>
-        <Box sx={{ width: 830 }} role="presentation">
+      <Drawer
+        anchor={"right"}
+        open={open}
+        onClose={close}
+        className="builderaddsubdrawer"
+      >
+        <Box role="presentation">
           <ClearOutlinedIcon
             color="action"
             className="closebtn"
             onClick={close}
           />
           <br />
-          <div style={{ width: "100%", padding: "0px 32px" }}>
+          <div className="builderaddsubmaindiv">
             <div className="tempbuilderhead">Add Subject</div>
 
             <Button
@@ -118,7 +124,7 @@ export default function TemplateAddsubject({ open, close }) {
               <input
                 type="text"
                 placeholder="Search"
-                className="searchinput"
+                className="searchinputbuilderaddsub"
                 style={{ width: "100%" }}
               />
               <TuneOutlinedIcon

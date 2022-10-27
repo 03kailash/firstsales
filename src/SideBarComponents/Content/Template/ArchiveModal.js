@@ -1,27 +1,23 @@
 import React from "react";
+import "./ArchiveModal.css";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 444,
-  height: 161,
-  innerHeight: 171,
-  boxShadow: 24,
-  bgcolor: "background.paper",
-  borderRadius: "4px",
-  margin: "8px",
-};
-
 export const ArchiveModal = ({ isOpen, isClose }) => {
   return (
-    <Modal keepMounted open={isOpen} onClose={isClose}>
-      <Box sx={style}>
+    <Modal
+      keepMounted
+      open={isOpen}
+      onClose={isClose}
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Box className="temparchivemodalbox">
         <Typography
           id="keep-mounted-modal-title"
           variant="h6"
