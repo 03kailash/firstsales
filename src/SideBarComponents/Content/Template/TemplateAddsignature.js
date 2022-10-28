@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./TemplateAddsignature.css";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Drawer from "@mui/material/Drawer";
@@ -79,15 +80,20 @@ export default function TemplateAddsignature({ open, close }) {
   };
   return (
     <React.Fragment>
-      <Drawer anchor={"right"} open={open} onClose={close}>
-        <Box sx={{ width: 830 }} role="presentation">
+      <Drawer
+        anchor={"right"}
+        open={open}
+        onClose={close}
+        className="TemplateAddsignaturedrawer"
+      >
+        <Box role="presentation">
           <ClearOutlinedIcon
             color="action"
             className="closebtn"
             onClick={close}
           />
           <br />
-          <div style={{ width: "100%", padding: "0px 32px" }}>
+          <div className="TempAddsignaturemaindiv">
             <div className="tempbuilderhead">Add Signature</div>
 
             <Button
@@ -117,7 +123,7 @@ export default function TemplateAddsignature({ open, close }) {
               <input
                 type="text"
                 placeholder="Search"
-                className="searchinput"
+                className="searchinputtempaddsign"
                 style={{ width: "100%" }}
               />
               <TuneOutlinedIcon

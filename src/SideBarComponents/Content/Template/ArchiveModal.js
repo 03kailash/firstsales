@@ -41,15 +41,14 @@ export const ArchiveModal = ({ isOpen, isClose }) => {
           style={{ display: "flex", justifyContent: "end", padding: "8px" }}
         >
           <Button
-            className=""
-            style={{ textTransform: "none", color: "rgb(255 142 0)" }}
+            className="builderarchiveCancelbtn"
             size="small"
             onClick={isClose}
           >
             Cancel
           </Button>
           <Button
-            className=""
+            className="builderarchiveOkbtn"
             style={{ textTransform: "none", color: "rgb(255 142 0)" }}
             size="small"
           >

@@ -14,3 +14,19 @@
   max-width: 444px;
   width: calc(100% - 64px);
 }
+.builderarchiveCancelbtn {
+  color: rgb(255 142 0) !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+}
+.builderarchiveOkbtn {
+  color: rgb(255 142 0) !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+}
+.builderarchiveOkbtn:hover {
+  background-color: rgba(255, 142, 0, 0.04) !important;
+}
+.builderarchiveCancelbtn:hover {
+  background-color: rgba(255, 142, 0, 0.04) !important;
+}

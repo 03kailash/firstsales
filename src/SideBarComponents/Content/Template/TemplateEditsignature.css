@@ -1,0 +1,33 @@
+.TempEditsigndrawer > div:nth-child(3) {
+  box-sizing: border-box;
+  width: 860px;
+  max-width: 90%;
+  z-index: 1210;
+}
+.TempEditsignmaindiv {
+  width: 100%;
+  padding: 0px 32px;
+}
+@media screen and (max-width: 600px) {
+  .TempEditsignmaindiv {
+    padding: 0px 16px;
+  }
+}
+.Savecopyeditsignbtn {
+  min-width: 210px !important;
+  color: rgb(255, 255, 255) !important;
+  background-color: rgb(255, 142, 0) !important;
+}
+.Savecopyeditsignbtn:hover {
+  background-color: rgb(178, 99, 0) !important;
+  box-shadow: rgb(0 0 0 / 31%) 0px 0px 1px 0px,
+    rgb(0 0 0 / 25%) 0px 3px 4px -2px !important;
+}
+.Savetempeditsignbtn {
+  color: rgb(255, 142, 0) !important;
+  border: 1px solid rgba(255, 142, 0, 0.5) !important;
+  min-width: 210px !important;
+}
+.Savetempeditsignbtn:hover {
+  background-color: rgba(255, 142, 0, 0.04) !important;
+}

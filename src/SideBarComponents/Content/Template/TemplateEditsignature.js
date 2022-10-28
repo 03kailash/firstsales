@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import "./TemplateEditsignature.css";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import TextField from "@mui/material/TextField";
-import { Button } from "@mui/material";
+import { Button, IconButton, InputAdornment } from "@mui/material";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
@@ -13,15 +14,20 @@ export default function Editsignature({ isopen, isclose }) {
   const [selectedEmoji, setSelectedEmoji] = useState("");
   return (
     <React.Fragment>
-      <Drawer anchor={"right"} open={isopen} onClose={isclose}>
-        <Box sx={{ width: 860 }} role="presentation">
+      <Drawer
+        anchor={"right"}
+        open={isopen}
+        onClose={isclose}
+        className="TempEditsigndrawer"
+      >
+        <Box role="presentation">
           <ClearOutlinedIcon
             color="action"
             className="closebtn"
             onClick={isclose}
           />
           <br />
-          <div style={{ width: "100%", padding: "0px 32px" }}>
+          <div className="TempEditsignmaindiv">
             <div className="tempbuilderhead">Signature editing</div>
             <div style={{ display: "flex", alignItems: "center" }}>
               <TextField
@@ -37,16 +43,26 @@ export default function Editsignature({ isopen, isclose }) {
                 value={selectedEmoji}
                 onChange={(e) => setSelectedEmoji(e.target.value)}
                 style={{ margin: "16px 0px" }}
-              />
-              <EmojiEmotionsIcon
-                color="action"
-                style={{ position: "absolute", right: "50px", opacity: "50%" }}
-                onClick={() => {
-                  if (emoji) {
-                    setEmoji(false);
-                  } else {
-                    setEmoji(true);
-                  }
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton style={{ padding: "5px" }}>
+                        <EmojiEmotionsIcon
+                          color="action"
+                          style={{
+                            opacity: "50%",
+                          }}
+                          onClick={() => {
+                            if (emoji) {
+                              setEmoji(false);
+                            } else {
+                              setEmoji(true);
+                            }
+                          }}
+                        />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
                 }}
               />
             </div>

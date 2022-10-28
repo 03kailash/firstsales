@@ -42,6 +42,7 @@ import PauseCircleOutlineIcon from "@mui/icons-material/PauseCircleOutline";
 import IconButton from "@mui/material/IconButton";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import { InputAdornment } from "@mui/material";
+import TempDataEditsignature from "./TemplateDataEditsignture";
 
 const arr = [
   {
@@ -84,6 +85,10 @@ export default function TemplateBuilder({ isOpen, isClose }) {
   const [adcontentbody, setAdcontentbody] = useState(false);
   const closecontentbody = () => {
     setAdcontentbody(false);
+  };
+  const [dataeditsign, setDataeditsign] = useState(false);
+  const closeDataeditsign = () => {
+    setDataeditsign(false);
   };
   const [contentdata, setContentdata] = useState(true);
   const [dark, setDark] = useState(true);
@@ -171,6 +176,7 @@ export default function TemplateBuilder({ isOpen, isClose }) {
                 style={{
                   display: "flex",
                   justifyContent: "center",
+                  width: "400px",
                 }}
               >
                 <TextField
@@ -180,15 +186,13 @@ export default function TemplateBuilder({ isOpen, isClose }) {
                   InputLabelProps={{
                     shrink: true,
                   }}
+                  style={{ width: "100%" }}
                   size="small"
-                  className="titlefield"
                   placeholder="Template's Title"
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
-                        <IconButton style={{ padding: "5px" }}>
-                          <CreateOutlinedIcon color="action" />
-                        </IconButton>
+                        <CreateOutlinedIcon color="action" />
                       </InputAdornment>
                     ),
                   }}
@@ -470,7 +474,10 @@ export default function TemplateBuilder({ isOpen, isClose }) {
                                   onClose={menuclose}
                                 >
                                   <MenuItem
-                                    onClick={menuclose}
+                                    onClick={() => {
+                                      setDataeditsign(true);
+                                      menuclose();
+                                    }}
                                     style={{ gap: "12px" }}
                                   >
                                     <CreateIcon color="action" /> Edit signature
@@ -888,6 +895,10 @@ export default function TemplateBuilder({ isOpen, isClose }) {
         isClose={contentvaridelete}
       />
       <ConVarAddBody open={adcontentbody} close={closecontentbody} />
+      <TempDataEditsignature
+        isopen={dataeditsign}
+        isclose={closeDataeditsign}
+      />
     </React.Fragment>
   );
 }

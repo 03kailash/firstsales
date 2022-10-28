@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
+import "./ContentEditbody.css";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
-import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
 
 export default function ContentEditbody({ isopen, isclose }) {
   const [gifsbtn, setGifsbtn] = useState(false);
@@ -24,15 +24,20 @@ export default function ContentEditbody({ isopen, isclose }) {
 
   return (
     <React.Fragment>
-      <Drawer anchor={"right"} open={isopen} onClose={isclose}>
-        <Box sx={{ width: 860 }} role="presentation">
+      <Drawer
+        anchor={"right"}
+        open={isopen}
+        onClose={isclose}
+        className="contenteditbodydrawer"
+      >
+        <Box role="presentation">
           <ClearOutlinedIcon
             color="action"
             className="closebtn"
             onClick={isclose}
           />
           <br />
-          <div style={{ width: "100%", padding: "0px 32px" }}>
+          <div className="contenteditbodymaindiv">
             <div className="tempbuilderhead" style={{ marginBottom: "40px" }}>
               Body Block editing
             </div>
@@ -106,7 +111,7 @@ export default function ContentEditbody({ isopen, isclose }) {
               </div>
             )}
 
-            <div className="Archivesavebtndiv">
+            <div className="contenteditsavebtndiv">
               <Button className="Savetemplatebtn" style={{ width: "205px" }}>
                 Save and Add to Template
               </Button>
@@ -115,7 +120,7 @@ export default function ContentEditbody({ isopen, isclose }) {
               style={{
                 display: "flex",
                 justifyContent: "center",
-                marginTop: "15px",
+                paddingTop: "16px",
               }}
             >
               <Button

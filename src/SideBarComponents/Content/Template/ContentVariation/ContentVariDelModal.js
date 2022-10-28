@@ -32,18 +32,13 @@ export default function ContentVariDelModal({ isOpen, isClose }) {
           style={{ display: "flex", justifyContent: "end", padding: "8px" }}
         >
           <Button
-            className=""
-            style={{ textTransform: "none", color: "rgb(255 142 0)" }}
+            className="varidelmodalCancelbtn"
             size="small"
             onClick={isClose}
           >
             Cancel
           </Button>
-          <Button
-            className=""
-            style={{ textTransform: "none", color: "rgb(255 142 0)" }}
-            size="small"
-          >
+          <Button className="varidelmodalOkbtn" size="small">
             Ok
           </Button>
         </Typography>

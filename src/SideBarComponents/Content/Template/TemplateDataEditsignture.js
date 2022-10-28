@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./TemplateNewsignature.css";
+import "./TemplateDataEditsignture.css";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
@@ -8,13 +8,9 @@ import { Button, IconButton, InputAdornment } from "@mui/material";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
-import TemplateEditsignature from "./TemplateEditsignature";
+import Alert from "@mui/material/Alert";
 
-export default function TemplateNewsignature({ isopen, isclose }) {
-  const [editsignature, setEditsignature] = useState(false);
-  const closeEditsignature = () => {
-    setEditsignature(false);
-  };
+export default function TempDataEditsignature({ isopen, isclose }) {
   const [emoji, setEmoji] = useState(false);
   const [selectedEmoji, setSelectedEmoji] = useState("");
   return (
@@ -23,7 +19,7 @@ export default function TemplateNewsignature({ isopen, isclose }) {
         anchor={"right"}
         open={isopen}
         onClose={isclose}
-        className="TempNewsignaturedrawer"
+        className="TempEditsigndrawer"
       >
         <Box role="presentation">
           <ClearOutlinedIcon
@@ -32,11 +28,11 @@ export default function TemplateNewsignature({ isopen, isclose }) {
             onClick={isclose}
           />
           <br />
-          <div className="TempNewsignmaindiv">
-            <div className="tempbuilderhead">Create new Signature</div>
+          <div className="TempEditsignmaindiv">
+            <div className="tempbuilderhead">Signature editing</div>
             <div style={{ display: "flex", alignItems: "center" }}>
               <TextField
-                label="Signature Title"
+                label="Title"
                 type="text"
                 id="outlined-size-small"
                 color="warning"
@@ -47,6 +43,7 @@ export default function TemplateNewsignature({ isopen, isclose }) {
                 className="titleinput"
                 value={selectedEmoji}
                 onChange={(e) => setSelectedEmoji(e.target.value)}
+                style={{ margin: "16px 0px" }}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
@@ -84,31 +81,29 @@ export default function TemplateNewsignature({ isopen, isclose }) {
               )}
             </div>
 
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                marginTop: "40px",
-              }}
-            >
-              <Button
-                className="Savetemplatebtn"
-                style={{ width: "210px" }}
-                onClick={() => {
-                  setEditsignature(true);
-                  isclose();
-                }}
-              >
-                Create new Signature
+            <div className="Savetempeditsignbtndiv">
+              <Button className="Savecopyeditsignbtn">Save a copy</Button>
+              <Button variant="outlined" className="Savetempeditsignbtn">
+                Save
               </Button>
             </div>
+            <Alert severity="info" style={{ marginBottom: "48px" }}>
+              <div style={{ marginLeft: "16px" }}>
+                <ul style={{ margin: "0px", padding: "0px" }}>
+                  <li>
+                    Press SAVE if you want to save changes for all emails where
+                    this content is used.
+                  </li>
+                  <li>
+                    Press SAVE A COPY if you want to create and save a new
+                    element for this template.
+                  </li>
+                </ul>
+              </div>
+            </Alert>
           </div>
         </Box>
       </Drawer>
-      <TemplateEditsignature
-        isopen={editsignature}
-        isclose={closeEditsignature}
-      />
     </React.Fragment>
   );
 }
