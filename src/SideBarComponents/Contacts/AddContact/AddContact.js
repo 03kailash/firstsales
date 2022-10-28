@@ -5,18 +5,6 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import CSVupload from "./CSVupload";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  height: 550,
-  width: 900,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
 function AddContact(props) {
   const [openUP, setOpenUP] = React.useState(false);
   const handleOpenUP = () => setOpenUP(true);
@@ -29,8 +17,9 @@ function AddContact(props) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         className="addcontactmodal"
+        style={{display:"flex",justifyContent:"center",alignItems:"center"}}
       >
-        <Box sx={style}>
+        <Box className='AddContactsMainDiv'>
           <h2 className="csv">CSV import</h2>
           <div className="Bodycsv">
             <div className="DotLine">
@@ -47,6 +36,7 @@ function AddContact(props) {
                 <hr className="hr" />
                 <br />
               </div>
+              <div style={{ display: "flex", justifyContent: "center" }}>
               <Button
                 variant="outlined"
                 color="warning"
@@ -58,11 +48,10 @@ function AddContact(props) {
               >
                 Select CSV
               </Button>
-              <br />
+              </div>
               <br />
             </div>
           </div>
-
           <div className="closeBtnHead">
             <div style={{ display: "flex", justifyContent: "center" }}>
               <Button

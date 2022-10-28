@@ -106,6 +106,7 @@ function NewCampaign(props) {
             open={props.Newopen}
             onClose={props.handleNewclose}
             className='AddCampaignDrawer'
+            
           >
             <Box role="presentation">
               <ClearOutlinedIcon
@@ -308,11 +309,12 @@ function NewCampaign(props) {
                                       >
                                         <div className="If">IF</div>
                                       </div>
-                                      <div>
+                                      <div style={{width:'100%'}}>
                                         <div
                                           style={{
                                             padding: "16px 0px 0px 16px",
                                             display: "flex",
+                                            justifyContent:"space-between"
                                           }}
                                         >
                                           <TextField
@@ -405,6 +407,7 @@ function NewCampaign(props) {
                                                       <TextField
                                                         {...params}
                                                         className="timePiker" 
+                                                        size="small"
                                                       />
                                                     )}
                                                   />
@@ -581,7 +584,7 @@ function NewCampaign(props) {
 
                           <div
                             style={{
-                              width: "1200px",
+                              maxWidth: "1200px",
                               height: "700px",
                               backgroundColor: "#fafbfb ",
                               display: "flex",
@@ -934,7 +937,7 @@ function NewCampaign(props) {
                       >
                         <Button
                           variant="outlined"
-                          style={{ width: "150px", height: "40px" }}
+                          style={{ width: "150px", height: "40px",textTransform:'inherit' }}
                         >
                           Save
                         </Button>

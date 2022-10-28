@@ -1,21 +1,10 @@
 import React from "react";
-
+import './ExportViwe.css'
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  height: 300,
-  width: 600,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+
 function ExportView(props) {
   return (
     <div>
@@ -24,8 +13,10 @@ function ExportView(props) {
         onClose={props.handleCloseView}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        style={{display:"flex",justifyContent:"center",alignItems:"center"}}
+
       >
-        <Box sx={style}>
+        <Box className='ExportViweMainDiv'>
           <div>
             <Typography
               id="modal-modal-title"
@@ -47,34 +38,30 @@ function ExportView(props) {
               get a new link after expire.
             </Typography>
           </div>
-          <div>
-            <Button
-              style={{
-                backgroundColor: "#FF8E00",
-                color: "#ffffff",
-                marginLeft: "200px",
-                marginTop: "10px",
-                textTransform: "inherit"
-              }}
-            >
+          <div style={{display:'flex',justifyContent:'center'}}>
+            <Button  className="DownloadBtn">
               Download Export
             </Button>
           </div>
-          <div style={{ paddingTop: "30px" }}>
+          <div style={{ paddingTop: "30px",display:'flex',justifyContent:'space-between'}}>
+            <div>
             <Button variant="outlined" color="warning"
               style={{ textTransform: "inherit" }}
             >
               Delete
             </Button>
+            </div>
+            <div>
             <Button
               color="warning"
-              style={{ marginLeft: "350px", textTransform: "inherit" }}
+              style={{ textTransform: "inherit" }}
               onClick={() => {
                 props.handleCloseView();
               }}
             >
               Cancel
             </Button>
+            </div>
           </div>
         </Box>
       </Modal>

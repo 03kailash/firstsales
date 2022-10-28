@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./CSVupload.css";
 import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
@@ -55,6 +55,8 @@ const rows = [
 
 const steps = ["Option", "Mapping"];
 function CSVupload(props) {
+
+  const [feild, setfield] = useState(false)
   const [value, setValue] = React.useState("Only Add new");
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -77,6 +79,8 @@ function CSVupload(props) {
             onClose={props.handleCloseUP}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
+          // style={{display:"flex",justifyContent:"center",alignItems:"center"}}
+
           >
             <Box sx={modalContentStyle}>
               <h5 className="h2">CSV import</h5>
@@ -199,8 +203,9 @@ function CSVupload(props) {
                           </div>
                           <div style={{ marginTop: "16px" }}>
                             <FormControl
-                              sx={{ width: "320px" }}
+                              sx={{ width: "260px" }}
                               color="warning"
+                              size="small"
                             >
                               <OutlinedInput />
                             </FormControl>
@@ -224,6 +229,7 @@ function CSVupload(props) {
                             <TextField
                               id="outlined-number"
                               label="Tags"
+                              size="small"
                               type="text"
                               color="warning"
                               InputLabelProps={{
@@ -295,11 +301,168 @@ function CSVupload(props) {
                             </div>
                           </div>
                           <p style={{ marginBottom: "0px" }}>Email</p>
-                          <FormControl sx={{ width: "320px" }} color="warning">
+                          <FormControl sx={{ width: "300px" }} color="warning" size="small">
                             <OutlinedInput />
                           </FormControl>
+                          <div style={{display:'flex',justifyContent:'center'}}>
+                          <Button onClick={()=>{
+                            if(feild){
+                              setfield(false);
+                            }
+                            else{
+                              setfield(true)
+                            }
+                          }} className='ShowFieldText'>Show unused defult feild</Button>
+                          </div>
+                          {feild && <div>
+                            <div style={{ paddingTop: '10px' }}>
+                              <div>First Name</div>
+                              <TextField
+                                id="outlined-select-currency"
+                                select
+                                onChange={handleChange}
+                                size='small'
+                                color="warning"
+                                style={{ width: "300px", maxWidth: '300px' }}
+                              >
+                              </TextField>
+                            </div>
+                            <div style={{ paddingTop: '10px' }}>
+                              <div>Last Name</div>
+                              <TextField
+                                id="outlined-select-currency"
+                                select
+                                onChange={handleChange}
+                                size='small'
+                                color="warning"
+                                style={{ width: "300px", maxWidth: '300px' }}
+                              >
+                              </TextField>
+                            </div>
+                            <div style={{ paddingTop: '10px' }}>
+                              <div>Gender</div>
+                              <TextField
+                                id="outlined-select-currency"
+                                select
+                                onChange={handleChange}
+                                size='small'
+                                color="warning"
+                                style={{ width: "300px", maxWidth: '300px' }}
+                              >
+                              </TextField>
+                            </div>
+                            <div style={{ paddingTop: '10px' }}>
+                              <div>Orgnizition</div>
+                              <TextField
+                                id="outlined-select-currency"
+                                select
+                                onChange={handleChange}
+                                size='small'
+                                color="warning"
+                                style={{ width: "300px", maxWidth: '300px' }}
+                              >
+                              </TextField>
+                            </div>
+                            <div style={{ paddingTop: '10px' }}>
+                              <div>website</div>
+                              <TextField
+                                id="outlined-select-currency"
+                                select
+                                onChange={handleChange}
+                                size='small'
+                                color="warning"
+                                style={{ width: "300px", maxWidth: '300px' }}
+                              >
+                              </TextField>
+                            </div>
+                            <div style={{ paddingTop: '10px' }}>
+                              <div>Title</div>
+                              <TextField
+                                id="outlined-select-currency"
+                                select
+                                onChange={handleChange}
+                                size='small'
+                                color="warning"
+                                style={{ width: "300px", maxWidth: '300px' }}
+                              >
+                              </TextField>
+                            </div>
+                            <div style={{ paddingTop: '10px' }}>
+                              <div>Phone number</div>
+                              <TextField
+                                id="outlined-select-currency"
+                                select
+                                onChange={handleChange}
+                                size='small'
+                                color="warning"
+                                style={{ width: "300px", maxWidth: '300px' }}
+                              >
+                              </TextField>
+                            </div>
+                            <div style={{ paddingTop: '10px' }}>
+                              <div>Address</div>
+                              <TextField
+                                id="outlined-select-currency"
+                                select
+                                onChange={handleChange}
+                                size='small'
+                                color="warning"
+                                style={{ width: "300px", maxWidth: '300px' }}
+                              >
+                              </TextField>
+                            </div>
+                            <div style={{ paddingTop: '10px' }}>
+                              <div>City</div>
+                              <TextField
+                                id="outlined-select-currency"
+                                select
+                                onChange={handleChange}
+                                size='small'
+                                color="warning"
+                                style={{ width: "300px", maxWidth: '300px' }}
+                              >
+                              </TextField>
+                            </div>
+                            <div style={{ paddingTop: '10px' }}>
+                              <div>Status / Region</div>
+                              <TextField
+                                id="outlined-select-currency"
+                                select
+                                onChange={handleChange}
+                                size='small'
+                                color="warning"
+                                style={{ width: "300px", maxWidth: '300px' }}
+                              >
+                              </TextField>
+                            </div>
+                            <div style={{ paddingTop: '10px' }}>
+                              <div>Country</div>
+                              <TextField
+                                id="outlined-select-currency"
+                                select
+                                onChange={handleChange}
+                                size='small'
+                                color="warning"
+                                style={{ width: "300px", maxWidth: '300px' }}
+                              >
+                              </TextField>
+                            </div>
+                            <div style={{ paddingTop: '10px' }}>
+                              <div>ZipCode</div>
+                              <TextField
+                                id="outlined-select-currency"
+                                select
+                                onChange={handleChange}
+                                size='small'
+                                color="warning"
+                                style={{ width: "300px", maxWidth: '300px' }}
+                              >
+                              </TextField>
+                            </div>
+                          </div>
+                          }
 
-                          <div style={{ marginTop: "32px", fontSize: "18px" }}>
+                          <div className='customFielText'>
                             Custom Fields
                           </div>
                           <p style={{ marginBottom: "0px" }}>Email Id</p>
@@ -307,6 +470,7 @@ function CSVupload(props) {
                             <FormControl
                               sx={{ width: "320px" }}
                               color="warning"
+                              size="small"
                             >
                               <OutlinedInput />
                             </FormControl>
@@ -318,6 +482,7 @@ function CSVupload(props) {
                             <FormControl
                               sx={{ width: "320px" }}
                               color="warning"
+                              size="small"
                             >
                               <OutlinedInput />
                             </FormControl>
@@ -337,7 +502,7 @@ function CSVupload(props) {
                       </Box>
                       <Button
                         variant="outlined"
-                        style={{ width: "234px", marginLeft: "250px" }}
+                        style={{ width: "234px", marginLeft: "250px", textTransform: "inherit" }}
                       >
                         Cancel
                       </Button>

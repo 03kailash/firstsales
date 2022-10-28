@@ -179,9 +179,9 @@
   margin: 8px 0px 32px 0px;
 }
 .status {
-  position: absolute;
-  right: 161px;
-  margin: 0px;
+ width: 100%;
+ display: flex;
+ justify-content: end;
 }
 .SearchHead {
   width: 892px;
@@ -211,8 +211,9 @@
 .group {
   width: 100%;
   display: flex;
+  align-items: center !important;
   padding: 6px 0px 4px 5px;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .searchinputcontact:focus-visible {

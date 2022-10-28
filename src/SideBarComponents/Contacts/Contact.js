@@ -159,7 +159,7 @@ function Contact() {
             </div>
             <div>
               <Button color="warning" className="btn2" onClick={handleOpenAdd}>
-                <AddOutlinedIcon fontSize="20px" />
+                <AddOutlinedIcon style={{fontSize:"20px",marginRight:'10px'}} />
                 Add Contact
               </Button>
             </div>
@@ -234,7 +234,7 @@ function Contact() {
         )}
 
         <div className="group">
-          <div>Group action :</div>
+          <div>Group action : </div>
           <Button
           size="small"
             variant="outlined"

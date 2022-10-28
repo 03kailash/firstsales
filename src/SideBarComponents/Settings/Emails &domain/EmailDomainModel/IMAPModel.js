@@ -130,10 +130,10 @@ export default function IMAPModel({ isopen, isclose }) {
                             </div>
 
                             <div style={{ paddingTop: '16px', width: '100%', display: 'flex', justifyContent: "center" }}>
-                                <Button style={{ backgroundColor: '#ff8e00', color: '#ffffff', width: "300px", }}>Save</Button>
+                                <Button style={{ backgroundColor: '#ff8e00', color: '#ffffff', width: "300px",textTransform:'inherit' }}>Save</Button>
                             </div>
                             <div style={{ paddingTop: '16px', width: '100%', display: 'flex', justifyContent: "center" }}>
-                                <Button variant='outlined' style={{ color: 'warning', width: "300px", }}>Save</Button>
+                                <Button variant='outlined' style={{ color: 'warning', width: "300px",textTransform:'inherit' }}>Cancel</Button>
                             </div>
                         </div>}
 
@@ -195,10 +195,10 @@ export default function IMAPModel({ isopen, isclose }) {
                             </div>
 
                             <div style={{ paddingTop: '16px', width: '100%', display: 'flex', justifyContent: "center" }}>
-                                <Button style={{ backgroundColor: '#ff8e00', color: '#ffffff', width: "300px", }}>Save</Button>
+                                <Button style={{ backgroundColor: '#ff8e00', color: '#ffffff', width: "300px",textTransform:'inherit' }}>Save</Button>
                             </div>
                             <div style={{ paddingTop: '16px', width: '100%', display: 'flex', justifyContent: "center" }}>
-                                <Button variant='outlined' style={{ color: 'warning', width: "300px", }}>Save</Button>
+                                <Button variant='outlined' style={{ color: 'warning', width: "300px",textTransform:'inherit' }}>Cancel</Button>
                             </div>
                         </div>}
 
@@ -259,10 +259,10 @@ export default function IMAPModel({ isopen, isclose }) {
                             </div>
 
                             <div style={{ paddingTop: '16px', width: '100%', display: 'flex', justifyContent: "center" }}>
-                                <Button style={{ backgroundColor: '#ff8e00', color: '#ffffff', width: "300px", }}>Create</Button>
+                                <Button style={{ backgroundColor: '#ff8e00', color: '#ffffff', width: "300px",textTransform:'inherit' }}>Create</Button>
                             </div>
                             <div style={{ paddingTop: '16px', width: '100%', display: 'flex', justifyContent: "center" }}>
-                                <Button variant='outlined' style={{ color: 'warning', width: "300px", }}>Cancel</Button>
+                                <Button variant='outlined' style={{ color: 'warning', width: "300px",textTransform:'inherit' }}>Cancel</Button>
                             </div>
                         </div>}
                     </Box>

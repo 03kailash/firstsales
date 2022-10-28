@@ -1,11 +1,11 @@
-.CampaignmainDiv{
+.CmapaignmainDiv{
   display: flex;
   justify-content: center;
   width: 100%;
 }
 .Campcontainerdiv {
   padding-top: 32px;
-  width: 1000px;
+  width: 100%;
   margin-left: auto;
   box-sizing: border-box;
   margin-right: auto;
@@ -14,7 +14,7 @@
 .Campcontentdiv {
   display: flex;
   align-items: center;
-  width: 1000px;
+  max-width: 100%;
 }
 .Campsearchinput {
   color: currentcolor;
@@ -26,7 +26,8 @@
   -webkit-tap-highlight-color: transparent;
   display: block;
   min-width: 0px;
-  width: 364px;
+  max-width: 500px;
+  width: 100%;
   border-radius: 5px !important;
   animation-duration: 10ms;
   padding: 8.5px 2px 8.5px 14px;
@@ -143,3 +144,42 @@
   width: 422px;
   max-width: 90%;
 }
+.campaignAuthor{
+  max-width: 205px;
+  width: 100%;
+}
+.ArchiveOrAddBtn{
+  display: flex;
+  justify-content: end;
+  width: 100%;
+  padding-left: 32px;
+}
+
+@media screen and (max-width: 900px) {
+  .CampaignContainer {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .ArchiveOrAddBtn {
+    display: grid;
+    justify-content: end;
+    padding-left: 0px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .Campcontentdiv {
+    display: flex !important;
+    flex-direction: column;
+  }
+  .Campsearchinput {
+    max-width: 100% !important;
+  }
+  .campaignAuthor {
+    max-width: 100% !important;
+  }
+  .Campnewtemphead{
+    padding: 0px 16px;
+  }
+}
+

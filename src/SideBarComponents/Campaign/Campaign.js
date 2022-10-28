@@ -105,8 +105,8 @@ function Campaign() {
   };
 
   return (
-    <div className="CampaignmainDiv">
-      <div style={{ justifyContent: "center", display: "grid", padding: "0px 40px" }}>
+    <div className="CmapaignmainDiv">
+      <div style={{ maxwidth: "1200px" }} className='CampaignContainer'>
         <div className="Campcontainerdiv">
           <div className="CampName">Campaigns</div>
           <div className="Campcontentdiv">
@@ -116,7 +116,9 @@ function Campaign() {
                 display: "flex",
                 alignItems: "center",
                 borderRadius: "5px",
-              }}
+                width: "100%",
+
+              }} 
             >
               <input
                 type="text"
@@ -135,9 +137,7 @@ function Campaign() {
                 }}
               />
             </div>
-            <div
-              style={{ display: "flex", justifyContent: "end", width: "100%" }}
-            >
+            <div className='ArchiveOrAddBtn'>
               <React.Fragment>
                 <Button className="Campaignbtn" onClick={() => setOpen2(true)}>
                   <AddIcon className="AddBtnCampaign" /> Create Campaign
@@ -218,7 +218,7 @@ function Campaign() {
           <FormControl
             sx={{ mt: 1, mb: 1 }}
             size="small"
-            style={{ width: "205px" }}
+            className='campaignAuthor'
           >
             <InputLabel id="demo-select-small" color="warning">
               Author
@@ -270,14 +270,14 @@ function Campaign() {
             })}
           </div>
         )}
-        <div style={{ width: "1000px" }}>
+        <div style={{ width: "1000px" ,maxWidth:"1000px" }}>
           <div style={{ justifyContent: "center", display: "flex" }}>
-            <Box sx={{ width: "910px", paddingTop: "64px" }}>
+            <Box sx={{ width: "90%", paddingTop: "64px" }}>
               <LinearProgress color="warning" />
             </Box>
           </div>
           <Paper sx={{ width: "100%", overflow: "hidden" }}>
-            <TableContainer sx={{ maxHeight: 440 }}>
+            <TableContainer sx={{ maxHeight: 440, overflow:'auto' }}>
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                   <TableRow>
