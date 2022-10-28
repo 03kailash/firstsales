@@ -23,6 +23,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import TextField from "@mui/material/TextField";
 import { IconButton } from "@mui/material";
+import CsvImportDone from "./CsvImportDone";
 
 const modalWrapper = {
   overflow: "auto",
@@ -56,6 +57,8 @@ const rows = [
 
 const steps = ["Option", "Mapping"];
 function CSVupload(props) {
+  const [opencsvDone, setOpencsvDone] = React.useState(false);
+    const handleClosecsvDone = () => setOpencsvDone(false);
 
   const [feild, setfield] = useState(false)
   const [value, setValue] = React.useState("Only Add new");
@@ -97,7 +100,7 @@ function CSVupload(props) {
 
                       return (
                         <Step key={label} {...stepProps} >
-                          <StepLabel {...labelProps}  className="steps">{label}</StepLabel>
+                          <StepLabel {...labelProps} className="steps">{label}</StepLabel>
                         </Step>
                       );
                     })}
@@ -302,15 +305,21 @@ function CSVupload(props) {
                             </div>
                           </div>
                           <p style={{ marginBottom: "0px" }}>Email</p>
-                          <div  style={{display:'flex',gap:'20px'}}>
-                          <FormControl sx={{ width: "300px" }} color="warning" size="small">
-                            <OutlinedInput />
-                          </FormControl>
-                          <div>
-                          {feild === false && <Button onClick={()=>{
-                           setfield(true)
-                          }} className='ShowFieldText'>Show unused default feilds</Button>}
-                          </div>
+                          <div style={{ display: 'flex', gap: '20px' }}>
+                            <TextField
+                              id="outlined-select-currency"
+                              select
+                              onChange={handleChange}
+                              size='small'
+                              color="warning"
+                              style={{ width: "300px", maxWidth: '300px' }}
+                            >
+                            </TextField>
+                            <div>
+                              {feild === false && <Button onClick={() => {
+                                setfield(true)
+                              }} className='ShowFieldText'>Show unused default feilds</Button>}
+                            </div>
                           </div>
                           {feild && <div>
                             <div style={{ paddingTop: '10px' }}>
@@ -445,21 +454,21 @@ function CSVupload(props) {
                               >
                               </TextField>
                             </div>
-                            <div style={{ paddingTop: '10px'}}>
+                            <div style={{ paddingTop: '10px' }}>
                               <div>ZipCode</div>
-                              <div style={{display:'flex' ,gap:'10px'}}>
-                              <TextField
-                                id="outlined-select-currency"
-                                select
-                                onChange={handleChange}
-                                size='small'
-                                color="warning"
-                                style={{ width: "300px", maxWidth: '300px' }}
-                              >
-                              </TextField>
-                              <Button className='HideFieldText' onClick={()=>{
-                                setfield(false)
-                              }}>hide unused default feilds</Button>
+                              <div style={{ display: 'flex', gap: '10px' }}>
+                                <TextField
+                                  id="outlined-select-currency"
+                                  select
+                                  onChange={handleChange}
+                                  size='small'
+                                  color="warning"
+                                  style={{ width: "300px", maxWidth: '300px' }}
+                                >
+                                </TextField>
+                                <Button className='HideFieldText' onClick={() => {
+                                  setfield(false)
+                                }}>hide unused default feilds</Button>
                               </div>
                             </div>
                           </div>
@@ -469,30 +478,34 @@ function CSVupload(props) {
                             Custom Fields
                           </div>
                           <p style={{ marginBottom: "0px" }}>Email Id</p>
-                          <div style={{ display: "flex",gap:'5px' }}>
-                            <FormControl
-                              sx={{ width: "320px" }}
+                          <div style={{ display: "flex", gap: '5px' }}>
+                            <TextField
+                              id="outlined-select-currency"
+                              select
+                              onChange={handleChange}
+                              size='small'
                               color="warning"
-                              size="small"
+                              style={{ width: "300px", maxWidth: '300px' }}
                             >
-                              <OutlinedInput />
-                            </FormControl>
+                            </TextField>
                             <IconButton>
-                            <CloseOutlinedIcon  />
+                              <CloseOutlinedIcon />
                             </IconButton>
                           </div>
 
                           <p style={{ marginBottom: "0px" }}>Contact no.</p>
-                          <div style={{ display: "flex",gap:'5px' }}>
-                            <FormControl
-                              sx={{ width: "320px" }}
+                          <div style={{ display: "flex", gap: '5px' }}>
+                            <TextField
+                              id="outlined-select-currency"
+                              select
+                              onChange={handleChange}
+                              size='small'
                               color="warning"
-                              size="small"
+                              style={{ width: "300px", maxWidth: '300px' }}
                             >
-                              <OutlinedInput />
-                            </FormControl>
+                            </TextField>
                             <IconButton>
-                            <CloseOutlinedIcon  />
+                              <CloseOutlinedIcon />
                             </IconButton>
                           </div>
                           <br />
@@ -501,7 +514,10 @@ function CSVupload(props) {
                       <Box
                         sx={{ display: "flex", flexDirection: "row", pt: 2 }}
                       >
-                        <Button className="ConfirmBtn" onClick={handleNext}>
+                        <Button className="ConfirmBtn" onClick={()=>{
+                        { activeStep===0 && handleNext();}
+                         {activeStep===1 && setOpencsvDone(true); }
+                          }}>
                           {activeStep === steps.length - 1
                             ? "Upload Contacts"
                             : "Comfirm Options"}
@@ -524,6 +540,7 @@ function CSVupload(props) {
           </Modal>
         </div>
       </div>
+      <CsvImportDone open={opencsvDone} close={handleClosecsvDone} isclose={props.handleCloseUP}/>
     </div>
   );
 }

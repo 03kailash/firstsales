@@ -49,6 +49,9 @@ function RequestExport(props) {
                   variant="outlined"
                   color="warning"
                   style={{textTransform:"inherit"}}
+                  onClick={() => {
+                    props.handleCloseEx();
+                  }}
                 >
                   Request Export
                 </Button>

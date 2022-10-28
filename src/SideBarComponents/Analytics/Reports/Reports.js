@@ -20,7 +20,7 @@ import Tooltip from '@mui/material/Tooltip';
 import HelpIcon from '@mui/icons-material/Help';
 function Reports() {
   const [timerange, setTimerange] = useState("l7d");
-  const [product, setproduct] = useState(false);
+  const [product, setproduct] = useState(true);
   const [Engage, setEngage] = useState(false);
   const [contana, setcontana] = useState(false);
 
@@ -35,8 +35,8 @@ function Reports() {
     setAge(event.target.value);
   };
   return (
-    <div>
-      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+    <div className="ReportMainDiv">
+      <div className='ReprtsBtn'>
         <Button
           className="ProductBtn"
           style={{ textTransform: "inherit" }}
@@ -73,37 +73,37 @@ function Reports() {
           <GroupIcon className="BtnIcon" />
           <span className="ProductText">Contacts Reports</span>
         </Button>
-        <div style={{ maxWidth: "178px" }}>
-              <FormControl size="small" color="warning" fullWidth>
-                <InputLabel id="demo-controlled-open-select-label">
-                  Time range
-                </InputLabel>
-                <Select
-                  native
-                  labelId="demo-controlled-open-select-label"
-                  id="demo-controlled-open-select"
-                  label="Time range"
-                  value={timerange}
-                  onChange={(event) => {
-                    setTimerange(event.target.value);
-                  }}
-                >
-                  <option value={"l7d"}>Last 7 days</option>
-                  <option value={"l14d"}>Last 14 days</option>
-                  <option value={"l30d"}>Last 30 days</option>
-                  <option value={"l90d"}>Last 90 days</option>
-                  <option value={"lw"}>Last week</option>
-                  <option value={"l6w"}>Last 6 week</option>
-                  <option value={"mtd"}>Month to date</option>
-                  <option value={"lm"}>Last month</option>
-                  <option value={"l3m"}>Last 3 month</option>
-                  <option value={"l6m"}>Last 6 month</option>
-                  <option value={"l12m"}>Last 12 month</option>
-                  <option value={"ytd"}>Year to date</option>
-                  <option value={"ly"}>Last year</option>
-                </Select>
-              </FormControl>
-            </div>
+        <div style={{ maxWidth: "178px" }} className='timeRangeDrop'>
+          <FormControl size="small" color="warning" fullWidth>
+            <InputLabel id="demo-controlled-open-select-label">
+              Time range
+            </InputLabel>
+            <Select
+              native
+              labelId="demo-controlled-open-select-label"
+              id="demo-controlled-open-select"
+              label="Time range"
+              value={timerange}
+              onChange={(event) => {
+                setTimerange(event.target.value);
+              }}
+            >
+              <option value={"l7d"}>Last 7 days</option>
+              <option value={"l14d"}>Last 14 days</option>
+              <option value={"l30d"}>Last 30 days</option>
+              <option value={"l90d"}>Last 90 days</option>
+              <option value={"lw"}>Last week</option>
+              <option value={"l6w"}>Last 6 week</option>
+              <option value={"mtd"}>Month to date</option>
+              <option value={"lm"}>Last month</option>
+              <option value={"l3m"}>Last 3 month</option>
+              <option value={"l6m"}>Last 6 month</option>
+              <option value={"l12m"}>Last 12 month</option>
+              <option value={"ytd"}>Year to date</option>
+              <option value={"ly"}>Last year</option>
+            </Select>
+          </FormControl>
+        </div>
         <Button
           variant="outlined"
           style={{ textTransform: "inherit" }}
@@ -119,10 +119,10 @@ function Reports() {
           <span className="ProductText">Filter</span>
         </Button>
       </div>
-      <hr style={{ marginTop:"24px",marginBottom:'0px' }} />
+      <hr style={{ marginTop: "24px", marginBottom: '0px' }} />
       {filter && (
         <div className="filter">
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div style={{ display: "flex", alignItems: "center" }} className='FilterInnerDiv'>
             <span style={{ padding: "0px 20px" }}>Filter by:</span>
 
             <FormControl sx={{ m: 1, minWidth: 197 }}>
@@ -190,28 +190,10 @@ function Reports() {
               borderRadius: "4px",
             }}
           >
-            <div
-              style={{
-                width: "100%",
-                minHeight: "53px",
-                backgroundColor: "#f2f3f3",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  height: "53px",
-                }}
-              >
+            <div className='DetailsListDropDownMainDiv'>
+              <div className="DetailsListDropDown">
                 <span className="EmailSenttext">Emails Sent</span>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "end",
-                    width: "85%",
-                  }}
-                >
+                <div style={{marginRight:'10px'}}>
                   <KeyboardArrowDownOutlinedIcon
                     onClick={() => {
                       if (arrow) {
@@ -264,25 +246,15 @@ function Reports() {
             <div
               style={{
                 width: "100%",
-                minHeight: "53px",
+                maxHeight: "53px",
                 backgroundColor: "#f2f3f3",
               }}
             >
               <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  height: "53px",
-                }}
+                className="DetailsListDropDown"
               >
                 <span className="EmailSenttext">Contacts Added</span>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "end",
-                    width: "81%",
-                  }}
-                >
+                <div  style={{marginRight:'10px'}}>
                   <KeyboardArrowDownOutlinedIcon
                     onClick={() => {
                       if (contADD) {
@@ -295,7 +267,7 @@ function Reports() {
                 </div>
               </div>
             </div>
-            {arrow && (
+            {contADD && (
               <div className="arrowIcon">
                 <div style={{ paddingTop: "16px" }}>
                   <span>Change View :</span>
@@ -332,19 +304,9 @@ function Reports() {
               borderRadius: "4px",
             }}
           >
-            <div
-              style={{
-                width: "100%",
-                minHeight: "53px",
-                backgroundColor: "#f2f3f3",
-              }}
-            >
+            <div className='DetailsListDropDownMainDiv'>
               <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  height: "53px",
-                }}
+                className="DetailsListDropDown"
                 onClick={() => {
                   if (arrow2) {
                     setarrow2(false);
@@ -354,18 +316,12 @@ function Reports() {
                 }}
               >
                 <span className="EmailSenttext">Won Leads</span>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "end",
-                    width: "85%",
-                  }}
-                >
+                <div style={{marginRight:'10px'}}>
                   <KeyboardArrowDownOutlinedIcon />
                 </div>
               </div>
             </div>
-            {arrow && (
+            {arrow2 && (
               <div className="arrowIcon">
                 <div style={{ paddingTop: "16px" }}>
                   <span>Change View :</span>
@@ -403,18 +359,10 @@ function Reports() {
             }}
           >
             <div
-              style={{
-                width: "100%",
-                minHeight: "53px",
-                backgroundColor: "#f2f3f3",
-              }}
+             className='DetailsListDropDownMainDiv'
             >
               <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  height: "53px",
-                }}
+                className="DetailsListDropDown"
                 onClick={() => {
                   if (arrow3) {
                     setarrow3(false);
@@ -424,13 +372,7 @@ function Reports() {
                 }}
               >
                 <span className="EmailSenttext">Ignored Leads</span>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "end",
-                    width: "82%",
-                  }}
-                >
+                <div style={{marginRight:'10px'}}>
                   <KeyboardArrowDownOutlinedIcon />
                 </div>
               </div>
@@ -473,16 +415,13 @@ function Reports() {
             }}
           >
             <div
-              style={{
-                width: "100%",
-                minHeight: "53px",
-                backgroundColor: "#f2f3f3",
-              }}
+             className='DetailsListDropDownMainDiv'
             >
               <div
                 style={{
                   display: "flex",
                   alignItems: "center",
+                  justifyContent: "space-between",
                   height: "53px",
                 }}
                 onClick={() => {
@@ -494,13 +433,7 @@ function Reports() {
                 }}
               >
                 <span className="EmailSenttext">Lost Leads</span>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "end",
-                    width: "85%",
-                  }}
-                >
+                <div style={{marginRight:'10px'}}>
                   <KeyboardArrowDownOutlinedIcon />
                 </div>
               </div>
@@ -547,18 +480,10 @@ function Reports() {
             }}
           >
             <div
-              style={{
-                width: "100%",
-                minHeight: "53px",
-                backgroundColor: "#f2f3f3",
-              }}
+             className='DetailsListDropDownMainDiv'
             >
               <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  height: "53px",
-                }}
+                className="DetailsListDropDown"
               >
                 <div>
                   <span className="EmailSenttext">Engagements by Day</span>
@@ -568,13 +493,7 @@ function Reports() {
                     </IconButton>
                   </Tooltip>
                 </div>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "end",
-                    width: "70%",
-                  }}
-                >
+                <div style={{marginRight:'10px'}}>
                   <KeyboardArrowDownOutlinedIcon />
                 </div>
               </div>
@@ -618,35 +537,20 @@ function Reports() {
             }}
           >
             <div
-              style={{
-                width: "100%",
-                minHeight: "53px",
-                backgroundColor: "#f2f3f3",
-              }}
+             className='DetailsListDropDownMainDiv'
             >
               <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  height: "53px",
-                }}
+                className="DetailsListDropDown"
               >
                 <div className="EmailSenttext">
                   Engagements by Sent Date
-                  <Tooltip  placement="right-start" title="Displays engagements for any email sent on the specified date, even if the engagement occurs at a later date.">
+                  <Tooltip placement="right-start" title="Displays engagements for any email sent on the specified date, even if the engagement occurs at a later date.">
                     <IconButton>
                       <HelpIcon className="HelpIcon" />
                     </IconButton>
                   </Tooltip>
                 </div>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "end",
-                    width: "64%",
-                  }}
-                >
-
+                <div style={{marginRight:'10px'}}>
                   <KeyboardArrowDownOutlinedIcon />
                 </div>
               </div>
@@ -690,36 +594,22 @@ function Reports() {
             }}
           >
             <div
-              style={{
-                width: "100%",
-                minHeight: "53px",
-                backgroundColor: "#f2f3f3",
-              }}
+             className='DetailsListDropDownMainDiv'
             >
               <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  height: "53px",
-                }}
+                className="DetailsListDropDown"
               >
                 <div>
                   <span className="EmailSenttext">
                     Engagements by First Email
                   </span>
-                  <Tooltip  placement="right-start" title="Displays the engagement data for recipients who received their first email on the specified date, even if they engage with a different email later in the series.">
+                  <Tooltip placement="right-start" title="Displays the engagement data for recipients who received their first email on the specified date, even if they engage with a different email later in the series.">
                     <IconButton>
                       <HelpIcon className="HelpIcon" />
                     </IconButton>
                   </Tooltip>
                 </div>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "end",
-                    width: "63%",
-                  }}
-                >
+                <div style={{marginRight:'10px'}}>
                   <KeyboardArrowDownOutlinedIcon />
                 </div>
               </div>
@@ -767,34 +657,20 @@ function Reports() {
             }}
           >
             <div
-              style={{
-                width: "100%",
-                minHeight: "53px",
-                backgroundColor: "#f2f3f3",
-              }}
+             className='DetailsListDropDownMainDiv'
             >
               <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  height: "53px",
-                }}
+                className="DetailsListDropDown"
               >
                 <div>
                   <span className="EmailSenttext">Contacts Activity</span>
-                  <Tooltip  placement="right-start" title="Shows activity around contact for the specified date. This may include status changes for contacts even if contacts were created on past dates.">
+                  <Tooltip placement="right-start" title="Shows activity around contact for the specified date. This may include status changes for contacts even if contacts were created on past dates.">
                     <IconButton>
                       <HelpIcon className="HelpIcon" />
                     </IconButton>
                   </Tooltip>
                 </div>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "end",
-                    width: "74%",
-                  }}
-                >
+                <div style={{marginRight:'10px'}}>
                   <KeyboardArrowDownOutlinedIcon />
                 </div>
               </div>
@@ -838,36 +714,21 @@ function Reports() {
             }}
           >
             <div
-              style={{
-                width: "100%",
-                minHeight: "53px",
-                backgroundColor: "#f2f3f3",
-              }}
+             className='DetailsListDropDownMainDiv'
             >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  height: "53px",
-                }}
+              <div className="DetailsListDropDown"
               >
                 <div>
                   <span className="EmailSenttext">
                     Contacts Activity by Created Date
                   </span>
-                  <Tooltip  placement="right-start" title="Displays the status of all contacts created on the specified date, even if the status changes at a later date.">
+                  <Tooltip placement="right-start" title="Displays the status of all contacts created on the specified date, even if the status changes at a later date.">
                     <IconButton>
                       <HelpIcon className="HelpIcon" />
                     </IconButton>
                   </Tooltip>
                 </div>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "end",
-                    width: "58%",
-                  }}
-                >
+                <div style={{marginRight:'10px'}}>
                   <KeyboardArrowDownOutlinedIcon />
                 </div>
               </div>

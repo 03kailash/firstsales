@@ -33,7 +33,7 @@ export default function Workshop() {
                 <div style={{ alignContent: 'end', fontSize: '12px' }}>Log out</div>
               </div>
             </div>
-            <Link to={"/Dashboard"} style={{textDecoration:'none',color:'#000000'}}>
+            <Link to="/Dashboard" className='workspaceNavigation'>
               <div className='NameDiv'>
                 <div>
                   <div style={{ width: '240px',maxWidth:'240px' }}>
@@ -53,9 +53,11 @@ export default function Workshop() {
                 </div>
               </div>
             </Link>
+            <Link to={"/Userdetail"} className='AddnewWorkspaces'>
             <div className='NewWorkspace'>
               <Button variant="outlined" className='AddNewText' ><AddIcon className='AddnewBtn' /> Add new Workspaces</Button>
             </div>
+            </Link>
           </Box>
         </Modal>
       </div>

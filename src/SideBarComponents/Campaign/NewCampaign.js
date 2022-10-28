@@ -334,11 +334,11 @@ function NewCampaign(props) {
                                               width: "100%",
                                             }}
                                           >
-                                            <Tooltip title="Delete">
+                                        
                                               <IconButton>
                                                 <DeleteIcon />
                                               </IconButton>
-                                            </Tooltip>
+                                         
                                           </div>
                                         </div>
                                         {AndAdd && (
@@ -413,11 +413,13 @@ function NewCampaign(props) {
                                                   />
                                                 </LocalizationProvider>
                                               </div>
-                                              <Tooltip title="Delete">
-                                                <IconButton>
+                                             
+                                                <IconButton onClick={()=>{
+                                                  setAndAdd(false)
+                                                }}>
                                                   <DeleteIcon />
                                                 </IconButton>
-                                              </Tooltip>
+
                                             </div>
                                           </div>
                                         )}

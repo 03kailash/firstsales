@@ -41,7 +41,9 @@ export default function AddEmailModal(props) {
           </Select>
            </FormControl>
            <div style={{display:'flex',justifyContent:'space-between'}}>
-          <Button color='warning'>cancel</Button> 
+          <Button color='warning' onClick={()=>{
+            props.handleCloseAddModel();
+          }}>cancel</Button> 
           <Button variant='outliend'>Add</Button> 
           </div>
         </Box>

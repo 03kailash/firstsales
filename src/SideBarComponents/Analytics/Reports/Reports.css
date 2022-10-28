@@ -1,3 +1,6 @@
+.ReportMainDiv{
+  padding: 0px 8px !important;
+}
 .ProductBtn {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   font-weight: 500 !important;
@@ -5,7 +8,7 @@
   line-height: 1.57;
   letter-spacing: 0.00714em;
   color: rgba(0, 0, 0, 0.87) !important;
-  background-color: #ffff !important;
+  
 }
 .ProductBtn:focus {
   background-color: #e8f0f7 !important;
@@ -52,4 +55,40 @@
 .HelpIcon{
  font-size: 20px !important;
  color: #ff8e00 !important;
+}
+.ReprtsBtn{
+  display: flex;
+  align-items: center;
+  gap: 10px ;
+}
+.DetailsListDropDown{
+  display: flex;
+  justify-content: space-between;
+  align-items: center !important;
+  height: 53px;
+}
+.DetailsListDropDownMainDiv{
+  width: 100% !important;
+  max-height: 53px !important;
+  background-color: #f3f3f3 !important;
+}
+@media screen and (max-width:600px){
+  .ReprtsBtn{
+    display:grid;
+  }
+  .ProductBtn{
+    display: flex;
+   justify-content: flex-start !important;
+  }
+  .timeRangeDrop{
+    max-width: 100% !important;
+    margin-top: 16px !important;
+  }
+  .ReportMainDiv{
+    padding: 0px 24px !important;
+  }
+  .FilterInnerDiv{
+    display: grid !important;
+    width: 100% !important;
+  }
 }

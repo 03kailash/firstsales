@@ -10,6 +10,8 @@ function AddContact(props) {
   const handleOpenUP = () => setOpenUP(true);
   const handleCloseUP = () => setOpenUP(false);
 
+  
+
   return (
     <div>
       <Modal

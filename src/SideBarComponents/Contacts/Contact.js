@@ -4,8 +4,6 @@ import Export from "./Export/Export";
 import TuneOutlinedIcon from "@mui/icons-material/TuneOutlined";
 import Button from "@mui/material/Button";
 import LinearProgress from "@mui/material/LinearProgress";
-
-import { DataGrid } from "@mui/x-data-grid";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -15,12 +13,47 @@ import Select from "@mui/material/Select";
 import AddContact from "./AddContact/AddContact";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
+// import Snackbar from "@mui/material/Snackbar";
 const columns = [
-  { field: "Name And Email", headerName: "Name And Email", width: 342 },
-  { field: "Status", headerName: "Status", width: 94 },
-  { field: "Send/Reply", headerName: "Send/Reply", type: "number", width: 131 },
-  { field: "Open/Click", headerName: "Open/Click", width: 134 },
+  { id: "Checkbox", label:"", minWidth: "89px" },
+
+  { id: "Name and Email", label: " Email", minWidth: "343px" },
+  {
+    id: "Status",
+    label: "Status",
+    minWidth: 94,
+    align: "left",
+    format: (value) => value.toLocaleString("en-US"),
+  },
+  {
+    id: "Send/Reply",
+    label: "Send/Reply",
+    minWidth: 131,
+    align: "left",
+    format: (value) => value.toLocaleString("en-US"),
+  },
+  {
+    id: "Open/Click",
+    label: "Open/Click",
+    minWidth: 134,
+    align: "left",
+    format: (value) => value.toFixed(2),
+  },
+  {
+    id: "Delete",
+    label: "",
+    minWidth: 91,
+    align: "left",
+    format: (value) => value.toLocaleString("en-US"),
+  }
 ];
 
 const rows = [];
@@ -59,7 +92,8 @@ function Contact() {
   const handleOpen = () => setOpen(true);
   const [open, setOpen] = React.useState(false);
   const handleClose = () => setOpen(false);
-
+  const [pages, setPages] = React.useState(0);
+  const [rowsPerPages, setRowsPerPages] = React.useState(10);
   const [openAdd, setOpenAdd] = React.useState(false);
   const handleOpenAdd = () => setOpenAdd(true);
   const handleCloseAdd = () => setOpenAdd(false);
@@ -84,6 +118,16 @@ function Contact() {
     } = event;
     setTags(typeof value === "string" ? value.split(",") : value);
   };
+
+  const handleChangePage = (event, newPage) => {
+    setPages(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPages(+event.target.value);
+    setPages(0);
+  };
+
   return (
     <div className="contactHead">
       <div className="contactBody">
@@ -159,7 +203,7 @@ function Contact() {
             </div>
             <div>
               <Button color="warning" className="btn2" onClick={handleOpenAdd}>
-                <AddOutlinedIcon style={{fontSize:"20px",marginRight:'10px'}} />
+                <AddOutlinedIcon style={{ fontSize: "20px", marginRight: '10px' }} />
                 Add Contact
               </Button>
             </div>
@@ -173,9 +217,9 @@ function Contact() {
                 Contact State/Action
               </InputLabel>
               <Select
-               
                 labelId="demo-multiple-checkbox-label"
                 multiple
+                size="small"
                 color="warning"
                 value={contact}
                 onChange={handlleChange}
@@ -196,6 +240,7 @@ function Contact() {
               <Select
                 labelId="demo-multiple-checkbox-label"
                 multiple
+                size="small"
                 color="warning"
                 value={Tags}
                 onChange={handleeChange}
@@ -216,6 +261,7 @@ function Contact() {
               <Select
                 labelId="demo-multiple-checkbox-label"
                 multiple
+                size="small"
                 color="warning"
                 value={personName}
                 onChange={handleChange}
@@ -236,7 +282,7 @@ function Contact() {
         <div className="group">
           <div>Group action : </div>
           <Button
-          size="small"
+            size="small"
             variant="outlined"
             style={{
               textTransform: "capitalize",
@@ -255,15 +301,67 @@ function Contact() {
         <div style={{ marginTop: "15px" }}>
           <LinearProgress color="warning" />
         </div>
-        <div style={{ height: 400, width: "100%" }}>
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            pageSize={5}
-            rowsPerPageOptions={[5]}
-            checkboxSelection
+        <div>
+          <Paper sx={{ width: "100%", overflow: "hidden" }}>
+            <TableContainer sx={{ maxHeight: 440, overflow: 'auto' }}>
+              <Table stickyHeader aria-label="sticky table">
+                <TableHead>
+                  <TableRow>
+                    {columns.map((column) => (
+                      <TableCell
+                        key={column.id}
+                        align={column.align}
+                        style={{ minWidth: column.minWidth }}
+                      >
+                        {column.label}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {rows
+                    .slice(pages * rowsPerPages, pages * rowsPerPages +  rowsPerPages)
+                    .map((row) => {
+                      return (
+                        <TableRow
+                          hover
+                          role="checkbox"
+                          tabIndex={-1}
+                          key={row.code}
+                        >
+                          {columns.map((column) => {
+                            const value = row[column.id];
+                            return (
+                              <TableCell key={column.id} align={column.align}>
+                                {column.format && typeof value === "number"
+                                  ? column.format(value)
+                                  : value}
+                              </TableCell>
+                            );
+                          })}
+                        </TableRow>
+                      );
+                    })}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Paper>
+          <TablePagination
+            rowsPerPageOptions={[10, 25, 100]}
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPages}
+            page={pages}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
           />
         </div>
+        {/* <Snackbar
+          open={snackOpen}
+          autoHideDuration={4000}
+          onClose={() => setSnackOpen(false)}
+          message=" Add Campaign"
+        /> */}
       </div>
       <Export open={open} handleClose={handleClose} />
       <AddContact openAdd={openAdd} handleCloseAdd={handleCloseAdd} />

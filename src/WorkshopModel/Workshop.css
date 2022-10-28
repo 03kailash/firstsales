@@ -56,3 +56,10 @@
     font-size: 20px !important;
     margin-right: 8px !important;
 }
+.AddnewWorkspaces{
+    text-decoration-line: none !important;
+}
+.workspaceNavigation{
+    text-decoration: none !important;
+    color: #000000 !important;
+}
