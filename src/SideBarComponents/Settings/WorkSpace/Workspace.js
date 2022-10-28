@@ -209,8 +209,7 @@ export default function Workspace() {
                 <TableRow>
                   <TableCell
                     style={{
-                      maxWidth: "446px",
-                      width: "446px",
+                      width: "100%",
                     }}
                   >
                     User

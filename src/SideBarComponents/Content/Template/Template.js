@@ -23,6 +23,7 @@ import TextField from "@mui/material/TextField";
 import Snackbar from "@mui/material/Snackbar";
 import TemplateBuilder from "./TemplateBuilder";
 import Chip from "@mui/material/Chip";
+import { IconButton } from "@mui/material";
 
 const columns = [
   { id: "Template", label: "Template", minWidth: "532px" },
@@ -130,11 +131,12 @@ export default function Template() {
                   className="newtempdrawer"
                 >
                   <Box role="presentation">
-                    <ClearOutlinedIcon
-                      color="action"
-                      className="closebtn"
-                      onClick={() => setOpen2(false)}
-                    />
+                    <IconButton style={{ margin: "8px" }}>
+                      <ClearOutlinedIcon
+                        color="action"
+                        onClick={() => setOpen2(false)}
+                      />
+                    </IconButton>
                     <br />
                     <div className="tempmaindiv">
                       <div className="newtemphead">Create new Template</div>

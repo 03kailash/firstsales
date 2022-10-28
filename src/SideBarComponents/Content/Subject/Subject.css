@@ -78,14 +78,6 @@
   background-color: rgba(0, 0, 0, 0.04);
   border-radius: 50%;
 }
-.closebtn {
-  margin: 16px 16px 8px;
-  cursor: pointer;
-}
-.closebtn:hover {
-  background-color: rgba(0, 0, 0, 0.04);
-  border-radius: 50%;
-}
 .newtemphead {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   font-size: 22px;

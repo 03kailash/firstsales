@@ -41,13 +41,13 @@
 }
 .active {
   color: #ff8e00 !important;
-  width: 239px !important;
+  width: 33.33% !important;
   height: 72px !important;
   padding: 9px 16px !important;
 }
 .inactive {
   color: #00000099 !important;
-  width: 239px !important;
+  width: 33.33%px !important;
   height: 72px !important;
   padding: 9px 16px !important;
 }
@@ -65,7 +65,6 @@
   font-weight: 700;
   color: rgba(0, 0, 0, 0.87);
   font-family: Roboto, Helvetica, Arial, sans-serif;
-  margin-left: 15px;
 }
 .refreshbtn {
   border-radius: 4px !important;

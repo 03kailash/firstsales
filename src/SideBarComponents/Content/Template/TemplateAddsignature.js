@@ -21,6 +21,7 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import TemplateNewsignature from "./TemplateNewsignature";
+import { IconButton } from "@mui/material";
 
 const columns = [
   { id: "Signature", label: "Signature", minWidth: "332px" },
@@ -87,11 +88,9 @@ export default function TemplateAddsignature({ open, close }) {
         className="TemplateAddsignaturedrawer"
       >
         <Box role="presentation">
-          <ClearOutlinedIcon
-            color="action"
-            className="closebtn"
-            onClick={close}
-          />
+          <IconButton style={{ margin: "8px" }}>
+            <ClearOutlinedIcon color="action" onClick={close} />
+          </IconButton>
           <br />
           <div className="TempAddsignaturemaindiv">
             <div className="tempbuilderhead">Add Signature</div>

@@ -21,11 +21,9 @@ export default function Editsignature({ isopen, isclose }) {
         className="TempEditsigndrawer"
       >
         <Box role="presentation">
-          <ClearOutlinedIcon
-            color="action"
-            className="closebtn"
-            onClick={isclose}
-          />
+          <IconButton style={{ margin: "8px" }}>
+            <ClearOutlinedIcon color="action" onClick={isclose} />
+          </IconButton>
           <br />
           <div className="TempEditsignmaindiv">
             <div className="tempbuilderhead">Signature editing</div>

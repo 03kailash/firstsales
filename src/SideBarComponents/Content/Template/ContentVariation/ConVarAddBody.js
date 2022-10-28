@@ -21,6 +21,7 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import ContentNewBody from "./ContentNewBody";
+import { IconButton } from "@mui/material";
 
 const columns = [
   { id: "Body Block", label: "Body Block", minWidth: "332px" },
@@ -88,11 +89,9 @@ export default function ConVarAddBody({ open, close }) {
         className="convaraddbodydrawer"
       >
         <Box role="presentation">
-          <ClearOutlinedIcon
-            color="action"
-            className="closebtn"
-            onClick={close}
-          />
+          <IconButton style={{ margin: "8px" }}>
+            <ClearOutlinedIcon color="action" onClick={close} />
+          </IconButton>
           <br />
           <div className="convaraddbodymaindiv">
             <div className="tempbuilderhead">Add Body Block</div>

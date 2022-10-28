@@ -155,11 +155,9 @@ export default function Subject() {
                   className="newtempdrawer"
                 >
                   <Box role="presentation">
-                    <ClearOutlinedIcon
-                      color="action"
-                      className="closebtn"
-                      onClick={handleClose}
-                    />
+                    <IconButton style={{ margin: "8px" }}>
+                      <ClearOutlinedIcon color="action" onClick={handleClose} />
+                    </IconButton>
                     <br />
                     <div className="submaindiv">
                       <div className="tempbuilderhead">Create new Subject</div>

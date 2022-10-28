@@ -23,6 +23,7 @@ import TextField from "@mui/material/TextField";
 import Snackbar from "@mui/material/Snackbar";
 import Chip from "@mui/material/Chip";
 import Bodyblockedit from "./Bodyblockedit";
+import { IconButton } from "@mui/material";
 
 const columns = [
   { id: "Body Block", label: "Body Block", minWidth: "532px" },
@@ -129,11 +130,12 @@ export default function Bodyblock() {
                   className="newtempdrawer"
                 >
                   <Box role="presentation">
-                    <ClearOutlinedIcon
-                      color="action"
-                      className="closebtn"
-                      onClick={() => setOpen2(false)}
-                    />
+                    <IconButton style={{ margin: "8px" }}>
+                      <ClearOutlinedIcon
+                        color="action"
+                        onClick={() => setOpen2(false)}
+                      />
+                    </IconButton>
                     <br />
                     <div className="bodymaindiv">
                       <div className="newtemphead">Create new Body Block</div>

@@ -45,11 +45,9 @@ export default function Subjectedit({ isopen, isclose }) {
         className="subeditdrawer"
       >
         <Box role="presentation">
-          <ClearOutlinedIcon
-            color="action"
-            className="closebtn"
-            onClick={isclose}
-          />
+          <IconButton style={{ margin: "8px" }}>
+            <ClearOutlinedIcon color="action" onClick={isclose} />
+          </IconButton>
           <br />
           <div className="subeditmaindiv">
             <div className="tempbuilderhead" style={{ marginBottom: "40px" }}>

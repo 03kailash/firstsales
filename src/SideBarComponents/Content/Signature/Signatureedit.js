@@ -28,11 +28,9 @@ export default function Signatureedit({ isopen, isclose }) {
         className="signeditdrawer"
       >
         <Box role="presentation">
-          <ClearOutlinedIcon
-            color="action"
-            className="closebtn"
-            onClick={isclose}
-          />
+          <IconButton style={{ margin: "8px" }}>
+            <ClearOutlinedIcon color="action" onClick={isclose} />
+          </IconButton>
           <br />
           <div className="signeditmaindiv">
             <div className="tempbuilderhead" style={{ marginBottom: "40px" }}>

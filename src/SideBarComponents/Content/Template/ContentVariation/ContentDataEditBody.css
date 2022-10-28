@@ -1,0 +1,20 @@
+.contentdataeditbodydrawer > div:nth-child(3) {
+  box-sizing: border-box;
+  width: 860px;
+  max-width: 90%;
+  z-index: 1210;
+}
+.contentdataeditbodymaindiv {
+  width: 100%;
+  padding: 0px 32px;
+}
+@media screen and (max-width: 600px) {
+  .contentdataeditbodymaindiv {
+    padding: 0px 16px;
+  }
+}
+.contentdataeditsavebtndiv {
+  display: flex !important;
+  justify-content: center !important;
+  margin: 48px 0px !important;
+}

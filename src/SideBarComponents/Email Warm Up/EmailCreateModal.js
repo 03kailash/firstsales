@@ -9,6 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Snackbar from "@mui/material/Snackbar";
+import { IconButton } from "@mui/material";
 
 export default function EmailCreateModal({ open, close }) {
   const [snackOpen, setSnackOpen] = React.useState(false);
@@ -25,11 +26,9 @@ export default function EmailCreateModal({ open, close }) {
         className="emailcreatedrawer"
       >
         <Box role="presentation">
-          <ClearOutlinedIcon
-            color="action"
-            className="closebtn"
-            onClick={close}
-          />
+          <IconButton style={{ margin: "8px" }}>
+            <ClearOutlinedIcon color="action" onClick={close} />
+          </IconButton>
           <br />
           <div className="emailcreatemaindiv">
             <div style={{ fontSize: "1.5rem", marginBottom: "56px" }}>

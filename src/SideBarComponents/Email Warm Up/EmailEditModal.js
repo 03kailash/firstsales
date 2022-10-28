@@ -10,6 +10,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Switch from "@mui/material/Switch";
 import Snackbar from "@mui/material/Snackbar";
+import { IconButton } from "@mui/material";
 
 export default function EmailEditModal({ open, close }) {
   const [snackOpen, setSnackOpen] = React.useState(false);
@@ -26,11 +27,9 @@ export default function EmailEditModal({ open, close }) {
         className="emaileditdrawer"
       >
         <Box role="presentation">
-          <ClearOutlinedIcon
-            color="action"
-            className="closebtn"
-            onClick={close}
-          />
+          <IconButton style={{ margin: "8px" }}>
+            <ClearOutlinedIcon color="action" onClick={close} />
+          </IconButton>
           <br />
           <div style={{ width: "100%", padding: "0px 32px" }}>
             <div style={{ fontSize: "1.5rem", marginBottom: "56px" }}>

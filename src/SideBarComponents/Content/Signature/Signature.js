@@ -134,11 +134,12 @@ export default function Signature() {
                   className="newtempdrawer"
                 >
                   <Box role="presentation">
-                    <ClearOutlinedIcon
-                      color="action"
-                      className="closebtn"
-                      onClick={() => setOpen2(false)}
-                    />
+                    <IconButton style={{ margin: "8px" }}>
+                      <ClearOutlinedIcon
+                        color="action"
+                        onClick={() => setOpen2(false)}
+                      />
+                    </IconButton>
                     <br />
                     <div className="signmaindiv">
                       <div className="newtemphead">Create new Signature</div>

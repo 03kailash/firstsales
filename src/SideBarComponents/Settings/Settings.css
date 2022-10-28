@@ -14,6 +14,10 @@
 .SettingHead > div > span {
   background-color: #ff8e00;
 }
+.SettingHead > div > div {
+  display: flex !important;
+  justify-content: center !important;
+}
 .setactiveTab {
   color: #ff8e00 !important;
 }
@@ -22,12 +26,10 @@
 }
 @media screen and (max-width: 1200px) {
   .setactiveTab {
-    width: 295px;
-    max-width: 295px;
+    width: 33.33% !important;
   }
   .setinactiveTab {
-    width: 295px;
-    max-width: 295px;
+    width: 33.33% !important;
   }
   .sethead {
     display: none;

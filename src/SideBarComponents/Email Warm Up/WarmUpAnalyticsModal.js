@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import Drawer from "@mui/material/Drawer";
 import Chip from "@mui/material/Chip";
-import { FormControl, InputLabel, Select } from "@mui/material";
+import { FormControl, IconButton, InputLabel, Select } from "@mui/material";
 
 export default function WarmUpAnalyticsModal({ open, close }) {
   const [timerange, setTimerange] = useState("l7d");
@@ -17,11 +17,9 @@ export default function WarmUpAnalyticsModal({ open, close }) {
         className="warmupanadrawer"
       >
         <Box role="presentation">
-          <ClearOutlinedIcon
-            color="action"
-            className="closebtn"
-            onClick={close}
-          />
+          <IconButton style={{ margin: "8px" }}>
+            <ClearOutlinedIcon color="action" onClick={close} />
+          </IconButton>
           <br />
           <div className="warmupanamaindiv">
             <div style={{ fontSize: "1.5rem", marginBottom: "56px" }}>

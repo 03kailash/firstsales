@@ -43,6 +43,8 @@ import IconButton from "@mui/material/IconButton";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import { InputAdornment } from "@mui/material";
 import TempDataEditsignature from "./TemplateDataEditsignture";
+import TemplateDataEditsubject from "./TemplateDataEditsubject";
+import ContentDataEditBody from "./ContentVariation/ContentDataEditBody";
 
 const arr = [
   {
@@ -89,6 +91,16 @@ export default function TemplateBuilder({ isOpen, isClose }) {
   const [dataeditsign, setDataeditsign] = useState(false);
   const closeDataeditsign = () => {
     setDataeditsign(false);
+  };
+
+  const [dataeditsubject, setDataeditsubject] = useState(false);
+  const closeDataeditsubject = () => {
+    setDataeditsubject(false);
+  };
+
+  const [dataeditbody, setDataeditbody] = useState(false);
+  const closeDataeditbody = () => {
+    setDataeditbody(false);
   };
   const [contentdata, setContentdata] = useState(true);
   const [dark, setDark] = useState(true);
@@ -156,11 +168,9 @@ export default function TemplateBuilder({ isOpen, isClose }) {
         className="tempbuiltdrawer"
       >
         <Box role="presentation">
-          <ClearOutlinedIcon
-            color="action"
-            className="closebtn"
-            onClick={isClose}
-          />
+          <IconButton style={{ margin: "8px" }}>
+            <ClearOutlinedIcon color="action" onClick={isClose} />
+          </IconButton>
           <br />
           <div style={{ width: "100%", padding: "0px 48px" }}>
             <div className="tempbuilderhead">Template Builder</div>
@@ -176,7 +186,8 @@ export default function TemplateBuilder({ isOpen, isClose }) {
                 style={{
                   display: "flex",
                   justifyContent: "center",
-                  width: "400px",
+                  maxWidth: "400px",
+                  width: "100%",
                 }}
               >
                 <TextField
@@ -347,7 +358,10 @@ export default function TemplateBuilder({ isOpen, isClose }) {
                                   style={{ boxShadow: "none" }}
                                 >
                                   <MenuItem
-                                    onClick={menuclose}
+                                    onClick={() => {
+                                      setDataeditsubject(true);
+                                      menuclose();
+                                    }}
                                     style={{ gap: "12px" }}
                                   >
                                     <CreateIcon color="action" /> Edit subject
@@ -685,7 +699,10 @@ export default function TemplateBuilder({ isOpen, isClose }) {
                                       style={{ boxShadow: "none" }}
                                     >
                                       <MenuItem
-                                        onClick={menuclose}
+                                        onClick={() => {
+                                          setDataeditbody(true);
+                                          menuclose();
+                                        }}
                                         style={{ gap: "12px" }}
                                       >
                                         <CreateIcon color="action" /> Edit body
@@ -768,12 +785,14 @@ export default function TemplateBuilder({ isOpen, isClose }) {
                   )}
                 </div>
               </div>
-              <div style={{ width: "508px", marginLeft: "15px" }}>
+              <div style={{ width: "508px", paddingLeft: "16px" }}>
                 <div
                   style={{
                     height: "72px",
                     alignItems: "center",
                     display: "flex",
+                    justifyContent: "space-between",
+                    padding: "0px 16px",
                   }}
                 >
                   <div className="emailpreview">Email Content Preview </div>
@@ -781,7 +800,6 @@ export default function TemplateBuilder({ isOpen, isClose }) {
                     style={{
                       display: "flex",
                       alignItems: "center",
-                      marginLeft: "180px",
                     }}
                   >
                     light
@@ -800,7 +818,6 @@ export default function TemplateBuilder({ isOpen, isClose }) {
                 </div>
                 <div
                   style={{
-                    minHeight: "400px",
                     width: "508",
                     background: "#f7f7f7",
                     padding: "16px 16px 32px",
@@ -839,13 +856,13 @@ export default function TemplateBuilder({ isOpen, isClose }) {
                         LETTER VIEW
                       </ToggleButton>
                     </ToggleButtonGroup>
-                    <Button className="refreshbtn">
+                    {/* <Button className="refreshbtn">
                       <CachedIcon
                         fontSize="small"
                         style={{ marginRight: "7px" }}
                       />
                       REFRESH
-                    </Button>
+                    </Button> */}
                   </div>
                   {blockview && (
                     <>
@@ -887,7 +904,11 @@ export default function TemplateBuilder({ isOpen, isClose }) {
           </div>
         </Box>
       </Drawer>
-      <ArchiveModal isOpen={archiveModal} isClose={handleClose} />
+      <ArchiveModal
+        isOpen={archiveModal}
+        isClose={handleClose}
+        close={isClose}
+      />
       <TemplateAddsubject open={adsubject} close={handleclose2} />
       <TemplateAddsignature open={adsignature} close={handleclose3} />
       <ContentVariDelModal
@@ -899,6 +920,11 @@ export default function TemplateBuilder({ isOpen, isClose }) {
         isopen={dataeditsign}
         isclose={closeDataeditsign}
       />
+      <TemplateDataEditsubject
+        isopen={dataeditsubject}
+        isclose={closeDataeditsubject}
+      />
+      <ContentDataEditBody isopen={dataeditbody} isclose={closeDataeditbody} />
     </React.Fragment>
   );
 }

@@ -21,6 +21,7 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import TemplateNewsubject from "./TemplateNewsubject";
+import { IconButton } from "@mui/material";
 
 const columns = [
   { id: "Subject", label: "Subject", minWidth: "332px" },
@@ -88,11 +89,9 @@ export default function TemplateAddsubject({ open, close }) {
         className="builderaddsubdrawer"
       >
         <Box role="presentation">
-          <ClearOutlinedIcon
-            color="action"
-            className="closebtn"
-            onClick={close}
-          />
+          <IconButton style={{ margin: "8px" }}>
+            <ClearOutlinedIcon color="action" onClick={close} />
+          </IconButton>
           <br />
           <div className="builderaddsubmaindiv">
             <div className="tempbuilderhead">Add Subject</div>

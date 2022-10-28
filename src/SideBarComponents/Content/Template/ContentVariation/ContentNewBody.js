@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import TextField from "@mui/material/TextField";
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import ContentEditbody from "./ContentEditbody";
 
 export default function ContentNewBody({ isopen, isclose }) {
@@ -22,11 +22,9 @@ export default function ContentNewBody({ isopen, isclose }) {
         className="ContentNewBodydrawer"
       >
         <Box role="presentation">
-          <ClearOutlinedIcon
-            color="action"
-            className="closebtn"
-            onClick={isclose}
-          />
+          <IconButton style={{ margin: "8px" }}>
+            <ClearOutlinedIcon color="action" onClick={isclose} />
+          </IconButton>
           <br />
           <div className="ContentNewBodymaindiv">
             <div className="tempbuilderhead">Create new Body Block</div>

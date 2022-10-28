@@ -26,11 +26,9 @@ export default function TemplateNewsignature({ isopen, isclose }) {
         className="TempNewsignaturedrawer"
       >
         <Box role="presentation">
-          <ClearOutlinedIcon
-            color="action"
-            className="closebtn"
-            onClick={isclose}
-          />
+          <IconButton style={{ margin: "8px" }}>
+            <ClearOutlinedIcon color="action" onClick={isclose} />
+          </IconButton>
           <br />
           <div className="TempNewsignmaindiv">
             <div className="tempbuilderhead">Create new Signature</div>

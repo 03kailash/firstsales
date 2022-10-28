@@ -1,0 +1,42 @@
+.TempEditsubdrawer > div:nth-child(3) {
+  box-sizing: border-box;
+  width: 662px;
+  max-width: 90%;
+  z-index: 1210;
+}
+.TempEditsubmaindiv {
+  width: 100%;
+  padding: 0px 32px;
+}
+@media screen and (max-width: 600px) {
+  .TempEditsubmaindiv {
+    padding: 0px 16px;
+  }
+  .Savetempeditsubbtndiv {
+    display: grid !important;
+  }
+}
+.Savetempeditsubbtndiv {
+  display: flex;
+  justify-content: center;
+  margin: 32px 0px;
+  gap: 16px;
+}
+.Savecopyeditsubbtn {
+  min-width: 210px !important;
+  color: rgb(255, 255, 255) !important;
+  background-color: rgb(255, 142, 0) !important;
+}
+.Savecopyeditsubbtn:hover {
+  background-color: rgb(178, 99, 0) !important;
+  box-shadow: rgb(0 0 0 / 31%) 0px 0px 1px 0px,
+    rgb(0 0 0 / 25%) 0px 3px 4px -2px !important;
+}
+.Savetempeditdatasubbtn {
+  color: rgb(255, 142, 0) !important;
+  border: 1px solid rgba(255, 142, 0, 0.5) !important;
+  min-width: 210px !important;
+}
+.Savetempeditdatasubbtn:hover {
+  background-color: rgba(255, 142, 0, 0.04) !important;
+}

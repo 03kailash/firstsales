@@ -1,24 +1,18 @@
 import React, { useState } from "react";
-import "./Bodyblockedit.css";
+import "./ContentDataEditBody.css";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import TextField from "@mui/material/TextField";
 import { Button, IconButton } from "@mui/material";
-import Snackbar from "@mui/material/Snackbar";
-import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
 
-export default function Bodyblockedit({ isopen, isclose }) {
+export default function ContentDataEditBody({ isopen, isclose }) {
   const [gifsbtn, setGifsbtn] = useState(false);
   const [data, setData] = useState("new");
   const [gifArr, setGifArr] = useState({});
-  const [snackOpen, setSnackOpen] = React.useState(false);
-
-  const handleClick = () => {
-    setSnackOpen(true);
-  };
 
   const fetchGif = (data) => {
+    console.log("api");
     if (!gifsbtn) {
       fetch(
         `https://api.giphy.com/v1/gifs/trending?api_key=TKM4I3PV9b2l5gBH4WqbaM3RyBATc41J&limit=25&rating=g&offset=0&q=`
@@ -34,20 +28,20 @@ export default function Bodyblockedit({ isopen, isclose }) {
         anchor={"right"}
         open={isopen}
         onClose={isclose}
-        className="bodyeditdrawer"
+        className="contentdataeditbodydrawer"
       >
         <Box role="presentation">
           <IconButton style={{ margin: "8px" }}>
             <ClearOutlinedIcon color="action" onClick={isclose} />
           </IconButton>
           <br />
-          <div className="bodyeditmaindiv">
+          <div className="contentdataeditbodymaindiv">
             <div className="tempbuilderhead" style={{ marginBottom: "40px" }}>
               Body Block editing
             </div>
             <div style={{ display: "flex", alignItems: "center" }}>
               <TextField
-                label="Title"
+                label="Body Block Title"
                 type="text"
                 id="outlined-size-small"
                 color="warning"
@@ -94,51 +88,28 @@ export default function Bodyblockedit({ isopen, isclose }) {
               </div>
             )}
             {gifsbtn && (
-              <div style={{ width: "830px" }}>
-                <div
-                  style={{
-                    width: "100%",
-                    height: "500px",
-                    overflow: "scroll",
-                    gap: "10px",
-                  }}
-                >
-                  {gifArr &&
-                    gifArr.data &&
-                    gifArr.data.map((item, index) => {
-                      return (
-                        <>
-                          <img
-                            style={{
-                              width: "200px",
-                              float: "left",
-                              verticalAlign: "top",
-                              cursor: "pointer",
-                            }}
-                            src={item.images.original.url}
-                            alt="Gifs"
-                          />
-                        </>
-                      );
-                    })}
-                </div>
+              <div
+                style={{ width: "100%", height: "500px", overflow: "scroll" }}
+              >
+                {gifArr &&
+                  gifArr.data &&
+                  gifArr.data.map((item, index) => {
+                    return (
+                      <img
+                        style={{
+                          width: "200px",
+                          float: "left",
+                          verticalAlign: "top",
+                        }}
+                        src={item.images.original.url}
+                        alt="Gifs"
+                      />
+                    );
+                  })}
               </div>
             )}
 
-            <div className="Archivesavebtndiv">
-              <Button
-                variant="outlined"
-                className="archivebtnbodyedit"
-                style={{ padding: "5px 35px" }}
-                onClick={() => {
-                  handleClick();
-                  isclose();
-                }}
-              >
-                <Inventory2OutlinedIcon className="archivelogo" /> Move to
-                Archive
-              </Button>
-
+            <div className="contentdataeditsavebtndiv">
               <Button className="Savetemplatebtn" style={{ width: "205px" }}>
                 Save
               </Button>
@@ -146,12 +117,6 @@ export default function Bodyblockedit({ isopen, isclose }) {
           </div>
         </Box>
       </Drawer>
-      <Snackbar
-        open={snackOpen}
-        autoHideDuration={4000}
-        onClose={() => setSnackOpen(false)}
-        message="Body block archived"
-      />
     </React.Fragment>
   );
 }

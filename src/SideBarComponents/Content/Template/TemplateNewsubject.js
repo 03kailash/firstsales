@@ -45,11 +45,9 @@ export default function TemplateNewsubject({ isopen, isclose }) {
         className="tempnewsubdrawer"
       >
         <Box role="presentation">
-          <ClearOutlinedIcon
-            color="action"
-            className="closebtn"
-            onClick={isclose}
-          />
+          <IconButton style={{ margin: "8px" }}>
+            <ClearOutlinedIcon color="action" onClick={isclose} />
+          </IconButton>
           <br />
           <div className="tempnewsubmaindiv">
             <div className="tempbuilderhead">Create new Subject</div>
@@ -188,6 +186,12 @@ export default function TemplateNewsubject({ isopen, isclose }) {
         </Box>
       </Drawer>
       <TemplateEditsubject isopen={editsubject} isclose={closeEditsubject} />
+      {/* <Snackbar
+        open={snackOpen}
+        autoHideDuration={4000}
+        onClose={() => setSnackOpen(false)}
+        message="Template archived"
+      /> */}
     </React.Fragment>
   );
 }

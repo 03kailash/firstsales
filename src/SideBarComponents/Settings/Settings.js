@@ -28,10 +28,9 @@ export default function Settings() {
             style={{
               display: "flex",
               justifyContent: "center",
-              overflowX: "auto",
             }}
           >
-            <div>
+            <div style={{ width: "100%" }}>
               <AppBar
                 position="static"
                 color="default"
@@ -44,6 +43,7 @@ export default function Settings() {
                   value={value}
                   onChange={handleChange}
                   className="SettingHead"
+                  style={{ display: "flex", justifyContent: "center" }}
                 >
                   <Tab
                     label="Workspace"
