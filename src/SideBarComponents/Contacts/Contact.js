@@ -222,7 +222,7 @@ function Contact() {
             {active && (
               <div style={{ display: "flex" }}>
                 <FormControl sx={{ m: 1, width: 300 }} className='SelectFeildBox'>
-                  <InputLabel id="demo-multiple-checkbox-label">
+                  <InputLabel id="demo-multiple-checkbox-label" color="warning" shrink>
                     Contact State/Action
                   </InputLabel>
                   <Select
@@ -235,6 +235,7 @@ function Contact() {
                     input={<OutlinedInput label="Contact State/Action" />}
                     renderValue={(selected) => selected.join(", ")}
                     MenuProps={MenuProps}
+                    notched
                   >
                     {names.map((name) => (
                       <MenuItem key={name} value={name}>
@@ -245,7 +246,7 @@ function Contact() {
                 </FormControl>
 
                 <FormControl sx={{ m: 1, width: 300 }}>
-                  <InputLabel id="demo-multiple-checkbox-label">Tags</InputLabel>
+                  <InputLabel id="demo-multiple-checkbox-label" color="warning" shrink>Tags</InputLabel>
                   <Select
                     labelId="demo-multiple-checkbox-label"
                     multiple
@@ -256,6 +257,7 @@ function Contact() {
                     input={<OutlinedInput label="Tags" />}
                     renderValue={(selected) => selected.join(", ")}
                     MenuProps={MenuProps}
+                    notched
                   >
                     {names.map((name) => (
                       <MenuItem key={name} value={name}>
@@ -266,7 +268,7 @@ function Contact() {
                 </FormControl>
 
                 <FormControl sx={{ m: 1, width: 300 }}>
-                  <InputLabel id="demo-multiple-checkbox-label">Source</InputLabel>
+                  <InputLabel id="demo-multiple-checkbox-label" color="warning" shrink>Source</InputLabel>
                   <Select
                     labelId="demo-multiple-checkbox-label"
                     multiple
@@ -277,6 +279,7 @@ function Contact() {
                     input={<OutlinedInput label="Source" color="warning" />}
                     renderValue={(selected) => selected.join(", ")}
                     MenuProps={MenuProps}
+                    notched
                   >
                     {names.map((name) => (
                       <MenuItem key={name} value={name}>

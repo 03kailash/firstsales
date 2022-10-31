@@ -21,7 +21,9 @@ import SMTPModel from './EmailDomainModel/SMTPModel';
 import IMAPModel from './EmailDomainModel/IMAPModel';
 import DomainModel from './EmailDomainModel/DomainModel';
 import DomainEditModal from './EmailDomainModel/Model/DomainEditModel';
-// import DomainDel from "./EmailDomainModel/Model/DomainDel"
+import DomainDel from "./EmailDomainModel/Model/DomainDel"
+import IMAPEditModal from './EmailDomainModel/Model/IMAPEditModel';
+import TrakingEditModal from './EmailDomainModel/Model/SMTPEditModel';
 
 
 function createData(Email, MailLimit, UsedMail) {
@@ -33,14 +35,22 @@ const rows = [
 ];
 export default function EmailDomain() {
 
-  const [Domainedit, setDomainedit] = useState(false);
+  const [domainedit, setDomainedit] = useState(false);
   const closeDomainedit = () => {
     setDomainedit(false);
   };
-  // const [domaindel, setdomaindel] = useState(false);
-  // const closedomaindel = () => {
-  //   setdomaindel(false);
-  // };
+  const [domaindel, setdomaindel] = useState(false);
+  const closedomaindel = () => {
+    setdomaindel(false);
+  };
+  const[IMAPEditModel,setIMAPEditModel] =useState(false);
+  const closeIMAPEditModel = () => {
+    setIMAPEditModel(false);
+  };
+  const[TrackEditModel,setTrackEditModel] =useState(false);
+  const closeTrackEditModel = () => {
+    setTrackEditModel(false);
+  };
   const [smtp, setsmtp] = useState(false);
   const closeSmtp = () => {
     setsmtp(false)
@@ -58,11 +68,29 @@ export default function EmailDomain() {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+ 
+ 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const menuclose = () => {
     setAnchorEl(null);
+  };
+  const [anchorE1, setanchorE1] = React.useState(null);
+  const Open = Boolean(anchorE1);
+  const handleClick2 = (event) => {
+    setanchorE1(event.currentTarget);
+  };
+  const menucloseTable2 = () => {
+    setanchorE1(null);
+  };
+  const [anchorE3, setAnchorE3] = React.useState(null);
+  const OPEN = Boolean(anchorE3);
+  const handleClick3 = (event) => {
+    setAnchorE3(event.currentTarget);
+  };
+  const menucloseTable3 = () => {
+    setAnchorE3(null);
   };
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -165,7 +193,7 @@ export default function EmailDomain() {
                           <MenuItem
                             onClick={() => {
                               menuclose();
-                              // setdomaindel(true);
+                              setdomaindel(true);
                             }}
                             style={{ gap: "12px" }}
                           >
@@ -224,7 +252,7 @@ export default function EmailDomain() {
                       <TableCell align="center" className='TableCellMail' >
                         {
                           <>
-                            <IconButton onClick={handleClick}>
+                            <IconButton onClick={handleClick2}>
                               <MoreVertOutlinedIcon color="action" />
                             </IconButton>
                           </>
@@ -234,14 +262,15 @@ export default function EmailDomain() {
                           MenuListProps={{
                             "aria-labelledby": "fade-button",
                           }}
-                          anchorEl={anchorEl}
-                          open={open}
-                          onClose={menuclose}
+                          anchorE1={anchorE1}
+                          open={Open}
+                          onClose={menucloseTable2}
                         >
                           <MenuItem
                             onClick={() => {
-                              menuclose();
-
+                              menucloseTable2();
+                              setIMAPEditModel(true);
+                              
                             }}
                             style={{ gap: "12px" }}
                           >
@@ -250,7 +279,7 @@ export default function EmailDomain() {
                           {pause && (
                             <MenuItem
                               onClick={() => {
-                                menuclose();
+                                menucloseTable2();
                                 setRun(true);
                                 setPause(false);
                               }}
@@ -263,7 +292,7 @@ export default function EmailDomain() {
                           {run && (
                             <MenuItem
                               onClick={() => {
-                                menuclose();
+                                menucloseTable2();
                                 setPause(true);
                                 setRun(false);
                               }}
@@ -275,7 +304,8 @@ export default function EmailDomain() {
                           )}
                           <MenuItem
                             onClick={() => {
-                              menuclose();
+                              menucloseTable2();
+                              setdomaindel(true);
 
                             }}
                             style={{ gap: "12px" }}
@@ -334,7 +364,7 @@ export default function EmailDomain() {
                       <TableCell align="center" className='TableCellMail' >
                         {
                           <>
-                            <IconButton onClick={handleClick}>
+                            <IconButton onClick={handleClick3}>
                               <MoreVertOutlinedIcon color="action" />
                             </IconButton>
                           </>
@@ -344,14 +374,14 @@ export default function EmailDomain() {
                           MenuListProps={{
                             "aria-labelledby": "fade-button",
                           }}
-                          anchorEl={anchorEl}
-                          open={open}
-                          onClose={menuclose}
+                          anchorE3={anchorE3}
+                          open={OPEN}
+                          onClose={ menucloseTable3}
                         >
                           <MenuItem
                             onClick={() => {
-                              menuclose();
-
+                              menucloseTable3()
+                              setTrackEditModel(true)
                             }}
                             style={{ gap: "12px" }}
                           >
@@ -360,7 +390,7 @@ export default function EmailDomain() {
                           {pause && (
                             <MenuItem
                               onClick={() => {
-                                menuclose();
+                                menucloseTable3();
                                 setRun(true);
                                 setPause(false);
                               }}
@@ -373,7 +403,7 @@ export default function EmailDomain() {
                           {run && (
                             <MenuItem
                               onClick={() => {
-                                menuclose();
+                                menucloseTable3();
                                 setPause(true);
                                 setRun(false);
                               }}
@@ -385,8 +415,8 @@ export default function EmailDomain() {
                           )}
                           <MenuItem
                             onClick={() => {
-                              menuclose();
-
+                              menucloseTable3()
+                              setdomaindel(true);
                             }}
                             style={{ gap: "12px" }}
                           >
@@ -418,14 +448,16 @@ export default function EmailDomain() {
             <AddIcon className='AddSmtp' /><span style={{ paddingLeft: '8px' }}>Add Tracking Domain</span>
           </Button>
         </div>
-        <hr className='HRSmtp' />
+          <hr className='HRSmtp' />
         <SMTPModel isopen={smtp} isclose={closeSmtp} />
         <IMAPModel isopen={imap} isclose={closeimap} />
         <DomainModel isopen={domain} isclose={closedomain} />
 
 
-        {/* <DomainDel isOpen={domaindel} isClose={closedomaindel} /> */}
-        <DomainEditModal open={Domainedit} close={closeDomainedit} />
+        <DomainDel isOpen={domaindel} isClose={closedomaindel} />
+        <DomainEditModal open={domainedit} close={closeDomainedit} />
+        <IMAPEditModal Open={IMAPEditModel} Close={closeIMAPEditModel} />
+        <TrakingEditModal Open= {TrackEditModel} Close={closeTrackEditModel}/>
       </div>
     </div>
   )

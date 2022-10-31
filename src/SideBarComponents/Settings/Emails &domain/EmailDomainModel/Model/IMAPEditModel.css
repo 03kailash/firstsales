@@ -1,0 +1,15 @@
+.IMAPSettingsText{
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.334;
+    letter-spacing: 0em;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.87);
+}
+ .IMAPModelCancelBtn{
+    display: flex;
+    justify-content: center;
+    border: 1px solid rgba(255, 142, 0, 0.5) !important;
+    color: rgb(255, 142, 0) !important;
+    width: 100%;
+}

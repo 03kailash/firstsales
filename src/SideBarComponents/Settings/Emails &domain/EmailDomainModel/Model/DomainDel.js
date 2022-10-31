@@ -18,7 +18,7 @@ const style = {
   borderRadius: "4px",
   margin: "8px",
 };
-export default function DomainDel(isOpen,isClose) {
+export default function DomainDel({isOpen,isClose}) {
   return (
     <Modal keepMounted open={isOpen} onClose={isClose}>
       <Box sx={style}>

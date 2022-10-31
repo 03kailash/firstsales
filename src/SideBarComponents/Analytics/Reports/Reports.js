@@ -29,6 +29,11 @@ function Reports() {
   const [arrow2, setarrow2] = useState(false);
   const [arrow3, setarrow3] = useState(false);
   const [arrow4, setarrow4] = useState(false);
+  const [arrow5, setarrow5] = useState(false);
+  const [arrow6, setarrow6] = useState(false);
+  const [arrow7, setarrow7] = useState(false);
+  const [arrow8, setarrow8] = useState(false);
+  const [arrow9, setarrow9] = useState(false);
   const [filter, setfiler] = useState(false);
   const [age, setAge] = React.useState("");
   const handleChangee = (event) => {
@@ -377,7 +382,7 @@ function Reports() {
                 </div>
               </div>
             </div>
-            {arrow && (
+            {arrow3 && (
               <div className="arrowIcon">
                 <div style={{ paddingTop: "16px" }}>
                   <span>Change View :</span>
@@ -438,7 +443,7 @@ function Reports() {
                 </div>
               </div>
             </div>
-            {arrow && (
+            {arrow4 && (
               <div className="arrowIcon">
                 <div style={{ paddingTop: "16px" }}>
                   <span>Change View :</span>
@@ -484,6 +489,13 @@ function Reports() {
             >
               <div
                 className="DetailsListDropDown"
+                onClick={() => {
+                  if (arrow5) {
+                    setarrow5(false);
+                  } else {
+                    setarrow5(true);
+                  }
+                }}
               >
                 <div>
                   <span className="EmailSenttext">Engagements by Day</span>
@@ -498,7 +510,7 @@ function Reports() {
                 </div>
               </div>
             </div>
-            {arrow && (
+            {arrow5 && (
               <div className="arrowIcon">
                 <div style={{ paddingTop: "16px" }}>
                   <span>Change View :</span>
@@ -541,6 +553,13 @@ function Reports() {
             >
               <div
                 className="DetailsListDropDown"
+                onClick={() => {
+                  if (arrow6) {
+                    setarrow6(false);
+                  } else {
+                    setarrow6(true);
+                  }
+                }}
               >
                 <div className="EmailSenttext">
                   Engagements by Sent Date
@@ -555,7 +574,7 @@ function Reports() {
                 </div>
               </div>
             </div>
-            {arrow && (
+            {arrow6 && (
               <div className="arrowIcon">
                 <div style={{ paddingTop: "16px" }}>
                   <span>Change View :</span>
@@ -598,6 +617,13 @@ function Reports() {
             >
               <div
                 className="DetailsListDropDown"
+                onClick={() => {
+                  if (arrow7) {
+                    setarrow7(false);
+                  } else {
+                    setarrow7(true);
+                  }
+                }}
               >
                 <div>
                   <span className="EmailSenttext">
@@ -614,7 +640,7 @@ function Reports() {
                 </div>
               </div>
             </div>
-            {arrow && (
+            {arrow7 && (
               <div className="arrowIcon">
                 <div style={{ paddingTop: "16px" }}>
                   <span>Change View :</span>
@@ -661,6 +687,13 @@ function Reports() {
             >
               <div
                 className="DetailsListDropDown"
+                onClick={() => {
+                  if (arrow8) {
+                    setarrow8(false);
+                  } else {
+                    setarrow8(true);
+                  }
+                }}
               >
                 <div>
                   <span className="EmailSenttext">Contacts Activity</span>
@@ -675,7 +708,7 @@ function Reports() {
                 </div>
               </div>
             </div>
-            {arrow && (
+            {arrow8 && (
               <div className="arrowIcon">
                 <div style={{ paddingTop: "16px" }}>
                   <span>Change View :</span>
@@ -717,6 +750,13 @@ function Reports() {
              className='DetailsListDropDownMainDiv'
             >
               <div className="DetailsListDropDown"
+               onClick={() => {
+                if (arrow9) {
+                  setarrow9(false);
+                } else {
+                  setarrow9(true);
+                }
+              }}
               >
                 <div>
                   <span className="EmailSenttext">
@@ -733,7 +773,7 @@ function Reports() {
                 </div>
               </div>
             </div>
-            {arrow && (
+            {arrow9 && (
               <div className="arrowIcon">
                 <div style={{ paddingTop: "16px" }}>
                   <span>Change View :</span>

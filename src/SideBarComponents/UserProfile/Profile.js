@@ -27,7 +27,7 @@ function Profile() {
           <div className="img_full">
             <Avatar
               src="/broken-image.jpg"
-              style={{ width: "120px", height: "120px" }}
+              style={{width:'100%',height:'100%',maxWidth:'90px'}}
             />
           </div>
           <div className="select_img">
@@ -65,11 +65,11 @@ function Profile() {
               <Stack spacing={3}>
                 <DesktopDatePicker
                   label="BirthDay"
-                  backgroundColor="warning"
                   inputFormat="MM/DD/YYYY"
                   value={value}
                   onChange={handleChange}
-                  renderInput={(params) => <TextField {...params} />}
+                  renderInput={(params) => <TextField {...params}  className="dob" color="warning" />}
+                 
                 />
               </Stack>
             </LocalizationProvider>

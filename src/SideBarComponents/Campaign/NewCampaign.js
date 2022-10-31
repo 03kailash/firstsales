@@ -352,7 +352,6 @@ function NewCampaign(props) {
                                               width: "100%",
                                             }}
                                           >
-                                        
                                               <IconButton>
                                                 <DeleteIcon />
                                               </IconButton>

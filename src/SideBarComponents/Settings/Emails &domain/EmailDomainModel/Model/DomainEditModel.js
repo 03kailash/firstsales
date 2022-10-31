@@ -9,14 +9,14 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Switch from "@mui/material/Switch";
 
-export default function DomainEditModal({ open, close }) {
+export default function DomainEditModal(props) {
   return (
-    <Drawer anchor={"right"} open={open} onClose={close}>
+    <Drawer anchor={"right"} open={props.open} onClose={props.close}>
       <Box sx={{ width: 385 }} role="presentation">
         <ClearOutlinedIcon
           color="action"
           className="closebtn"
-          onClick={close}
+          onClick={props.close}
         />
         <br />
         <div style={{ width: "100%", padding: "0px 32px" }}>

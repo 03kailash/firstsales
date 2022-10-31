@@ -220,7 +220,7 @@ function Campaign() {
             size="small"
             className='campaignAuthor'
           >
-            <InputLabel id="demo-select-small" color="warning">
+            <InputLabel id="demo-select-small" color="warning" shrink>
               Author
             </InputLabel>
             <Select
@@ -229,6 +229,7 @@ function Campaign() {
               value={aut}
               label="Author"
               color="warning"
+              notched
             >
               <MenuItem
                 value={"kailash"}
