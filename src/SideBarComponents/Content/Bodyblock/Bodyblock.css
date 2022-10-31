@@ -17,6 +17,15 @@
   justify-content: end;
   padding-left: 32px;
 }
+.contentsearchinputdiv {
+  width: 100%;
+  border-radius: 5px;
+  align-items: center;
+  display: flex;
+  background-color: rgb(245, 245, 245);
+  max-width: 426px;
+  padding-right: 14px;
+}
 .searchinput {
   color: currentcolor;
   border: none;
@@ -67,16 +76,6 @@
 
 .searchinput:focus-visible {
   outline: none;
-}
-
-.icon {
-  background: rgb(245, 245, 245);
-  cursor: pointer;
-  margin-right: 15px;
-}
-.icon:hover {
-  background-color: rgba(0, 0, 0, 0.04);
-  border-radius: 50%;
 }
 
 .newtemphead {
@@ -135,5 +134,8 @@
   }
   .bodymaindiv {
     padding: 0px 16px;
+  }
+  .contentsearchinputdiv {
+    max-width: 100% !important;
   }
 }

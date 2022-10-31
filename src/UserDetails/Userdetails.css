@@ -21,7 +21,9 @@
   margin-top: 40px !important;
   font-family: Roboto, Helvetica, Arial, sans-serif;
 }
-
+.cancelbtn:hover {
+  background-color: rgba(255, 142, 0, 0.04) !important;
+}
 .steps > span > .Mui-active :first-child {
   color: rgb(255, 142, 0);
 }

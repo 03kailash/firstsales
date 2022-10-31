@@ -17,6 +17,19 @@
   justify-content: end;
   padding-left: 32px;
 }
+.templatecontainer {
+  max-width: 900px;
+  width: 100%;
+}
+.contentsearchinputdiv {
+  width: 100%;
+  border-radius: 5px;
+  align-items: center;
+  display: flex;
+  background-color: rgb(245, 245, 245);
+  max-width: 426px;
+  padding-right: 14px;
+}
 .searchinput {
   color: currentcolor;
   border: none;
@@ -65,16 +78,6 @@
   outline: none;
 }
 
-.icon {
-  background: rgb(245, 245, 245);
-  cursor: pointer;
-  margin-right: 15px;
-}
-.icon:hover {
-  background-color: rgba(0, 0, 0, 0.04);
-  border-radius: 50%;
-}
-
 .newtemphead {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   font-size: 22px;
@@ -121,6 +124,7 @@
 @media screen and (max-width: 900px) {
   .templatecontainer {
     width: 100%;
+    max-width: 100% !important;
   }
 }
 @media screen and (max-width: 800px) {
@@ -143,5 +147,8 @@
   }
   .tempmaindiv {
     padding: 0px 16px;
+  }
+  .contentsearchinputdiv {
+    max-width: 100% !important;
   }
 }

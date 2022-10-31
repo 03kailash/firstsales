@@ -3,6 +3,11 @@
   width: 220px;
   margin: 13px 0px;
 }
+a:-webkit-any-link {
+  color: initial;
+  text-decoration: none;
+  width: 100%;
+}
 .fullImg {
   width: 228px;
   height: 55.91px;

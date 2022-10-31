@@ -49,7 +49,6 @@ export default function ChangePass() {
     } else {
       setMatch(false);
     }
-    console.log(newPass1, ".......", newPass2);
   }, [newPass1, newPass2]);
 
   return (

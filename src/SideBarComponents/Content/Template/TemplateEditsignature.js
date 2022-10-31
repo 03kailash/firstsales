@@ -8,6 +8,9 @@ import { Button, IconButton, InputAdornment } from "@mui/material";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
+import "froala-editor/css/themes/royal.min.css";
+import "froala-editor/css/froala_editor.pkgd.min.css";
+import FroalaEditorComponent from "react-froala-wysiwyg";
 
 export default function Editsignature({ isopen, isclose }) {
   const [emoji, setEmoji] = useState(false);
@@ -78,6 +81,8 @@ export default function Editsignature({ isopen, isclose }) {
               )}
             </div>
 
+            <FroalaEditorComponent tag="textarea" />
+
             <div
               style={{
                 display: "flex",
@@ -96,15 +101,7 @@ export default function Editsignature({ isopen, isclose }) {
                 marginTop: "15px",
               }}
             >
-              <Button
-                variant="outlined"
-                style={{
-                  width: "205px",
-                  border: "1px solid rgba(255, 142, 0, 0.5)",
-                  textTransform: "capitalize",
-                  color: "rgb(255, 142, 0)",
-                }}
-              >
+              <Button variant="outlined" className="Savetempeditsignbtn">
                 Save
               </Button>
             </div>

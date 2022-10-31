@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import TextField from "@mui/material/TextField";
-import { Button, IconButton, InputAdornment } from "@mui/material";
+import { Button, IconButton, InputAdornment, Snackbar } from "@mui/material";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import data from "@emoji-mart/data";
@@ -15,19 +15,9 @@ import ListItemText from "@mui/material/ListItemText";
 import { FixedSizeList } from "react-window";
 import TemplateEditsubject from "./TemplateEditsubject";
 
-function renderRow(props) {
-  const { index, style } = props;
-
-  return (
-    <ListItem style={style} key={index} component="div" disablePadding>
-      <ListItemButton>
-        <ListItemText primary={`Item ${index + 1}`} />
-      </ListItemButton>
-    </ListItem>
-  );
-}
-
 export default function TemplateNewsubject({ isopen, isclose }) {
+  const [snackOpen, setSnackOpen] = React.useState(false);
+
   const [editsubject, setEditsubject] = useState(false);
   const closeEditsubject = () => {
     setEditsubject(false);
@@ -36,6 +26,21 @@ export default function TemplateNewsubject({ isopen, isclose }) {
   const [emoji, setEmoji] = useState(false);
   const [selectedEmoji, setSelectedEmoji] = useState("");
 
+  function renderRow(props) {
+    const { index, style, data } = props;
+    return (
+      <ListItem style={style} key={index} component="div" disablePadding>
+        <ListItemButton
+          onClick={() => {
+            setSelectedEmoji(selectedEmoji + data[index]);
+            setAddplace(false);
+          }}
+        >
+          <ListItemText primary={`${data[index]}`} />
+        </ListItemButton>
+      </ListItem>
+    );
+  }
   return (
     <React.Fragment>
       <Drawer
@@ -107,6 +112,9 @@ export default function TemplateNewsubject({ isopen, isclose }) {
                   color: "#000000DE",
                   marginTop: "10px",
                 }}
+                onAbort={() => {
+                  setAddplace(false);
+                }}
                 onClick={() => {
                   if (addplace) {
                     setAddplace(false);
@@ -136,13 +144,34 @@ export default function TemplateNewsubject({ isopen, isclose }) {
                     "rgb(0 0 0 / 31%) 0px 0px 1px 0px, rgb(0 0 0 / 25%) 0px 6px 12px -4px ",
                   position: "absolute",
                 }}
+                onClose={() => {
+                  setAddplace(false);
+                }}
               >
                 <FixedSizeList
                   height={268}
                   width={253}
                   itemSize={35}
-                  itemCount={14}
+                  itemCount={16}
                   overscanCount={5}
+                  itemData={[
+                    "{{contact.email}}",
+                    "{{contact.emailNormalized}}",
+                    "{{contact.firstName}}",
+                    "{{contact.lastName}}",
+                    "{{contact.gender}}",
+                    "{{contact.organization}}",
+                    "{{contact.website}}",
+                    "{{contact.title}}",
+                    "{{contact.phoneNumber}}",
+                    "{{contact.address}}",
+                    "{{contact.city}}",
+                    "{{contact.state}}",
+                    "{{contact.country}}",
+                    "{{contact.zipCode}}",
+                    "{{contact.Contact No}}",
+                    "{{contact.Email Id}}",
+                  ]}
                 >
                   {renderRow}
                 </FixedSizeList>
@@ -177,6 +206,7 @@ export default function TemplateNewsubject({ isopen, isclose }) {
                 onClick={() => {
                   setEditsubject(true);
                   isclose();
+                  setSnackOpen(true);
                 }}
               >
                 Save
@@ -186,12 +216,12 @@ export default function TemplateNewsubject({ isopen, isclose }) {
         </Box>
       </Drawer>
       <TemplateEditsubject isopen={editsubject} isclose={closeEditsubject} />
-      {/* <Snackbar
+      <Snackbar
         open={snackOpen}
         autoHideDuration={4000}
         onClose={() => setSnackOpen(false)}
-        message="Template archived"
-      /> */}
+        message="Subject created"
+      />
     </React.Fragment>
   );
 }

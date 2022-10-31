@@ -118,6 +118,7 @@ export default function ConVarAddBody({ open, close }) {
                 alignItems: "center",
                 borderRadius: "5px",
                 marginTop: "24px",
+                paddingRight: "14px",
               }}
             >
               <input
@@ -126,17 +127,18 @@ export default function ConVarAddBody({ open, close }) {
                 className="searchinputconvaraddbody"
                 style={{ width: "100%" }}
               />
-              <TuneOutlinedIcon
-                color="action"
-                className="icon"
-                onClick={() => {
-                  if (author) {
-                    setAuthor(false);
-                  } else {
-                    setAuthor(true);
-                  }
-                }}
-              />
+              <IconButton>
+                <TuneOutlinedIcon
+                  color="action"
+                  onClick={() => {
+                    if (author) {
+                      setAuthor(false);
+                    } else {
+                      setAuthor(true);
+                    }
+                  }}
+                />
+              </IconButton>
             </div>
             {author && (
               <FormControl

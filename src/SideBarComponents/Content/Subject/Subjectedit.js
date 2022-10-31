@@ -16,17 +16,6 @@ import { FixedSizeList } from "react-window";
 import Snackbar from "@mui/material/Snackbar";
 import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
 
-function renderRow(props) {
-  const { index, style } = props;
-
-  return (
-    <ListItem style={style} key={index} component="div" disablePadding>
-      <ListItemButton>
-        <ListItemText primary={`Item ${index + 1}`} />
-      </ListItemButton>
-    </ListItem>
-  );
-}
 export default function Subjectedit({ isopen, isclose }) {
   const [addplace, setAddplace] = useState(false);
   const [emoji, setEmoji] = useState(false);
@@ -36,6 +25,22 @@ export default function Subjectedit({ isopen, isclose }) {
   const handleClick = () => {
     setSnackOpen(true);
   };
+
+  function renderRow(props) {
+    const { index, style, data } = props;
+    return (
+      <ListItem style={style} key={index} component="div" disablePadding>
+        <ListItemButton
+          onClick={() => {
+            setSelectedEmoji(selectedEmoji + data[index]);
+            setAddplace(false);
+          }}
+        >
+          <ListItemText primary={`${data[index]}`} />
+        </ListItemButton>
+      </ListItem>
+    );
+  }
   return (
     <React.Fragment>
       <Drawer
@@ -143,8 +148,26 @@ export default function Subjectedit({ isopen, isclose }) {
                   height={268}
                   width={253}
                   itemSize={35}
-                  itemCount={14}
+                  itemCount={16}
                   overscanCount={5}
+                  itemData={[
+                    "{{contact.email}}",
+                    "{{contact.emailNormalized}}",
+                    "{{contact.firstName}}",
+                    "{{contact.lastName}}",
+                    "{{contact.gender}}",
+                    "{{contact.organization}}",
+                    "{{contact.website}}",
+                    "{{contact.title}}",
+                    "{{contact.phoneNumber}}",
+                    "{{contact.address}}",
+                    "{{contact.city}}",
+                    "{{contact.state}}",
+                    "{{contact.country}}",
+                    "{{contact.zipCode}}",
+                    "{{contact.Contact No}}",
+                    "{{contact.Email Id}}",
+                  ]}
                 >
                   {renderRow}
                 </FixedSizeList>

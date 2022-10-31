@@ -99,7 +99,7 @@ export default function Userstep3(props) {
           }}
         >
           <Link
-            to="/Dashboard"
+            to="/Dashboard/Profile"
             style={{
               display: "flex",
               justifyContent: "center",
@@ -123,7 +123,10 @@ export default function Userstep3(props) {
             paddingTop: "8px",
           }}
         >
-          <Link to="/Dashboard">
+          <Link
+            to="/Dashboard/Profile"
+            style={{ display: "flex", justifyContent: "center" }}
+          >
             <button className="laterbtn">I'll do it later</button>
           </Link>
         </div>

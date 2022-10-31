@@ -41,7 +41,7 @@ import CreateIcon from "@mui/icons-material/Create";
 import PauseCircleOutlineIcon from "@mui/icons-material/PauseCircleOutline";
 import IconButton from "@mui/material/IconButton";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
-import { InputAdornment } from "@mui/material";
+import { InputAdornment, Snackbar } from "@mui/material";
 import TempDataEditsignature from "./TemplateDataEditsignture";
 import TemplateDataEditsubject from "./TemplateDataEditsubject";
 import ContentDataEditBody from "./ContentVariation/ContentDataEditBody";
@@ -150,6 +150,7 @@ export default function TemplateBuilder({ isOpen, isClose }) {
   const contentvaridelete = () => {
     setContentdelModal(false);
   };
+  const [snackOpen, setSnackOpen] = React.useState(false);
 
   useEffect(() => {
     if (sliderCount !== 1)
@@ -172,24 +173,18 @@ export default function TemplateBuilder({ isOpen, isClose }) {
             <ClearOutlinedIcon color="action" onClick={isClose} />
           </IconButton>
           <br />
-          <div style={{ width: "100%", padding: "0px 48px" }}>
+          <div className="tempbuildetwholediv">
             <div className="tempbuilderhead">Template Builder</div>
-            <div
-              style={{
-                alignItems: "center",
-                display: "flex",
-                justifyContent: "space-between",
-              }}
-            >
-              <Button className="Savetemplatebtn">Save template</Button>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  maxWidth: "400px",
-                  width: "100%",
+            <div className="tempbuilderbtninputdiv">
+              <Button
+                className="Savetempbuilderbtn"
+                onClick={() => {
+                  setSnackOpen(true);
                 }}
               >
+                Save template
+              </Button>
+              <div className="temptitleinputdiv">
                 <TextField
                   type="text"
                   id="outlined-size-small"
@@ -210,7 +205,7 @@ export default function TemplateBuilder({ isOpen, isClose }) {
                 />
               </div>
               <Button
-                className="movearchive"
+                className="movearchtempbuilderbtn"
                 onClick={() => setArchiveModal(true)}
               >
                 Move to archive
@@ -220,18 +215,20 @@ export default function TemplateBuilder({ isOpen, isClose }) {
               style={{
                 marginTop: "32px",
                 marginBottom: "0px",
-                borderBottom: "none",
+                borderWidth: "0px 0px thin",
+                borderStyle: "solid",
+                borderColor: "rgba(0, 0, 0, 0.12)",
               }}
             />
-            <div style={{ display: "flex" }}>
-              <div style={{ width: "715px" }}>
+            <div className="tempbuildermaindiv">
+              <div style={{ width: "100%" }}>
                 <AppBar
                   position="static"
                   color="default"
                   style={{
                     boxShadow: "none",
                     backgroundColor: "transparent",
-                    width: "715px",
+                    width: "100%",
                   }}
                 >
                   <Tabs
@@ -286,110 +283,130 @@ export default function TemplateBuilder({ isOpen, isClose }) {
                       component={Paper}
                       style={{ padding: "24px" }}
                     >
-                      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                        <TableHead>
-                          <TableRow>
-                            <TableCell
-                              style={{ padding: "6px 16px", width: "410px" }}
-                            >
-                              Subject
-                            </TableCell>
-                            <TableCell
-                              align="center"
-                              style={{ padding: "6px 16px", width: "85px" }}
-                            >
-                              Status
-                            </TableCell>
-                            <TableCell
-                              align="center"
-                              style={{ padding: "6px 16px", width: "91px" }}
-                            >
-                              Analytics
-                            </TableCell>
-                            <TableCell
-                              align="center"
-                              style={{ padding: "6px 16px", width: "72px" }}
-                            ></TableCell>
-                          </TableRow>
-                        </TableHead>
-                        <TableBody>
-                          {arr.map((row) => (
-                            <TableRow
-                              key={row.subject}
-                              sx={{
-                                "&:last-child td, &:last-child th": {
-                                  border: 0,
-                                },
-                              }}
-                            >
-                              <TableCell component="th" scope="row">
-                                {row.subject}
+                      <div style={{ overflowX: "auto" }}>
+                        <Table aria-label="simple table">
+                          <TableHead>
+                            <TableRow>
+                              <TableCell
+                                style={{ padding: "6px 16px", width: "410px" }}
+                              >
+                                Subject
                               </TableCell>
-                              <TableCell align="center">{row.status}</TableCell>
-                              <TableCell align="center">
-                                {
-                                  <IconButton>
-                                    <Tooltip
-                                      title="Coming soon"
-                                      placement="top"
-                                    >
-                                      <BarChartIcon
-                                        color="action"
-                                        fontSize="small"
-                                      />
-                                    </Tooltip>
-                                  </IconButton>
-                                }
+                              <TableCell
+                                align="center"
+                                style={{ padding: "6px 16px", width: "85px" }}
+                              >
+                                Status
                               </TableCell>
-                              <TableCell align="center">
-                                {
-                                  <IconButton onClick={handleClick}>
-                                    <MoreVertIcon />
-                                  </IconButton>
-                                }
-                                <Menu
-                                  id="fade-menu"
-                                  MenuListProps={{
-                                    "aria-labelledby": "fade-button",
-                                  }}
-                                  anchorEl={anchorEl}
-                                  open={open}
-                                  onClose={menuclose}
-                                  style={{ boxShadow: "none" }}
-                                >
-                                  <MenuItem
-                                    onClick={() => {
-                                      setDataeditsubject(true);
-                                      menuclose();
-                                    }}
-                                    style={{ gap: "12px" }}
-                                  >
-                                    <CreateIcon color="action" /> Edit subject
-                                  </MenuItem>
-                                  <MenuItem
-                                    onClick={menuclose}
-                                    style={{ gap: "12px" }}
-                                  >
-                                    <PauseCircleOutlineIcon color="action" />
-                                    Pause subject
-                                  </MenuItem>
-                                  <MenuItem
-                                    onClick={menuclose}
-                                    style={{ gap: "12px" }}
-                                  >
-                                    <DeleteIcon color="action" /> Remove subject
-                                  </MenuItem>
-                                </Menu>
+                              <TableCell
+                                align="center"
+                                style={{ padding: "6px 16px", width: "91px" }}
+                              >
+                                Analytics
                               </TableCell>
+                              <TableCell
+                                align="center"
+                                style={{ padding: "6px 16px", width: "72px" }}
+                              ></TableCell>
                             </TableRow>
-                          ))}
-                        </TableBody>
-                      </Table>
+                          </TableHead>
+                          <TableBody>
+                            {arr.map((row) => (
+                              <TableRow
+                                key={row.subject}
+                                sx={{
+                                  "&:last-child td, &:last-child th": {
+                                    border: 0,
+                                  },
+                                }}
+                              >
+                                <TableCell
+                                  component="th"
+                                  scope="row"
+                                  style={{ padding: "6px 16px" }}
+                                >
+                                  {row.subject}
+                                </TableCell>
+                                <TableCell
+                                  align="center"
+                                  style={{ padding: "6px 16px" }}
+                                >
+                                  {row.status}
+                                </TableCell>
+                                <TableCell
+                                  align="center"
+                                  style={{ padding: "6px 16px" }}
+                                >
+                                  {
+                                    <IconButton>
+                                      <Tooltip
+                                        title="Coming soon"
+                                        placement="top"
+                                      >
+                                        <BarChartIcon
+                                          color="action"
+                                          fontSize="small"
+                                        />
+                                      </Tooltip>
+                                    </IconButton>
+                                  }
+                                </TableCell>
+                                <TableCell
+                                  align="center"
+                                  style={{ padding: "6px 16px" }}
+                                >
+                                  {
+                                    <IconButton onClick={handleClick}>
+                                      <MoreVertIcon />
+                                    </IconButton>
+                                  }
+                                  <Menu
+                                    id="fade-menu"
+                                    MenuListProps={{
+                                      "aria-labelledby": "fade-button",
+                                    }}
+                                    anchorEl={anchorEl}
+                                    open={open}
+                                    onClose={menuclose}
+                                    style={{ boxShadow: "none" }}
+                                  >
+                                    <MenuItem
+                                      onClick={() => {
+                                        setDataeditsubject(true);
+                                        menuclose();
+                                      }}
+                                      style={{ gap: "12px" }}
+                                    >
+                                      <CreateIcon color="action" /> Edit subject
+                                    </MenuItem>
+                                    <MenuItem
+                                      onClick={menuclose}
+                                      style={{ gap: "12px" }}
+                                    >
+                                      <PauseCircleOutlineIcon color="action" />
+                                      Pause subject
+                                    </MenuItem>
+                                    <MenuItem
+                                      onClick={menuclose}
+                                      style={{ gap: "12px" }}
+                                    >
+                                      <DeleteIcon color="action" /> Remove
+                                      subject
+                                    </MenuItem>
+                                  </Menu>
+                                </TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      </div>
                       <hr
                         style={{
                           marginTop: "0px",
                           marginBottom: "32px",
-                          color: "#e0e0e0",
+                          borderWidth: "0px 0px thin",
+                          borderStyle: "solid",
+                          borderColor: "rgba(0, 0, 0, 0.12)",
                         }}
                       />
                       <div
@@ -417,110 +434,130 @@ export default function TemplateBuilder({ isOpen, isClose }) {
                       component={Paper}
                       style={{ padding: "24px" }}
                     >
-                      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                        <TableHead>
-                          <TableRow>
-                            <TableCell
-                              style={{ padding: "6px 16px", width: "410px" }}
-                            >
-                              Signature
-                            </TableCell>
-                            <TableCell
-                              align="center"
-                              style={{ padding: "6px 16px", width: "85px" }}
-                            >
-                              Status
-                            </TableCell>
-                            <TableCell
-                              align="center"
-                              style={{ padding: "6px 16px", width: "91px" }}
-                            >
-                              Analytics
-                            </TableCell>
-                            <TableCell
-                              align="center"
-                              style={{ padding: "6px 16px", width: "72px" }}
-                            ></TableCell>
-                          </TableRow>
-                        </TableHead>
-                        <TableBody>
-                          {arr.map((row) => (
-                            <TableRow
-                              key={row.subject}
-                              sx={{
-                                "&:last-child td, &:last-child th": {
-                                  border: 0,
-                                },
-                              }}
-                            >
-                              <TableCell component="th" scope="row">
-                                {row.subject}
+                      <div style={{ overflowX: "auto" }}>
+                        <Table aria-label="simple table">
+                          <TableHead>
+                            <TableRow>
+                              <TableCell
+                                style={{ padding: "6px 16px", width: "410px" }}
+                              >
+                                Signature
                               </TableCell>
-                              <TableCell align="center">{row.status}</TableCell>
-                              <TableCell align="center">
-                                {
-                                  <IconButton>
-                                    <Tooltip
-                                      title="Coming soon"
-                                      placement="top"
-                                    >
-                                      <BarChartIcon
-                                        color="action"
-                                        fontSize="small"
-                                      />
-                                    </Tooltip>
-                                  </IconButton>
-                                }
+                              <TableCell
+                                align="center"
+                                style={{ padding: "6px 16px", width: "85px" }}
+                              >
+                                Status
                               </TableCell>
-                              <TableCell align="center">
-                                {
-                                  <IconButton onClick={handleClick}>
-                                    <MoreVertIcon />
-                                  </IconButton>
-                                }
-                                <Menu
-                                  id="fade-menu"
-                                  MenuListProps={{
-                                    "aria-labelledby": "fade-button",
-                                  }}
-                                  anchorEl={anchorEl}
-                                  open={open}
-                                  onClose={menuclose}
-                                >
-                                  <MenuItem
-                                    onClick={() => {
-                                      setDataeditsign(true);
-                                      menuclose();
-                                    }}
-                                    style={{ gap: "12px" }}
-                                  >
-                                    <CreateIcon color="action" /> Edit signature
-                                  </MenuItem>
-                                  <MenuItem
-                                    onClick={menuclose}
-                                    style={{ gap: "12px" }}
-                                  >
-                                    <PauseCircleOutlineIcon color="action" />
-                                    Pause signature
-                                  </MenuItem>
-                                  <MenuItem
-                                    onClick={menuclose}
-                                    style={{ gap: "12px" }}
-                                  >
-                                    <DeleteIcon color="action" /> Remove
-                                    signature
-                                  </MenuItem>
-                                </Menu>
+                              <TableCell
+                                align="center"
+                                style={{ padding: "6px 16px", width: "91px" }}
+                              >
+                                Analytics
                               </TableCell>
+                              <TableCell
+                                align="center"
+                                style={{ padding: "6px 16px", width: "72px" }}
+                              ></TableCell>
                             </TableRow>
-                          ))}
-                        </TableBody>
-                      </Table>
+                          </TableHead>
+                          <TableBody>
+                            {arr.map((row) => (
+                              <TableRow
+                                key={row.subject}
+                                sx={{
+                                  "&:last-child td, &:last-child th": {
+                                    border: 0,
+                                  },
+                                }}
+                              >
+                                <TableCell
+                                  component="th"
+                                  scope="row"
+                                  style={{ padding: "6px 16px", width: "72px" }}
+                                >
+                                  {row.subject}
+                                </TableCell>
+                                <TableCell
+                                  align="center"
+                                  style={{ padding: "6px 16px", width: "72px" }}
+                                >
+                                  {row.status}
+                                </TableCell>
+                                <TableCell
+                                  align="center"
+                                  style={{ padding: "6px 16px", width: "72px" }}
+                                >
+                                  {
+                                    <IconButton>
+                                      <Tooltip
+                                        title="Coming soon"
+                                        placement="top"
+                                      >
+                                        <BarChartIcon
+                                          color="action"
+                                          fontSize="small"
+                                        />
+                                      </Tooltip>
+                                    </IconButton>
+                                  }
+                                </TableCell>
+                                <TableCell
+                                  align="center"
+                                  style={{ padding: "6px 16px", width: "72px" }}
+                                >
+                                  {
+                                    <IconButton onClick={handleClick}>
+                                      <MoreVertIcon />
+                                    </IconButton>
+                                  }
+                                  <Menu
+                                    id="fade-menu"
+                                    MenuListProps={{
+                                      "aria-labelledby": "fade-button",
+                                    }}
+                                    anchorEl={anchorEl}
+                                    open={open}
+                                    onClose={menuclose}
+                                  >
+                                    <MenuItem
+                                      onClick={() => {
+                                        setDataeditsign(true);
+                                        menuclose();
+                                      }}
+                                      style={{ gap: "12px" }}
+                                    >
+                                      <CreateIcon color="action" /> Edit
+                                      signature
+                                    </MenuItem>
+                                    <MenuItem
+                                      onClick={menuclose}
+                                      style={{ gap: "12px" }}
+                                    >
+                                      <PauseCircleOutlineIcon color="action" />
+                                      Pause signature
+                                    </MenuItem>
+                                    <MenuItem
+                                      onClick={menuclose}
+                                      style={{ gap: "12px" }}
+                                    >
+                                      <DeleteIcon color="action" /> Remove
+                                      signature
+                                    </MenuItem>
+                                  </Menu>
+                                </TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      </div>
                       <hr
                         style={{
                           marginTop: "0px",
                           marginBottom: "32px",
-                          color: "#e0e0e0",
+                          borderWidth: "0px 0px thin",
+                          borderStyle: "solid",
+                          borderColor: "rgba(0, 0, 0, 0.12)",
                         }}
                       />
                       <div
@@ -546,7 +583,7 @@ export default function TemplateBuilder({ isOpen, isClose }) {
                   {state.Contentvariation && (
                     <Box
                       sx={{
-                        maxWidth: { xs: 320, sm: 715 },
+                        maxWidth: "100%",
                         bgcolor: "background.paper",
                       }}
                     >
@@ -555,7 +592,7 @@ export default function TemplateBuilder({ isOpen, isClose }) {
                         onChange={contentHandleChange}
                         variant="scrollable"
                         scrollButtons="auto"
-                        style={{ padding: "0px 50px" }}
+                        style={{ padding: "0px 30px" }}
                         className="contentvariationtabs"
                       >
                         {sliderArr.map((item) => {
@@ -595,151 +632,179 @@ export default function TemplateBuilder({ isOpen, isClose }) {
                             padding: "8px 24px 24px",
                           }}
                         >
-                          <Table
-                            sx={{ minWidth: 667 }}
-                            aria-label="simple table"
-                          >
-                            <TableHead>
-                              <TableRow>
-                                <TableCell
-                                  style={{
-                                    padding: "6px 16px",
-                                    width: "13%",
-                                  }}
-                                  align="center"
-                                >
-                                  Position
-                                </TableCell>
-                                <TableCell
-                                  style={{ padding: "6px 16px", width: "50%" }}
-                                >
-                                  Body-Block
-                                </TableCell>
-                                <TableCell
-                                  style={{ padding: "6px 16px", width: "13%" }}
-                                  align="center"
-                                >
-                                  Analytics
-                                </TableCell>
-                                <TableCell
-                                  align="center"
-                                  style={{ padding: "6px 16px", width: "10%" }}
-                                ></TableCell>
-                              </TableRow>
-                            </TableHead>
-                            <TableBody>
-                              {arr.map((row) => (
-                                <TableRow
-                                  key={row.subject}
-                                  sx={{
-                                    "&:last-child td, &:last-child th": {
-                                      border: 0,
-                                    },
-                                  }}
-                                >
+                          <div style={{ overflowX: "auto" }}>
+                            <Table aria-label="simple table">
+                              <TableHead>
+                                <TableRow>
                                   <TableCell
-                                    component="th"
-                                    scope="row"
+                                    style={{
+                                      padding: "6px 16px",
+                                      width: "13%",
+                                    }}
                                     align="center"
                                   >
-                                    <ArrowUpwardIcon
-                                      color="action"
-                                      style={{ opacity: "50%" }}
-                                    />
-                                    <ArrowDownwardIcon
-                                      color="action"
-                                      style={{ opacity: "50%" }}
-                                    />
+                                    Position
                                   </TableCell>
-                                  <TableCell>
-                                    {row.status}
-                                    <WarningAmberRoundedIcon className="warningicon" />
-                                    <div className="nocontent">
-                                      The block doesn't have any content.{" "}
-                                      <span
-                                        style={{
-                                          textDecoration: "underline",
-                                          fontWeight: "600",
-                                          cursor: "pointer",
-                                        }}
-                                      >
-                                        View.
-                                      </span>
-                                    </div>
+                                  <TableCell
+                                    style={{
+                                      padding: "6px 16px",
+                                      width: "50%",
+                                    }}
+                                  >
+                                    Body-Block
                                   </TableCell>
-                                  <TableCell align="center">
-                                    {
-                                      <IconButton>
-                                        <Tooltip
-                                          title="Coming soon"
-                                          placement="top"
-                                        >
-                                          <BarChartIcon
-                                            color="action"
-                                            fontSize="small"
-                                          />
-                                        </Tooltip>
-                                      </IconButton>
-                                    }
+                                  <TableCell
+                                    style={{
+                                      padding: "6px 16px",
+                                      width: "13%",
+                                    }}
+                                    align="center"
+                                  >
+                                    Analytics
                                   </TableCell>
-                                  <TableCell align="center">
-                                    {
-                                      <IconButton onClick={handleClick}>
-                                        <MoreVertIcon />
-                                      </IconButton>
-                                    }
-                                    <Menu
-                                      id="fade-menu"
-                                      MenuListProps={{
-                                        "aria-labelledby": "fade-button",
-                                      }}
-                                      anchorEl={anchorEl}
-                                      open={open}
-                                      onClose={menuclose}
-                                      style={{ boxShadow: "none" }}
-                                    >
-                                      <MenuItem
-                                        onClick={() => {
-                                          setDataeditbody(true);
-                                          menuclose();
-                                        }}
-                                        style={{ gap: "12px" }}
-                                      >
-                                        <CreateIcon color="action" /> Edit body
-                                        block
-                                      </MenuItem>
-                                      <MenuItem
-                                        onClick={menuclose}
-                                        style={{ gap: "12px" }}
-                                      >
-                                        <CheckBoxIcon color="action" />
-                                        Use as pre-text
-                                      </MenuItem>
-                                      <MenuItem
-                                        onClick={menuclose}
-                                        style={{ gap: "12px" }}
-                                      >
-                                        <PauseCircleOutlineIcon color="action" />
-                                        Pause body block
-                                      </MenuItem>
-                                      <MenuItem
-                                        onClick={menuclose}
-                                        style={{ gap: "12px" }}
-                                      >
-                                        <DeleteIcon color="action" /> Archive
-                                        subject
-                                      </MenuItem>
-                                    </Menu>
-                                  </TableCell>
+                                  <TableCell
+                                    align="center"
+                                    style={{
+                                      padding: "6px 16px",
+                                      width: "10%",
+                                    }}
+                                  ></TableCell>
                                 </TableRow>
-                              ))}
-                            </TableBody>
-                          </Table>
+                              </TableHead>
+                              <TableBody>
+                                {arr.map((row) => (
+                                  <TableRow
+                                    key={row.subject}
+                                    sx={{
+                                      "&:last-child td, &:last-child th": {
+                                        border: 0,
+                                      },
+                                    }}
+                                  >
+                                    <TableCell
+                                      component="th"
+                                      scope="row"
+                                      align="center"
+                                      className="contvaribodydata"
+                                    >
+                                      <ArrowUpwardIcon
+                                        color="action"
+                                        style={{ opacity: "50%" }}
+                                      />
+                                      <ArrowDownwardIcon
+                                        color="action"
+                                        style={{ opacity: "50%" }}
+                                      />
+                                    </TableCell>
+                                    <TableCell className="contvaribodydata">
+                                      <div
+                                        style={{
+                                          display: "flex",
+                                          alignItems: "center",
+                                          margin: "4px 0px",
+                                        }}
+                                      >
+                                        {row.status}
+                                        <WarningAmberRoundedIcon
+                                          className="warningicon"
+                                          fontSize="small"
+                                        />
+                                      </div>
+                                      <div className="nocontent">
+                                        The block doesn't have any content.{" "}
+                                        <span
+                                          style={{
+                                            textDecoration: "underline",
+                                            fontWeight: "600",
+                                            cursor: "pointer",
+                                          }}
+                                        >
+                                          View.
+                                        </span>
+                                      </div>
+                                    </TableCell>
+                                    <TableCell
+                                      align="center"
+                                      className="contvaribodydata"
+                                    >
+                                      {
+                                        <IconButton>
+                                          <Tooltip
+                                            title="Coming soon"
+                                            placement="top"
+                                          >
+                                            <BarChartIcon
+                                              color="action"
+                                              fontSize="small"
+                                            />
+                                          </Tooltip>
+                                        </IconButton>
+                                      }
+                                    </TableCell>
+                                    <TableCell
+                                      align="center"
+                                      className="contvaribodydata"
+                                    >
+                                      {
+                                        <IconButton onClick={handleClick}>
+                                          <MoreVertIcon />
+                                        </IconButton>
+                                      }
+                                      <Menu
+                                        id="fade-menu"
+                                        MenuListProps={{
+                                          "aria-labelledby": "fade-button",
+                                        }}
+                                        anchorEl={anchorEl}
+                                        open={open}
+                                        onClose={menuclose}
+                                        style={{ boxShadow: "none" }}
+                                      >
+                                        <MenuItem
+                                          onClick={() => {
+                                            setDataeditbody(true);
+                                            menuclose();
+                                          }}
+                                          style={{ gap: "12px" }}
+                                        >
+                                          <CreateIcon color="action" /> Edit
+                                          body block
+                                        </MenuItem>
+                                        <MenuItem
+                                          onClick={menuclose}
+                                          style={{ gap: "12px" }}
+                                        >
+                                          <CheckBoxIcon color="action" />
+                                          Use as pre-text
+                                        </MenuItem>
+                                        <MenuItem
+                                          onClick={menuclose}
+                                          style={{ gap: "12px" }}
+                                        >
+                                          <PauseCircleOutlineIcon color="action" />
+                                          Pause body block
+                                        </MenuItem>
+                                        <MenuItem
+                                          onClick={menuclose}
+                                          style={{ gap: "12px" }}
+                                        >
+                                          <DeleteIcon color="action" /> Archive
+                                          subject
+                                        </MenuItem>
+                                      </Menu>
+                                    </TableCell>
+                                  </TableRow>
+                                ))}
+                              </TableBody>
+                            </Table>
+                          </div>
                           <hr
                             style={{
                               marginTop: "0px",
                               marginBottom: "32px",
-                              color: "#e0e0e0",
+                              borderWidth: "0px 0px thin",
+                              borderStyle: "solid",
+                              borderColor: "rgba(0, 0, 0, 0.12)",
                             }}
                           />
                           <div
@@ -785,16 +850,8 @@ export default function TemplateBuilder({ isOpen, isClose }) {
                   )}
                 </div>
               </div>
-              <div style={{ width: "508px", paddingLeft: "16px" }}>
-                <div
-                  style={{
-                    height: "72px",
-                    alignItems: "center",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    padding: "0px 16px",
-                  }}
-                >
+              <div className="tempbuilder2nddiv">
+                <div className="darkbtndiv">
                   <div className="emailpreview">Email Content Preview </div>
                   <div
                     style={{
@@ -925,6 +982,12 @@ export default function TemplateBuilder({ isOpen, isClose }) {
         isclose={closeDataeditsubject}
       />
       <ContentDataEditBody isopen={dataeditbody} isclose={closeDataeditbody} />
+      <Snackbar
+        open={snackOpen}
+        autoHideDuration={4000}
+        onClose={() => setSnackOpen(false)}
+        message="Template saved"
+      />
     </React.Fragment>
   );
 }

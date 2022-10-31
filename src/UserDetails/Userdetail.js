@@ -14,7 +14,6 @@ import { Link } from "react-router-dom";
 const steps = ["Step 1", "Step 2", "Step 3"];
 export default function Userdetail() {
   const [activeStep, setActiveStep] = React.useState(0);
-  // const isMobile = useMediaQuery("(min-width: 517px)");
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -71,7 +70,14 @@ export default function Userdetail() {
         />
       )}
       {activeStep === 0 && (
-        <Link to="/Signup" style={{ textDecoration: "none" }}>
+        <Link
+          to="/Signup"
+          style={{
+            textDecoration: "none",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <Button className="cancelbtn">Cancel</Button>
         </Link>
       )}

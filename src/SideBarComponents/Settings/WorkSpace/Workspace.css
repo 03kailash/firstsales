@@ -11,8 +11,8 @@
   color: rgba(0, 0, 0, 0.6);
 }
 .workspacenameinput {
-  max-width: 410px;
-  width: 410px;
+  max-width: 410px !important;
+  width: 410% !important;
 }
 .workfirstdiv {
   display: flex;
@@ -102,8 +102,7 @@
     rgb(0 0 0 / 25%) 0px 3px 4px -2px !important;
 }
 .linkinput {
-  width: 533px;
-  max-width: 533px;
+  width: 100%;
 }
 .teammaindiv {
   width: 582px;
@@ -133,5 +132,8 @@
   .teammaindiv {
     width: 100%;
     max-width: 100%;
+  }
+  .workspacenameinput {
+    width: 100% !important;
   }
 }

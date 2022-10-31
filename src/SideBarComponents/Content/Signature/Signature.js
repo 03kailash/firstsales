@@ -100,27 +100,20 @@ export default function Signature() {
       <div style={{ maxwidth: "900px" }} className="templatecontainer">
         <div className="containerdiv">
           <div className="contentdiv">
-            <div
-              style={{
-                background: "rgb(245, 245, 245)",
-                display: "flex",
-                alignItems: "center",
-                borderRadius: "5px",
-                width: "100%",
-              }}
-            >
+            <div className="contentsearchinputdiv">
               <input type="text" placeholder="Search" className="searchinput" />
-              <TuneOutlinedIcon
-                color="action"
-                className="icon"
-                onClick={() => {
-                  if (author) {
-                    setAuthor(false);
-                  } else {
-                    setAuthor(true);
-                  }
-                }}
-              />
+              <IconButton>
+                <TuneOutlinedIcon
+                  color="action"
+                  onClick={() => {
+                    if (author) {
+                      setAuthor(false);
+                    } else {
+                      setAuthor(true);
+                    }
+                  }}
+                />
+              </IconButton>
             </div>
             <div className="twobtn">
               <React.Fragment>

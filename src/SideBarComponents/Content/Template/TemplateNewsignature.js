@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import TextField from "@mui/material/TextField";
-import { Button, IconButton, InputAdornment } from "@mui/material";
+import { Button, IconButton, InputAdornment, Snackbar } from "@mui/material";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
@@ -17,6 +17,8 @@ export default function TemplateNewsignature({ isopen, isclose }) {
   };
   const [emoji, setEmoji] = useState(false);
   const [selectedEmoji, setSelectedEmoji] = useState("");
+  const [snackOpen, setSnackOpen] = React.useState(false);
+
   return (
     <React.Fragment>
       <Drawer
@@ -95,6 +97,7 @@ export default function TemplateNewsignature({ isopen, isclose }) {
                 onClick={() => {
                   setEditsignature(true);
                   isclose();
+                  setSnackOpen(true);
                 }}
               >
                 Create new Signature
@@ -106,6 +109,12 @@ export default function TemplateNewsignature({ isopen, isclose }) {
       <TemplateEditsignature
         isopen={editsignature}
         isclose={closeEditsignature}
+      />
+      <Snackbar
+        open={snackOpen}
+        autoHideDuration={4000}
+        onClose={() => setSnackOpen(false)}
+        message="Signature created"
       />
     </React.Fragment>
   );

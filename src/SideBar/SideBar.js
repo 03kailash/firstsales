@@ -36,19 +36,11 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import Settings from "../SideBarComponents/Settings/Settings";
 import { Link } from "react-router-dom";
-
+import { Routes, Route } from "react-router-dom";
 
 const drawerWidth = 278;
 
 function SideBar() {
-  const [contact, setContact] = useState(false);
-  const [content, setContent] = useState(false);
-  const [profile, setProfile] = useState(true);
-  const [campaign, setCampaign] = useState(false);
-  const [analytic, setAnalytic] = useState(false);
-  const [emailwarm, setEmailwarm] = useState(false);
-  const [setting, setSetting] = useState(false);
- 
   const ismobile = useMediaQuery("(max-width: 1200px)");
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -57,77 +49,62 @@ function SideBar() {
       <div style={{ display: "flex", justifyContent: "center" }}>
         <img className="logoImg" src={logo_light} alt="" />
       </div>
-      <div
-        className="fullImg"
+      <Link
+        to="/Dashboard/Profile"
         onClick={() => {
-          setProfile(true);
-          setContact(false);
-          setCampaign(false);
-          setAnalytic(false);
           setSidebarOpen(false);
-          setContent(false);
-          setEmailwarm(false);
-          setSetting(false);
         }}
       >
-        <Avatar src="/broken-image.jpg" />
-      </div>
+        <div className="fullImg">
+          <Avatar src="/broken-image.jpg" />
+        </div>
+      </Link>
       <hr style={{ width: "210px", margin: "8px 24px" }} />
       <Link to="/workspace">
-      <div className="EmsBar">
-        <span>Ems</span>
-      </div>
+        <div className="EmsBar">
+          <span>Ems</span>
+        </div>
       </Link>
       <Divider />
       <List>
         {["Contacts"].map((text, index) => (
           <ListItem key={text} disablePadding>
-            <ListItemButton
-              className="ListBtn"
-              onClick={() => {
-                setContact(true);
-                setProfile(false);
-                setCampaign(false);
-                setAnalytic(false);
-                setSidebarOpen(false);
-                setContent(false);
-                setEmailwarm(false);
-                setSetting(false);
-              }}
-            >
-              <ListItemIcon>
-                {index % 1 === 0 ? (
-                  <ContactsOutlinedIcon />
-                ) : (
-                  <MailOutlineIcon />
-                )}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
+            <Link to="/Dashboard/Contacts">
+              <ListItemButton
+                className="ListBtn"
+                onClick={() => {
+                  setSidebarOpen(false);
+                }}
+              >
+                <ListItemIcon>
+                  {index % 1 === 0 ? (
+                    <ContactsOutlinedIcon />
+                  ) : (
+                    <MailOutlineIcon />
+                  )}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </Link>
           </ListItem>
         ))}
       </List>
       <List>
         {["Content"].map((text, index) => (
           <ListItem key={text} disablePadding>
-            <ListItemButton
-              className="ListBtn"
-              onClick={() => {
-                setContact(false);
-                setProfile(false);
-                setCampaign(false);
-                setAnalytic(false);
-                setSidebarOpen(false);
-                setContent(true);
-                setEmailwarm(false);
-                setSetting(false);
-              }}
-            >
-              <ListItemIcon>
-                {index % 1 === 0 ? <MailOutlineIcon /> : <MailOutlineIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
+            <Link to="/Dashboard/Content">
+              <ListItemButton
+                className="ListBtn"
+                onClick={() => {
+                  setSidebarOpen(false);
+                }}
+              >
+                <ListItemIcon>
+                  {index % 1 === 0 ? <MailOutlineIcon /> : <MailOutlineIcon />}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </Link>
           </ListItem>
         ))}
       </List>
@@ -135,28 +112,23 @@ function SideBar() {
       <List>
         {["Campaigns"].map((text, index) => (
           <ListItem key={text} disablePadding>
-            <ListItemButton
-              className="ListBtn"
-              onClick={() => {
-                setCampaign(true);
-                setProfile(false);
-                setContact(false);
-                setAnalytic(false);
-                setSidebarOpen(false);
-                setContent(false);
-                setEmailwarm(false);
-                setSetting(false);
-              }}
-            >
-              <ListItemIcon>
-                {index % 1 === 0 ? (
-                  <BusinessCenterOutlinedIcon />
-                ) : (
-                  <BusinessCenterIcon />
-                )}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
+            <Link to="/Dashboard/Campaigns">
+              <ListItemButton
+                className="ListBtn"
+                onClick={() => {
+                  setSidebarOpen(false);
+                }}
+              >
+                <ListItemIcon>
+                  {index % 1 === 0 ? (
+                    <BusinessCenterOutlinedIcon />
+                  ) : (
+                    <BusinessCenterIcon />
+                  )}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </Link>
           </ListItem>
         ))}
       </List>
@@ -164,28 +136,23 @@ function SideBar() {
       <List>
         {["Email Warm Up"].map((text, index) => (
           <ListItem key={text} disablePadding>
-            <ListItemButton
-              className="ListBtn"
-              onClick={() => {
-                setCampaign(false);
-                setProfile(false);
-                setContact(false);
-                setAnalytic(false);
-                setSidebarOpen(false);
-                setContent(false);
-                setEmailwarm(true);
-                setSetting(false);
-              }}
-            >
-              <ListItemIcon>
-                {index % 1 === 0 ? (
-                  <ForwardToInboxIcon />
-                ) : (
-                  <ForwardToInboxIcon />
-                )}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
+            <Link to="/Dashboard/EmailWarmUp">
+              <ListItemButton
+                className="ListBtn"
+                onClick={() => {
+                  setSidebarOpen(false);
+                }}
+              >
+                <ListItemIcon>
+                  {index % 1 === 0 ? (
+                    <ForwardToInboxIcon />
+                  ) : (
+                    <ForwardToInboxIcon />
+                  )}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </Link>
           </ListItem>
         ))}
       </List>
@@ -193,28 +160,23 @@ function SideBar() {
       <List>
         {["Analytics"].map((text, index) => (
           <ListItem key={text} disablePadding>
-            <ListItemButton
-              className="ListBtn"
-              onClick={() => {
-                setContact(false);
-                setProfile(false);
-                setCampaign(false);
-                setAnalytic(true);
-                setSidebarOpen(false);
-                setContent(false);
-                setEmailwarm(false);
-                setSetting(false);
-              }}
-            >
-              <ListItemIcon>
-                {index % 1 === 0 ? (
-                  <LeaderboardOutlinedIcon />
-                ) : (
-                  <MailOutlineIcon />
-                )}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
+            <Link to="/Dashboard/Analytics">
+              <ListItemButton
+                className="ListBtn"
+                onClick={() => {
+                  setSidebarOpen(false);
+                }}
+              >
+                <ListItemIcon>
+                  {index % 1 === 0 ? (
+                    <LeaderboardOutlinedIcon />
+                  ) : (
+                    <MailOutlineIcon />
+                  )}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </Link>
           </ListItem>
         ))}
       </List>
@@ -222,28 +184,23 @@ function SideBar() {
       <List>
         {["Settings"].map((text, index) => (
           <ListItem key={text} disablePadding>
-            <ListItemButton
-              className="ListBtn"
-              onClick={() => {
-                setContact(false);
-                setProfile(false);
-                setCampaign(false);
-                setAnalytic(false);
-                setSidebarOpen(false);
-                setContent(false);
-                setEmailwarm(false);
-                setSetting(true);
-              }}
-            >
-              <ListItemIcon>
-                {index % 1 === 0 ? (
-                  <SettingsTwoToneIcon />
-                ) : (
-                  <SettingsTwoToneIcon />
-                )}
-              </ListItemIcon>
-              <ListItemText primary={text} className="setbtn" />
-            </ListItemButton>
+            <Link to="/Dashboard/Settings">
+              <ListItemButton
+                className="ListBtn"
+                onClick={() => {
+                  setSidebarOpen(false);
+                }}
+              >
+                <ListItemIcon>
+                  {index % 1 === 0 ? (
+                    <SettingsTwoToneIcon />
+                  ) : (
+                    <SettingsTwoToneIcon />
+                  )}
+                </ListItemIcon>
+                <ListItemText primary={text} className="setbtn" />
+              </ListItemButton>
+            </Link>
           </ListItem>
         ))}
       </List>
@@ -290,7 +247,9 @@ function SideBar() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Content
+              {window.location.pathname.split("/").pop() === "EmailWarmUp"
+                ? "Email Warm Up"
+                : window.location.pathname.split("/").pop()}
             </Typography>
           </Toolbar>
         </AppBar>
@@ -325,13 +284,15 @@ function SideBar() {
             </Drawer>
           </Box>
         )}
-        {profile && <Profile />}
-        {contact && <Contact />}
-        {content && <Content />}
-        {campaign && <Campaign />}
-        {emailwarm && <EmailWarm />}
-        {analytic && <Analytics />}
-        {setting && <Settings />}
+        <Routes>
+          <Route path="Profile" element={<Profile />} />
+          <Route path="Contacts" element={<Contact />} />
+          <Route path="Content" element={<Content />} />
+          <Route path="Campaigns" element={<Campaign />} />
+          <Route path="EmailWarmUp" element={<EmailWarm />} />
+          <Route path="Analytics" element={<Analytics />} />
+          <Route path="Settings" element={<Settings />} />
+        </Routes>
       </Box>
       <Drawer
         open={sidebarOpen}
@@ -359,7 +320,6 @@ function SideBar() {
           </Drawer>
         </Box>
       </Drawer>
-     
     </div>
   );
 }

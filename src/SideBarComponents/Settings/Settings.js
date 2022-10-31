@@ -24,50 +24,58 @@ export default function Settings() {
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div className="setdiv">
           <div className="sethead">Settings</div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <div style={{ width: "100%" }}>
-              <AppBar
-                position="static"
-                color="default"
-                style={{
-                  boxShadow: "none",
-                  backgroundColor: "transparent",
-                }}
-              >
-                <Tabs
-                  value={value}
-                  onChange={handleChange}
-                  className="SettingHead"
-                  style={{ display: "flex", justifyContent: "center" }}
+          <div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <div style={{ width: "100%" }}>
+                <AppBar
+                  position="static"
+                  color="default"
+                  style={{
+                    boxShadow: "none",
+                    backgroundColor: "transparent",
+                  }}
                 >
-                  <Tab
-                    label="Workspace"
-                    className={value === 0 ? "setactiveTab" : "setinactiveTab"}
-                    onClick={() => {
-                      setState({ workspace: true });
-                    }}
-                  />
-                  <Tab
-                    label="Emails & Domains"
-                    className={value === 1 ? "setactiveTab" : "setinactiveTab"}
-                    onClick={() => {
-                      setState({ emaildomain: true });
-                    }}
-                  />
-                  <Tab
-                    label="Billing"
-                    className={value === 2 ? "setactiveTab" : "setinactiveTab"}
-                    onClick={() => {
-                      setState({ billing: true });
-                    }}
-                  />
-                </Tabs>
-              </AppBar>
+                  <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    className="SettingHead"
+                    style={{ display: "flex", justifyContent: "center" }}
+                  >
+                    <Tab
+                      label="Workspace"
+                      className={
+                        value === 0 ? "setactiveTab" : "setinactiveTab"
+                      }
+                      onClick={() => {
+                        setState({ workspace: true });
+                      }}
+                    />
+                    <Tab
+                      label="Emails & Domains"
+                      className={
+                        value === 1 ? "setactiveTab" : "setinactiveTab"
+                      }
+                      onClick={() => {
+                        setState({ emaildomain: true });
+                      }}
+                    />
+                    <Tab
+                      label="Billing"
+                      className={
+                        value === 2 ? "setactiveTab" : "setinactiveTab"
+                      }
+                      onClick={() => {
+                        setState({ billing: true });
+                      }}
+                    />
+                  </Tabs>
+                </AppBar>
+              </div>
             </div>
           </div>
           <hr

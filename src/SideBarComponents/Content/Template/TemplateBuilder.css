@@ -7,15 +7,54 @@
   color: rgba(0, 0, 0, 0.87);
   margin: 0px 0px 24px;
 }
-.titlefield {
-  max-width: 400px;
+.tempbuildetwholediv {
+  width: 100%;
+  padding: 0px 48px;
+}
+.tempbuildermaindiv {
+  display: flex;
+  margin-bottom: 32px;
+}
+.temptitleinputdiv {
+  width: 33.33%;
+  display: flex;
+  justify-content: center;
+}
+.tempbuilderbtninputdiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .tempbuiltdrawer > div:nth-child(3) {
   box-sizing: border-box;
   width: 1337px;
   max-width: 90%;
 }
-
+.tempbuilder2nddiv {
+  max-width: 508px;
+  width: 100%;
+  padding-left: 16px;
+}
+.darkbtndiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  padding: 0px 16px;
+}
+.Savetempbuilderbtn {
+  text-transform: inherit !important;
+  background-color: #ff8e00 !important;
+  color: #ffffff !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  padding: 6px 16px !important;
+}
+.Savetempbuilderbtn:hover {
+  background-color: rgb(178, 99, 0) !important;
+  box-shadow: rgb(0 0 0 / 31%) 0px 0px 1px 0px,
+    rgb(0 0 0 / 25%) 0px 3px 4px -2px !important;
+}
 .Savetemplatebtn {
   text-transform: inherit !important;
   background-color: #ff8e00 !important;
@@ -28,6 +67,13 @@
   background-color: rgb(178, 99, 0) !important;
   box-shadow: rgb(0 0 0 / 31%) 0px 0px 1px 0px,
     rgb(0 0 0 / 25%) 0px 3px 4px -2px !important;
+}
+.movearchtempbuilderbtn {
+  text-transform: inherit !important;
+  padding: 5px 15px !important;
+  color: #000000de !important;
+  font-weight: 500 !important;
+  border: 1px solid currentcolor !important;
 }
 .movearchive {
   text-transform: inherit !important;
@@ -47,7 +93,7 @@
 }
 .inactive {
   color: #00000099 !important;
-  width: 33.33%px !important;
+  width: 33.33% !important;
   height: 72px !important;
   padding: 9px 16px !important;
 }
@@ -55,9 +101,7 @@
   font-size: 1.25rem !important;
   color: rgb(244, 67, 54) !important;
 }
-.subdata {
-  max-width: 715px;
-}
+
 .emailpreview {
   font-size: 16px;
   line-height: 1.5;
@@ -147,7 +191,9 @@
   border-width: 2px;
   margin-bottom: 16px;
 }
-
+.contvaribodydata {
+  padding: 6px 16px !important;
+}
 .letterviewdivdark {
   background-color: #282c34;
   color: #f7f7f7;
@@ -183,4 +229,36 @@
 }
 .contentvariationtabs > div > .MuiTabs-indicator {
   background-color: #ff8e00;
+}
+@media screen and (max-width: 900px) {
+  .tempbuilder2nddiv {
+    max-width: 100% !important;
+    padding: 0px !important;
+  }
+  .tempbuildermaindiv {
+    display: block !important;
+  }
+}
+@media screen and (max-width: 600px) {
+  .tempbuilderbtninputdiv {
+    display: block !important;
+  }
+  .temptitleinputdiv {
+    width: 100% !important;
+    padding: 8px 0px;
+  }
+  .Savetempbuilderbtn {
+    width: 100%;
+  }
+  .movearchtempbuilderbtn {
+    width: 100%;
+  }
+  .tempbuildetwholediv {
+    padding: 0px 8px !important;
+  }
+}
+@media screen and (max-width: 400px) {
+  .darkbtndiv {
+    display: block !important;
+  }
 }

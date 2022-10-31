@@ -33,18 +33,6 @@ import { FixedSizeList } from "react-window";
 import Subjectedit from "./Subjectedit";
 import { IconButton, InputAdornment } from "@mui/material";
 
-function renderRow(props) {
-  const { index, style } = props;
-
-  return (
-    <ListItem style={style} key={index} component="div" disablePadding>
-      <ListItemButton>
-        <ListItemText primary={`Item ${index + 1}`} />
-      </ListItemButton>
-    </ListItem>
-  );
-}
-
 const columns = [
   { id: "Subject", label: "Subject", minWidth: "532px" },
 
@@ -116,32 +104,41 @@ export default function Subject() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  function renderRow(props) {
+    const { index, style, data } = props;
+    return (
+      <ListItem style={style} key={index} component="div" disablePadding>
+        <ListItemButton
+          onClick={() => {
+            setSelectedEmoji(selectedEmoji + data[index]);
+            setAddplace(false);
+          }}
+        >
+          <ListItemText primary={`${data[index]}`} />
+        </ListItemButton>
+      </ListItem>
+    );
+  }
   return (
     <div style={{ justifyContent: "center", display: "flex" }}>
       <div style={{ maxwidth: "900px" }} className="templatecontainer">
         <div className="containerdiv">
           <div className="contentdiv">
-            <div
-              style={{
-                background: "rgb(245, 245, 245)",
-                display: "flex",
-                alignItems: "center",
-                borderRadius: "5px",
-                width: "100%",
-              }}
-            >
+            <div className="contentsearchinputdiv">
               <input type="text" placeholder="Search" className="searchinput" />
-              <TuneOutlinedIcon
-                color="action"
-                className="icon"
-                onClick={() => {
-                  if (author) {
-                    setAuthor(false);
-                  } else {
-                    setAuthor(true);
-                  }
-                }}
-              />
+              <IconButton>
+                <TuneOutlinedIcon
+                  color="action"
+                  onClick={() => {
+                    if (author) {
+                      setAuthor(false);
+                    } else {
+                      setAuthor(true);
+                    }
+                  }}
+                />
+              </IconButton>
             </div>
             <div className="twobtn">
               <React.Fragment>
@@ -255,8 +252,26 @@ export default function Subject() {
                             height={268}
                             width={253}
                             itemSize={35}
-                            itemCount={14}
+                            itemCount={16}
                             overscanCount={5}
+                            itemData={[
+                              "{{contact.email}}",
+                              "{{contact.emailNormalized}}",
+                              "{{contact.firstName}}",
+                              "{{contact.lastName}}",
+                              "{{contact.gender}}",
+                              "{{contact.organization}}",
+                              "{{contact.website}}",
+                              "{{contact.title}}",
+                              "{{contact.phoneNumber}}",
+                              "{{contact.address}}",
+                              "{{contact.city}}",
+                              "{{contact.state}}",
+                              "{{contact.country}}",
+                              "{{contact.zipCode}}",
+                              "{{contact.Contact No}}",
+                              "{{contact.Email Id}}",
+                            ]}
                           >
                             {renderRow}
                           </FixedSizeList>
