@@ -1,8 +1,8 @@
 .contactHead {
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
+  display: flex !important;
+  justify-content: center !important;
   background-color: #fafbfb;
 }
 .contactBody {
@@ -22,18 +22,17 @@
   font-weight: 700;
   color: rgba(0, 0, 0, 0.87);
 }
-.Hr {
-  width: 884px;
+.HrDiv {
+  width: 100%;
   height: 1px;
   margin: 0px 0px 40px;
-  flex-shrink: 0;
   border-width: 0px 0px thin;
   border-style: solid;
   border-color: rgba(0, 0, 0, 0.12);
 }
 .BoxBody {
   display: flex;
-  width: 884px;
+  width: 100%;
   height: 166px;
 }
 
@@ -48,7 +47,7 @@
   padding: 28px 0px 26px 0px;
 }
 .p_Tag {
-  width: 294px;
+  width:100%;
   height: 24px;
   margin: 0px;
   font-weight: 400;
@@ -58,7 +57,7 @@
   color: rgba(0, 0, 0, 0.87);
 }
 .p_Tag1 {
-  width: 294px;
+  width: 100%;
   height: 20px;
   margin: 0px;
   font-weight: 400;
@@ -114,8 +113,7 @@
 .block1 {
   width: 40px;
   height: 24px;
-  padding: 1px 0px 0px 5px;
-  margin: 8px 0px 0px 0px;
+  margin-top: 8px;
   background-color: #f17e14;
   border-radius: 5px;
   color: rgb(255, 255, 255);
@@ -133,12 +131,9 @@
 .block2 {
   width: 40px;
   height: 24px;
-  padding: 1px 0px 0px 5px;
   margin: 8px 0px 0px 0px;
   background-color: #82aeab;
   border-radius: 5px;
-  width: 40px;
-  height: 24px;
   color: rgb(255, 255, 255);
   border-radius: 5px;
   font-size: 0.75rem;
@@ -153,9 +148,6 @@
 }
 
 .block3 {
-  width: 40px;
-  height: 24px;
-  padding: 1px 0px 0px 5px;
   margin: 8px 0px 0px 0px;
   background-color: #9b6ec9;
   border-radius: 5px;
@@ -174,7 +166,7 @@
   justify-content: center;
 }
 .status_div {
-  width: 884px;
+  width: 100% !important;
   height: 24px;
   margin: 8px 0px 32px 0px;
 }
@@ -184,15 +176,19 @@
  justify-content: end;
 }
 .SearchHead {
-  width: 892px;
-  height: 52.5px;
-  display: flex;align-items: center;
+  Max-width: 100%;
+  display: flex;
+  background: "rgb(245, 245, 245)";
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px !important;
 }
 
 .btnn {
- width: 44%;
   display: flex;
+  width: 100%;
   justify-content: end;
+  align-items: center;
   gap:10px !important;
 }
 
@@ -221,9 +217,10 @@
 }
 
 .icon_1 {
-  height: 40px !important;
-  position: absolute;
-  left: 827px;
+  background: rgb(245, 245, 245);
+  cursor: pointer;
+  margin-left:-50px !important; 
+  height: 42px;
 }
 .searchinputcontact {
   color: currentcolor;
@@ -234,8 +231,8 @@
   height: 23px;
   margin: 0px;
   display: block;
-  min-width: 0px;
-  width: 482px !important;
+   max-width: 500px !important;
+   width :100% !important;
   animation-duration: 10ms;
   padding: 8.5px 0px 8.5px 14px;
 }
@@ -256,4 +253,44 @@
 }
 .OuterDiv {
   width: 0px !important;
+}
+@media screen and (max-width:900px){
+  .contactHead{
+    max-width: 900px !important;
+    padding: 32px 8px 112px !important;
+    display: flex;
+  justify-content: center;
+  background-color: #fafbfb;
+  }
+  .BoxBody{
+    display: inline !important;
+    max-width: 100% !important;  
+    min-width: 10px !important;
+  }
+  .BoxHead{
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+ .BoxHead0{
+  display: block !important;
+  max-width: 100% !important;
+ }
+ .BoxHead1{
+  max-width: 50% !important;
+  width: 50% !important;
+  margin-bottom: 10px !important;
+ }
+ .searchinputcontact{
+ max-width: 100% !important;
+ }
+ .SearchHead{
+  max-width: 100% !important;
+ }
+ .contactBody{
+  max-width: 100%!important;
+  max-height: 100% !important;
+ }
+ .SelectFeildBox{
+  max-width: 300px !important;
+ }
 }

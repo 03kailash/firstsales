@@ -204,8 +204,13 @@
 }
 .CreateBtn {
   margin: 40px 0px !important;
-  color:#ff8e00  !important;
-  border-color:#FFC107!important;
+  color:rgb(255, 142, 0)  !important;
+  border-color:rgb(255, 142, 0)!important;
+  text-transform: inherit !important;
+}
+.CreateBtn:hover{
+  background-color: rgba(255, 142, 0, 0.04) !important;
+    border: 1px solid rgb(255, 142, 0) !important;
 }
 .Button {
   text-transform: inherit !important;
@@ -281,4 +286,66 @@
   box-sizing: border-box;
   width: 1337px;
   max-width: 95%;
+
+  background-color: rgb(255, 255, 255);
+  color: rgba(0, 0, 0, 0.87);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  box-shadow: rgb(0 0 0 / 31%) 0px 0px 1px 0px, rgb(0 0 0 / 25%) 0px 11px 20px -8px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1 0 auto;
+  z-index: 1200;
+  position: fixed;
+  top: 0px;
+  outline: 0px;
+  right: 0px;
+}
+@media screen  and (max-width:1200px){
+  .Steper{
+    max-width: 100% !important;
+  }
+  .CampaignName1{
+    max-width: 100% !important;
+   }
+   .Inputfeild{
+    max-width: 100% !important;
+   }
+   .CampaignName{
+    max-width: 100% !important;
+   }
+}
+@media screen  and (max-width:900px) {
+  .Steper{
+    max-width: 100% !important;
+  }
+ .ContactBlockDiv{
+  display: block !important;
+  flex-basis: 100%;
+  -webkit-box-flex: 0;
+  flex-grow: 0;
+  max-width: 100%;
+ }
+ .SideDiv{
+  max-width: 100% !important;
+  width: auto !important;
+ }
+ .Side1{
+  max-width:  100% !important;
+  width: auto !important;
+ }
+ .divContainer{
+  max-width:  100% !important;
+  width: auto !important;
+ }
+ .CampaignName1{
+  max-width: 100% !important;
+ }
+ .Inputfeild{
+  max-width: 100% !important;
+ }
+ .CampaignName{
+  max-width: 100% !important;
+ }
 }

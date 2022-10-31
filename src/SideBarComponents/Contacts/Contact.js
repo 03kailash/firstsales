@@ -21,9 +21,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-// import Snackbar from "@mui/material/Snackbar";
+import Snackbar from "@mui/material/Snackbar";
 const columns = [
-  { id: "Checkbox", label:"", minWidth: "89px" },
+  { id: "Checkbox", label: "", minWidth: "89px" },
 
   { id: "Name and Email", label: " Email", minWidth: "343px" },
   {
@@ -86,6 +86,7 @@ const names = [
 ];
 
 function Contact() {
+  const [ snackOpen,setSnackOpen] = useState(false)
   const [personName, setPersonName] = React.useState([]);
   const [contact, setcontact] = React.useState([]);
   const [Tags, setTags] = React.useState([]);
@@ -99,6 +100,11 @@ function Contact() {
   const handleCloseAdd = () => setOpenAdd(false);
 
   const [active, setactive] = useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+    setSnackOpen(true);
+  };
 
   const handleChange = (event) => {
     const {
@@ -129,243 +135,246 @@ function Contact() {
   };
 
   return (
-    <div className="contactHead">
-      <div className="contactBody">
-        <div>
-          <h5 className="ContactText">Contacts</h5>
-        </div>
-        <hr className="Hr" />
-        <div className="BoxBody">
-          <div className="BoxHead">
-            <p className="p_Tag">Total contact: 0</p>
-            <p className="p_Tag1">Naver used yet in any compaign: 0 (0%)</p>
-            <p className="p_Tag1">Last Submission: Not yet</p>
-            <LinearProgress color="warning" />
-          </div>
-          <div className="BoxHead0">
-            <div className=" BoxHead1">
-              <h6 className="InnerDiv">Cold</h6>
-              <h5 className="InnerDiv0">0</h5>
-              <div className="block0">0%</div>
-            </div>
-
-            <div className=" BoxHead1">
-              <h4 className="InnerDiv">Warm</h4>
-              <h2 className="InnerDiv0">0</h2>
-              <div className="block1">0%</div>
-            </div>
-
-            <div className=" BoxHead1">
-              <h4 className="InnerDiv">Unsubscribed</h4>
-              <h2 className="InnerDiv0">0</h2>
-              <div className="block2">0%</div>
-            </div>
-
-            <div className=" BoxHead1">
-              <h4 className="InnerDiv">Bounced</h4>
-              <h2 className="InnerDiv0">0</h2>
-              <div className="block3">0%</div>
-            </div>
-          </div>
-        </div>
-        <div className="status_div">
-          <p className="status">status Update</p>
-        </div>
-
-        <div className="SearchHead">
-          <input
-            type="text"
-            placeholder="Search"
-            className="searchinputcontact"
-          />
-          <TuneOutlinedIcon
-            color="action"
-            className="icon_1"
-            onClick={() => {
-              if (active) {
-                setactive(false);
-              } else {
-                setactive(true);
-              }
-            }}
-          />
-
-          <div className="btnn">
+        <div className="contactHead">
+          <div className="contactBody">
             <div>
-              <Button
-                variant="outlined"
-                color="warning"
-                className="btn11"
-                onClick={handleOpen}
-              >
-                Export
-              </Button>
+              <h5 className="ContactText">Contacts</h5>
             </div>
-            <div>
-              <Button color="warning" className="btn2" onClick={handleOpenAdd}>
-                <AddOutlinedIcon style={{ fontSize: "20px", marginRight: '10px' }} />
-                Add Contact
-              </Button>
+            <hr className="HrDiv" />
+            <div className="BoxBody">
+              <div className="BoxHead">
+                <p className="p_Tag">Total contact: 0</p>
+                <p className="p_Tag1">Naver used yet in any compaign: 0 (0%)</p>
+                <p className="p_Tag1">Last Submission: Not yet</p>
+                <LinearProgress color="warning" />
+              </div>
+              <div className="BoxHead0">
+                <div style={{ display: 'flex' }}>
+                  <div className=" BoxHead1">
+                    <h6 className="InnerDiv">Cold</h6>
+                    <h5 className="InnerDiv0">0</h5>
+                    <div className="block0">0%</div>
+                  </div>
+
+                  <div className=" BoxHead1">
+                    <h4 className="InnerDiv">Warm</h4>
+                    <h2 className="InnerDiv0">0</h2>
+                    <div className="block1">0%</div>
+                  </div>
+                </div>
+                <div style={{ display: 'flex' }} >
+                  <div className=" BoxHead1">
+                    <h4 className="InnerDiv">Unsubscribed</h4>
+                    <h2 className="InnerDiv0">0</h2>
+                    <div className="block2">0%</div>
+                  </div>
+
+                  <div className=" BoxHead1">
+                    <h4 className="InnerDiv">Bounced</h4>
+                    <h2 className="InnerDiv0">0</h2>
+                    <div className="block3">0%</div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+            <div className="status_div">
+              <p className="status">status Update</p>
+            </div>
 
-        {active && (
-          <div style={{ display: "flex" }}>
-            <FormControl sx={{ m: 1, width: 300 }}>
-              <InputLabel id="demo-multiple-checkbox-label">
-                Contact State/Action
-              </InputLabel>
-              <Select
-                labelId="demo-multiple-checkbox-label"
-                multiple
-                size="small"
-                color="warning"
-                value={contact}
-                onChange={handlleChange}
-                input={<OutlinedInput label="Contact State/Action" />}
-                renderValue={(selected) => selected.join(", ")}
-                MenuProps={MenuProps}
-              >
-                {names.map((name) => (
-                  <MenuItem key={name} value={name}>
-                    <ListItemText primary={name} />
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+            <div className="SearchHead">
+              <input
+                type="text"
+                placeholder="Search"
+                className="searchinputcontact"
+              />
+              <TuneOutlinedIcon
+                color="action"
+                className="icon_1"
+                onClick={() => {
+                  if (active) {
+                    setactive(false);
+                  } else {
+                    setactive(true);
+                  }
+                }}
+              />
 
-            <FormControl sx={{ m: 1, width: 300 }}>
-              <InputLabel id="demo-multiple-checkbox-label">Tags</InputLabel>
-              <Select
-                labelId="demo-multiple-checkbox-label"
-                multiple
-                size="small"
-                color="warning"
-                value={Tags}
-                onChange={handleeChange}
-                input={<OutlinedInput label="Tags" />}
-                renderValue={(selected) => selected.join(", ")}
-                MenuProps={MenuProps}
-              >
-                {names.map((name) => (
-                  <MenuItem key={name} value={name}>
-                    <ListItemText primary={name} />
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+              <div className="btnn">
+                <div>
+                  <Button
+                    variant="outlined"
+                    color="warning"
+                    className="btn11"
+                    onClick={handleOpen}
+                  >
+                    Export
+                  </Button>
+                </div>
+                <div>
+                  <Button color="warning" className="btn2" onClick={handleOpenAdd}>
+                    <AddOutlinedIcon style={{ fontSize: "20px", marginRight: '10px' }} />
+                    Add Contact
+                  </Button>
+                </div>
+              </div>
+            </div>
 
-            <FormControl sx={{ m: 1, width: 300 }}>
-              <InputLabel id="demo-multiple-checkbox-label">Source</InputLabel>
-              <Select
-                labelId="demo-multiple-checkbox-label"
-                multiple
-                size="small"
-                color="warning"
-                value={personName}
-                onChange={handleChange}
-                input={<OutlinedInput label="Source" color="warning" />}
-                renderValue={(selected) => selected.join(", ")}
-                MenuProps={MenuProps}
-              >
-                {names.map((name) => (
-                  <MenuItem key={name} value={name}>
-                    <ListItemText primary={name} />
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </div>
-        )}
-
-        <div className="group">
-          <div>Group action : </div>
-          <Button
-            size="small"
-            variant="outlined"
-            style={{
-              textTransform: "capitalize",
-              color: "#707070",
-              borderColor: "#707070",
-            }}
-          >
-            <DeleteOutlineIcon
-              className="DeleteIcon"
-              color="action"
-              fontSize="15px"
-            />
-            Delete
-          </Button>
-        </div>
-        <div style={{ marginTop: "15px" }}>
-          <LinearProgress color="warning" />
-        </div>
-        <div>
-          <Paper sx={{ width: "100%", overflow: "hidden" }}>
-            <TableContainer sx={{ maxHeight: 440, overflow: 'auto' }}>
-              <Table stickyHeader aria-label="sticky table">
-                <TableHead>
-                  <TableRow>
-                    {columns.map((column) => (
-                      <TableCell
-                        key={column.id}
-                        align={column.align}
-                        style={{ minWidth: column.minWidth }}
-                      >
-                        {column.label}
-                      </TableCell>
+            {active && (
+              <div style={{ display: "flex" }}>
+                <FormControl sx={{ m: 1, width: 300 }} className='SelectFeildBox'>
+                  <InputLabel id="demo-multiple-checkbox-label">
+                    Contact State/Action
+                  </InputLabel>
+                  <Select
+                    labelId="demo-multiple-checkbox-label"
+                    multiple
+                    size="small"
+                    color="warning"
+                    value={contact}
+                    onChange={handlleChange}
+                    input={<OutlinedInput label="Contact State/Action" />}
+                    renderValue={(selected) => selected.join(", ")}
+                    MenuProps={MenuProps}
+                  >
+                    {names.map((name) => (
+                      <MenuItem key={name} value={name}>
+                        <ListItemText primary={name} />
+                      </MenuItem>
                     ))}
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {rows
-                    .slice(pages * rowsPerPages, pages * rowsPerPages +  rowsPerPages)
-                    .map((row) => {
-                      return (
-                        <TableRow
-                          hover
-                          role="checkbox"
-                          tabIndex={-1}
-                          key={row.code}
-                        >
-                          {columns.map((column) => {
-                            const value = row[column.id];
-                            return (
-                              <TableCell key={column.id} align={column.align}>
-                                {column.format && typeof value === "number"
-                                  ? column.format(value)
-                                  : value}
-                              </TableCell>
-                            );
-                          })}
-                        </TableRow>
-                      );
-                    })}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Paper>
-          <TablePagination
-            rowsPerPageOptions={[10, 25, 100]}
-            component="div"
-            count={rows.length}
-            rowsPerPage={rowsPerPages}
-            page={pages}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
-        </div>
-        {/* <Snackbar
+                  </Select>
+                </FormControl>
+
+                <FormControl sx={{ m: 1, width: 300 }}>
+                  <InputLabel id="demo-multiple-checkbox-label">Tags</InputLabel>
+                  <Select
+                    labelId="demo-multiple-checkbox-label"
+                    multiple
+                    size="small"
+                    color="warning"
+                    value={Tags}
+                    onChange={handleeChange}
+                    input={<OutlinedInput label="Tags" />}
+                    renderValue={(selected) => selected.join(", ")}
+                    MenuProps={MenuProps}
+                  >
+                    {names.map((name) => (
+                      <MenuItem key={name} value={name}>
+                        <ListItemText primary={name} />
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+
+                <FormControl sx={{ m: 1, width: 300 }}>
+                  <InputLabel id="demo-multiple-checkbox-label">Source</InputLabel>
+                  <Select
+                    labelId="demo-multiple-checkbox-label"
+                    multiple
+                    size="small"
+                    color="warning"
+                    value={personName}
+                    onChange={handleChange}
+                    input={<OutlinedInput label="Source" color="warning" />}
+                    renderValue={(selected) => selected.join(", ")}
+                    MenuProps={MenuProps}
+                  >
+                    {names.map((name) => (
+                      <MenuItem key={name} value={name}>
+                        <ListItemText primary={name} />
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </div>
+            )}
+
+            <div className="group">
+              <div>Group action : </div>
+              <Button
+                size="small"
+                variant="outlined"
+                style={{
+                  textTransform: "capitalize",
+                  color: "#707070",
+                  borderColor: "#707070",
+                }}
+              >
+                <DeleteOutlineIcon
+                  className="DeleteIcon"
+                  color="action"
+                  fontSize="15px"
+                />
+                Delete
+              </Button>
+            </div>
+            <div style={{ marginTop: "15px" }}>
+              <LinearProgress color="warning" />
+            </div>
+            <div>
+              <Paper sx={{ width: "100%", overflow: "hidden" }}>
+                <TableContainer sx={{ maxWidth:"100%", overflow: 'auto' }}>
+                  <Table stickyHeader aria-label="sticky table">
+                    <TableHead>
+                      <TableRow>
+                        {columns.map((column) => (
+                          <TableCell
+                            key={column.id}
+                            align={column.align}
+                            style={{ minWidth: column.minWidth }}
+                          >
+                            {column.label}
+                          </TableCell>
+                        ))}
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {rows
+                        .slice(pages * rowsPerPages, pages * rowsPerPages + rowsPerPages)
+                        .map((row) => {
+                          return (
+                            <TableRow
+                              hover
+                              role="checkbox"
+                              tabIndex={-1}
+                              key={row.code}
+                            >
+                              {columns.map((column) => {
+                                const value = row[column.id];
+                                return (
+                                  <TableCell key={column.id} align={column.align}>
+                                    {column.format && typeof value === "number"
+                                      ? column.format(value)
+                                      : value}
+                                  </TableCell>
+                                );
+                              })}
+                            </TableRow>
+                          );
+                        })}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </Paper>
+              <TablePagination
+                rowsPerPageOptions={[10, 25, 100]}
+                component="div"
+                count={rows.length}
+                rowsPerPage={rowsPerPages}
+                page={pages}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
+            </div>
+            <Snackbar
           open={snackOpen}
           autoHideDuration={4000}
           onClose={() => setSnackOpen(false)}
           message=" Add Campaign"
-        /> */}
-      </div>
-      <Export open={open} handleClose={handleClose} />
-      <AddContact openAdd={openAdd} handleCloseAdd={handleCloseAdd} />
-    </div>
+        />
+          </div>
+          <Export open={open} handleClose={handleClose} />
+          <AddContact openAdd={openAdd} handleCloseAdd={handleCloseAdd} />
+        </div>
   );
 }
 

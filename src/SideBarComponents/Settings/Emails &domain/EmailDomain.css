@@ -16,6 +16,7 @@
 }
 .TableCellMail{
     padding: 6px 16px !important;
+    max-width: 100px;
     font-family: Roboto, Helvetica, Arial, sans-serif;
     font-weight: 500;
     font-size: 0.875rem;
@@ -33,4 +34,39 @@
     border-width: 0px 0px thin;
     border-style: solid;
     border-color: rgba(0, 0, 0, 0.12) !important;
+}
+.TableDivEmail{
+    padding-top: 24px ;
+    padding-bottom: 24px;
+}
+.SMTPBodyDiv{
+    width: 221px;
+}
+.SMTPTopDiv{
+    display: flex;
+    width: 100% !important;
+    gap: 50px !important;
+}
+/* .TableContainerHead{
+  mix
+
+} */
+@media screen and (max-width:900px){
+ .SMTPTopDiv{
+    display: block !important;
+    max-width: 100% !important;
+    justify-content: space-between !important;
+
+ }
+ .SMTPBodyDiv{
+    max-width: 100% !important;
+    width: 100% !important;
+    row-gap: 24px !important;
+ }
+ .TableDivEmail{
+    padding-top: 24px !important;
+}
+.EmailModelmainDiv{
+ padding: 15px !important;
+}
 }

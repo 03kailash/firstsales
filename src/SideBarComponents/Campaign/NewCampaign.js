@@ -57,12 +57,10 @@ function createData(EmailAccount, Status) {
 const rows = [createData("EmailAccount", "Status")];
 function NewCampaign(props) {
   const [AndAdd, setAndAdd] = useState(false);
-
+  // const [addOR,setaddOR] =useState(false);
   const [, setRender] = useState({});
   const reRender = () => setRender({});
-
   const [add, setadd] = useState(false);
-
   const [activeStep, setActiveStep] = React.useState(0);
 
   const [page, setPage] = React.useState(0);
@@ -89,6 +87,11 @@ function NewCampaign(props) {
   const handleChangeee = (event) => {
     setTags(event.target.value);
   };
+  const [Filter, setFilter] = React.useState("");
+  const handleChhangeee = (event) => {
+    setFilter(event.target.value);
+  };
+
   const [value, setValue] = React.useState(dayjs("2014-08-18T21:11:54"));
   const handleChangeeee = (newValue) => {
     setValue(newValue);
@@ -105,19 +108,20 @@ function NewCampaign(props) {
             anchor={"right"}
             open={props.Newopen}
             onClose={props.handleNewclose}
-            className='AddCampaignDrawer'
-            
+            className='AddCampaignDrawer' 
           >
+            <div>
             <Box role="presentation">
+              <IconButton style={{margin:'8px'}}>
               <ClearOutlinedIcon
                 color="action"
-                className="closebtn"
                 onClick={props.handleNewclose}
               />
+              </IconButton>
               <div>
                 <Box
                   sx={{
-                    width: "1300px",
+                    width: "100%",
                     alignItems: "center",
                     padding: "20px",
                   }}
@@ -128,6 +132,7 @@ function NewCampaign(props) {
                       display: "flex",
                       justifyContent: "center",
                     }}
+                    className='Steper'
                   >
                     <Stepper activeStep={activeStep} className="steppers">
                       {steps.map((label, index) => {
@@ -174,7 +179,7 @@ function NewCampaign(props) {
                             >
                               <div style={{ width: "624px" }}>
                                 <Paper
-                                  sx={{ width: "642px", overflow: "hidden" }}
+                                  sx={{ overflow: "hidden" }}
                                 >
                                   <TableContainer sx={{ maxHeight: 440 }}>
                                     <Table
@@ -188,7 +193,7 @@ function NewCampaign(props) {
                                               key={column.id}
                                               align={column.align}
                                               style={{
-                                                minWidth: column.minWidth,
+                                                maxWidth: column.minWidth,
                                               }}
                                             >
                                               {column.label}
@@ -278,11 +283,11 @@ function NewCampaign(props) {
                         </>
                       )}
                       {activeStep === 1 && (
-                        <>
+                        <> 
                           <div className="TextContact">
                             <p>Contacts Filtering</p>
                           </div>
-                          <div style={{ display: "flex" }}>
+                          <div style={{ display: "flex" }} className="ContactBlockDiv">
                             <div className="divContainer">
                               <div
                                 style={{
@@ -317,16 +322,29 @@ function NewCampaign(props) {
                                             justifyContent:"space-between"
                                           }}
                                         >
-                                          <TextField
-                                            type="text"
-                                            label="Filter"
-                                            id="outlined-size-small"
-                                            color="warning"
-                                            InputLabelProps={{
-                                              shrink: true,
-                                            }}
-                                            size="small"
-                                          />
+                                           <FormControl
+                                                  sx={{ m: 1, maxWidth: 200, width:'100%' }}
+                                                  size="small"
+                                                >
+                                                  <InputLabel id="demo-select-small" color="warning" >
+                                                    Filter
+                                                  </InputLabel>
+                                                  <Select
+                                                    labelId="demo-select-small"
+                                                    id="demo-select-small"
+                                                    value={   Filter}
+                                                    label="   Filter"
+                                                    color="warning"
+                                                    onChange={handleChhangeee}
+                                                    InputLabelProps={{
+                                                    shrink: true,
+                                                  }}
+                                                  >
+                                                    <MenuItem value="">
+                                                      <em>None</em>
+                                                    </MenuItem>
+                                                  </Select>
+                                                </FormControl>
                                           <div
                                             style={{
                                               display: "flex",
@@ -363,23 +381,36 @@ function NewCampaign(props) {
                                               }}
                                             >
                                               <div>
-                                                <TextField
-                                                  type="text"
-                                                  label="Filter"
-                                                  id="outlined-size-small"
-                                                  color="warning"
-                                                  InputLabelProps={{
+                                              <FormControl
+                                                  sx={{ m: 1, minWidth: 200 }}
+                                                  size="small"
+                                                >
+                                                  <InputLabel id="demo-select-small" color="warning">
+                                                  Filter
+                                                  </InputLabel>
+                                                  <Select
+                                                    labelId="demo-select-small"
+                                                    id="demo-select-small"
+                                                    value={ Filter}
+                                                    label=" Filter"
+                                                    color="warning"
+                                                    onChange={handleChhangeee}
+                                                    InputLabelProps={{
                                                     shrink: true,
                                                   }}
-                                                  size="small"
-                                                />
+                                                  >
+                                                    <MenuItem value="">
+                                                      <em>None</em>
+                                                    </MenuItem>
+                                                  </Select>
+                                                </FormControl>
                                               </div>
                                               <div>
                                                 <FormControl
                                                   sx={{ m: 1, minWidth: 200 }}
                                                   size="small"
                                                 >
-                                                  <InputLabel id="demo-select-small">
+                                                  <InputLabel id="demo-select-small" color="warning">
                                                     Tags
                                                   </InputLabel>
                                                   <Select
@@ -387,7 +418,11 @@ function NewCampaign(props) {
                                                     id="demo-select-small"
                                                     value={Tags}
                                                     label="Tags"
+                                                    color="warning"
                                                     onChange={handleChangeee}
+                                                    InputLabelProps={{
+                                                    shrink: true,
+                                                  }}
                                                   >
                                                     <MenuItem value="">
                                                       <em>None</em>
@@ -408,6 +443,7 @@ function NewCampaign(props) {
                                                         {...params}
                                                         className="timePiker" 
                                                         size="small"
+                                                        color="warning"
                                                       />
                                                     )}
                                                   />
@@ -503,7 +539,7 @@ function NewCampaign(props) {
                         <>
                           <div
                             className="TextContact"
-                            style={{ marginTop: "32px", marginBottom: "0px" }}
+                            style={{ marginTop: "32px", marginBottom: "0px",textTransform:'inherit' }}
                           >
                             Sending Schedule Options
                           </div>
@@ -935,6 +971,7 @@ function NewCampaign(props) {
                           justifyContent: "center",
                           gap: "60px",
                           marginBottom: "40px",
+                          marginTop:'40px'
                         }}
                       >
                         <Button
@@ -952,6 +989,7 @@ function NewCampaign(props) {
                 </Box>
               </div>
             </Box>
+            </div>
           </Drawer>
         </div>
       </React.Fragment>

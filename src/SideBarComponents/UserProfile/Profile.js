@@ -44,7 +44,7 @@ function Profile() {
               InputLabelProps={{
                 shrink: true,
               }}
-              style={{ width: "370px" }}
+              style={{ maxWidth: "370px",width:'100%' }}
             />
             <br />
             <br />
@@ -56,7 +56,7 @@ function Profile() {
               InputLabelProps={{
                 shrink: true,
               }}
-              style={{ width: "370px" }}
+              style={{ maxWidth: "370px",width:"100%" }}
             />
           </div>
           <br />
@@ -112,7 +112,7 @@ function Profile() {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                style={{ width: "370px" }}
+                style={{ MaxWidth: "370px",width:"100%" }}
               />
             </div>
           </div>
@@ -121,14 +121,14 @@ function Profile() {
       <br />
       <div style={{ width: "100%", justifyContent: "center", display: "flex" }}>
         <div style={{ width: "400px", display: "flex" }}>
-          <Button variant="outlined" color="warning">
+          <Button variant="outlined" color="warning" style={{textTransform:"inherit"}}>
             logout
           </Button>
           <div
             style={{ display: "flex", justifyContent: "end", width: "100%" }}
           >
             <Button
-              style={{ backgroundColor: "  #ff8e00" }}
+              style={{ backgroundColor: "#ff8e00", textTransform:"inherit"}}
               variant="contained"
             >
               Save

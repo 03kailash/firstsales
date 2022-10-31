@@ -4,8 +4,14 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-
+import Snackbar from "@mui/material/Snackbar";
 function ExportView(props) {
+  const [open, setOpen] = React.useState(false);
+  const [snackOpen, setSnackOpen] = React.useState(false);
+  const handleClick = () => {
+    setOpen(true);
+    setSnackOpen(true);
+  };
   return (
     <div>
       <Modal
@@ -47,6 +53,9 @@ function ExportView(props) {
             <div>
             <Button variant="outlined" color="warning"
               style={{ textTransform: "inherit" }}
+              onClick={()=>{
+                handleClick();
+              }}
             >
               Delete
             </Button>
@@ -65,6 +74,12 @@ function ExportView(props) {
           </div>
         </Box>
       </Modal>
+      <Snackbar
+          open={snackOpen}
+          autoHideDuration={4000}
+          onClose={() => setSnackOpen(false)}
+          message="Data export removed"
+        />
     </div>
   );
 }

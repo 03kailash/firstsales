@@ -6,9 +6,15 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import { Button } from "@mui/material";
-
+import Snackbar from "@mui/material/Snackbar";
 function RequestExport(props) {
   const [filter, setfilter] = useState(false);
+  const [open, setOpen] = React.useState(false);
+  const [snackOpen, setSnackOpen] = React.useState(false);
+  const handleClick = () => {
+    setOpen(true);
+    setSnackOpen(true);
+  };
   return (
     <div>
       <Modal
@@ -50,6 +56,7 @@ function RequestExport(props) {
                   color="warning"
                   style={{textTransform:"inherit"}}
                   onClick={() => {
+                    handleClick();
                     props.handleCloseEx();
                   }}
                 >
@@ -60,6 +67,12 @@ function RequestExport(props) {
           </FormGroup>
         </Box>
       </Modal>
+      <Snackbar
+          open={snackOpen}
+          autoHideDuration={4000}
+          onClose={() => setSnackOpen(false)}
+          message=" Requested for Data Export"
+        />
     </div>
   );
 }

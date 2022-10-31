@@ -270,7 +270,7 @@ function Campaign() {
             })}
           </div>
         )}
-        <div style={{ width: "1000px" ,maxWidth:"1000px" }}>
+        <div style={{ width: "1000px" ,maxWidth:"100%"}} >
           <div style={{ justifyContent: "center", display: "flex" }}>
             <Box sx={{ width: "90%", paddingTop: "64px" }}>
               <LinearProgress color="warning" />
