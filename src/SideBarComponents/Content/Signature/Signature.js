@@ -149,7 +149,7 @@ export default function Signature() {
                           InputProps={{
                             endAdornment: (
                               <InputAdornment position="end">
-                                <IconButton style={{ padding: "5px" }}>
+                                <IconButton style={{ padding: "8px" }}>
                                   <EmojiEmotionsIcon
                                     color="action"
                                     style={{
@@ -244,7 +244,7 @@ export default function Signature() {
             size="small"
             className="authorinput"
           >
-            <InputLabel id="demo-select-small" color="warning">
+            <InputLabel id="demo-select-small" color="warning" shrink>
               Author
             </InputLabel>
             <Select
@@ -253,6 +253,7 @@ export default function Signature() {
               value={aut}
               label="Author"
               color="warning"
+              notched
             >
               {/* <MenuItem value="">
             <em></em>

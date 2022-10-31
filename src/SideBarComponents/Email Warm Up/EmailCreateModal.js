@@ -36,7 +36,7 @@ export default function EmailCreateModal({ open, close }) {
             </div>
 
             <FormControl size="small" style={{ width: "100%" }}>
-              <InputLabel id="demo-select-large" color="warning">
+              <InputLabel id="demo-select-large" color="warning" shrink>
                 Email account name
               </InputLabel>
               <Select
@@ -45,6 +45,7 @@ export default function EmailCreateModal({ open, close }) {
                 label="Email account name"
                 color="warning"
                 value=""
+                notched
               >
                 {/* <MenuItem value="">
             <em></em>
@@ -53,7 +54,7 @@ export default function EmailCreateModal({ open, close }) {
               </Select>
             </FormControl>
             <FormControl size="small" style={{ width: "100%" }} sx={{ mt: 3 }}>
-              <InputLabel id="demo-select-large" color="warning">
+              <InputLabel id="demo-select-large" color="warning" shrink>
                 IMAP name
               </InputLabel>
               <Select
@@ -62,6 +63,7 @@ export default function EmailCreateModal({ open, close }) {
                 label="IMAP name"
                 color="warning"
                 value=""
+                notched
               >
                 {/* <MenuItem value="">
             <em></em>

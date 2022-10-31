@@ -59,7 +59,14 @@ export default function SentAnalytics() {
           getOptionLabel={(option) => option.title}
           defaultValue={top100Films[13]}
           renderInput={(params) => (
-            <TextField {...params} label="Sequence" color="warning" />
+            <TextField
+              {...params}
+              label="Sequence"
+              color="warning"
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
           )}
         />
         <Autocomplete
@@ -70,7 +77,14 @@ export default function SentAnalytics() {
           getOptionLabel={(option) => option.title}
           defaultValue={top100Films[13]}
           renderInput={(params) => (
-            <TextField {...params} label="Campaign" color="warning" />
+            <TextField
+              {...params}
+              label="Campaign"
+              color="warning"
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
           )}
         />
         <Autocomplete
@@ -81,7 +95,14 @@ export default function SentAnalytics() {
           getOptionLabel={(option) => option.title}
           defaultValue={top100Films[13]}
           renderInput={(params) => (
-            <TextField {...params} label="Contact" color="warning" />
+            <TextField
+              {...params}
+              label="Contact"
+              color="warning"
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
           )}
         />
       </div>

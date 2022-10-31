@@ -330,7 +330,7 @@ export default function Subject() {
             size="small"
             className="authorinput"
           >
-            <InputLabel id="demo-select-small" color="warning">
+            <InputLabel id="demo-select-small" color="warning" shrink>
               Author
             </InputLabel>
             <Select
@@ -339,6 +339,7 @@ export default function Subject() {
               value={aut}
               label="Author"
               color="warning"
+              notched
             >
               {/* <MenuItem value="">
             <em></em>
