@@ -30,7 +30,7 @@ export default function Billing() {
                         <div style={{ marginTop: '8px' }}><Chip label="5 day left" className='trailChip' size='small' /></div>
                     </div>
                     <div className='planDiv'>
-                        <div style={{ display: 'flex', gap: '30px' }} className='planDivInner'>
+                        <div style={{ display: 'flex', }} className='planDivInner'>
                             <div>
                                 <div>1 User</div>
                                 <div className='MonthPlanText'>Monthly plan</div>
