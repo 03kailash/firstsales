@@ -5,6 +5,9 @@ import Drawer from "@mui/material/Drawer";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import TextField from "@mui/material/TextField";
 import { Button, IconButton } from "@mui/material";
+import "froala-editor/css/themes/royal.min.css";
+import "froala-editor/css/froala_editor.pkgd.min.css";
+import FroalaEditorComponent from "react-froala-wysiwyg";
 
 export default function ContentEditbody({ isopen, isclose }) {
   const [gifsbtn, setGifsbtn] = useState(false);
@@ -57,6 +60,7 @@ export default function ContentEditbody({ isopen, isclose }) {
                 display: "flex",
                 justifyContent: "center",
                 marginTop: "22px",
+                marginBottom: "8px",
               }}
             >
               <Button
@@ -108,6 +112,7 @@ export default function ContentEditbody({ isopen, isclose }) {
                   })}
               </div>
             )}
+            <FroalaEditorComponent tag="textarea" />
 
             <div className="contenteditsavebtndiv">
               <Button className="Savetemplatebtn" style={{ width: "205px" }}>

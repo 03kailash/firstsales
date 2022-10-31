@@ -7,6 +7,9 @@ import TextField from "@mui/material/TextField";
 import { Button, IconButton } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
+import "froala-editor/css/themes/royal.min.css";
+import "froala-editor/css/froala_editor.pkgd.min.css";
+import FroalaEditorComponent from "react-froala-wysiwyg";
 
 export default function Bodyblockedit({ isopen, isclose }) {
   const [gifsbtn, setGifsbtn] = useState(false);
@@ -63,6 +66,7 @@ export default function Bodyblockedit({ isopen, isclose }) {
                 display: "flex",
                 justifyContent: "center",
                 marginTop: "22px",
+                marginBottom: "8px",
               }}
             >
               <Button
@@ -124,6 +128,7 @@ export default function Bodyblockedit({ isopen, isclose }) {
                 </div>
               </div>
             )}
+            <FroalaEditorComponent tag="textarea" />
 
             <div className="Archivesavebtndiv">
               <Button

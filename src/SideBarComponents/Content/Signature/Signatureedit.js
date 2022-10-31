@@ -10,6 +10,9 @@ import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import Snackbar from "@mui/material/Snackbar";
 import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
+import "froala-editor/css/themes/royal.min.css";
+import "froala-editor/css/froala_editor.pkgd.min.css";
+import FroalaEditorComponent from "react-froala-wysiwyg";
 
 export default function Signatureedit({ isopen, isclose }) {
   const [emoji, setEmoji] = useState(false);
@@ -36,7 +39,13 @@ export default function Signatureedit({ isopen, isclose }) {
             <div className="tempbuilderhead" style={{ marginBottom: "40px" }}>
               Signature editing
             </div>
-            <div style={{ display: "flex", alignItems: "center" }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginBottom: "16px",
+              }}
+            >
               <TextField
                 label="Title"
                 type="text"
@@ -85,7 +94,7 @@ export default function Signatureedit({ isopen, isclose }) {
                 />
               )}
             </div>
-
+            <FroalaEditorComponent tag="textarea" />
             <div className="signedittwobtndiv">
               <Button
                 variant="outlined"
