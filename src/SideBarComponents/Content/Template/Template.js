@@ -98,18 +98,16 @@ export default function Template() {
           <div className="contentdiv">
             <div className="contentsearchinputdiv">
               <input type="text" placeholder="Search" className="searchinput" />
-              <IconButton>
-                <TuneOutlinedIcon
-                  color="action"
-                  className="icon"
-                  onClick={() => {
-                    if (author) {
-                      setAuthor(false);
-                    } else {
-                      setAuthor(true);
-                    }
-                  }}
-                />
+              <IconButton
+                onClick={() => {
+                  if (author) {
+                    setAuthor(false);
+                  } else {
+                    setAuthor(true);
+                  }
+                }}
+              >
+                <TuneOutlinedIcon color="action" />
               </IconButton>
             </div>
             <div className="twobtn">
@@ -124,11 +122,11 @@ export default function Template() {
                   className="newtempdrawer"
                 >
                   <Box role="presentation">
-                    <IconButton style={{ margin: "8px" }}>
-                      <ClearOutlinedIcon
-                        color="action"
-                        onClick={() => setOpen2(false)}
-                      />
+                    <IconButton
+                      style={{ margin: "8px" }}
+                      onClick={() => setOpen2(false)}
+                    >
+                      <ClearOutlinedIcon color="action" />
                     </IconButton>
                     <br />
                     <div className="tempmaindiv">

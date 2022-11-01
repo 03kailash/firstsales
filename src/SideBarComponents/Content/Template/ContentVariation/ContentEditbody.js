@@ -34,8 +34,8 @@ export default function ContentEditbody({ isopen, isclose }) {
         className="contenteditbodydrawer"
       >
         <Box role="presentation">
-          <IconButton style={{ margin: "8px" }}>
-            <ClearOutlinedIcon color="action" onClick={isclose} />
+          <IconButton style={{ margin: "8px" }} onClick={isclose}>
+            <ClearOutlinedIcon color="action" />
           </IconButton>
           <br />
           <div className="contenteditbodymaindiv">

@@ -31,7 +31,28 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import { FixedSizeList } from "react-window";
 import Subjectedit from "./Subjectedit";
-import { IconButton, InputAdornment } from "@mui/material";
+import { IconButton, InputAdornment, Menu } from "@mui/material";
+
+const options = [
+  "{{contact.email}}",
+  "{{contact.emailNormalized}}",
+  "{{contact.firstName}}",
+  "{{contact.lastName}}",
+  "{{contact.gender}}",
+  "{{contact.organization}}",
+  "{{contact.website}}",
+  "{{contact.title}}",
+  "{{contact.phoneNumber}}",
+  "{{contact.address}}",
+  "{{contact.city}}",
+  "{{contact.state}}",
+  "{{contact.country}}",
+  "{{contact.zipCode}}",
+  "{{contact.Contact No}}",
+  "{{contact.Email Id}}",
+];
+
+const ITEM_HEIGHT = 48;
 
 const columns = [
   { id: "Subject", label: "Subject", minWidth: "532px" },
@@ -66,11 +87,21 @@ function createData(name, code, population, size) {
 
 const rows = [createData("no template")];
 export default function Subject() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const Addplaceopen = Boolean(anchorEl);
+  const handleClickAddplace = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseAddplace = (e) => {
+    console.log(e.target.innerText);
+    setAnchorEl(null);
+  };
+
   const [Subjectedits, setSubjectedits] = useState(false);
   const closeSubjectedit = () => {
     setSubjectedits(false);
   };
-  const [addplace, setAddplace] = useState(false);
+
   const [emoji, setEmoji] = useState(false);
   const [selectedEmoji, setSelectedEmoji] = useState("");
   const [chipData, setChipData] = React.useState([
@@ -105,39 +136,30 @@ export default function Subject() {
     setPage(0);
   };
 
-  function renderRow(props) {
-    const { index, style, data } = props;
-    return (
-      <ListItem style={style} key={index} component="div" disablePadding>
-        <ListItemButton
-          onClick={() => {
-            setSelectedEmoji(selectedEmoji + data[index]);
-            setAddplace(false);
-          }}
-        >
-          <ListItemText primary={`${data[index]}`} />
-        </ListItemButton>
-      </ListItem>
-    );
-  }
   return (
-    <div style={{ justifyContent: "center", display: "flex" }}>
+    <div
+      style={{ justifyContent: "center", display: "flex" }}
+      onClick={() => {
+        if (emoji) {
+          setEmoji(false);
+        }
+      }}
+    >
       <div style={{ maxwidth: "900px" }} className="templatecontainer">
         <div className="containerdiv">
           <div className="contentdiv">
             <div className="contentsearchinputdiv">
               <input type="text" placeholder="Search" className="searchinput" />
-              <IconButton>
-                <TuneOutlinedIcon
-                  color="action"
-                  onClick={() => {
-                    if (author) {
-                      setAuthor(false);
-                    } else {
-                      setAuthor(true);
-                    }
-                  }}
-                />
+              <IconButton
+                onClick={() => {
+                  if (author) {
+                    setAuthor(false);
+                  } else {
+                    setAuthor(true);
+                  }
+                }}
+              >
+                <TuneOutlinedIcon color="action" />
               </IconButton>
             </div>
             <div className="twobtn">
@@ -152,8 +174,8 @@ export default function Subject() {
                   className="newtempdrawer"
                 >
                   <Box role="presentation">
-                    <IconButton style={{ margin: "8px" }}>
-                      <ClearOutlinedIcon color="action" onClick={handleClose} />
+                    <IconButton style={{ margin: "8px" }} onClick={handleClose}>
+                      <ClearOutlinedIcon color="action" />
                     </IconButton>
                     <br />
                     <div className="submaindiv">
@@ -170,18 +192,20 @@ export default function Subject() {
                           InputProps={{
                             endAdornment: (
                               <InputAdornment position="end">
-                                <IconButton style={{ padding: "5px" }}>
+                                <IconButton
+                                  style={{ padding: "5px" }}
+                                  onClick={() => {
+                                    if (emoji) {
+                                      setEmoji(false);
+                                    } else {
+                                      setEmoji(true);
+                                    }
+                                  }}
+                                >
                                   <EmojiEmotionsIcon
                                     color="action"
                                     style={{
                                       opacity: "50%",
-                                    }}
-                                    onClick={() => {
-                                      if (emoji) {
-                                        setEmoji(false);
-                                      } else {
-                                        setEmoji(true);
-                                      }
                                     }}
                                   />
                                 </IconButton>
@@ -216,67 +240,46 @@ export default function Subject() {
                           style={{
                             textTransform: "initial",
                             color: "#000000DE",
-                            marginTop: "10px",
+                            marginTop: "8px",
                           }}
-                          onClick={() => {
-                            if (addplace) {
-                              setAddplace(false);
-                            } else {
-                              setAddplace(true);
-                            }
-                          }}
+                          aria-label="more"
+                          id="long-button"
+                          aria-controls={Addplaceopen ? "long-menu" : undefined}
+                          aria-expanded={Addplaceopen ? "true" : undefined}
+                          aria-haspopup="true"
+                          onClick={handleClickAddplace}
                         >
                           <ControlPointIcon
                             style={{ marginRight: "8px", fontSize: "20px" }}
                           />{" "}
                           Add personalisation placeholder
                         </Button>
-                      </div>
-                      {addplace && (
-                        <Box
-                          sx={{
-                            width: 253,
-                            height: 268,
-                            maxWidth: 360,
-                            bgcolor: "background.paper",
+                        <Menu
+                          id="long-menu"
+                          MenuListProps={{
+                            "aria-labelledby": "long-button",
                           }}
-                          style={{
-                            zIndex: "1000",
-                            borderRadius: " 4px",
-                            boxShadow:
-                              "rgb(0 0 0 / 31%) 0px 0px 1px 0px, rgb(0 0 0 / 25%) 0px 6px 12px -4px ",
-                            position: "absolute",
+                          anchorEl={anchorEl}
+                          open={Addplaceopen}
+                          onClose={handleCloseAddplace}
+                          PaperProps={{
+                            style: {
+                              maxHeight: 268,
+                            },
                           }}
                         >
-                          <FixedSizeList
-                            height={268}
-                            width={253}
-                            itemSize={35}
-                            itemCount={16}
-                            overscanCount={5}
-                            itemData={[
-                              "{{contact.email}}",
-                              "{{contact.emailNormalized}}",
-                              "{{contact.firstName}}",
-                              "{{contact.lastName}}",
-                              "{{contact.gender}}",
-                              "{{contact.organization}}",
-                              "{{contact.website}}",
-                              "{{contact.title}}",
-                              "{{contact.phoneNumber}}",
-                              "{{contact.address}}",
-                              "{{contact.city}}",
-                              "{{contact.state}}",
-                              "{{contact.country}}",
-                              "{{contact.zipCode}}",
-                              "{{contact.Contact No}}",
-                              "{{contact.Email Id}}",
-                            ]}
-                          >
-                            {renderRow}
-                          </FixedSizeList>
-                        </Box>
-                      )}
+                          {options.map((option) => (
+                            <MenuItem
+                              key={option}
+                              selected={option === "Pyxis"}
+                              onClick={handleCloseAddplace}
+                            >
+                              {option}
+                            </MenuItem>
+                          ))}
+                        </Menu>
+                      </div>
+
                       <div
                         style={{
                           display: "flex",

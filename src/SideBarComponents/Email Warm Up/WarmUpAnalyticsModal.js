@@ -17,8 +17,8 @@ export default function WarmUpAnalyticsModal({ open, close }) {
         className="warmupanadrawer"
       >
         <Box role="presentation">
-          <IconButton style={{ margin: "8px" }}>
-            <ClearOutlinedIcon color="action" onClick={close} />
+          <IconButton style={{ margin: "8px" }} onClick={close}>
+            <ClearOutlinedIcon color="action" />
           </IconButton>
           <br />
           <div className="warmupanamaindiv">

@@ -96,23 +96,29 @@ export default function Signature() {
     setPage(0);
   };
   return (
-    <div style={{ justifyContent: "center", display: "flex" }}>
+    <div
+      style={{ justifyContent: "center", display: "flex" }}
+      onClick={() => {
+        if (emoji) {
+          setEmoji(false);
+        }
+      }}
+    >
       <div style={{ maxwidth: "900px" }} className="templatecontainer">
         <div className="containerdiv">
           <div className="contentdiv">
             <div className="contentsearchinputdiv">
               <input type="text" placeholder="Search" className="searchinput" />
-              <IconButton>
-                <TuneOutlinedIcon
-                  color="action"
-                  onClick={() => {
-                    if (author) {
-                      setAuthor(false);
-                    } else {
-                      setAuthor(true);
-                    }
-                  }}
-                />
+              <IconButton
+                onClick={() => {
+                  if (author) {
+                    setAuthor(false);
+                  } else {
+                    setAuthor(true);
+                  }
+                }}
+              >
+                <TuneOutlinedIcon color="action" />
               </IconButton>
             </div>
             <div className="twobtn">
@@ -127,11 +133,11 @@ export default function Signature() {
                   className="newtempdrawer"
                 >
                   <Box role="presentation">
-                    <IconButton style={{ margin: "8px" }}>
-                      <ClearOutlinedIcon
-                        color="action"
-                        onClick={() => setOpen2(false)}
-                      />
+                    <IconButton
+                      style={{ margin: "8px" }}
+                      onClick={() => setOpen2(false)}
+                    >
+                      <ClearOutlinedIcon color="action" />
                     </IconButton>
                     <br />
                     <div className="signmaindiv">
@@ -149,18 +155,20 @@ export default function Signature() {
                           InputProps={{
                             endAdornment: (
                               <InputAdornment position="end">
-                                <IconButton style={{ padding: "8px" }}>
+                                <IconButton
+                                  style={{ padding: "8px" }}
+                                  onClick={() => {
+                                    if (emoji) {
+                                      setEmoji(false);
+                                    } else {
+                                      setEmoji(true);
+                                    }
+                                  }}
+                                >
                                   <EmojiEmotionsIcon
                                     color="action"
                                     style={{
                                       opacity: "50%",
-                                    }}
-                                    onClick={() => {
-                                      if (emoji) {
-                                        setEmoji(false);
-                                      } else {
-                                        setEmoji(true);
-                                      }
                                     }}
                                   />
                                 </IconButton>
@@ -183,9 +191,9 @@ export default function Signature() {
                         {emoji && (
                           <Picker
                             data={data}
-                            onEmojiSelect={(item) =>
-                              setSelectedEmoji(selectedEmoji + item.native)
-                            }
+                            onEmojiSelect={(item) => {
+                              setSelectedEmoji(selectedEmoji + item.native);
+                            }}
                             sets="apple"
                           />
                         )}

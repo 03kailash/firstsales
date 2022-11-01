@@ -22,8 +22,8 @@ export default function TempDataEditsignature({ isopen, isclose }) {
         className="TempEditsigndrawer"
       >
         <Box role="presentation">
-          <IconButton style={{ margin: "8px" }}>
-            <ClearOutlinedIcon color="action" onClick={isclose} />
+          <IconButton style={{ margin: "8px" }} onClick={isclose}>
+            <ClearOutlinedIcon color="action" />
           </IconButton>
           <br />
           <div className="TempEditsignmaindiv">
@@ -45,18 +45,20 @@ export default function TempDataEditsignature({ isopen, isclose }) {
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
-                      <IconButton style={{ padding: "5px" }}>
+                      <IconButton
+                        style={{ padding: "5px" }}
+                        onClick={() => {
+                          if (emoji) {
+                            setEmoji(false);
+                          } else {
+                            setEmoji(true);
+                          }
+                        }}
+                      >
                         <EmojiEmotionsIcon
                           color="action"
                           style={{
                             opacity: "50%",
-                          }}
-                          onClick={() => {
-                            if (emoji) {
-                              setEmoji(false);
-                            } else {
-                              setEmoji(true);
-                            }
                           }}
                         />
                       </IconButton>

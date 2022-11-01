@@ -31,8 +31,8 @@ export default function ContentDataEditBody({ isopen, isclose }) {
         className="contentdataeditbodydrawer"
       >
         <Box role="presentation">
-          <IconButton style={{ margin: "8px" }}>
-            <ClearOutlinedIcon color="action" onClick={isclose} />
+          <IconButton style={{ margin: "8px" }} onClick={isclose}>
+            <ClearOutlinedIcon color="action" />
           </IconButton>
           <br />
           <div className="contentdataeditbodymaindiv">

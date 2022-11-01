@@ -26,8 +26,8 @@ export default function EmailCreateModal({ open, close }) {
         className="emailcreatedrawer"
       >
         <Box role="presentation">
-          <IconButton style={{ margin: "8px" }}>
-            <ClearOutlinedIcon color="action" onClick={close} />
+          <IconButton style={{ margin: "8px" }} onClick={close}>
+            <ClearOutlinedIcon color="action" />
           </IconButton>
           <br />
           <div className="emailcreatemaindiv">

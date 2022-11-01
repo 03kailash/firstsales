@@ -89,8 +89,8 @@ export default function TemplateAddsubject({ open, close }) {
         className="builderaddsubdrawer"
       >
         <Box role="presentation">
-          <IconButton style={{ margin: "8px" }}>
-            <ClearOutlinedIcon color="action" onClick={close} />
+          <IconButton style={{ margin: "8px" }} onClick={close}>
+            <ClearOutlinedIcon color="action" />
           </IconButton>
           <br />
           <div className="builderaddsubmaindiv">
@@ -127,17 +127,16 @@ export default function TemplateAddsubject({ open, close }) {
                 className="searchinputbuilderaddsub"
                 style={{ width: "100%" }}
               />
-              <IconButton>
-                <TuneOutlinedIcon
-                  color="action"
-                  onClick={() => {
-                    if (author) {
-                      setAuthor(false);
-                    } else {
-                      setAuthor(true);
-                    }
-                  }}
-                />
+              <IconButton
+                onClick={() => {
+                  if (author) {
+                    setAuthor(false);
+                  } else {
+                    setAuthor(true);
+                  }
+                }}
+              >
+                <TuneOutlinedIcon color="action" />
               </IconButton>
             </div>
             {author && (

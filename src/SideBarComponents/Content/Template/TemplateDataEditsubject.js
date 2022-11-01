@@ -4,7 +4,14 @@ import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import TextField from "@mui/material/TextField";
-import { Button, IconButton, InputAdornment, Snackbar } from "@mui/material";
+import {
+  Button,
+  IconButton,
+  InputAdornment,
+  Menu,
+  MenuItem,
+  Snackbar,
+} from "@mui/material";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
@@ -15,7 +22,37 @@ import ListItemText from "@mui/material/ListItemText";
 import { FixedSizeList } from "react-window";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
 
+const options = [
+  "{{contact.email}}",
+  "{{contact.emailNormalized}}",
+  "{{contact.firstName}}",
+  "{{contact.lastName}}",
+  "{{contact.gender}}",
+  "{{contact.organization}}",
+  "{{contact.website}}",
+  "{{contact.title}}",
+  "{{contact.phoneNumber}}",
+  "{{contact.address}}",
+  "{{contact.city}}",
+  "{{contact.state}}",
+  "{{contact.country}}",
+  "{{contact.zipCode}}",
+  "{{contact.Contact No}}",
+  "{{contact.Email Id}}",
+];
+
+const ITEM_HEIGHT = 48;
+
 export default function TemplateDataEditsubject({ isopen, isclose }) {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const Addplaceopen = Boolean(anchorEl);
+  const handleClickAddplace = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseAddplace = () => {
+    setAnchorEl(null);
+  };
+
   const [emoji, setEmoji] = useState(false);
   const [addplace, setAddplace] = useState(false);
   const [selectedEmoji, setSelectedEmoji] = useState("");
@@ -46,8 +83,8 @@ export default function TemplateDataEditsubject({ isopen, isclose }) {
         className="TempEditsubdrawer"
       >
         <Box role="presentation">
-          <IconButton style={{ margin: "8px" }}>
-            <ClearOutlinedIcon color="action" onClick={isclose} />
+          <IconButton style={{ margin: "8px" }} onClick={isclose}>
+            <ClearOutlinedIcon color="action" />
           </IconButton>
           <br />
           <div className="TempEditsubmaindiv">
@@ -69,18 +106,20 @@ export default function TemplateDataEditsubject({ isopen, isclose }) {
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
-                      <IconButton style={{ padding: "5px" }}>
+                      <IconButton
+                        style={{ padding: "5px" }}
+                        onClick={() => {
+                          if (emoji) {
+                            setEmoji(false);
+                          } else {
+                            setEmoji(true);
+                          }
+                        }}
+                      >
                         <EmojiEmotionsIcon
                           color="action"
                           style={{
                             opacity: "50%",
-                          }}
-                          onClick={() => {
-                            if (emoji) {
-                              setEmoji(false);
-                            } else {
-                              setEmoji(true);
-                            }
                           }}
                         />
                       </IconButton>
@@ -108,65 +147,43 @@ export default function TemplateDataEditsubject({ isopen, isclose }) {
                   textTransform: "initial",
                   color: "#000000DE",
                 }}
-                onClick={() => {
-                  if (addplace) {
-                    setAddplace(false);
-                  } else {
-                    setAddplace(true);
-                  }
-                }}
+                aria-label="more"
+                id="long-button"
+                aria-controls={Addplaceopen ? "long-menu" : undefined}
+                aria-expanded={Addplaceopen ? "true" : undefined}
+                aria-haspopup="true"
+                onClick={handleClickAddplace}
               >
                 <ControlPointIcon
                   style={{ marginRight: "8px", fontSize: "20px" }}
                 />{" "}
                 Add personalisation placeholder
               </Button>
-            </div>
-            {addplace && (
-              <Box
-                sx={{
-                  width: 253,
-                  height: 268,
-                  maxWidth: 360,
-                  bgcolor: "background.paper",
+              <Menu
+                id="long-menu"
+                MenuListProps={{
+                  "aria-labelledby": "long-button",
                 }}
-                style={{
-                  zIndex: "1000",
-                  borderRadius: " 4px",
-                  boxShadow:
-                    "rgb(0 0 0 / 31%) 0px 0px 1px 0px, rgb(0 0 0 / 25%) 0px 6px 12px -4px ",
-                  position: "absolute",
+                anchorEl={anchorEl}
+                open={Addplaceopen}
+                onClose={handleCloseAddplace}
+                PaperProps={{
+                  style: {
+                    maxHeight: 268,
+                  },
                 }}
               >
-                <FixedSizeList
-                  height={268}
-                  width={253}
-                  itemSize={35}
-                  itemCount={16}
-                  overscanCount={5}
-                  itemData={[
-                    "{{contact.email}}",
-                    "{{contact.emailNormalized}}",
-                    "{{contact.firstName}}",
-                    "{{contact.lastName}}",
-                    "{{contact.gender}}",
-                    "{{contact.organization}}",
-                    "{{contact.website}}",
-                    "{{contact.title}}",
-                    "{{contact.phoneNumber}}",
-                    "{{contact.address}}",
-                    "{{contact.city}}",
-                    "{{contact.state}}",
-                    "{{contact.country}}",
-                    "{{contact.zipCode}}",
-                    "{{contact.Contact No}}",
-                    "{{contact.Email Id}}",
-                  ]}
-                >
-                  {renderRow}
-                </FixedSizeList>
-              </Box>
-            )}
+                {options.map((option) => (
+                  <MenuItem
+                    key={option}
+                    selected={option === "Pyxis"}
+                    onClick={handleCloseAddplace}
+                  >
+                    {option}
+                  </MenuItem>
+                ))}
+              </Menu>
+            </div>
             <div className="Savetempeditsubbtndiv">
               <Button
                 className="Savecopyeditsubbtn"

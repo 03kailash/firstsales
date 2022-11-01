@@ -88,8 +88,8 @@ export default function TemplateAddsignature({ open, close }) {
         className="TemplateAddsignaturedrawer"
       >
         <Box role="presentation">
-          <IconButton style={{ margin: "8px" }}>
-            <ClearOutlinedIcon color="action" onClick={close} />
+          <IconButton style={{ margin: "8px" }} onClick={close}>
+            <ClearOutlinedIcon color="action" />
           </IconButton>
           <br />
           <div className="TempAddsignaturemaindiv">
@@ -126,17 +126,16 @@ export default function TemplateAddsignature({ open, close }) {
                 className="searchinputtempaddsign"
                 style={{ width: "100%" }}
               />
-              <IconButton>
-                <TuneOutlinedIcon
-                  color="action"
-                  onClick={() => {
-                    if (author) {
-                      setAuthor(false);
-                    } else {
-                      setAuthor(true);
-                    }
-                  }}
-                />
+              <IconButton
+                onClick={() => {
+                  if (author) {
+                    setAuthor(false);
+                  } else {
+                    setAuthor(true);
+                  }
+                }}
+              >
+                <TuneOutlinedIcon color="action" />
               </IconButton>
             </div>
             {author && (

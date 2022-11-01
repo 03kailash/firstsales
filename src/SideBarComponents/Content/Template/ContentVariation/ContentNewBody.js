@@ -24,8 +24,8 @@ export default function ContentNewBody({ isopen, isclose }) {
         className="ContentNewBodydrawer"
       >
         <Box role="presentation">
-          <IconButton style={{ margin: "8px" }}>
-            <ClearOutlinedIcon color="action" onClick={isclose} />
+          <IconButton style={{ margin: "8px" }} onClick={isclose}>
+            <ClearOutlinedIcon color="action" />
           </IconButton>
           <br />
           <div className="ContentNewBodymaindiv">

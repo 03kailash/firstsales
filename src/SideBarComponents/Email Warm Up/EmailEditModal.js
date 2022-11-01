@@ -27,8 +27,8 @@ export default function EmailEditModal({ open, close }) {
         className="emaileditdrawer"
       >
         <Box role="presentation">
-          <IconButton style={{ margin: "8px" }}>
-            <ClearOutlinedIcon color="action" onClick={close} />
+          <IconButton style={{ margin: "8px" }} onClick={close}>
+            <ClearOutlinedIcon color="action" />
           </IconButton>
           <br />
           <div style={{ width: "100%", padding: "0px 32px" }}>

@@ -169,8 +169,8 @@ export default function TemplateBuilder({ isOpen, isClose }) {
         className="tempbuiltdrawer"
       >
         <Box role="presentation">
-          <IconButton style={{ margin: "8px" }}>
-            <ClearOutlinedIcon color="action" onClick={isClose} />
+          <IconButton style={{ margin: "8px" }} onClick={isClose}>
+            <ClearOutlinedIcon color="action" />
           </IconButton>
           <br />
           <div className="tempbuildetwholediv">
