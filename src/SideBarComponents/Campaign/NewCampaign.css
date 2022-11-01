@@ -302,6 +302,156 @@
   outline: 0px;
   right: 0px;
 }
+.SequenceHeadDiv{
+  display: flex;
+  width: 100% !important;
+  align-items: center;
+  width: 100%;
+  padding: 0px 24px 24px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  margin-top: 32px ;
+ }
+.SequenceChipText{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  width: 33.33% !important;
+}
+.SequenceBodyBlock{
+  width :100%;
+  display: flex;
+  max-width: 100% !important;
+}
+.DeviceHubRoundedIcon{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 45px ;
+  width: 45px ;
+  background-color: rgb(255, 248, 225) !important;
+  border-radius: 4px !important;
+}
+.DeviceHubSequence{
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.43;
+    letter-spacing: 0.01071em;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.87);
+}
+.MoreVertIconDiv{
+    margin-top: 8px !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important;
+    
+    padding: 4px 0px 4px 16px;
+    border-left: 4px solid rgb(255, 142, 0) !important;
+}
+.ToggleButtonBasicMode{
+  background-color: rgba(0, 0, 0, 0.12);
+  width: 50%;
+  border-radius: 4px !important;
+  border: 1px solid;
+  color: #000000 !important;
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px;
+  border-right-color: transparent ;
+}
+.ToggleButtonBasicMode:hover{
+  color: rgba(0, 0, 0, 0.12) !important;
+}
+.mailIcon{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height: 45px;
+  width: 45px;
+  background-color: rgb(185, 246, 202);
+  border-radius: 4px;
+}
+.mailIconButn{
+  padding: 8px;
+ border-color:  rgb(185, 246, 202) !important;
+ width: 100%;
+ background-color: #ffffff !important;
+ display: flex;
+ justify-content: space-between !important;
+}
+.sandEmailText{
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  color: rgba(0, 0, 0, 0.87);
+  text-transform:initial !important;
+}
+.EmailTextIconBtn{
+  width: 100% !important;
+  display: flex;
+  align-items: center;
+  padding:16px 32px ;
+  gap: 12px;
+  background-color: #e8f5e9;
+}
+.sandEmailText2{
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
+}
+.BobyLastDiv{
+  max-width: 341px !important;
+  max-height: 700px !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: rgb(255, 255, 255);
+    color: rgba(0, 0, 0, 0.87);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms !important;
+    border-radius: 4px !important;
+    box-shadow: rgb(0 0 0 / 31%) 0px 0px 1px 0px, rgb(0 0 0 / 25%) 0px 4px 6px -2px !important;
+    overflow: hidden;
+}
+.templateText{
+  margin: 0px;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.87);
+}
+.DashedDiv{
+  border: 1px dashed rgb(244, 67, 54);
+  border-radius: 8px;
+  margin: 16px 0px 24px;
+}
+.NumberoftempText{
+  color: rgb(198, 40, 40);
+  margin: 32px 0px;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.43;
+    letter-spacing: 0.01071em;
+    font-weight: 500;
+    text-align: center;
+}
+.CreateNewTamplatebtn{
+  width: 211px;
+  font-size: 12px !important;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 0.8125rem;
+    line-height: 1.75;
+    letter-spacing: 0.02857em;
+    min-width: 64px;
+    padding: 3px 9px;
+    border-radius: 4px; 
+    border: 1px solid currentcolor;
+    color: #000000 !important;
+    border-color: #000000 !important;
+}
 @media screen  and (max-width:1200px){
   .Steper{
     max-width: 100% !important;
@@ -315,6 +465,18 @@
    .CampaignName{
     max-width: 100% !important;
    }
+   .SequenceHeadDiv{
+    display: block;
+    max-width: 100% !important;
+   }
+   .SequenceChipText{
+    width: 100% !important;
+   }
+   .ArchiveRoundedIcon{
+    width: 100% !important;
+    padding-top: 16px !important;
+   }
+   
 }
 @media screen  and (max-width:900px) {
   .Steper{
@@ -347,5 +509,8 @@
  }
  .CampaignName{
   max-width: 100% !important;
+ }
+ .SequenceBodyBlock{
+  display: block !important;
  }
 }
