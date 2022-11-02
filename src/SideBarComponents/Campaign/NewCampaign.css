@@ -112,7 +112,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  padding: 10px !important;
   color: rgb(156, 39, 176) !important;
   background-color: rgba(156, 39, 176, 0.3) !important;
   font-size: 13px !important;
@@ -163,6 +162,8 @@
 .ADDORBTN {
   color: rgb(255, 255, 255) !important;
   background-color: rgb(2, 136, 209) !important;
+  text-transform: inherit !important;
+  padding: 6px 16px !important;
 }
 .If {
   width: 35px !important;
@@ -181,6 +182,7 @@
   color: #ae59c3 !important;
   border-color: #ae59c3 !important;
   font-size: 14px !important;
+  text-transform: inherit !important;
 }
 .SideDiv {
   width: 410px !important;
@@ -477,6 +479,9 @@
   letter-spacing: 0.03333em;
   color: rgba(0, 0, 0, 0.87);
 }
+.ContactBlockDiv{
+  margin: 0px 32px;
+ }
 @media screen  and (max-width:1200px){
   .Steper{
     max-width: 100% !important;
@@ -501,7 +506,7 @@
     width: 100% !important;
     padding-top: 16px !important;
    }
-   
+
 }
 @media screen  and (max-width:900px) {
   .Steper{
