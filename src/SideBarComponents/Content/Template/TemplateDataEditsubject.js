@@ -16,10 +16,6 @@ import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import Alert from "@mui/material/Alert";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import { FixedSizeList } from "react-window";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
 
 const options = [
@@ -41,38 +37,20 @@ const options = [
   "{{contact.Email Id}}",
 ];
 
-const ITEM_HEIGHT = 48;
-
 export default function TemplateDataEditsubject({ isopen, isclose }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const Addplaceopen = Boolean(anchorEl);
   const handleClickAddplace = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleCloseAddplace = () => {
+  const handleCloseAddplace = (e) => {
+    setSubjectline(subjectline + e.target.innerText);
     setAnchorEl(null);
   };
 
   const [emoji, setEmoji] = useState(false);
-  const [addplace, setAddplace] = useState(false);
-  const [selectedEmoji, setSelectedEmoji] = useState("");
+  const [subjectline, setSubjectline] = useState("");
   const [snackOpen, setSnackOpen] = React.useState(false);
-
-  function renderRow(props) {
-    const { index, style, data } = props;
-    return (
-      <ListItem style={style} key={index} component="div" disablePadding>
-        <ListItemButton
-          onClick={() => {
-            setSelectedEmoji(selectedEmoji + data[index]);
-            setAddplace(false);
-          }}
-        >
-          <ListItemText primary={`${data[index]}`} />
-        </ListItemButton>
-      </ListItem>
-    );
-  }
 
   return (
     <React.Fragment>
@@ -100,8 +78,8 @@ export default function TemplateDataEditsubject({ isopen, isclose }) {
                 }}
                 size="small"
                 className="titleinput"
-                value={selectedEmoji}
-                onChange={(e) => setSelectedEmoji(e.target.value)}
+                value={subjectline}
+                onChange={(e) => setSubjectline(e.target.value)}
                 style={{ margin: "16px 0px 4px" }}
                 InputProps={{
                   endAdornment: (
@@ -135,7 +113,7 @@ export default function TemplateDataEditsubject({ isopen, isclose }) {
                 <Picker
                   data={data}
                   onEmojiSelect={(item) =>
-                    setSelectedEmoji(selectedEmoji + item.native)
+                    setSubjectline(subjectline + item.native)
                   }
                   sets="apple"
                 />

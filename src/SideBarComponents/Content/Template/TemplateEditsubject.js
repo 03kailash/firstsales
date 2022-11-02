@@ -16,10 +16,6 @@ import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import { FixedSizeList } from "react-window";
 import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
 
 const options = [
@@ -41,38 +37,21 @@ const options = [
   "{{contact.Email Id}}",
 ];
 
-const ITEM_HEIGHT = 48;
-
 export default function TemplateEditsubject({ isopen, isclose }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const Addplaceopen = Boolean(anchorEl);
   const handleClickAddplace = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleCloseAddplace = () => {
+  const handleCloseAddplace = (e) => {
+    setSubjectline(subjectline + e.target.innerText);
     setAnchorEl(null);
   };
 
-  const [addplace, setAddplace] = useState(false);
   const [emoji, setEmoji] = useState(false);
-  const [selectedEmoji, setSelectedEmoji] = useState("");
+  const [subjectline, setSubjectline] = useState("");
   const [snackOpen, setSnackOpen] = React.useState(false);
 
-  function renderRow(props) {
-    const { index, style, data } = props;
-    return (
-      <ListItem style={style} key={index} component="div" disablePadding>
-        <ListItemButton
-          onClick={() => {
-            setSelectedEmoji(selectedEmoji + data[index]);
-            setAddplace(false);
-          }}
-        >
-          <ListItemText primary={`${data[index]}`} />
-        </ListItemButton>
-      </ListItem>
-    );
-  }
   return (
     <React.Fragment>
       <Drawer
@@ -105,8 +84,8 @@ export default function TemplateEditsubject({ isopen, isclose }) {
                 }}
                 size="small"
                 className="titleinput"
-                value={selectedEmoji}
-                onChange={(e) => setSelectedEmoji(e.target.value)}
+                value={subjectline}
+                onChange={(e) => setSubjectline(e.target.value)}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
@@ -139,7 +118,7 @@ export default function TemplateEditsubject({ isopen, isclose }) {
                 <Picker
                   data={data}
                   onEmojiSelect={(item) =>
-                    setSelectedEmoji(selectedEmoji + item.native)
+                    setSubjectline(subjectline + item.native)
                   }
                   sets="apple"
                 />

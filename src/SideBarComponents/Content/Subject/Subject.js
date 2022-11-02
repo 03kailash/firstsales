@@ -26,10 +26,6 @@ import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import { FixedSizeList } from "react-window";
 import Subjectedit from "./Subjectedit";
 import { IconButton, InputAdornment, Menu } from "@mui/material";
 
@@ -51,8 +47,6 @@ const options = [
   "{{contact.Contact No}}",
   "{{contact.Email Id}}",
 ];
-
-const ITEM_HEIGHT = 48;
 
 const columns = [
   { id: "Subject", label: "Subject", minWidth: "532px" },
@@ -88,12 +82,13 @@ function createData(name, code, population, size) {
 const rows = [createData("no template")];
 export default function Subject() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+
   const Addplaceopen = Boolean(anchorEl);
   const handleClickAddplace = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleCloseAddplace = (e) => {
-    console.log(e.target.innerText);
+    setSubjectline(subjectline + e.target.innerText);
     setAnchorEl(null);
   };
 
@@ -103,7 +98,7 @@ export default function Subject() {
   };
 
   const [emoji, setEmoji] = useState(false);
-  const [selectedEmoji, setSelectedEmoji] = useState("");
+  const [subjectline, setSubjectline] = useState("");
   const [chipData, setChipData] = React.useState([
     { label: "Author: Somil Kaushal" },
   ]);
@@ -137,14 +132,7 @@ export default function Subject() {
   };
 
   return (
-    <div
-      style={{ justifyContent: "center", display: "flex" }}
-      onClick={() => {
-        if (emoji) {
-          setEmoji(false);
-        }
-      }}
-    >
+    <div style={{ justifyContent: "center", display: "flex" }}>
       <div style={{ maxwidth: "900px" }} className="templatecontainer">
         <div className="containerdiv">
           <div className="contentdiv">
@@ -214,8 +202,8 @@ export default function Subject() {
                           }}
                           size="small"
                           className="titleinput"
-                          value={selectedEmoji}
-                          onChange={(e) => setSelectedEmoji(e.target.value)}
+                          value={subjectline}
+                          onChange={(e) => setSubjectline(e.target.value)}
                         />
                       </div>
                       <div
@@ -229,7 +217,7 @@ export default function Subject() {
                           <Picker
                             data={data}
                             onEmojiSelect={(item) =>
-                              setSelectedEmoji(selectedEmoji + item.native)
+                              setSubjectline(subjectline + item.native)
                             }
                             sets="apple"
                           />
