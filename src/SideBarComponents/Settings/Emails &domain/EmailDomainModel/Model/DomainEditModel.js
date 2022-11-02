@@ -5,20 +5,18 @@ import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import Switch from "@mui/material/Switch";
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
 import { IconButton } from "@mui/material";
 import { useState } from "react";
 import ResetSMTPmodal from "./ResetSMTPmodal";
 import TextField from "@mui/material/TextField";
 import AddIcon from "@mui/icons-material/Add";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import Chip from "@mui/material/Chip"
+import Chip from "@mui/material/Chip";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-<<<<<<< Updated upstream
-=======
 import DeleteIcon from "@mui/icons-material/Delete";
->>>>>>> Stashed changes
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 export default function DomainEditModal(props) {
   const [resetsmtpmod, setResetsmtpmod] = useState(false);
@@ -32,85 +30,29 @@ export default function DomainEditModal(props) {
     <Drawer anchor={"right"} open={props.open} onClose={props.close}>
       <Box role="presentation" className="SmtpEditModel">
         <div>
-          <IconButton style={{ Margin: "8px" }}>
+          <IconButton style={{ margin: "8px" }}>
             <ClearOutlinedIcon color="action" onClick={props.close} />
           </IconButton>
         </div>
-<<<<<<< Updated upstream
-        <div className="SmtpEditModelHead">
-      
-=======
+
         {EditDetial && (
           <div className="SmtpEditModelHead">
->>>>>>> Stashed changes
+            <div className="MailAccountText">Mail Account</div>
             <div>
               <Alert severity="warning">
                 <AlertTitle>DMARC has issues</AlertTitle>
                 Please check DMARC Settings.
               </Alert>
             </div>
-<<<<<<< Updated upstream
-     
-          <div style={{ fontSize: "0.875rem", color: "rgba(0, 0, 0, 0.6)" }}>
-            <Switch color="warning" />
-            Running
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              marginTop: "40px",
-            }}
-          >
-            <Button className="newtemplatebtn">Show Sending Schedule</Button>
-          </div>
-          <div className="AccountstatusText">Account status</div>
-          <div style={{ fontSize: "0.875rem", color: "rgba(0, 0, 0, 0.6)" }}>
-            <Switch color="warning" />
-            Enable account
-          </div>
-          <div className="AccountstatusText">Account Auto Rate Limiting</div>
-          <div style={{ marginTop: "10px" }}>
-            <TextField
-              id="outlined-basic"
-              label="24H sending limit"
-              variant="outlined"
-              type="Number"
-              color="warning"
-              size="small"
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-          </div>
-          <div className="emailsperTextDiv">
-            <span className="emailsperText">
-              This mail account may send up to 99 emails per 24 hours
-            </span>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              margin: "48px 0px",
-            }}
-          >
-            <Button
-              className="newtemplatebtn"
-              onClick={() => {
-                setResetsmtpmod(true);
-=======
+
             <div
               style={{
                 display: "flex",
-                gap: "15px",
-                alignItems: "center",
-                backgroundColor: "#f7f7f7 ",
-                marginTop: "20px",
->>>>>>> Stashed changes
+                justifyContent: "center",
+                margin: "16px 0px",
               }}
             >
-              <div style={{ padding: "16px" }}>
+              <div style={{ padding: "16px", backgroundColor: "#f7f7f7" }}>
                 <div className="ProfileSection">
                   <AccountCircleIcon
                     color="warning"
@@ -129,7 +71,7 @@ export default function DomainEditModal(props) {
               style={{
                 display: "flex",
                 justifyContent: "center",
-                marginTop: "40px",
+                margin: "32px 0px",
               }}
             >
               <Button className="newtemplatebtn">Show Sending Schedule</Button>
@@ -139,7 +81,9 @@ export default function DomainEditModal(props) {
               <Switch color="warning" />
               Enable account
             </div>
-            <div className="AccountstatusText">Account Auto Rate Limiting</div>
+            <div className="AccountstatusText" style={{ marginTop: "16px" }}>
+              Account Auto Rate Limiting
+            </div>
             <div style={{ marginTop: "10px" }}>
               <TextField
                 id="outlined-basic"
@@ -175,7 +119,10 @@ export default function DomainEditModal(props) {
               </Button>
             </div>
             <div className="AddFromBtN">
-              <div className="AccountstatusText" style={{ margin: "0px" }}>
+              <div
+                className="AccountstatusText"
+                style={{ margin: "0px", padding: "0px" }}
+              >
                 Sent emails from
               </div>
               <Button className="newtemplatebtn">
@@ -212,13 +159,7 @@ export default function DomainEditModal(props) {
                 </div>
               </div>
             </div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                marginTop: "40px",
-              }}
-            >
+            <div className="DeleteAccountButton">
               <Button
                 variant="outlined"
                 className="DeleteDomainModel"
@@ -227,16 +168,21 @@ export default function DomainEditModal(props) {
                   setEditDetial(false);
                 }}
               >
-                <DeleteIcon /> Delete
+                <DeleteIcon /> Delete Account
               </Button>
             </div>
           </div>
         )}
         {Deletemod && (
-          <div className="SmtpEditModelHead">
-            <div className="MailAccountText">Mail Account</div>
-            <div>
-              <Alert severity="error">Sure to remove? No way back.</Alert>
+          <>
+            <div className="SmtpEditModelHead">
+              <div className="MailAccounthead">Mail Account</div>
+              <div>
+                <Alert severity="error">
+                  <AlertTitle>Sure to remove? No way back.</AlertTitle>
+                  somilkaushal@123{" "}
+                </Alert>
+              </div>
             </div>
             <div>
               <div
@@ -250,6 +196,7 @@ export default function DomainEditModal(props) {
                   style={{
                     backgroundColor: " rgb(244, 67, 54)",
                     color: "#ffffff",
+                    textTransform: "inherit",
                   }}
                 >
                   <DeleteIcon /> Delete Account
@@ -259,6 +206,7 @@ export default function DomainEditModal(props) {
                   style={{
                     backgroundColor: "#ff8e00",
                     color: "#ffffff",
+                    textTransform: "inherit",
                   }}
                   onClick={() => {
                     setEditDetial(true);
@@ -269,7 +217,7 @@ export default function DomainEditModal(props) {
                 </Button>
               </div>
             </div>
-          </div>
+          </>
         )}
       </Box>
       <ResetSMTPmodal isOpen={resetsmtpmod} isClose={closeresetsmtpmodal} />
