@@ -178,7 +178,7 @@ function Contact() {
               </div>
             </div>
             <div className="status_div">
-              <span className="status">Stats update:</span><div style={{fontSize: "0.75rem"}}>2 hours ago</div>
+              <span className="status">Stats update:</span>
             </div>
 
             <div className="SearchHead">
@@ -220,7 +220,7 @@ function Contact() {
             </div>
 
             {active && (
-              <div style={{ display: "flex" }}>
+              <div style={{ display: "flex",marginTop:'8px' }}>
                 <FormControl sx={{ m: 1, width: 300 }} className='SelectFeildBox'>
                   <InputLabel id="demo-multiple-checkbox-label" color="warning" shrink>
                     Contact State/Action

@@ -216,7 +216,7 @@ function SideBar() {
         </button>
         <button className="SupportDiv" style={{ paddingLeft: "54px" }}>
           <MenuBookOutlinedIcon />
-          nowledgebase
+          Knowledgebase
         </button>
         <button className="SupportDiv" style={{ paddingLeft: "25px" }}>
           <SchoolIcon />
