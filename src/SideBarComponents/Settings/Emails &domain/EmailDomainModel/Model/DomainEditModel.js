@@ -5,6 +5,7 @@ import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import Switch from "@mui/material/Switch";
+<<<<<<< Updated upstream
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import { IconButton } from "@mui/material";
@@ -16,6 +17,14 @@ import AddIcon from "@mui/icons-material/Add";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Chip from "@mui/material/Chip";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
+=======
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import { IconButton } from "@mui/material";
+import { useState } from "react";
+import ResetSMTPmodal from "./ResetSMTPmodal";
+
+>>>>>>> Stashed changes
 export default function DomainEditModal(props) {
   const [resetsmtpmod, setResetsmtpmod] = useState(false);
   const closeresetsmtpmodal = () => {
@@ -30,6 +39,7 @@ export default function DomainEditModal(props) {
           </IconButton>
         </div>
         <div className="SmtpEditModelHead">
+<<<<<<< Updated upstream
           <div>
             <Alert severity="warning">
               <AlertTitle>DMARC has issues</AlertTitle>
@@ -59,6 +69,19 @@ export default function DomainEditModal(props) {
                 checked for incoming replies.
               </Alert>
             </div>
+=======
+      
+            <div>
+              <Alert severity="warning">
+                <AlertTitle>DMARC has issues</AlertTitle>
+                Please check DMARC Settings.
+              </Alert>
+            </div>
+     
+          <div style={{ fontSize: "0.875rem", color: "rgba(0, 0, 0, 0.6)" }}>
+            <Switch color="warning" />
+            Running
+>>>>>>> Stashed changes
           </div>
           <div
             style={{

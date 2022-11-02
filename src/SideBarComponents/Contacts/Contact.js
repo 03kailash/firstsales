@@ -25,7 +25,7 @@ import Snackbar from "@mui/material/Snackbar";
 const columns = [
   { id: "Checkbox", label: "", minWidth: "89px" },
 
-  { id: "Name and Email", label: " Email", minWidth: "343px" },
+  { id: "Name and Email", label: " Name and email", minWidth: "343px" },
   {
     id: "Status",
     label: "Status",
@@ -178,7 +178,7 @@ function Contact() {
               </div>
             </div>
             <div className="status_div">
-              <p className="status">status Update</p>
+              <span className="status">Stats update:</span><div style={{fontSize: "0.75rem"}}>2 hours ago</div>
             </div>
 
             <div className="SearchHead">
@@ -292,7 +292,7 @@ function Contact() {
             )}
 
             <div className="group">
-              <div>Group action : </div>
+              <div style={{fontSize:"0.875rem" ,color:"rgba(0, 0, 0, 0.6)"}}>Group action : </div>
               <Button
                 size="small"
                 variant="outlined"
@@ -301,6 +301,7 @@ function Contact() {
                   color: "#707070",
                   borderColor: "#707070",
                 }}
+                disabled
               >
                 <DeleteOutlineIcon
                   className="DeleteIcon"

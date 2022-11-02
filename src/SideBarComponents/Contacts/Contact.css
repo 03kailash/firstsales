@@ -169,11 +169,16 @@
   width: 100% !important;
   height: 24px;
   margin: 8px 0px 32px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 4px;
 }
 .status {
  width: 100%;
  display: flex;
  justify-content: end;
+ font-size: 0.75rem;
 }
 .SearchHead {
   Max-width: 100%;
@@ -235,6 +240,7 @@
    width :100% !important;
   animation-duration: 10ms;
   padding: 8.5px 0px 8.5px 14px;
+  border-radius: 5px;
 }
 ::placeholder {
   font-size: 15px;

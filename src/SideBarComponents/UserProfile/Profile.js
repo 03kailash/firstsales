@@ -31,7 +31,7 @@ function Profile() {
             />
           </div>
           <div className="select_img">
-            <Button color="warning">Select Image</Button>
+            <Button color="warning" style={{textTransform:"inherit"}}>Select Image</Button>
           </div>
           <br />
           <div className="FirstName">
@@ -122,14 +122,14 @@ function Profile() {
       <div style={{ width: "100%", justifyContent: "center", display: "flex" }}>
         <div style={{ width: "400px", display: "flex" }}>
           <Button variant="outlined" color="warning" style={{textTransform:"inherit"}}>
-            logout
+            Logout
           </Button>
           <div
             style={{ display: "flex", justifyContent: "end", width: "100%" }}
           >
             <Button
-              style={{ backgroundColor: "#ff8e00", textTransform:"inherit"}}
               variant="contained"
+                className="profilesavebtn"
             >
               Save
             </Button>
