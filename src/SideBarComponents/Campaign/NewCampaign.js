@@ -43,6 +43,9 @@ import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import AddIcon from '@mui/icons-material/Add';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import ForkRightIcon from '@mui/icons-material/ForkRight';
+import FlagIcon from '@mui/icons-material/Flag';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import ClearIcon from '@mui/icons-material/Clear';
 const columns = [
   { id: "Mail Account", label: "Mail Account", minWidth: "150px" },
   {
@@ -66,10 +69,16 @@ function NewCampaign(props) {
   const reRender = () => setRender({});
   const [add, setadd] = useState(false);
   const [activeStep, setActiveStep] = React.useState(0);
-
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
+  const [time, settime] = useState(false);
+  const [AddStep, setAddStep] = useState(false);
+  const [laststep, setlaststep] = useState(false);
+  const [Connection, setconnection] = useState(false);
+  const [TimeField,setTimeField] = useState(false);
+  const [mail,setmail] =useState(true);
+  const [last,setlast] = useState(false);
+  const[ConnectionField,setConnectionField] = useState(false)
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -623,7 +632,14 @@ function NewCampaign(props) {
                                   </ToggleButtonGroup>
                                 </div>
                                 <div style={{ margin: '20px 0px' }}>
-                                  <Button variant="outlined" className="mailIconButn">
+                                  <Button variant="outlined" className="mailIconButn"
+                                   onClick={()=>{
+                                    setmail(true);
+                                    setTimeField(false);
+                                    setlast(false);
+                                    setConnectionField(false)
+                                  }}
+                                  >
                                     <div style={{ display: 'flex', justifyContent: "flex-start", alignItems: "center", gap: "6px " }}>
                                       <div className="mailIcon">
                                         < MailIcon color="action" />
@@ -640,50 +656,144 @@ function NewCampaign(props) {
                                     </div>
                                   </Button>
 
-                                  <Button variant="outlined" className="mailIconButn">
+                                  {time && <Button variant="outlined" className="mailIconButn"
+                                  onClick={()=>{
+                                    setTimeField(true);
+                                    setmail(false);
+                                    setlast(false);
+                                    setConnectionField(false)
+                                  }}
+                                  >
                                     <div style={{ display: 'flex', justifyContent: "flex-start", alignItems: "center", gap: "6px " }}>
-                                      <div className="mailIcon">
+                                      <div className="mailIcon" style={{ backgroundColor: '#bbdefb' }}>
                                         < AccessTimeIcon color="action" />
                                       </div>
-                                      <div style={{ display: 'flex', justifyContent: "center", alignItems: "center" }}>
-                                        <ErrorOutlineIcon style={{ color: 'rgb(244, 67, 54)' }} />
+                                      <div>
+                                        <span className="sandEmailText">Time</span>
                                       </div>
-                                    </div>
-                                   
-                                  </Button>
 
-                                  <Button variant="outlined" className="mailIconButn">
+                                    </div>
+                                    <div style={{ display: 'flex', justifyContent: "center", alignItems: "center" }}>
+                                      < DeleteOutlineIcon color="action" />
+                                    </div>
+                                  </Button>}
+
+                                  {Connection && <Button variant="outlined" className="mailIconButn"
+                                   onClick={()=>{
+                                    setTimeField(false);
+                                    setmail(false);
+                                    setlast(false);
+                                    setConnectionField(true)
+                                  }}
+                                  >
                                     <div style={{ display: 'flex', justifyContent: "flex-start", alignItems: "center", gap: "6px " }}>
-                                      <div className="mailIcon">
+                                      <div className="mailIcon" style={{ backgroundColor: '#fff59d' }}>
                                         <  ForkRightIcon color="action" />
                                       </div>
                                       <div>
                                         <span className="sandEmailText">Connection</span>
                                       </div>
-                                      <div style={{ display: 'flex', justifyContent: "center", alignItems: "center" }}>
-                                        <ErrorOutlineIcon style={{ color: 'rgb(244, 67, 54)' }} />
-                                      </div>
                                     </div>
-                                   
-                                  </Button>
+                                    <div style={{ display: 'flex', justifyContent: "center", alignItems: "center" }}>
+                                      < DeleteOutlineIcon color="action" />
+                                    </div>
+                                  </Button>}
 
-                                  <Button variant="outlined" className="mailIconButn">
+                                  {laststep && <Button variant="outlined" className="mailIconButn"
+                                   onClick={()=>{
+                                    setTimeField(false);
+                                    setmail(false);
+                                    setlast(true);
+                                    setConnectionField(false)
+                                  }}
+                                  >
                                     <div style={{ display: 'flex', justifyContent: "flex-start", alignItems: "center", gap: "6px " }}>
-                                      <div className="mailIcon">
-                                        < ForkRightIcon  color="action" />
+                                      <div className="mailIcon" style={{ backgroundColor: '#e1bee7 ' }}>
+                                        < FlagIcon color="action" />
                                       </div>
-                                     
+                                      <div>
+                                        <span className="sandEmailText">Last Step</span>
+                                      </div>
                                       <div style={{ display: 'flex', justifyContent: "center", alignItems: "center" }}>
                                         <ErrorOutlineIcon style={{ color: 'rgb(244, 67, 54)' }} />
                                       </div>
                                     </div>
-                                  </Button>
+                                    <div style={{ display: 'flex', justifyContent: "center", alignItems: "center" }}>
+                                      < DeleteOutlineIcon color="action" />
+                                    </div>
+                                  </Button>}
                                 </div>
                                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                                  <Button variant="outlined" style={{ color: '#ff8e00', borderColor: '#ff8e00' }}><AddIcon style={{ marginRight: '8px' }} /> Add step</Button>
+                                  <Button variant="outlined" style={{ color: '#ff8e00', borderColor: '#ff8e00' }}
+                                    onClick={() => {
+                                      if (AddStep) {
+                                        setAddStep(false);
+                                      } else {
+                                        setAddStep(true)
+                                      }
+                                    }}
+                                  ><AddIcon style={{ marginRight: '8px' }} /> Add step</Button>
                                 </div>
+                                {AddStep && <div>
+                                  <Box
+                                    sx={{
+                                      display: 'flex',
+                                      flexWrap: 'wrap',
+                                      '& > :not(style)': {
+                                        m: 1,
+                                        width: 296,
+                                        height: 130,
+                                      },
+                                    }}
+                                  >
+                                    <Paper elevation={3} >
+                                      <div style={{ display: 'flex', }}>
+                                        <div style={{ display: 'flex', justifyContent: "center", alignItems: "center", width: "100%" }}>
+                                          <span >Add element</span>
+                                        </div>
+                                        <div style={{ display: 'flex', justifyContent: "end" }}>
+
+                                          <IconButton>
+                                            <ClearIcon />
+                                          </IconButton>
+                                        </div>
+                                      </div>
+                                      <div style={{ display: 'flex', justifyContent: "center", alignItems: "center", marginTop: '16px ' }}>
+                                        <div className='paperBlock'>
+                                          <div style={{ backgroundColor: '#bbdefb' }} className='FlagIconBlockBtn'
+                                            onClick={() => {
+                                              if (time) {
+                                                settime(false);
+                                              } else {
+                                                settime(true)
+                                              }
+                                            }}
+                                          >
+                                            < AccessTimeIcon color="action" />
+                                          </div>
+                                          <div className="paperBlockTimeText"> Time</div>
+                                        </div>
+                                        <div className='paperBlock'>
+                                          <div style={{ backgroundColor: '#e1bee7 ' }} className='FlagIconBlockBtn'
+                                            onClick={() => {
+                                              if (laststep) {
+                                                setlaststep(false)
+                                              } else {
+                                                setlaststep(true)
+                                              }
+                                            }}
+                                          >
+                                            < FlagIcon color="action" />
+                                          </div>
+                                          <div className="paperBlockTimeText">Last Step</div>
+                                        </div>
+                                      </div>
+                                    </Paper>
+                                  </Box>
+                                </div>
+                                }
                               </div>
-                              <div className='BobyLastDiv'>
+                             {mail && <div className='BobyLastDiv'>
                                 <div className='EmailTextIconBtn'>
                                   <div className="mailIcon">
                                     < MailIcon color="action" />
@@ -707,7 +817,49 @@ function NewCampaign(props) {
                                     <Button variant="outlined" className="CreateNewTamplatebtn">Create a new template</Button>
                                   </div>
                                 </div>
-                              </div>
+                              </div>}
+
+                             { TimeField  && <div className='BobyLastDiv'>
+                                <div className='EmailTextIconBtn'>
+                                  <div className="mailIcon" style={{ backgroundColor: '#bbdefb' }}>
+                                        < AccessTimeIcon color="action" />
+                                      </div>
+                                  <div>
+                                    <span className="sandEmailText2" >Time</span>
+                                  </div>
+                                </div>   
+                              </div>}
+                              { ConnectionField  && <div className='BobyLastDiv'>
+                                <div className='EmailTextIconBtn'>
+                                  <div className="mailIcon" style={{ backgroundColor: '#bbdefb' }}>
+                                        < AccessTimeIcon color="action" />
+                                      </div>
+                                  <div>
+                                    <span className="sandEmailText2" >Time</span>
+                                  </div>
+                                </div>   
+                              </div>}
+                              {last && <div className='BobyLastDiv'>
+                                <div className='EmailTextIconBtn' >
+                                  <div className="mailIcon" style={{ backgroundColor: '#e1bee7 ' }}>
+                                        < FlagIcon color="action" />
+                                      </div>
+                                  <div>
+                                    <span className="sandEmailText2" >Last Step</span>
+                                  </div>
+                                </div>
+                                <div style={{ width: '100%', padding: '20px 32px 10px', backgroundColor: '#ffffff' }}>
+                                  <p className="templateText">Send email using template:</p>
+                                  <div className="DashedDiv">
+                                    <p className="NumberoftempText">No sending templates yet</p>
+                                  </div>
+                                </div>
+                                <div style={{ marginBottom: '48px' }}>
+                                  <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                    <Button variant="outlined" className="CreateNewTamplatebtn">change template</Button>
+                                  </div>
+                                </div>
+                              </div>}
                             </div>
                           </>
                         )}

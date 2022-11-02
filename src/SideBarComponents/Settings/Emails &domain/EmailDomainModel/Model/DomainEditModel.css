@@ -1,0 +1,21 @@
+.SmtpEditModel{
+    background-color: rgb(255, 255, 255);
+    color: rgba(0, 0, 0, 0.87);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    box-shadow: rgb(0 0 0 / 31%) 0px 0px 1px 0px, rgb(0 0 0 / 25%) 0px 11px 20px -8px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex: 1 0 auto;
+    z-index: 1200;
+    position: fixed;
+    top: 0px;
+    outline: 0px;
+    right: 0px;
+}
+.SmtpEditModelHead {
+    width: 90vw;
+    max-width: 600px;
+    padding: 0px 32px 32px ;
+}
