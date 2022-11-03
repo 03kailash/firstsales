@@ -64,8 +64,7 @@ function createData(EmailAccount, Status) {
 
 const rows = [createData("EmailAccount", "Status")];
 function NewCampaign(props) {
-
-  const [day, setday] = React.useState('');
+  const [day, setday] = React.useState("");
 
   const handleeChange = (event) => {
     setday(event.target.value);
@@ -85,11 +84,7 @@ function NewCampaign(props) {
   const [TimeField, setTimeField] = useState(false);
   const [mail, setmail] = useState(true);
   const [last, setlast] = useState(false);
-<<<<<<< Updated upstream
   const [ConnectionField, setConnectionField] = useState(false);
-=======
-  const [ConnectionField, setConnectionField] = useState(false)
->>>>>>> Stashed changes
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -247,7 +242,7 @@ function NewCampaign(props) {
                                                         align={column.align}
                                                       >
                                                         {column.format &&
-                                                          typeof value ===
+                                                        typeof value ===
                                                           "number"
                                                           ? column.format(value)
                                                           : value}
@@ -340,16 +335,9 @@ function NewCampaign(props) {
                                   {add && (
                                     <div className="DeleteDiv1">
                                       <div style={{ display: "flex" }}>
-<<<<<<< Updated upstream
                                         <div className="If">IF</div>
 
                                         <div style={{ width: "100%" }}>
-=======
-
-                                        <div className="If">IF</div>
-
-                                        <div style={{ width: '100%' }}>
->>>>>>> Stashed changes
                                           <div
                                             style={{
                                               paddingLeft: "16px",
@@ -358,14 +346,10 @@ function NewCampaign(props) {
                                             }}
                                           >
                                             <FormControl
-<<<<<<< Updated upstream
                                               sx={{
                                                 maxWidth: 200,
                                                 width: "100%",
                                               }}
-=======
-                                              sx={{ maxWidth: 200, width: '100%' }}
->>>>>>> Stashed changes
                                               size="small"
                                             >
                                               <InputLabel
@@ -597,9 +581,9 @@ function NewCampaign(props) {
                                           key={row.name}
                                           sx={{
                                             "&:last-child td, &:last-child th":
-                                            {
-                                              border: 0,
-                                            },
+                                              {
+                                                border: 0,
+                                              },
                                           }}
                                         >
                                           <TableCell component="th" scope="row">
@@ -785,24 +769,15 @@ function NewCampaign(props) {
                                     </ToggleButton>
                                   </ToggleButtonGroup>
                                 </div>
-<<<<<<< Updated upstream
                                 <div style={{ margin: "20px 0px" }}>
                                   <Button
                                     variant="outlined"
                                     className="mailIconButn"
-=======
-                                <div style={{ margin: '20px 0px' }}>
-                                  <Button variant="outlined" className="mailIconButn"
->>>>>>> Stashed changes
                                     onClick={() => {
                                       setmail(true);
                                       setTimeField(false);
                                       setlast(false);
-<<<<<<< Updated upstream
                                       setConnectionField(false);
-=======
-                                      setConnectionField(false)
->>>>>>> Stashed changes
                                     }}
                                   >
                                     <div
@@ -930,56 +905,6 @@ function NewCampaign(props) {
                                     </Button>
                                   )}
 
-<<<<<<< Updated upstream
-                                  {Connection && (
-                                    <Button
-                                      variant="outlined"
-                                      className="mailIconButn"
-                                      onClick={() => {
-                                        setTimeField(false);
-                                        setmail(false);
-                                        setlast(false);
-                                        setConnectionField(true);
-                                      }}
-                                    >
-                                      <div
-                                        style={{
-                                          display: "flex",
-                                          justifyContent: "flex-start",
-                                          alignItems: "center",
-                                          gap: "6px ",
-                                        }}
-                                      >
-                                        <div
-                                          className="mailIcon"
-                                          style={{ backgroundColor: "#fff59d" }}
-                                        >
-                                          <ForkRightIcon color="action" />
-                                        </div>
-                                        <div
-                                          style={{
-                                            display: "flex",
-                                            justifyContent: "center",
-                                            alignItems: "center",
-                                          }}
-                                        >
-                                          <DeleteOutlineIcon color="action" />
-                                        </div>
-                                      </div>
-                                      <div
-                                        style={{
-                                          display: "flex",
-                                          justifyContent: "center",
-                                          alignItems: "center",
-                                        }}
-                                      >
-                                        <DeleteOutlineIcon color="action" />
-                                      </div>
-                                    </Button>
-                                  )}
-
-=======
->>>>>>> Stashed changes
                                   {laststep && (
                                     <Button
                                       variant="outlined"
@@ -1235,12 +1160,10 @@ function NewCampaign(props) {
                                         Time
                                       </span>
                                     </div>
-<<<<<<< Updated upstream
-=======
                                   </div>
                                   <div className="WaitForText">Wait for</div>
                                   <div className="TimeSelectDiv">
-                                    <Box sx={{ width:'80%' }}>
+                                    <Box sx={{ width: "80%" }}>
                                       <FormControl fullWidth>
                                         <InputLabel id="demo-simple-select-label"></InputLabel>
                                         <Select
@@ -1255,21 +1178,21 @@ function NewCampaign(props) {
                                           <MenuItem value={2}>2</MenuItem>
                                           <MenuItem value={3}>3</MenuItem>
                                           <MenuItem value={4}>4</MenuItem>
-                                          <MenuItem value={5}>5</MenuItem> 
+                                          <MenuItem value={5}>5</MenuItem>
                                           <MenuItem value={6}>6</MenuItem>
                                           <MenuItem value={7}>7</MenuItem>
-                                          <MenuItem value={8}>8</MenuItem> 
+                                          <MenuItem value={8}>8</MenuItem>
                                           <MenuItem value={9}>9</MenuItem>
                                           <MenuItem value={10}>10</MenuItem>
                                           <MenuItem value={11}>11</MenuItem>
-                                          <MenuItem value={12}>12</MenuItem> 
+                                          <MenuItem value={12}>12</MenuItem>
                                           <MenuItem value={13}>13</MenuItem>
                                           <MenuItem value={14}>14</MenuItem>
                                           <MenuItem value={15}>15</MenuItem>
                                           <MenuItem value={16}>16</MenuItem>
-                                          <MenuItem value={17}>17</MenuItem> 
+                                          <MenuItem value={17}>17</MenuItem>
                                           <MenuItem value={18}>18</MenuItem>
-                                          <MenuItem value={19}>19</MenuItem> 
+                                          <MenuItem value={19}>19</MenuItem>
                                           <MenuItem value={20}>20</MenuItem>
                                           <MenuItem value={21}>21</MenuItem>
                                           <MenuItem value={22}>22</MenuItem>
@@ -1284,10 +1207,7 @@ function NewCampaign(props) {
                                         </Select>
                                       </FormControl>
                                     </Box>
-                                    <div>
-                                      days
-                                    </div>
->>>>>>> Stashed changes
+                                    <div>days</div>
                                   </div>
                                 </div>
                               )}
@@ -1323,11 +1243,15 @@ function NewCampaign(props) {
                                       </span>
                                     </div>
                                   </div>
-                                  <div className="WaitForText">If email was :</div>
-                                  <div  style={{
+                                  <div className="WaitForText">
+                                    If email was :
+                                  </div>
+                                  <div
+                                    style={{
                                       width: "100%",
                                       padding: "0px 32px 10px",
-                                    }}>
+                                    }}
+                                  >
                                     <Box>
                                       <FormControl fullWidth>
                                         <InputLabel id="demo-simple-select-label"></InputLabel>
@@ -1344,7 +1268,7 @@ function NewCampaign(props) {
                                         </Select>
                                       </FormControl>
                                     </Box>
-                                    </div>
+                                  </div>
                                   <div
                                     style={{
                                       width: "100%",

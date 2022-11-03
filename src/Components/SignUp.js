@@ -3,7 +3,7 @@ import "./SignUp.css";
 import firstsales from "../Images/firstsales.jpg";
 import { Link } from "react-router-dom";
 
-export default function SignUp() {
+export function SignUp() {
   const [lc, setLc] = useState(false);
   const [uc, setUc] = useState(false);
   const [num, setNum] = useState(false);
@@ -79,7 +79,11 @@ export default function SignUp() {
         </center>
       </div>
       <div className="modalbody">
-        <form>
+        <form
+          onSubmit={() => {
+            callApi();
+          }}
+        >
           <span className="spantext">Sign up with a new account</span>
           <label className="emailhead">Email</label>
           <input
@@ -89,6 +93,7 @@ export default function SignUp() {
             onChange={(e) => {
               setEmail(e.target.value);
             }}
+            type="email"
           />
           <label className="emailhead">Password</label>
           <input
@@ -131,7 +136,7 @@ export default function SignUp() {
               "/Userdetail"
             }
           > */}
-          <button className="signupbtn" type="submit" onClick={callApi}>
+          <button className="signupbtn" type="submit">
             Sign up
           </button>
           {/* </Link> */}
@@ -140,9 +145,15 @@ export default function SignUp() {
         <div>
           <p className="lastp">
             <span>Already have an account?</span>&nbsp;
-            <Link to="/" className="signuplink">
+            {/* <Link to="/" className="signuplink"> */}
+            <a
+              onClick={() => {
+                this.props.history.push("/");
+              }}
+            >
               Sign in
-            </Link>
+            </a>
+            {/* </Link> */}
           </p>
         </div>
       </div>

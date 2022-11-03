@@ -1,7 +1,7 @@
 import "./App.css";
 import Signin from "./Components/Signin";
-import { Routes, Route } from "react-router-dom";
-import SignUp from "./Components/SignUp";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { SignUp } from "./Components/SignUp";
 import ForgotPass from "./Components/ForgotPass";
 import Userdetail from "./UserDetails/Userdetail";
 import Emailverify from "./Components/Emailverify";
@@ -19,25 +19,27 @@ import Settings from "./SideBarComponents/Settings/Settings";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Signin />} />
-      <Route path="/SignUp" element={<SignUp />} />
-      <Route path="/ForgotPass" element={<ForgotPass />} />
-      <Route path="/Userdetail" element={<Userdetail />} />
-      <Route path="/Emailverify" element={<Emailverify />} />
-      <Route path="/ChangePass" element={<ChangePass />} />
-      <Route path="/Dashboard" element={<SideBar />}>
-        <Route path="Profile" element={<Profile />} />
-        <Route path="Contacts" element={<Contact />} />
-        <Route path="Content" element={<Content />} />
-        <Route path="Campaigns" element={<Campaign />} />
-        <Route path="EmailWarmUp" element={<EmailWarm />} />
-        <Route path="Analytics" element={<Analytics />} />
-        <Route path="Settings" element={<Settings />} />
-      </Route>
-      <Route path="/payment" element={<Payment />} />
-      <Route path="/workspace" element={<Workshop />} />
-    </Routes>
+    <Router>
+      <Switch>
+        <Route path="/" exact component={Signin} />
+        <Route path="/SignUp" component={SignUp} />
+        <Route path="/ForgotPass" component={ForgotPass} />
+        <Route path="/Userdetail" component={Userdetail} />
+        <Route path="/Emailverify" component={Emailverify} />
+        <Route path="/ChangePass" component={ChangePass} />
+        <Route path="/Dashboard" exact component={SideBar} />
+        {/* <Route path="/Profile" component={Profile} /> */}
+        {/* <Route path="/Contacts" component={Contact} />
+          <Route path="Content" component={Content} />
+          <Route path="Campaigns" component={Campaign} />
+          <Route path="EmailWarmUp" component={EmailWarm} />
+          <Route path="Analytics" component={Analytics} />
+          <Route path="Settings" component={Settings} /> */}
+
+        <Route path="/payment" component={Payment} />
+        <Route path="/workspace" component={Workshop} />
+      </Switch>
+    </Router>
   );
 }
 
