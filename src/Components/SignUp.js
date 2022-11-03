@@ -39,6 +39,22 @@ export function SignUp() {
       .then((res) => console.log(res));
   };
 
+  const SendOtp = ()=>{
+    fetch("http://firstsales.fareof.com/api/send-otp",{
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+       email:email
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => console.log(res));
+   
+  }
+
   const handleChange = (event) => {
     var pass = event.target.value;
     var regLc = /(?=.*?[a-z])/;
@@ -79,11 +95,7 @@ export function SignUp() {
         </center>
       </div>
       <div className="modalbody">
-        <form
-          onSubmit={() => {
-            callApi();
-          }}
-        >
+        <form>
           <span className="spantext">Sign up with a new account</span>
           <label className="emailhead">Email</label>
           <input
@@ -136,7 +148,11 @@ export function SignUp() {
               "/Userdetail"
             }
           > */}
-          <button className="signupbtn" type="submit">
+          <button className="signupbtn" type="submit"
+          onClick={()=>{
+            SendOtp();
+          }}
+          >
             Sign up
           </button>
           {/* </Link> */}

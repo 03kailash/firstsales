@@ -601,7 +601,7 @@ function NewCampaign(props) {
                             </div>
                           </>
                         )}
-                        {activeStep === 2 && (
+                         {activeStep === 2 && (
                           <>
                             <div
                               className="TextContact"
@@ -1146,7 +1146,7 @@ function NewCampaign(props) {
                                 </div>
                               )}
 
-                              {TimeField && (
+{TimeField && (
                                 <div className="BobyLastDiv">
                                   <div className="EmailTextIconBtn">
                                     <div
