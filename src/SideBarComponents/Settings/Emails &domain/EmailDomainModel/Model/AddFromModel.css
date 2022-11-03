@@ -1,0 +1,22 @@
+.AddfromModel{
+    background-color: rgb(255, 255, 255);
+    color: rgba(0, 0, 0, 0.87);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    border-radius: 4px;
+    box-shadow: rgb(0 0 0 / 31%) 0px 0px 1px 0px, rgb(0 0 0 / 25%) 0px 24px 36px -8px;
+    margin: 32px;
+    position: relative;
+    overflow-y: auto;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+    max-width: 444px;
+    width: calc(100% - 64px);
+    padding: 10px 16px;
+}
+.VariationBtnDiv{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top:40px ;
+}

@@ -135,6 +135,7 @@ function Reports() {
                 id="demo-simple-select-helper-label"
                 style={{ color: "#ff8e00", maxWidth: "90px" }}
                 size="small"
+                shrink
               >
                 <span className="ProductText">Campaign</span>
               </InputLabel>
@@ -146,6 +147,7 @@ function Reports() {
                 onChange={handleChangee}
                 size="small"
                 color="warning"
+                notched
               >
                 <MenuItem value="">
                   <em>None</em>
@@ -162,6 +164,7 @@ function Reports() {
                 id="demo-simple-select-helper-label"
                 style={{ color: "#ff8e00", maxWidth: "90px" }}
                 size="small"
+                shrink
               >
                 <span className="ProductText">Team Member</span>
               </InputLabel>
@@ -173,6 +176,7 @@ function Reports() {
                 onChange={handleChangee}
                 size="small"
                 color="warning"
+                notched
               >
                 <MenuItem value="">
                   <em>None</em>

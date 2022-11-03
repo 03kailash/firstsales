@@ -17,6 +17,7 @@ import Chip from "@mui/material/Chip";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import AddFromModel from "./AddFromModel";
 
 export default function DomainEditModal(props) {
   const [resetsmtpmod, setResetsmtpmod] = useState(false);
@@ -25,6 +26,10 @@ export default function DomainEditModal(props) {
   };
   const [Deletemod, setDeletemod] = useState(false);
   const [EditDetial, setEditDetial] = useState(true);
+  const [AddFrom, setAddFrom] = useState(false);
+  const CloseAddFrom =()=>{
+    setAddFrom(false);
+  }
 
   return (
     <Drawer anchor={"right"} open={props.open} onClose={props.close}>
@@ -125,7 +130,11 @@ export default function DomainEditModal(props) {
               >
                 Sent emails from
               </div>
-              <Button className="newtemplatebtn">
+              <Button className="newtemplatebtn"
+              onClick={()=>{
+                  setAddFrom(true);
+              }}
+              >
                 <AddIcon />
                 Add From
               </Button>
@@ -190,6 +199,7 @@ export default function DomainEditModal(props) {
                   display: "flex",
                   justifyContent: "space-between",
                   marginTop: "40px",
+                  padding:"0px 10px"
                 }}
               >
                 <Button
@@ -221,6 +231,7 @@ export default function DomainEditModal(props) {
         )}
       </Box>
       <ResetSMTPmodal isOpen={resetsmtpmod} isClose={closeresetsmtpmodal} />
+      <AddFromModel  isopen ={AddFrom} isclose ={CloseAddFrom}/>
     </Drawer>
   );
 }

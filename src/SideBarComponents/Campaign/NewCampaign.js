@@ -45,6 +45,7 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import ForkRightIcon from "@mui/icons-material/ForkRight";
 import FlagIcon from "@mui/icons-material/Flag";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import NativeSelect from "@mui/material/NativeSelect/NativeSelect";
 import ClearIcon from "@mui/icons-material/Clear";
 const columns = [
   { id: "Mail Account", label: "Mail Account", minWidth: "150px" },
@@ -63,6 +64,12 @@ function createData(EmailAccount, Status) {
 
 const rows = [createData("EmailAccount", "Status")];
 function NewCampaign(props) {
+
+  const [day, setday] = React.useState('');
+
+  const handleeChange = (event) => {
+    setday(event.target.value);
+  };
   const [AndAdd, setAndAdd] = useState(false);
   // const [addOR,setaddOR] =useState(false);
   const [, setRender] = useState({});
@@ -78,7 +85,11 @@ function NewCampaign(props) {
   const [TimeField, setTimeField] = useState(false);
   const [mail, setmail] = useState(true);
   const [last, setlast] = useState(false);
+<<<<<<< Updated upstream
   const [ConnectionField, setConnectionField] = useState(false);
+=======
+  const [ConnectionField, setConnectionField] = useState(false)
+>>>>>>> Stashed changes
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -236,7 +247,7 @@ function NewCampaign(props) {
                                                         align={column.align}
                                                       >
                                                         {column.format &&
-                                                        typeof value ===
+                                                          typeof value ===
                                                           "number"
                                                           ? column.format(value)
                                                           : value}
@@ -329,9 +340,16 @@ function NewCampaign(props) {
                                   {add && (
                                     <div className="DeleteDiv1">
                                       <div style={{ display: "flex" }}>
+<<<<<<< Updated upstream
                                         <div className="If">IF</div>
 
                                         <div style={{ width: "100%" }}>
+=======
+
+                                        <div className="If">IF</div>
+
+                                        <div style={{ width: '100%' }}>
+>>>>>>> Stashed changes
                                           <div
                                             style={{
                                               paddingLeft: "16px",
@@ -340,10 +358,14 @@ function NewCampaign(props) {
                                             }}
                                           >
                                             <FormControl
+<<<<<<< Updated upstream
                                               sx={{
                                                 maxWidth: 200,
                                                 width: "100%",
                                               }}
+=======
+                                              sx={{ maxWidth: 200, width: '100%' }}
+>>>>>>> Stashed changes
                                               size="small"
                                             >
                                               <InputLabel
@@ -575,9 +597,9 @@ function NewCampaign(props) {
                                           key={row.name}
                                           sx={{
                                             "&:last-child td, &:last-child th":
-                                              {
-                                                border: 0,
-                                              },
+                                            {
+                                              border: 0,
+                                            },
                                           }}
                                         >
                                           <TableCell component="th" scope="row">
@@ -763,15 +785,24 @@ function NewCampaign(props) {
                                     </ToggleButton>
                                   </ToggleButtonGroup>
                                 </div>
+<<<<<<< Updated upstream
                                 <div style={{ margin: "20px 0px" }}>
                                   <Button
                                     variant="outlined"
                                     className="mailIconButn"
+=======
+                                <div style={{ margin: '20px 0px' }}>
+                                  <Button variant="outlined" className="mailIconButn"
+>>>>>>> Stashed changes
                                     onClick={() => {
                                       setmail(true);
                                       setTimeField(false);
                                       setlast(false);
+<<<<<<< Updated upstream
                                       setConnectionField(false);
+=======
+                                      setConnectionField(false)
+>>>>>>> Stashed changes
                                     }}
                                   >
                                     <div
@@ -899,6 +930,7 @@ function NewCampaign(props) {
                                     </Button>
                                   )}
 
+<<<<<<< Updated upstream
                                   {Connection && (
                                     <Button
                                       variant="outlined"
@@ -946,6 +978,8 @@ function NewCampaign(props) {
                                     </Button>
                                   )}
 
+=======
+>>>>>>> Stashed changes
                                   {laststep && (
                                     <Button
                                       variant="outlined"
@@ -1201,6 +1235,59 @@ function NewCampaign(props) {
                                         Time
                                       </span>
                                     </div>
+<<<<<<< Updated upstream
+=======
+                                  </div>
+                                  <div className="WaitForText">Wait for</div>
+                                  <div className="TimeSelectDiv">
+                                    <Box sx={{ width:'80%' }}>
+                                      <FormControl fullWidth>
+                                        <InputLabel id="demo-simple-select-label"></InputLabel>
+                                        <Select
+                                          labelId="demo-simple-select-label"
+                                          id="demo-simple-select"
+                                          size="small"
+                                          color="warning"
+                                          value={day}
+                                          onChange={handleeChange}
+                                        >
+                                          <MenuItem value={1}>1</MenuItem>
+                                          <MenuItem value={2}>2</MenuItem>
+                                          <MenuItem value={3}>3</MenuItem>
+                                          <MenuItem value={4}>4</MenuItem>
+                                          <MenuItem value={5}>5</MenuItem> 
+                                          <MenuItem value={6}>6</MenuItem>
+                                          <MenuItem value={7}>7</MenuItem>
+                                          <MenuItem value={8}>8</MenuItem> 
+                                          <MenuItem value={9}>9</MenuItem>
+                                          <MenuItem value={10}>10</MenuItem>
+                                          <MenuItem value={11}>11</MenuItem>
+                                          <MenuItem value={12}>12</MenuItem> 
+                                          <MenuItem value={13}>13</MenuItem>
+                                          <MenuItem value={14}>14</MenuItem>
+                                          <MenuItem value={15}>15</MenuItem>
+                                          <MenuItem value={16}>16</MenuItem>
+                                          <MenuItem value={17}>17</MenuItem> 
+                                          <MenuItem value={18}>18</MenuItem>
+                                          <MenuItem value={19}>19</MenuItem> 
+                                          <MenuItem value={20}>20</MenuItem>
+                                          <MenuItem value={21}>21</MenuItem>
+                                          <MenuItem value={22}>22</MenuItem>
+                                          <MenuItem value={23}>23</MenuItem>
+                                          <MenuItem value={24}>24</MenuItem>
+                                          <MenuItem value={25}>25</MenuItem>
+                                          <MenuItem value={26}>26</MenuItem>
+                                          <MenuItem value={27}>27</MenuItem>
+                                          <MenuItem value={28}>28</MenuItem>
+                                          <MenuItem value={29}>29</MenuItem>
+                                          <MenuItem value={30}>30</MenuItem>
+                                        </Select>
+                                      </FormControl>
+                                    </Box>
+                                    <div>
+                                      days
+                                    </div>
+>>>>>>> Stashed changes
                                   </div>
                                 </div>
                               )}
@@ -1236,6 +1323,28 @@ function NewCampaign(props) {
                                       </span>
                                     </div>
                                   </div>
+                                  <div className="WaitForText">If email was :</div>
+                                  <div  style={{
+                                      width: "100%",
+                                      padding: "0px 32px 10px",
+                                    }}>
+                                    <Box>
+                                      <FormControl fullWidth>
+                                        <InputLabel id="demo-simple-select-label"></InputLabel>
+                                        <Select
+                                          labelId="demo-simple-select-label"
+                                          id="demo-simple-select"
+                                          size="small"
+                                          color="warning"
+                                          value={day}
+                                          onChange={handleeChange}
+                                        >
+                                          <MenuItem value={1}>Opened</MenuItem>
+                                          <MenuItem value={2}>Clicked</MenuItem>
+                                        </Select>
+                                      </FormControl>
+                                    </Box>
+                                    </div>
                                   <div
                                     style={{
                                       width: "100%",
