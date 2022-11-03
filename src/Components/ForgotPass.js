@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import firstsales from "../Images/firstsales.jpg";
 import "./ForgotPass.css";
 import { Link } from "react-router-dom";
 
 export default function Forgotpass() {
+  const [forgotpassword, setForgotPassword] = useState("");
+  const Forgotpassword = () => {
+    fetch("http://firstsales.fareof.com/public/api/forgot-password", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "X-CSRF-TOKEN": "true",
+      },
+      body: {
+        forgotpassword: forgotpassword,
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => console.log(res));
+  };
   return (
     <div className="container">
       <div className="imagediv">
@@ -19,11 +35,20 @@ export default function Forgotpass() {
         </label>
         <br />
         <br />
-        <input className="emailverify" placeholder="Email" type={"email"} />
+        <input
+          className="emailverify"
+          placeholder="Email"
+          type={"email"}
+          onChange={(event) => {
+            setForgotPassword(event.target.value);
+          }}
+        />
 
-        <Link to="/Changepass">
-          <button className="resetpassbtn">Reset my password</button>
-        </Link>
+        {/* <Link to="/Changepass"> */}
+        <button className="resetpassbtn" onClick={Forgotpassword}>
+          Reset my password
+        </button>
+        {/* </Link> */}
       </div>
     </div>
   );

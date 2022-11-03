@@ -78,11 +78,7 @@ function NewCampaign(props) {
   const [TimeField, setTimeField] = useState(false);
   const [mail, setmail] = useState(true);
   const [last, setlast] = useState(false);
-<<<<<<< Updated upstream
   const [ConnectionField, setConnectionField] = useState(false);
-=======
-  const [ConnectionField, setConnectionField] = useState(false)
->>>>>>> Stashed changes
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -117,8 +113,7 @@ function NewCampaign(props) {
   const handleOpenAddModel = () => setOpenAddModel(true);
   const handleCloseAddModel = () => setOpenAddModel(false);
 
-
-  const [addAnd, setAddAnd] = useState(0)
+  const [addAnd, setAddAnd] = useState(0);
 
   return (
     <div>
@@ -334,21 +329,9 @@ function NewCampaign(props) {
                                   {add && (
                                     <div className="DeleteDiv1">
                                       <div style={{ display: "flex" }}>
-<<<<<<< Updated upstream
-                                        <div
-                                          style={{
-                                            padding: "16px 0px 0px 16px",
-                                          }}
-                                        >
-                                          <div className="If">IF</div>
-                                        </div>
-                                        <div style={{ width: "100%" }}>
-=======
-
                                         <div className="If">IF</div>
 
-                                        <div style={{ width: '100%' }}>
->>>>>>> Stashed changes
+                                        <div style={{ width: "100%" }}>
                                           <div
                                             style={{
                                               paddingLeft: "16px",
@@ -357,15 +340,10 @@ function NewCampaign(props) {
                                             }}
                                           >
                                             <FormControl
-<<<<<<< Updated upstream
                                               sx={{
-                                                m: 1,
                                                 maxWidth: 200,
                                                 width: "100%",
                                               }}
-=======
-                                              sx={{ maxWidth: 200, width: '100%' }}
->>>>>>> Stashed changes
                                               size="small"
                                             >
                                               <InputLabel
@@ -409,9 +387,11 @@ function NewCampaign(props) {
                                                 width: "100%",
                                               }}
                                             >
-                                              <IconButton onClick={() => {
-                                                setadd(false)
-                                              }}>
+                                              <IconButton
+                                                onClick={() => {
+                                                  setadd(false);
+                                                }}
+                                              >
                                                 <DeleteIcon />
                                               </IconButton>
                                             </div>
@@ -568,7 +548,10 @@ function NewCampaign(props) {
                                   onClick={() => setadd(true)}
                                   style={{ marginTop: "52px" }}
                                 >
-                                  <AddOutlinedIcon fontSize="small" style={{ marginRight: "8px" }} />
+                                  <AddOutlinedIcon
+                                    fontSize="small"
+                                    style={{ marginRight: "8px" }}
+                                  />
                                   Add OR
                                 </Button>
                               </div>
@@ -780,24 +763,15 @@ function NewCampaign(props) {
                                     </ToggleButton>
                                   </ToggleButtonGroup>
                                 </div>
-<<<<<<< Updated upstream
                                 <div style={{ margin: "20px 0px" }}>
                                   <Button
                                     variant="outlined"
                                     className="mailIconButn"
-=======
-                                <div style={{ margin: '20px 0px' }}>
-                                  <Button variant="outlined" className="mailIconButn"
->>>>>>> Stashed changes
                                     onClick={() => {
                                       setmail(true);
                                       setTimeField(false);
                                       setlast(false);
-<<<<<<< Updated upstream
                                       setConnectionField(false);
-=======
-                                      setConnectionField(false)
->>>>>>> Stashed changes
                                     }}
                                   >
                                     <div
@@ -838,7 +812,6 @@ function NewCampaign(props) {
                                     </div>
                                   </Button>
 
-<<<<<<< Updated upstream
                                   {time && (
                                     <Button
                                       variant="outlined"
@@ -870,19 +843,6 @@ function NewCampaign(props) {
                                           </span>
                                         </div>
                                         <div></div>
-=======
-                                  {time && <Button variant="outlined" className="mailIconButn"
-                                    onClick={() => {
-                                      setTimeField(true);
-                                      setmail(false);
-                                      setlast(false);
-                                      setConnectionField(false)
-                                    }}
-                                  >
-                                    <div style={{ display: 'flex', justifyContent: "flex-start", alignItems: "center", gap: "6px " }}>
-                                      <div className="mailIcon" style={{ backgroundColor: '#bbdefb' }}>
-                                        < AccessTimeIcon color="action" />
->>>>>>> Stashed changes
                                       </div>
                                       <div
                                         style={{
@@ -939,7 +899,53 @@ function NewCampaign(props) {
                                     </Button>
                                   )}
 
-<<<<<<< Updated upstream
+                                  {Connection && (
+                                    <Button
+                                      variant="outlined"
+                                      className="mailIconButn"
+                                      onClick={() => {
+                                        setTimeField(false);
+                                        setmail(false);
+                                        setlast(false);
+                                        setConnectionField(true);
+                                      }}
+                                    >
+                                      <div
+                                        style={{
+                                          display: "flex",
+                                          justifyContent: "flex-start",
+                                          alignItems: "center",
+                                          gap: "6px ",
+                                        }}
+                                      >
+                                        <div
+                                          className="mailIcon"
+                                          style={{ backgroundColor: "#fff59d" }}
+                                        >
+                                          <ForkRightIcon color="action" />
+                                        </div>
+                                        <div
+                                          style={{
+                                            display: "flex",
+                                            justifyContent: "center",
+                                            alignItems: "center",
+                                          }}
+                                        >
+                                          <DeleteOutlineIcon color="action" />
+                                        </div>
+                                      </div>
+                                      <div
+                                        style={{
+                                          display: "flex",
+                                          justifyContent: "center",
+                                          alignItems: "center",
+                                        }}
+                                      >
+                                        <DeleteOutlineIcon color="action" />
+                                      </div>
+                                    </Button>
+                                  )}
+
                                   {laststep && (
                                     <Button
                                       variant="outlined"
@@ -985,19 +991,6 @@ function NewCampaign(props) {
                                             }}
                                           />
                                         </div>
-=======
-                                  {Connection && <Button variant="outlined" className="mailIconButn"
-                                    onClick={() => {
-                                      setTimeField(false);
-                                      setmail(false);
-                                      setlast(false);
-                                      setConnectionField(true)
-                                    }}
-                                  >
-                                    <div style={{ display: 'flex', justifyContent: "flex-start", alignItems: "center", gap: "6px " }}>
-                                      <div className="mailIcon" style={{ backgroundColor: '#fff59d' }}>
-                                        <  ForkRightIcon color="action" />
->>>>>>> Stashed changes
                                       </div>
                                       <div
                                         style={{
@@ -1008,40 +1001,8 @@ function NewCampaign(props) {
                                       >
                                         <DeleteOutlineIcon color="action" />
                                       </div>
-<<<<<<< Updated upstream
                                     </Button>
                                   )}
-=======
-                                    </div>
-                                    <div style={{ display: 'flex', justifyContent: "center", alignItems: "center" }}>
-                                      < DeleteOutlineIcon color="action" />
-                                    </div>
-                                  </Button>}
-
-                                  {laststep && <Button variant="outlined" className="mailIconButn"
-                                    onClick={() => {
-                                      setTimeField(false);
-                                      setmail(false);
-                                      setlast(true);
-                                      setConnectionField(false)
-                                    }}
-                                  >
-                                    <div style={{ display: 'flex', justifyContent: "flex-start", alignItems: "center", gap: "6px " }}>
-                                      <div className="mailIcon" style={{ backgroundColor: '#e1bee7 ' }}>
-                                        < FlagIcon color="action" />
-                                      </div>
-                                      <div>
-                                        <span className="sandEmailText">Last Step</span>
-                                      </div>
-                                      <div style={{ display: 'flex', justifyContent: "center", alignItems: "center" }}>
-                                        <ErrorOutlineIcon style={{ color: 'rgb(244, 67, 54)' }} />
-                                      </div>
-                                    </div>
-                                    <div style={{ display: 'flex', justifyContent: "center", alignItems: "center" }}>
-                                      < DeleteOutlineIcon color="action" />
-                                    </div>
-                                  </Button>}
->>>>>>> Stashed changes
                                 </div>
                                 <div
                                   style={{
@@ -1226,7 +1187,6 @@ function NewCampaign(props) {
                                 </div>
                               )}
 
-<<<<<<< Updated upstream
                               {TimeField && (
                                 <div className="BobyLastDiv">
                                   <div className="EmailTextIconBtn">
@@ -1241,55 +1201,6 @@ function NewCampaign(props) {
                                         Time
                                       </span>
                                     </div>
-=======
-                                          <IconButton>
-                                            <ClearIcon />
-                                          </IconButton>
-                                        </div>
-                                      </div>
-                                      <div style={{ display: 'flex', justifyContent: "center", alignItems: "center", marginTop: '16px ' }}>
-                                        <div className='paperBlock'>
-                                          <div style={{ backgroundColor: '#bbdefb' }} className='FlagIconBlockBtn'
-                                            onClick={() => {
-                                              if (time) {
-                                                settime(false);
-                                              } else {
-                                                settime(true)
-                                              }
-                                            }}
-                                          >
-                                            < AccessTimeIcon color="action" />
-                                          </div>
-                                          <div className="paperBlockTimeText"> Time</div>
-                                        </div>
-                                        <div className='paperBlock'>
-                                          <div style={{ backgroundColor: '#e1bee7 ' }} className='FlagIconBlockBtn'
-                                            onClick={() => {
-                                              if (laststep) {
-                                                setlaststep(false)
-                                              } else {
-                                                setlaststep(true)
-                                              }
-                                            }}
-                                          >
-                                            < FlagIcon color="action" />
-                                          </div>
-                                          <div className="paperBlockTimeText">Last Step</div>
-                                        </div>
-                                      </div>
-                                    </Paper>
-                                  </Box>
-                                </div>
-                                }
-                              </div>
-                              {mail && <div className='BobyLastDiv'>
-                                <div className='EmailTextIconBtn'>
-                                  <div className="mailIcon">
-                                    < MailIcon color="action" />
-                                  </div>
-                                  <div>
-                                    <span className="sandEmailText2" >Send Mail</span>
->>>>>>> Stashed changes
                                   </div>
                                 </div>
                               )}
@@ -1357,53 +1268,7 @@ function NewCampaign(props) {
                                     </div>
                                   </div>
                                 </div>
-<<<<<<< Updated upstream
                               )}
-=======
-                              </div>}
-
-                              {TimeField && <div className='BobyLastDiv'>
-                                <div className='EmailTextIconBtn'>
-                                  <div className="mailIcon" style={{ backgroundColor: '#bbdefb' }}>
-                                    < AccessTimeIcon color="action" />
-                                  </div>
-                                  <div>
-                                    <span className="sandEmailText2" >Time</span>
-                                  </div>
-                                </div>
-                              </div>}
-                              {ConnectionField && <div className='BobyLastDiv'>
-                                <div className='EmailTextIconBtn'>
-                                  <div className="mailIcon" style={{ backgroundColor: '#bbdefb' }}>
-                                    < AccessTimeIcon color="action" />
-                                  </div>
-                                  <div>
-                                    <span className="sandEmailText2" >Time</span>
-                                  </div>
-                                </div>
-                              </div>}
-                              {last && <div className='BobyLastDiv'>
-                                <div className='EmailTextIconBtn' >
-                                  <div className="mailIcon" style={{ backgroundColor: '#e1bee7 ' }}>
-                                    < FlagIcon color="action" />
-                                  </div>
-                                  <div>
-                                    <span className="sandEmailText2" >Last Step</span>
-                                  </div>
-                                </div>
-                                <div style={{ width: '100%', padding: '20px 32px 10px', backgroundColor: '#ffffff' }}>
-                                  <p className="templateText">Send email using template:</p>
-                                  <div className="DashedDiv">
-                                    <p className="NumberoftempText">No sending templates yet</p>
-                                  </div>
-                                </div>
-                                <div style={{ marginBottom: '48px' }}>
-                                  <div style={{ display: 'flex', justifyContent: 'center' }}>
-                                    <Button variant="outlined" className="CreateNewTamplatebtn">change template</Button>
-                                  </div>
-                                </div>
-                              </div>}
->>>>>>> Stashed changes
                             </div>
                           </>
                         )}
