@@ -48,66 +48,74 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 
 export default function Payment() {
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }} >
-      <div className='ContainerDivTop'>
-        <div style={{ backgroundColor: " #F3F3F3" }}>
-          <div className='logodiv'>
-            <div style={{ width: '100%' }} >
-              <div><span className='textFirstSales'>Try First Sales</span></div>
-              <div className='day7'>7 days free</div>
-              <div style={{ color: "hsla(0,0%,10%,.6)", fontSize: "14px" }}>Then US$30.00 per month</div>
-            </div>
-          </div>
-          <div className='imgDiv'>
-            <img src={firstimg} alt="" />
-          </div>
-        </div>
-      </div>
-      <div className='paymentMethod'>
-        <div style={{ display: 'flex', justifyContent: "flex-start" }} >
-          <span className='details'>Enter payment details</span>
-        </div>
-        <div>
-          <div className='payText'>Payment method</div>
-          <div>
-            <Box
-              component="form"
-              noValidate
-              sx={{
-                display: 'grid',
-                gridTemplateColumns: { sm: '1fr 1fr' },
-                gap: 2,
-              }}
-            >
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', paddingBottom: "30px" }}>
-                <div>
-                  <FormControl variant="standard">
-                    <BootstrapInput id="bootstrap-input" />
-                  </FormControl>
-                </div>
-                <div>
-                  <FormControl variant="standard">
-                    <BootstrapInput id="bootstrap-input" > <AccountBalanceSharpIcon /></BootstrapInput>
-                  </FormControl>
+
+    <div style={{ backgroundColor: "rgb(224, 224, 224)" }}>
+      <div className="PaymentDiv">
+        <div style={{ display: 'flex', justifyContent: "space-between", width: '920px' }} >
+          <div className='ContainerDivTop'>
+            <div>
+              <div className='logodiv'>
+                <div style={{ width: '100%' }} >
+                  <div><span className='textFirstSales'>Try First Sales</span></div>
+                  <div className='day7'>7 days free</div>
+                  <div style={{ color: "hsla(0,0%,10%,.6)", fontSize: "14px" }}>Then US$30.00 per month</div>
                 </div>
               </div>
-            </Box>
+              <div className='imgDiv'>
+                <img src={firstimg} alt="" />
+              </div>
+            </div>
+          </div>
+          <div className='paymentMethod'>
+            <div style={{ display: 'flex', justifyContent: "flex-start" }} >
+              <span className='details'>Enter payment details</span>
+            </div>
             <div>
-              <spam >Card information</spam>
-              <div style={{paddingTop:"10px"}}>
-              <Box
-                component="form"
-                noValidate
-                sx={{
-                  display: 'grid',
-                  width:"350px",  
-                  gridTemplateColumns: { sm: '1fr 1fr' },
-                }}
-              >
-                <FormControl variant="standard"  >
-                  <BootstrapInput id="bootstrap-input"> <AccountBalanceSharpIcon /></BootstrapInput>
-                </FormControl>
-              </Box>
+              <div className='payText'>Payment method</div>
+              <div>
+                <Box
+                  component="form"
+                  noValidate
+
+                >
+                  <div style={{ paddingBottom: "30px", width: "100%" }}>
+                    <FormControl variant="standard" style={{ width: "100%" }}  >
+                      <BootstrapInput id="bootstrap-input" className='EmailFeildDiv' disabled />
+                    </FormControl>
+
+                    <FormControl variant="standard" style={{ width: "100%" }} >
+                      <BootstrapInput id="bootstrap-input" className='EmailFeild' placeholder='081234 56789' />
+                    </FormControl>
+
+                  </div>
+                </Box>
+                <div>
+                  <spam >Card information</spam>
+                  <div style={{ paddingTop: "10px", width: "100%" }}>
+                    <Box
+                      component="form"
+                      noValidate
+                    >
+                      <FormControl variant="standard" style={{ width: "100%" }}>
+                        <BootstrapInput id="bootstrap-input" className='EmailFeildDiv' />
+                      </FormControl>
+                      <div style={{ width: "100%",display:"flex",}}>
+                        <FormControl variant="standard"  >
+                          <BootstrapInput id="bootstrap-input" className='EmailFeildMM'/>
+                        </FormControl>
+
+                        <FormControl variant="standard"  >
+                          <BootstrapInput id="bootstrap-input"  className='EmailFeildCvv'/> 
+                        </FormControl>
+                      </div>
+
+                    </Box>
+                  </div>
+                </div>
+
+
+
+
               </div>
             </div>
           </div>

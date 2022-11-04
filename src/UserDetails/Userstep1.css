@@ -22,7 +22,8 @@
   color: rgba(0, 0, 0, 0.87);
 }
 .userinput {
-  width: 300px;
+  width: 100% !important;
+  max-width: 300px !important;
 }
 .currenttime {
   font-family: Roboto, Helvetica, Arial, sans-serif;
@@ -51,4 +52,12 @@
   width: 100%;
   margin: 24px auto !important;
   text-transform: capitalize !important;
+}
+.TimezomeInfo{
+  width: 100% !important;
+}
+.TimeZoneDiv{
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
 }

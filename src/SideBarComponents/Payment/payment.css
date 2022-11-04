@@ -1,15 +1,22 @@
 .ContainerDivTop{
     width: 100% !important;
+    max-width: 380px !important;
     height: 100vh !important;
     display: flex;
-    justify-content: center;
-    background-color: #F3F3F3;
+    
+
     padding-top: 32px !important;
+}
+.PaymentDiv::before{
+    background: #ffffff;
+    content: " ";
+    height: 100%;
+    position: fixed;
 }
 .logodiv{
     display: flex;
     justify-content: start;
-    background-color: #F3F3F3;
+   
 }
 .textFirstSales{
     font-size: 16px;
@@ -29,6 +36,7 @@
 }
 .paymentMethod{
     width: 100% ;
+    max-width: 380px !important;
     padding-top: 32px !important;
    background-color:#ffffff;  
 }
@@ -44,6 +52,38 @@
     text-transform: inherit !important;
     padding-bottom: 20px !important;
 }
-#bootstrap-input{
-    width: 250px;
+.PaymentHeadDiv{
+    background-color: black !important;
+    width: 100% !important;
+    max-width: 920px !important;
+}
+.PaymentDiv{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(224, 224, 224);
+    display: flex;
+    justify-content: center;
+}
+.EmailFeildDiv>input{
+    border-bottom-left-radius: 0!important;
+    border-bottom-right-radius: 0!important;
+    border-bottom: none !important;
+    width: 100% !important;
+}
+.EmailFeild>input{
+border-top-left-radius: 0!important;
+    border-top-right-radius: 0!important;
+    width: 100% !important;
+}
+.EmailFeildMM>input{
+    border-top-left-radius: 0!important;
+    border-bottom-right-radius: 0!important;
+    border-top-right-radius: 0!important;
+    width: 100% !important; 
+}
+.EmailFeildCvv>input{
+    border-top-left-radius: 0!important;
+    border-bottom-left-radius: 0!important;
+    border-top-right-radius: 0!important;
+    width: 100% !important; 
 }
