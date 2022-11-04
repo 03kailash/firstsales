@@ -3,7 +3,7 @@ import "./SignUp.css";
 import firstsales from "../Images/firstsales.jpg";
 import { Link } from "react-router-dom";
 
-export function SignUp() {
+export function SignUp(props) {
   const [lc, setLc] = useState(false);
   const [uc, setUc] = useState(false);
   const [num, setNum] = useState(false);
@@ -39,21 +39,20 @@ export function SignUp() {
       .then((res) => console.log(res));
   };
 
-  const SendOtp = ()=>{
-    fetch("http://firstsales.fareof.com/api/send-otp",{
+  const SendOtp = () => {
+    fetch("http://firstsales.fareof.com/api/send-otp", {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-       email:email
+        email: email,
       }),
     })
       .then((res) => res.json())
       .then((res) => console.log(res));
-   
-  }
+  };
 
   const handleChange = (event) => {
     var pass = event.target.value;
@@ -148,10 +147,12 @@ export function SignUp() {
               "/Userdetail"
             }
           > */}
-          <button className="signupbtn" type="submit"
-          onClick={()=>{
-            SendOtp();
-          }}
+          <button
+            className="signupbtn"
+            type="button"
+            onClick={() => {
+              SendOtp();
+            }}
           >
             Sign up
           </button>
@@ -164,7 +165,7 @@ export function SignUp() {
             {/* <Link to="/" className="signuplink"> */}
             <a
               onClick={() => {
-                this.props.history.push("/");
+                props.history.push("/");
               }}
             >
               Sign in

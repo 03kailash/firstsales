@@ -33,7 +33,6 @@ export default function Signin(props) {
         }
       });
   };
-  console.log(localStorage.getItem("token"), check);
 
   return (
     <div className="container">
@@ -78,7 +77,7 @@ export default function Signin(props) {
             await Login();
             setCheck(true);
             if (localStorage.getItem("token") !== null) {
-              props.history.push("/dashboard");
+              props.history.push("/Dashboard/Profile");
             }
           }}
         >

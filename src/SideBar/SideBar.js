@@ -284,15 +284,14 @@ function SideBar() {
             </Drawer>
           </Box>
         )}
-
         <Switch>
-          <Route path="/Profile" exact component={Profile} />
-          <Route path="/Contacts" component={Contact} />
-          <Route path="/Content" component={Content} />
-          <Route path="Campaigns" component={Campaign} />
-          <Route path="EmailWarmUp" component={EmailWarm} />
-          <Route path="Analytics" component={Analytics} />
-          <Route path="Settings" component={Settings} />
+          <Route path="/Dashboard/Profile" component={Profile} />
+          <Route path="/Dashboard/Contacts" component={Contact} />
+          <Route path="/Dashboard/Content" component={Content} />
+          <Route path="/Dashboard/Campaigns" component={Campaign} />
+          <Route path="/Dashboard/EmailWarmUp" component={EmailWarm} />
+          <Route path="/Dashboard/Analytics" component={Analytics} />
+          <Route path="/Dashboard/Settings" component={Settings} />
         </Switch>
       </Box>
       <Drawer

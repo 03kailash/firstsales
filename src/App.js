@@ -27,15 +27,7 @@ function App() {
         <Route path="/Userdetail" component={Userdetail} />
         <Route path="/Emailverify" component={Emailverify} />
         <Route path="/ChangePass" component={ChangePass} />
-        <Route path="/Dashboard" exact component={SideBar} />
-        {/* <Route path="/Profile" component={Profile} /> */}
-        {/* <Route path="/Contacts" component={Contact} />
-          <Route path="Content" component={Content} />
-          <Route path="Campaigns" component={Campaign} />
-          <Route path="EmailWarmUp" component={EmailWarm} />
-          <Route path="Analytics" component={Analytics} />
-          <Route path="Settings" component={Settings} /> */}
-
+        <Route path="/Dashboard" component={SideBar} />
         <Route path="/payment" component={Payment} />
         <Route path="/workspace" component={Workshop} />
       </Switch>
