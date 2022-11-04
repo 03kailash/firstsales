@@ -12,33 +12,6 @@ export function SignUp(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const callApi = () => {
-    fetch("http://firstsales.fareof.com/api/register", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        first_name: "vvhbhv",
-        last_name: "Bopche",
-        dob: "2000-03-16",
-        email: "abcd@gmail.com",
-        gender: "0",
-        image: "image",
-        timezone: "Asiya",
-        crm_id: "1",
-        team_id: "1",
-        insdusty_id: "1",
-        workspace_name: "xyz",
-        is_admin: "1",
-        password: 123456,
-      }),
-    })
-      .then((res) => res.json())
-      .then((res) => console.log(res));
-  };
-
   const SendOtp = () => {
     fetch("http://firstsales.fareof.com/api/send-otp", {
       method: "POST",
@@ -51,7 +24,14 @@ export function SignUp(props) {
       }),
     })
       .then((res) => res.json())
-      .then((res) => console.log(res));
+      .then((res) => {
+        if (res.status) {
+          props.history.push({
+            pathname: "/Emailverify",
+            state: { verifyID: res.data.id },
+          });
+        }
+      });
   };
 
   const handleChange = (event) => {

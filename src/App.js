@@ -9,13 +9,6 @@ import ChangePass from "./Components/ChangePass";
 import SideBar from "./SideBar/SideBar";
 import Payment from "./SideBarComponents/Payment/Payment";
 import Workshop from "./WorkshopModel/Workshop";
-import Profile from "./SideBarComponents/UserProfile/Profile";
-import Contact from "./SideBarComponents/Contacts/Contact";
-import Content from "./SideBarComponents/Content/Content";
-import Campaign from "./SideBarComponents/Campaign/Campaign";
-import EmailWarm from "./SideBarComponents/Email Warm Up/EmailWarm";
-import Analytics from "./SideBarComponents/Analytics/Analytics";
-import Settings from "./SideBarComponents/Settings/Settings";
 
 function App() {
   return (

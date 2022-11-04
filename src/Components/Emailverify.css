@@ -72,6 +72,7 @@ body {
   color: #337ab7;
   text-decoration: none;
   font-size: 14px;
+  cursor: pointer;
 }
 .newcode:hover {
   color: #23527c;
