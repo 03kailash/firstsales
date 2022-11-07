@@ -69,9 +69,14 @@ body {
   color: #ffffff;
   border-width: 0px !important;
   background-color: #ff8e00 !important;
-  border-color: #ff8e00 !important;
   outline-color: #b26300 !important;
+  border-color: #ff8e00 !important;
   border-radius: 4px;
   cursor: pointer;
   padding-top: 2px;
+}
+.resetpassbtn:focus {
+  outline: 5px auto -webkit-focus-ring-color !important;
+  outline-offset: -2px !important;
+  outline-color: #b26300 !important;
 }

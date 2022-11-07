@@ -12,9 +12,9 @@ export default function Forgotpass() {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: {
+      body: JSON.stringify({
         email: email,
-      },
+      }),
     })
       .then((res) => res.json())
       .then((res) => console.log(res));
@@ -28,27 +28,39 @@ export default function Forgotpass() {
       </div>
       <div className="modalbody">
         <h1 className="forgotpasshead">Forgot your password?</h1>
-        <label className="resethead">
-          Enter your Email below and we will send a message to reset your
-          password
-        </label>
-        <br />
-        <br />
-        <input
-          className="emailverify"
-          placeholder="Email"
-          required
-          type="email"
-          onChange={(event) => {
-            setEmail(event.target.value);
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
           }}
-        />
+        >
+          <label className="resethead">
+            Enter your Email below and we will send a message to reset your
+            password
+          </label>
+          <br />
+          <br />
+          <input
+            className="emailverify"
+            placeholder="Email"
+            required
+            type="text"
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
+          />
 
-        {/* <Link to="/Changepass"> */}
-        <button className="resetpassbtn" onClick={Forgotpassword}>
-          Reset my password
-        </button>
-        {/* </Link> */}
+          {/* <Link to="/Changepass"> */}
+          <button
+            type="submit"
+            className="resetpassbtn"
+            onClick={() => {
+              email !== "" && Forgotpassword();
+            }}
+          >
+            Reset my password
+          </button>
+          {/* </Link> */}
+        </form>
       </div>
     </div>
   );
