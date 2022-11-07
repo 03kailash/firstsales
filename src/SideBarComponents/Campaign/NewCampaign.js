@@ -85,6 +85,9 @@ function NewCampaign(props) {
   const [mail, setmail] = useState(true);
   const [last, setlast] = useState(false);
   const [ConnectionField, setConnectionField] = useState(false);
+  const [DropDownFilter, setDropDownFilter] = useState(false);
+  const [DropDownFilterSource, setDropDownFilterSource] = useState(false)
+  const [createAt, setcreateAt] = useState(false);
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -119,7 +122,7 @@ function NewCampaign(props) {
   const handleOpenAddModel = () => setOpenAddModel(true);
   const handleCloseAddModel = () => setOpenAddModel(false);
 
-  const [addAnd, setAddAnd] = useState(0);
+  // const [addAnd, setAddAnd] = useState(0);
 
   return (
     <div>
@@ -242,7 +245,7 @@ function NewCampaign(props) {
                                                         align={column.align}
                                                       >
                                                         {column.format &&
-                                                        typeof value ===
+                                                          typeof value ===
                                                           "number"
                                                           ? column.format(value)
                                                           : value}
@@ -336,13 +339,13 @@ function NewCampaign(props) {
                                     <div className="DeleteDiv1">
                                       <div style={{ display: "flex" }}>
                                         <div className="If">IF</div>
-
                                         <div style={{ width: "100%" }}>
                                           <div
                                             style={{
                                               paddingLeft: "16px",
                                               display: "flex",
                                               justifyContent: "space-between",
+                                              alignItems: "center"
                                             }}
                                           >
                                             <FormControl
@@ -369,28 +372,159 @@ function NewCampaign(props) {
                                                   shrink: true,
                                                 }}
                                               >
-                                                <MenuItem value="hast">
+                                                <MenuItem value="hast"
+                                                  onClick={() => {
+                                                    setDropDownFilter(true);
+                                                    setDropDownFilterSource(false);
+                                                    setcreateAt(false);
+                                                  }}
+                                                >
                                                   Has Tag
                                                 </MenuItem>
-                                                <MenuItem value="nottag">
+                                                <MenuItem value="nottag"
+                                                  onClick={() => {
+                                                    setDropDownFilter(true);
+                                                    setDropDownFilterSource(false);
+                                                    setcreateAt(false);
+                                                  }}>
                                                   Does not have Tag
                                                 </MenuItem>
-                                                <MenuItem value="source">
+                                                <MenuItem value="source"
+                                                  onClick={() => {
+                                                    setDropDownFilterSource(true);
+                                                    setDropDownFilter(false)
+                                                    setcreateAt(false);
+                                                  }}>
                                                   Source
                                                 </MenuItem>
-                                                <MenuItem value="coldcon">
+                                                <MenuItem value="coldcon"
+                                                  onClick={() => {
+                                                    setDropDownFilterSource(false);
+                                                    setDropDownFilter(false)
+                                                    setcreateAt(false);
+                                                  }}>
                                                   Any cold contact
                                                 </MenuItem>
-                                                <MenuItem value="created">
+                                                <MenuItem value="created"
+                                                 onClick={() => {
+                                                  setDropDownFilterSource(false);
+                                                  setDropDownFilter(false)
+                                                  setcreateAt(true);
+                                                }}>
                                                   Created At
                                                 </MenuItem>
                                               </Select>
                                             </FormControl>
+                                            {DropDownFilter && <div>
+                                              <FormControl
+                                                sx={{ m: 1, minWidth: 200 }}
+                                                size="small"
+                                              >
+                                                <InputLabel
+                                                  id="demo-select-small"
+                                                  color="warning"
+                                                >
+                                                  Tags
+                                                </InputLabel>
+                                                <Select
+                                                  labelId="demo-select-small"
+                                                  id="demo-select-small"
+                                                  value={Tags}
+                                                  label="Tags"
+                                                  color="warning"
+                                                  onChange={handleChangeee}
+                                                  InputLabelProps={{
+                                                    shrink: true,
+                                                  }}
+                                                >
+                                                  <MenuItem value="">
+                                                    <em>None</em>
+                                                  </MenuItem>
+                                                </Select>
+                                              </FormControl>
+                                            </div>}
+                                            {DropDownFilterSource && <div>
+                                              <FormControl
+                                                sx={{ m: 1, minWidth: 200 }}
+                                                size="small"
+                                              >
+                                                <InputLabel
+                                                  id="demo-select-small"
+                                                  color="warning"
+                                                >
+                                                  Source
+                                                </InputLabel>
+                                                <Select
+                                                  labelId="demo-select-small"
+                                                  id="demo-select-small"
+                                                  value={Tags}
+                                                  label="Source"
+                                                  color="warning"
+                                                  onChange={handleChangeee}
+                                                  InputLabelProps={{
+                                                    shrink: true,
+                                                  }}
+                                                >
+                                                  <MenuItem value="">
+                                                    <em>None</em>
+                                                  </MenuItem>
+                                                </Select>
+                                              </FormControl>
+                                            </div>}
+                                            { createAt && <div style={{display:"flex",alignItems:'center'}}>
+                                              <div>
+                                                  <FormControl
+                                                    sx={{ m: 1, minWidth: 200 }}
+                                                    size="small"
+                                                  >
+                                                    <InputLabel
+                                                      id="demo-select-small"
+                                                      color="warning"
+                                                    >
+                                                    </InputLabel>
+                                                    <Select
+                                                      labelId="demo-select-small"
+                                                      id="demo-select-small"
+                                                      value={Tags}
+                                                      color="warning"
+                                                      onChange={handleChangeee}
+                                                      InputLabelProps={{
+                                                        shrink: true,
+                                                      }}
+                                                    >
+                                                      <MenuItem value="hast">
+                                                        Before
+                                                      </MenuItem>
+                                                      <MenuItem value="nottag">
+                                                        After
+                                                      </MenuItem>
+                                                    </Select>
+                                                  </FormControl>
+                                                </div>
+                                                <div>
+                                                  <LocalizationProvider
+                                                    dateAdapter={AdapterDayjs}
+                                                  >
+                                                    <DateTimePicker
+                                                      label="Date&Time picker"
+                                                      value={value}
+                                                      onChange={handleChangeeee}
+                                                      renderInput={(params) => (
+                                                        <TextField
+                                                          {...params}
+                                                          className="timePiker"
+                                                          size="small"
+                                                          color="warning"
+                                                        />
+                                                      )}
+                                                    />
+                                                  </LocalizationProvider>
+                                                </div>
+                                              </div>}
                                             <div
                                               style={{
                                                 display: "flex",
                                                 justifyContent: "end",
-                                                width: "100%",
                                               }}
                                             >
                                               <IconButton
@@ -416,7 +550,7 @@ function NewCampaign(props) {
                                                 />
                                               </div>
 
-                                              <div
+                                              { } <div
                                                 style={{
                                                   display: "flex",
                                                   alignItems: "center",
@@ -472,21 +606,22 @@ function NewCampaign(props) {
                                                       id="demo-select-small"
                                                       color="warning"
                                                     >
-                                                      Tags
                                                     </InputLabel>
                                                     <Select
                                                       labelId="demo-select-small"
                                                       id="demo-select-small"
                                                       value={Tags}
-                                                      label="Tags"
                                                       color="warning"
                                                       onChange={handleChangeee}
                                                       InputLabelProps={{
                                                         shrink: true,
                                                       }}
                                                     >
-                                                      <MenuItem value="">
-                                                        <em>None</em>
+                                                      <MenuItem value="hast">
+                                                        Before
+                                                      </MenuItem>
+                                                      <MenuItem value="nottag">
+                                                        After
                                                       </MenuItem>
                                                     </Select>
                                                   </FormControl>
@@ -581,9 +716,9 @@ function NewCampaign(props) {
                                           key={row.name}
                                           sx={{
                                             "&:last-child td, &:last-child th":
-                                              {
-                                                border: 0,
-                                              },
+                                            {
+                                              border: 0,
+                                            },
                                           }}
                                         >
                                           <TableCell component="th" scope="row">
@@ -601,7 +736,7 @@ function NewCampaign(props) {
                             </div>
                           </>
                         )}
-                         {activeStep === 2 && (
+                        {activeStep === 2 && (
                           <>
                             <div
                               className="TextContact"
@@ -1146,7 +1281,7 @@ function NewCampaign(props) {
                                 </div>
                               )}
 
-{TimeField && (
+                              {TimeField && (
                                 <div className="BobyLastDiv">
                                   <div className="EmailTextIconBtn">
                                     <div

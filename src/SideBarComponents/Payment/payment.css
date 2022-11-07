@@ -8,10 +8,18 @@
     padding-top: 32px !important;
 }
 .PaymentDiv::before{
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
     background: #ffffff;
     content: " ";
     height: 100%;
     position: fixed;
+    right: 0;
+    top: 0;
+    -webkit-transform-origin: right;
+    -ms-transform-origin: right;
+    transform-origin: right;
+    width: 50%;
 }
 .logodiv{
     display: flex;
@@ -43,14 +51,25 @@
 .details{
     font-size: 20px !important;
     padding-bottom: 20px !important;
+    transform: translateX(1px) !important;
 }
 .payText{
-    margin-top: 12px !important;
     color: hsla(0,0%,10%,.7) !important;
     font-weight: 500;
     font-size: 16px!important;
     text-transform: inherit !important;
-    padding-bottom: 20px !important;
+    padding-bottom: 10px !important;
+    transform: translateX(1px) !important;
+}
+.PaymentDivText{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    color: hsla(0,0%,10%,.7) !important;
+    margin-top: 20px!important;
+    transform: translateX(1px) !important;
 }
 .PaymentHeadDiv{
     background-color: black !important;
@@ -71,7 +90,7 @@
     width: 100% !important;
 }
 .EmailFeild>input{
-border-top-left-radius: 0!important;
+    border-top-left-radius: 0!important;
     border-top-right-radius: 0!important;
     width: 100% !important;
 }
@@ -86,4 +105,63 @@ border-top-left-radius: 0!important;
     border-bottom-left-radius: 0!important;
     border-top-right-radius: 0!important;
     width: 100% !important; 
+}
+.EmailFeildDivv>input{
+    width: 100% !important;
+}
+.ChaeckboxDiv>input{
+    border-bottom-right-radius: 0!important;
+    border-bottom-left-radius: 0!important;
+    border-bottom: none !important;
+    width: 100% !important;
+}
+.ChaeckboxxDiv>input{
+    border-top-left-radius: 0!important;
+    border-top-right-radius: 0!important;
+    border-bottom-right-radius: 0!important;
+    border-bottom-left-radius: 0!important;
+    width: 100% !important;
+}
+.ChaeckboxDivv>input{
+    border-top-left-radius: 0!important;
+    border-top-right-radius: 0!important;
+    border-top: none !important;
+    width: 100% !important;
+}
+.StarttrialBtn{
+    background-color: rgb(242, 142, 0) !important;
+    color: rgb(0, 0, 0) !important;
+    text-transform: inherit !important;
+    width:100% !important;
+    border-radius: 6px;
+    box-shadow: inset 0 0 0 1px rgb(50 50 93 / 10%), 0 2px 5px 0 rgb(50 50 93 / 10%), 0 1px 1px 0 rgb(0 0 0 / 7%) !important;
+    margin-top: 20px !important;
+}
+.ConfirmPayment-PostSubmit{
+    margin: 20px 0px !important;
+    font-size: 13px !important;
+    color: hsla(0,0%,10%,.6) !important;
+    text-align: center !important;
+    line-height: 17px !important;
+    transform: translateX(1px) !important;
+}
+.Footer-Links-Link {
+    text-decoration: underline dotted hsla(0,0%,10%,.5);
+    font-size: 12px !important;
+}
+.footer-powerBy{
+    margin-top: 150px !important;
+    padding: 0 16px 0 0;
+    text-align: left;
+    width: auto;
+    display: flex;
+    align-items: center;
+}
+.Lock{
+    display: flex;
+    align-items: center;
+    font-size: 12px !important;
+    padding: 2px 0 4px 6px !important;
+    color: hsla(0,0%,10%,.4) !important;
+    justify-content: center;
 }
