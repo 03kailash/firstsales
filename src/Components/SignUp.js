@@ -13,7 +13,7 @@ export function SignUp(props) {
   const [password, setPassword] = useState("");
 
   const SendOtp = () => {
-    fetch("http://firstsales.fareof.com/public/api/register", {
+    fetch("http://firstsales.fareof.com/api/register", {
       method: "POST",
       headers: {
         Accept: "application/json",

@@ -18,7 +18,7 @@ export default function Emailverify(props) {
   });
 
   const VerifyOTP = () => {
-    fetch("http://firstsales.fareof.com/public/api/verify-otp", {
+    fetch("http://firstsales.fareof.com/api/verify-otp", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -42,7 +42,7 @@ export default function Emailverify(props) {
   };
 
   const ResendOTP = () => {
-    fetch("http://firstsales.fareof.com/public/api/resend-otp", {
+    fetch("http://firstsales.fareof.com/api/resend-otp", {
       method: "POST",
       headers: {
         Accept: "application/json",
