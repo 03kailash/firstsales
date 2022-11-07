@@ -18,7 +18,7 @@ export default function Emailverify(props) {
   });
 
   const VerifyOTP = () => {
-    fetch("http://firstsales.fareof.com/api/verify-otp", {
+    fetch("http://firstsales.fareof.com/public/api/verify-otp", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -26,18 +26,37 @@ export default function Emailverify(props) {
       },
       body: JSON.stringify({
         otp: otp,
-        id: props.location.state.verifyID,
+        email: props.location.state.Email,
       }),
     })
       .then((res) => res.json())
       .then((res) => {
         setWrongOTP(!res.status);
         if (res.status) {
-          props.history.push("/Userdetail");
+          props.history.push({
+            pathname: "/Userdetail",
+            state: { token: res.token },
+          });
         }
       });
   };
 
+  const ResendOTP = () => {
+    fetch("http://firstsales.fareof.com/public/api/resend-otp", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: props.location.state.Email,
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+      });
+  };
   return (
     <div className="container">
       <div className="imagediv">
@@ -82,7 +101,9 @@ export default function Emailverify(props) {
           }}
         >
           <span className="receivedcode">Didn't receive a code?</span>
-          <a className="newcode">Send a new code</a>
+          <a className="newcode" onClick={ResendOTP}>
+            Send a new code
+          </a>
         </div>
       </div>
     </div>

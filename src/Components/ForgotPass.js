@@ -4,17 +4,16 @@ import "./ForgotPass.css";
 import { Link } from "react-router-dom";
 
 export default function Forgotpass() {
-  const [forgotpassword, setForgotPassword] = useState("");
+  const [email, setEmail] = useState("");
   const Forgotpassword = () => {
-    fetch("http://firstsales.fareof.com/public/api/forgot-password", {
+    fetch("http://firstsales.fareof.com/api/forgot-password", {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        "X-CSRF-TOKEN": "true",
       },
       body: {
-        forgotpassword: forgotpassword,
+        email: email,
       },
     })
       .then((res) => res.json())
@@ -38,9 +37,10 @@ export default function Forgotpass() {
         <input
           className="emailverify"
           placeholder="Email"
-          type={"email"}
+          required
+          type="email"
           onChange={(event) => {
-            setForgotPassword(event.target.value);
+            setEmail(event.target.value);
           }}
         />
 

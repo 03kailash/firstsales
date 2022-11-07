@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./SignUp.css";
 import firstsales from "../Images/firstsales.jpg";
-import { Link } from "react-router-dom";
 
 export function SignUp(props) {
   const [lc, setLc] = useState(false);
@@ -14,7 +13,7 @@ export function SignUp(props) {
   const [password, setPassword] = useState("");
 
   const SendOtp = () => {
-    fetch("http://firstsales.fareof.com/api/send-otp", {
+    fetch("http://firstsales.fareof.com/public/api/register", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -22,6 +21,7 @@ export function SignUp(props) {
       },
       body: JSON.stringify({
         email: email,
+        password: password,
       }),
     })
       .then((res) => res.json())
@@ -29,7 +29,7 @@ export function SignUp(props) {
         if (res.status) {
           props.history.push({
             pathname: "/Emailverify",
-            state: { verifyID: res.data.id, Email: email },
+            state: { Email: email },
           });
         }
       });

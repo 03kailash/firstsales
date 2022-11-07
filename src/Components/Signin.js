@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import "./Signin.css";
 import firstsales from "../Images/firstsales.jpg";
-import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
 export default function Signin(props) {
-  const [check, setCheck] = useState(false);
+  const [wrongmessage, setWrongmessage] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -27,7 +26,7 @@ export default function Signin(props) {
       .then((res) => res.json())
       .then((res) => {
         if (res.status) {
-          localStorage.setItem("token", res.user.token);
+          localStorage.setItem("token", res.token);
         } else {
           localStorage.removeItem("token");
         }
@@ -43,7 +42,7 @@ export default function Signin(props) {
       </div>
       <div className="modalbody">
         <span className="spantext">Sign in with your email and password</span>
-        {localStorage.getItem("token") === null && check && (
+        {localStorage.getItem("token") === null && wrongmessage && (
           <div className="incorrectmessage">
             Incorrect username or password.
           </div>
@@ -73,17 +72,21 @@ export default function Signin(props) {
               setPassword(event.target.value);
             }}
           />
-          <Link to="/ForgotPass" className="forgotpass">
+          <a
+            className="forgotpass"
+            onClick={() => {
+              props.history.push("/ForgotPass");
+            }}
+          >
             Forgot your password?
-          </Link>
-          {/* <Link to="/Dashboard/Profile"> */}
+          </a>
           <button
             className="signinbtn"
             type="submit"
             onClick={async () => {
               if (email !== "" && password !== "") {
                 await Login();
-                setCheck(true);
+                setWrongmessage(true);
                 if (localStorage.getItem("token") !== null) {
                   props.history.push("/Dashboard/Profile");
                 }
@@ -92,13 +95,10 @@ export default function Signin(props) {
           >
             Sign in
           </button>
-          {/* </Link> */}
         </form>
-        <br />
         <div>
           <p className="lastp">
             <span>Need an account?</span>&nbsp;
-            {/* <Link to="/Signup" className="signuplink"> */}
             <a
               onClick={() => {
                 props.history.push("/SignUp");
@@ -107,7 +107,6 @@ export default function Signin(props) {
             >
               Sign up
             </a>
-            {/* </Link> */}
           </p>
         </div>
       </div>
