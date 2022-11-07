@@ -19,6 +19,17 @@ body {
   font-size: 24px !important;
   margin: 20px 0px 15px;
 }
+.invalidcode {
+  padding: 8px 4px;
+  font-size: 14px;
+  line-height: 24px;
+  font-family: Roboto;
+  background: #fdeded;
+  border: 2px solid #fdeded;
+  border-radius: 4px;
+  color: #5f2120;
+  margin-bottom: 10px;
+}
 .firstlogo {
   max-width: 80%;
   max-height: 100%;

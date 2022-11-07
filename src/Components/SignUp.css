@@ -90,6 +90,23 @@ body {
   padding: 6px 12px;
   cursor: pointer;
 }
+
+.signupbtnDisable {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 32px 0px 24px 0px;
+  height: 40px;
+  width: 100%;
+  color: #ffffff;
+  border-width: 0px !important;
+  background-color: #ff8e00 !important;
+  border-color: #ff8e00 !important;
+  outline-color: #b26300 !important;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: not-allowed;
+  opacity: 0.65;
+}
 .lastp {
   text-align: center;
   margin: 0 0 10px;
@@ -98,17 +115,16 @@ body {
 .signuplink {
   color: #337ab7;
   text-decoration: none;
+  cursor: pointer;
 }
 .signuplink:hover {
   color: #23527c;
   text-decoration: underline;
 }
-
 .success {
   font-size: 14px;
   color: #43a047;
 }
-
 .fail {
   font-size: 14px;
   color: #e53935;

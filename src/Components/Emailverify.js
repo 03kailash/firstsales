@@ -4,6 +4,18 @@ import "./Emailverify.css";
 
 export default function Emailverify(props) {
   const [otp, setOtp] = useState("");
+  const [wrongOTP, setWrongOTP] = useState(false);
+  const charAfter = props.location.state.Email.split("");
+  let temp = 0;
+  const email1 = props.location.state.Email[0];
+  let email2 = "";
+  charAfter.forEach((item, index) => {
+    if (item === "@") temp++;
+    else if (temp === 1) {
+      email2 = item;
+      temp = 0;
+    }
+  });
 
   const VerifyOTP = () => {
     fetch("http://firstsales.fareof.com/api/verify-otp", {
@@ -19,6 +31,7 @@ export default function Emailverify(props) {
     })
       .then((res) => res.json())
       .then((res) => {
+        setWrongOTP(!res.status);
         if (res.status) {
           props.history.push("/Userdetail");
         }
@@ -34,10 +47,15 @@ export default function Emailverify(props) {
       </div>
       <div className="modalbody">
         <h3 className="confirmac">Confirm your account</h3>
+        {wrongOTP && (
+          <div className="invalidcode">
+            Invalid verification code provided, please try again.
+          </div>
+        )}
         <br />
         <label className="resethead">
-          We have sent a code by email to s***@g***. Enter it below to confirm
-          your account.
+          We have sent a code by email to {email1}***@{email2}***. Enter it
+          below to confirm your account.
         </label>
         <br />
         <br />

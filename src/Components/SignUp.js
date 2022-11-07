@@ -8,6 +8,7 @@ export function SignUp(props) {
   const [uc, setUc] = useState(false);
   const [num, setNum] = useState(false);
   const [len, setLen] = useState(false);
+  const [validations, setValidations] = useState(false);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,7 +29,7 @@ export function SignUp(props) {
         if (res.status) {
           props.history.push({
             pathname: "/Emailverify",
-            state: { verifyID: res.data.id },
+            state: { verifyID: res.data.id, Email: email },
           });
         }
       });
@@ -74,7 +75,11 @@ export function SignUp(props) {
         </center>
       </div>
       <div className="modalbody">
-        <form>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
           <span className="spantext">Sign up with a new account</span>
           <label className="emailhead">Email</label>
           <input
@@ -83,6 +88,7 @@ export function SignUp(props) {
             required
             onChange={(e) => {
               setEmail(e.target.value);
+              setValidations(true);
             }}
             type="email"
           />
@@ -94,63 +100,58 @@ export function SignUp(props) {
             type={"password"}
             onChange={(event) => {
               handleChange(event);
+              setValidations(true);
             }}
           />
           <br />
           <br />
-
-          <div className={lc ? "success" : "fail"}>
-            {lc ? <span>✓</span> : <span>✖</span>} Password must contain a lower
-            case letter
-          </div>
-          <div className={uc ? "success" : "fail"}>
-            {uc ? <span>✓</span> : <span>✖</span>} Password must contain an
-            upper case letter
-          </div>
-          <div className={num ? "success" : "fail"}>
-            {num ? <span>✓</span> : <span>✖</span>} Password must contain a
-            number
-          </div>
-          <div className={len ? "success" : "fail"}>
-            {len ? <span>✓</span> : <span>✖</span>} Password must contain at
-            least 9 characters
-          </div>
-
-          {/* <Link
-            to={
-              email !== "" &&
-              password !== "" &&
-              lc &&
-              uc &&
-              num &&
-              len &&
-              "/Userdetail"
-            }
-          > */}
+          {validations && (
+            <div>
+              <div className={lc ? "success" : "fail"}>
+                {lc ? <span>✓</span> : <span>✖</span>} Password must contain a
+                lower case letter
+              </div>
+              <div className={uc ? "success" : "fail"}>
+                {uc ? <span>✓</span> : <span>✖</span>} Password must contain an
+                upper case letter
+              </div>
+              <div className={num ? "success" : "fail"}>
+                {num ? <span>✓</span> : <span>✖</span>} Password must contain a
+                number
+              </div>
+              <div className={len ? "success" : "fail"}>
+                {len ? <span>✓</span> : <span>✖</span>} Password must contain at
+                least 9 characters
+              </div>
+            </div>
+          )}
           <button
-            className="signupbtn"
-            type="button"
+            className={
+              validations
+                ? lc && uc && num && len
+                  ? "signupbtn"
+                  : "signupbtnDisable"
+                : "signupbtn"
+            }
+            type="submit"
             onClick={() => {
-              SendOtp();
+              if (lc && uc && num && len) SendOtp();
             }}
           >
             Sign up
           </button>
-          {/* </Link> */}
         </form>
-        <br />
         <div>
           <p className="lastp">
             <span>Already have an account?</span>&nbsp;
-            {/* <Link to="/" className="signuplink"> */}
             <a
+              className="signuplink"
               onClick={() => {
                 props.history.push("/");
               }}
             >
               Sign in
             </a>
-            {/* </Link> */}
           </p>
         </div>
       </div>

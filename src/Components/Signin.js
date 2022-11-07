@@ -48,42 +48,52 @@ export default function Signin(props) {
             Incorrect username or password.
           </div>
         )}
-        <label className="emailhead">Email</label>
-        <input
-          className="inputfield"
-          placeholder="name@host.com"
-          required
-          onChange={(event) => {
-            setEmail(event.target.value);
-          }}
-        />
-        <label className="emailhead">Password</label>
-        <input
-          placeholder="Password"
-          required
-          className="inputfield"
-          type={"password"}
-          onChange={(event) => {
-            setPassword(event.target.value);
-          }}
-        />
-        <Link to="/ForgotPass" className="forgotpass">
-          Forgot your password?
-        </Link>
-        {/* <Link to="/Dashboard/Profile"> */}
-        <button
-          className="signinbtn"
-          onClick={async () => {
-            await Login();
-            setCheck(true);
-            if (localStorage.getItem("token") !== null) {
-              props.history.push("/Dashboard/Profile");
-            }
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
           }}
         >
-          Sign in
-        </button>
-        {/* </Link> */}
+          <label className="emailhead">Email</label>
+          <input
+            className="inputfield"
+            placeholder="name@host.com"
+            type="email"
+            required
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
+          />
+          <label className="emailhead">Password</label>
+          <input
+            placeholder="Password"
+            required
+            className="inputfield"
+            type="password"
+            onChange={(event) => {
+              setPassword(event.target.value);
+            }}
+          />
+          <Link to="/ForgotPass" className="forgotpass">
+            Forgot your password?
+          </Link>
+          {/* <Link to="/Dashboard/Profile"> */}
+          <button
+            className="signinbtn"
+            type="submit"
+            onClick={async () => {
+              if (email !== "" && password !== "") {
+                await Login();
+                setCheck(true);
+                if (localStorage.getItem("token") !== null) {
+                  props.history.push("/Dashboard/Profile");
+                }
+              }
+            }}
+          >
+            Sign in
+          </button>
+          {/* </Link> */}
+        </form>
         <br />
         <div>
           <p className="lastp">
