@@ -45,7 +45,6 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import ForkRightIcon from "@mui/icons-material/ForkRight";
 import FlagIcon from "@mui/icons-material/Flag";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import NativeSelect from "@mui/material/NativeSelect/NativeSelect";
 import ClearIcon from "@mui/icons-material/Clear";
 const columns = [
   { id: "Mail Account", label: "Mail Account", minWidth: "150px" },
@@ -88,6 +87,8 @@ function NewCampaign(props) {
   const [DropDownFilter, setDropDownFilter] = useState(false);
   const [DropDownFilterSource, setDropDownFilterSource] = useState(false)
   const [createAt, setcreateAt] = useState(false);
+  const [TimeElement,SetTimeElement] = useState(true);
+  const [Connect,Setconnect] = useState(false)
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -1153,7 +1154,10 @@ function NewCampaign(props) {
                                               justifyContent: "end",
                                             }}
                                           >
-                                            <IconButton>
+                                            <IconButton
+                                            onClick={()=>{
+                                              setAddStep(false)
+                                            }}>
                                               <ClearIcon />
                                             </IconButton>
                                           </div>
@@ -1166,7 +1170,7 @@ function NewCampaign(props) {
                                             marginTop: "16px ",
                                           }}
                                         >
-                                          <div className="paperBlock">
+                                           {TimeElement &&<div className="paperBlock">
                                             <div
                                               style={{
                                                 backgroundColor: "#bbdefb",
@@ -1178,6 +1182,9 @@ function NewCampaign(props) {
                                                 } else {
                                                   settime(true);
                                                 }
+                                                SetTimeElement(false)
+                                                setAddStep(false)
+                                                Setconnect(true)
                                               }}
                                             >
                                               <AccessTimeIcon color="action" />
@@ -1186,7 +1193,31 @@ function NewCampaign(props) {
                                               {" "}
                                               Time
                                             </div>
-                                          </div>
+                                          </div>}
+
+                                          {Connect && <div className="paperBlock">
+                                            <div
+                                              style={{
+                                                backgroundColor: "#fff59d",
+                                              }}
+                                              className="FlagIconBlockBtn"
+                                              onClick={() => {
+                                                if (Connection) {
+                                                  setconnection(false);
+                                                } else {
+                                                  setconnection(true);
+                                                }
+                                                Setconnect(false)
+                                                setAddStep(false)
+                                              }}
+                                            >
+                                             <ForkRightIcon color="action" />
+                                            </div>
+                                            <div className="paperBlockTimeText">
+                                              {" "}
+                                              Connection
+                                            </div>
+                                          </div>}
                                           <div className="paperBlock">
                                             <div
                                               style={{
@@ -1348,19 +1379,73 @@ function NewCampaign(props) {
                               )}
                               {ConnectionField && (
                                 <div className="BobyLastDiv">
-                                  <div className="EmailTextIconBtn">
+                                  <div className="EmailTextIconBtn" style={{ backgroundColor: "rgb(255, 253, 231)" }}>
                                     <div
                                       className="mailIcon"
-                                      style={{ backgroundColor: "#bbdefb" }}
+                                      style={{ backgroundColor: "#fff59d" }}
                                     >
-                                      <AccessTimeIcon color="action" />
+                                      <ForkRightIcon color="action" />
                                     </div>
                                     <div>
                                       <span className="sandEmailText2">
-                                        Time
+                                        Connection
                                       </span>
                                     </div>
                                   </div>
+                                  <div className="WaitForText">
+                                    If email was :
+                                  </div>
+                                  <div
+                                    style={{
+                                      width: "100%",
+                                      padding: "0px 32px 10px",
+                                    }}
+                                  >
+                                    <Box>
+                                      <FormControl fullWidth>
+                                        <InputLabel id="demo-simple-select-label"></InputLabel>
+                                        <Select
+                                          labelId="demo-simple-select-label"
+                                          id="demo-simple-select"
+                                          size="small"
+                                          color="warning"
+                                          value={day}
+                                          onChange={handleeChange}
+                                        >
+                                          <MenuItem value={1}>Opened</MenuItem>
+                                          <MenuItem value={2}>Clicked</MenuItem>
+                                        </Select>
+                                      </FormControl>
+                                    </Box>
+                                  </div>
+                                  <div className="WaitForText">
+                                    and
+                                  </div>
+                                  <div
+                                    style={{
+                                      width: "100%",
+                                      padding: "0px 32px 10px",
+                                    }}
+                                  >
+                                    <Box>
+                                      <FormControl fullWidth>
+                                        <InputLabel id="demo-simple-select-label"></InputLabel>
+                                        <Select
+                                          labelId="demo-simple-select-label"
+                                          id="demo-simple-select"
+                                          size="small"
+                                          color="warning"
+                                          value={day}
+                                          onChange={handleeChange}
+                                        >
+                                          <MenuItem value={1}>Previous only</MenuItem>
+                                          <MenuItem value={2}>Any mail in campaign</MenuItem>
+                                        </Select>
+                                      </FormControl>
+                                    </Box>
+                                  </div>
+                                  <div className="ConnectionTextDiv">Continue only if any link in any email
+                                    in this campaign was clicked</div>
                                 </div>
                               )}
                               {last && (
@@ -1376,7 +1461,7 @@ function NewCampaign(props) {
                                       <span className="sandEmailText2">
                                         Last Step
                                       </span>
-                                    </div>
+                                    </div> 
                                   </div>
                                   <div className="WaitForText">
                                     If email was :

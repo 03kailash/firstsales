@@ -67,7 +67,7 @@ export default function Payment() {
               </div>
             </div>
             <footer className=" footer-powerBy">
-              <span>Powered By: <strong style={{ paddingRight: '16px' }}><a href='https://stripe.com/in'>Strip</a></strong></span>
+              <span>Powered By: <strong style={{ paddingRight: '16px' }}><a href='https://stripe.com/in'>Stripe</a></strong></span>
               <span>|</span>
               <div className='Footer-Links-Link'>
                 <a href='https://stripe.com/in/legal/link-account-terms' style={{ paddingLeft: '16px' }} >Teams</a>

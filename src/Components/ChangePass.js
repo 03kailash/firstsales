@@ -3,7 +3,18 @@ import { Link } from "react-router-dom";
 import firstsales from "../Images/firstsales.jpg";
 import "./ChangePass.css";
 
-export default function ChangePass() {
+export default function ChangePass(props) {
+  const charAfter = props.location.state.Email.split("");
+  let temp = 0;
+  const email1 = props.location.state.Email[0];
+  let email2 = "";
+  charAfter.forEach((item, index) => {
+    if (item === "@") temp++;
+    else if (temp === 1) {
+      email2 = item;
+      temp = 0;
+    }
+  });
   const handleChange = (event) => {
     var pass = event.target.value;
     var regLc = /(?=.*?[a-z])/;
@@ -43,6 +54,7 @@ export default function ChangePass() {
   const [len, setLen] = useState(false);
   const [match, setMatch] = useState(false);
 
+
   useEffect(() => {
     if (newPass1 === newPass2) {
       setMatch(true);
@@ -50,6 +62,19 @@ export default function ChangePass() {
       setMatch(false);
     }
   }, [newPass1, newPass2]);
+
+  const Resetpwd = () =>{
+    fetch("http://firstsales.fareof.com/api/reset-password",{
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: props.location.state.Email,
+      }),
+    })
+  }
 
   return (
     <div className="container">
@@ -60,8 +85,8 @@ export default function ChangePass() {
       </div>
       <div className="modalbody">
         <div className="resethead">
-          We have sent a password reset code by email to s***@g***. Enter it
-          below to reset your password.
+           We have sent a code by email to {email1}***@{email2}***. Enter it
+          below to confirm your account.
         </div>
         <span className="codehead">Code</span>
         <input className="codeverify" type="password" />
@@ -104,7 +129,8 @@ export default function ChangePass() {
 
         <Link to="/">
           {" "}
-          <button className="changepassbtn">Change password</button>
+          <button className="changepassbtn"
+          onClick={Resetpwd}>Change password</button>
         </Link>
       </div>
     </div>
