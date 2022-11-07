@@ -4,17 +4,7 @@ import firstsales from "../Images/firstsales.jpg";
 import "./ChangePass.css";
 
 export default function ChangePass(props) {
-  const charAfter = props.location.state.Email.split("");
-  let temp = 0;
-  const email1 = props.location.state.Email[0];
-  let email2 = "";
-  charAfter.forEach((item, index) => {
-    if (item === "@") temp++;
-    else if (temp === 1) {
-      email2 = item;
-      temp = 0;
-    }
-  });
+  
   const handleChange = (event) => {
     var pass = event.target.value;
     var regLc = /(?=.*?[a-z])/;
@@ -85,7 +75,7 @@ export default function ChangePass(props) {
       </div>
       <div className="modalbody">
         <div className="resethead">
-           We have sent a code by email to {email1}***@{email2}***. Enter it
+           We have sent a code by email to . Enter it
           below to confirm your account.
         </div>
         <span className="codehead">Code</span>

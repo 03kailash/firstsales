@@ -100,7 +100,7 @@ export default function Billing() {
             <div className="MonthlyPlans">
               <div style={{ width: "139px", height: "109px" }}>
                 <span>1 user</span>
-                <div>
+                <div style={{marginBottom:"8px"}}>
                   <span className="thirty">$30</span>
                   <span className="Months">/month</span>
                 </div>
@@ -175,7 +175,7 @@ export default function Billing() {
             <div className="MonthlyPlans">
               <div style={{ width: "139px", height: "109px" }}>
                 <span>Unlimited</span>
-                <div>
+                <div style={{marginBottom:"8px"}}>
                   <span className="thirty">$149</span>
                   <span className="Months">/month</span>
                 </div>
@@ -228,10 +228,11 @@ export default function Billing() {
             <div className="MonthlyPlans">
               <div style={{ width: "139px", height: "109px" }}>
                 <span>1 user</span>
-                <div>
+                <div style={{marginBottom:"8px"}}>
                   <span className="thirty">$20</span>
                   <span className="Months">/month</span>
                 </div>
+                <div className="days">Billed annually</div>
                 <div className="days">Free trial for 7 days</div>
               </div>
               <div
@@ -303,10 +304,11 @@ export default function Billing() {
             <div className="MonthlyPlans">
               <div style={{ width: "139px", height: "109px" }}>
                 <span>Unlimited</span>
-                <div>
+                <div style={{marginBottom:"8px"}}>
                   <span className="thirty">$99</span>
                   <span className="Months">/month</span>
                 </div>
+                <div className="days">Billed annually</div>
                 <div className="days">Free trial for 7 days</div>
               </div>
               <div

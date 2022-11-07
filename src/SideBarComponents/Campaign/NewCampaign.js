@@ -89,6 +89,7 @@ function NewCampaign(props) {
   const [createAt, setcreateAt] = useState(false);
   const [TimeElement,SetTimeElement] = useState(true);
   const [Connect,Setconnect] = useState(false)
+  const [SandMail,SetSandMail] = useState(false)
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -1025,7 +1026,7 @@ function NewCampaign(props) {
                                         </div>
                                         <div>
                                           <span className="sandEmailText">
-                                            Connection
+                                            Condition
                                           </span>
                                         </div>
                                       </div>
@@ -1209,13 +1210,34 @@ function NewCampaign(props) {
                                                 }
                                                 Setconnect(false)
                                                 setAddStep(false)
+                                                SetSandMail(true)
                                               }}
                                             >
                                              <ForkRightIcon color="action" />
                                             </div>
                                             <div className="paperBlockTimeText">
                                               {" "}
-                                              Connection
+                                              Condition
+                                            </div>
+                                          </div>}
+                                         {SandMail && <div className="paperBlock">
+                                            <div
+                                              style={{
+                                                backgroundColor: "#e1bee7 ",
+                                              }}
+                                              className="FlagIconBlockBtn"
+                                              onClick={() => {
+                                                if (SandMail) {
+                                                  SetSandMail(false);
+                                                } else {
+                                                  SetSandMail(true);
+                                                }
+                                              }}
+                                            >
+                                              <MailIcon color="action" />
+                                            </div>
+                                            <div className="paperBlockTimeText">
+                                              Send Mail
                                             </div>
                                           </div>}
                                           <div className="paperBlock">
@@ -1230,6 +1252,7 @@ function NewCampaign(props) {
                                                 } else {
                                                   setlaststep(true);
                                                 }
+                                                setAddStep(false);
                                               }}
                                             >
                                               <FlagIcon color="action" />
@@ -1388,7 +1411,7 @@ function NewCampaign(props) {
                                     </div>
                                     <div>
                                       <span className="sandEmailText2">
-                                        Connection
+                                       Condition
                                       </span>
                                     </div>
                                   </div>
