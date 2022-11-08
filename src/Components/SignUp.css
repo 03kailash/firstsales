@@ -45,7 +45,7 @@ body {
   margin-bottom: 5px;
 }
 .inputfield {
-  width: 92%;
+  width: -webkit-fill-available;
   height: 30px;
   line-height: 32px;
   color: #555555;

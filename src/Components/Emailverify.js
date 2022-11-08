@@ -33,16 +33,13 @@ export default function Emailverify(props) {
       .then((res) => {
         setWrongOTP(!res.status);
         if (res.status) {
-          props.history.push({
-            pathname: "/Userdetail",
-            state: { token: res.token },
-          });
+          props.history.push("/Userdetail");
         }
       });
   };
 
   const ResendOTP = () => {
-    fetch("http://firstsales.fareof.com/api/resend-otp", {
+    fetch("http://firstsales.fareof.com/api/send-otp", {
       method: "POST",
       headers: {
         Accept: "application/json",

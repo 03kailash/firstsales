@@ -13,7 +13,7 @@ export function SignUp(props) {
   const [password, setPassword] = useState("");
 
   const SendOtp = () => {
-    fetch("http://firstsales.fareof.com/api/register", {
+    fetch("http://firstsales.fareof.com/api/send-otp", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -21,7 +21,6 @@ export function SignUp(props) {
       },
       body: JSON.stringify({
         email: email,
-        password: password,
       }),
     })
       .then((res) => res.json())
