@@ -7,12 +7,12 @@ import Box from "@mui/material/Box";
 // import InputLabel from '@mui/material/InputLabel';
 // import TextField from '@mui/material/TextField';
 import FormControl from "@mui/material/FormControl";
-import AccountBalanceSharpIcon from "@mui/icons-material/AccountBalanceSharp";
+// import AccountBalanceSharpIcon from "@mui/icons-material/AccountBalanceSharp";
 import Checkbox from "@mui/material/Checkbox";
 import { Button } from "@mui/material";
 import LockIcon from "@mui/icons-material/Lock";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-
+import FirstSaleSmallicon from "./FirstSaleSmallicon.png"
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   "label + &": {
     marginTop: theme.spacing(3),
@@ -64,6 +64,8 @@ export default function Payment() {
                     display: "flex",
                     alignItems: "center",
                     cursor: "pointer",
+                    height:'28px',
+                    marginLeft:"-25px"
                   }}
                   onMouseOver={() => {
                     setIsFocus(true);
@@ -72,12 +74,12 @@ export default function Payment() {
                     setIsFocus(false);
                   }}
                 >
-                  <ArrowBackIcon />
+                  <ArrowBackIcon className="BackArrow" />
 
-                  {isFocus ? <span>Back</span> : <span>Firstsales.io</span>}
+                  {isFocus ? <span className="FirssalesText">Back</span> :<><img className="FirstSaleSmallicon" src={FirstSaleSmallicon} alt=""/><span className="FirssalesText">Firstsales.io</span> </> }
                 </div>
                 <div className="logodiv">
-                  <div style={{ width: "100%" }}>
+                  <div style={{ width: "100%",marginTop:'32px'}}>
                     <div>
                       <span className="textFirstSales">Try First Sales</span>
                     </div>
