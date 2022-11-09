@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Signin.css";
 import firstsales from "../Images/firstsales.jpg";
 import { useEffect } from "react";
+import { ApiURL } from "../ApiURL";
 
 export default function Signin(props) {
   const [wrongmessage, setWrongmessage] = useState(false);
@@ -12,7 +13,7 @@ export default function Signin(props) {
     localStorage.removeItem("token");
   }, []);
   const Login = async () => {
-    await fetch("http://firstsales.fareof.com/api/login", {
+    await fetch(`${ApiURL}/login`, {
       method: "POST",
       headers: {
         Accept: "application/json",
