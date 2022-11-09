@@ -4,7 +4,6 @@ import firstsales from "../Images/firstsales.jpg";
 import "./ChangePass.css";
 
 export default function ChangePass(props) {
-  
   const handleChange = (event) => {
     var pass = event.target.value;
     var regLc = /(?=.*?[a-z])/;
@@ -43,8 +42,19 @@ export default function ChangePass(props) {
   const [num, setNum] = useState(false);
   const [len, setLen] = useState(false);
   const [match, setMatch] = useState(false);
-
-
+  const [validations, setValidations] = useState(false);
+  const [wrongOTP, setWrongOTP] = useState(false);
+  const charAfter = props.location.state.Email.split("");
+  let temp = 0;
+  const email1 = props.location.state.Email[0];
+  let email2 = "";
+  charAfter.forEach((item, index) => {
+    if (item === "@") temp++;
+    else if (temp === 1) {
+      email2 = item;
+      temp = 0;
+    }
+  });
   useEffect(() => {
     if (newPass1 === newPass2) {
       setMatch(true);
@@ -53,8 +63,8 @@ export default function ChangePass(props) {
     }
   }, [newPass1, newPass2]);
 
-  const Resetpwd = () =>{
-    fetch("http://firstsales.fareof.com/api/reset-password",{
+  const Resetpwd = () => {
+    fetch("http://firstsales.fareof.com/api/reset-password", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -63,8 +73,8 @@ export default function ChangePass(props) {
       body: JSON.stringify({
         email: props.location.state.Email,
       }),
-    })
-  }
+    });
+  };
 
   return (
     <div className="container">
@@ -74,54 +84,70 @@ export default function ChangePass(props) {
         </center>
       </div>
       <div className="modalbody">
-        <div className="resethead">
-           We have sent a code by email to . Enter it
-          below to confirm your account.
-        </div>
-        <span className="codehead">Code</span>
-        <input className="codeverify" type="password" />
-        <span className="codehead">New Password</span>
-        <input
-          className="codeverify"
-          type="password"
-          onChange={(event) => {
-            handleChange(event);
-            setNewPass1(event.target.value);
+        {wrongOTP && (
+          <div className="invalidverifycode">
+            Invalid verification code provided, please try again.
+          </div>
+        )}
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
           }}
-        />
-        <span className="codehead">Enter New Password Again</span>
-        <input
-          className="codeverify"
-          type="password"
-          onChange={(event) => {
-            setNewPass2(event.target.value);
-          }}
-        />
-
-        <div className={lc ? "success" : "fail"}>
-          {lc ? <span>✓</span> : <span>✖</span>} Password must contain a lower
-          case letter
-        </div>
-        <div className={uc ? "success" : "fail"}>
-          {uc ? <span>✓</span> : <span>✖</span>} Password must contain an upper
-          case letter
-        </div>
-        <div className={num ? "success" : "fail"}>
-          {num ? <span>✓</span> : <span>✖</span>} Password must contain a number
-        </div>
-        <div className={len ? "success" : "fail"}>
-          {len ? <span>✓</span> : <span>✖</span>} Password must contain at least
-          9 characters
-        </div>
-        <div className={match ? "success" : "fail"}>
-          {match ? <span>✓</span> : <span>✖</span>} Passwords must match
-        </div>
-
-        <Link to="/">
-          {" "}
-          <button className="changepassbtn"
-          onClick={Resetpwd}>Change password</button>
-        </Link>
+        >
+          <div className="resethead">
+            We have sent a password reset code by email to {email1}***@{email2}
+            ***. Enter it below to reset your password.
+          </div>
+          <span className="codehead">Code</span>
+          <input className="codeverify" type="password" required />
+          <span className="codehead">New Password</span>
+          <input
+            className="codeverify"
+            required
+            type="password"
+            onChange={(event) => {
+              handleChange(event);
+              setNewPass1(event.target.value);
+              setValidations(true);
+            }}
+          />
+          <span className="codehead">Enter New Password Again</span>
+          <input
+            className="codeverify"
+            required
+            type="password"
+            onChange={(event) => {
+              setNewPass2(event.target.value);
+              setValidations(true);
+            }}
+          />
+          {validations && (
+            <div>
+              <div className={lc ? "success" : "fail"}>
+                {lc ? <span>✓</span> : <span>✖</span>} Password must contain a
+                lower case letter
+              </div>
+              <div className={uc ? "success" : "fail"}>
+                {uc ? <span>✓</span> : <span>✖</span>} Password must contain an
+                upper case letter
+              </div>
+              <div className={num ? "success" : "fail"}>
+                {num ? <span>✓</span> : <span>✖</span>} Password must contain a
+                number
+              </div>
+              <div className={len ? "success" : "fail"}>
+                {len ? <span>✓</span> : <span>✖</span>} Password must contain at
+                least 9 characters
+              </div>
+              <div className={match ? "success" : "fail"}>
+                {match ? <span>✓</span> : <span>✖</span>} Passwords must match
+              </div>
+            </div>
+          )}{" "}
+          <button className="changepassbtn" onClick={Resetpwd} type="submit">
+            Change password
+          </button>
+        </form>
       </div>
     </div>
   );

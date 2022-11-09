@@ -8,7 +8,17 @@
   box-shadow: 0px 3px 3px -2px #424242, 0px 3px 4px 0px #616161,
     0px 1px 8px 0px #757575;
 }
-
+.invalidverifycode {
+  padding: 8px 4px;
+  font-size: 14px;
+  line-height: 24px;
+  font-family: Roboto;
+  background: #fdeded;
+  border: 2px solid #fdeded;
+  border-radius: 4px;
+  color: #5f2120;
+  margin-bottom: 10px;
+}
 .firstlogo {
   max-width: 80%;
   max-height: 100%;
@@ -22,7 +32,7 @@
 .resethead {
   font-size: 14px;
   line-height: 1.42857143;
-  margin-top: 16px;
+  padding-top: 16px;
 }
 .codehead {
   font-weight: 700;

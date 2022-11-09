@@ -18,10 +18,12 @@ export default function Forgotpass(props) {
     })
       .then((res) => res.json())
       .then((res) => {
-        // if (res.success) {
-        //   props.history.push("/Changepass");
-        // }
-        console.log(res);
+        if (res.success) {
+          props.history.push({
+            pathname: "/Changepass",
+            state: { Email: email },
+          });
+        }
       });
   };
   return (
@@ -48,7 +50,7 @@ export default function Forgotpass(props) {
             className="emailverify"
             placeholder="Email"
             required
-            type="text"
+            type="email"
             onChange={(event) => {
               setEmail(event.target.value);
             }}
