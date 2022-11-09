@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ApiURL } from "../ApiURL";
 import firstsales from "../Images/firstsales.jpg";
 import "./Emailverify.css";
 
@@ -18,7 +19,7 @@ export default function Emailverify(props) {
   });
 
   const VerifyOTP = () => {
-    fetch("http://firstsales.fareof.com/api/verify-otp", {
+    fetch(`${ApiURL}/verify-otp`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -39,7 +40,7 @@ export default function Emailverify(props) {
   };
 
   const ResendOTP = () => {
-    fetch("http://firstsales.fareof.com/api/send-otp", {
+    fetch(`${ApiURL}/send-otp`, {
       method: "POST",
       headers: {
         Accept: "application/json",

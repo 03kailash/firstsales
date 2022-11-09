@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./SignUp.css";
 import firstsales from "../Images/firstsales.jpg";
+import { ApiURL } from "../ApiURL";
 
 export function SignUp(props) {
   const [lc, setLc] = useState(false);
@@ -13,7 +14,7 @@ export function SignUp(props) {
   const [password, setPassword] = useState("");
 
   const SendOtp = () => {
-    fetch("http://firstsales.fareof.com/api/send-otp", {
+    fetch(`${ApiURL}/send-otp`, {
       method: "POST",
       headers: {
         Accept: "application/json",

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import firstsales from "../Images/firstsales.jpg";
 import "./ForgotPass.css";
-import { Link } from "react-router-dom";
+import { ApiURL } from "../ApiURL";
 
-export default function Forgotpass() {
+export default function Forgotpass(props) {
   const [email, setEmail] = useState("");
   const Forgotpassword = () => {
-    fetch("http://firstsales.fareof.com/api/forgot-password", {
+    fetch(`${ApiURL}/forgot-password`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -17,7 +17,11 @@ export default function Forgotpass() {
       }),
     })
       .then((res) => res.json())
-      .then((res) => console.log(res));
+      .then((res) => {
+        if (res.success) {
+          props.history.push("/Changepass");
+        }
+      });
   };
   return (
     <div className="container">
