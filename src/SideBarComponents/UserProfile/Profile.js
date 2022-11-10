@@ -13,8 +13,23 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
+import { ApiURL } from "../../ApiURL";
 
-function Profile() {
+function Profile(props) {
+  const Logout = () => {
+    fetch(`${ApiURL}/logout`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({}),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+      });
+  };
   const [value, setValue] = React.useState(dayjs("2014-08-18T21:11:54"));
 
   const handleChange = (newValue) => {
@@ -27,11 +42,13 @@ function Profile() {
           <div className="img_full">
             <Avatar
               src="/broken-image.jpg"
-              style={{width:'100%',height:'100%',maxWidth:'90px'}}
+              style={{ width: "100%", height: "100%", maxWidth: "90px" }}
             />
           </div>
           <div className="select_img">
-            <Button color="warning" style={{textTransform:"inherit"}}>Select Image</Button>
+            <Button color="warning" style={{ textTransform: "inherit" }}>
+              Select Image
+            </Button>
           </div>
           <br />
           <div className="FirstName">
@@ -44,7 +61,7 @@ function Profile() {
               InputLabelProps={{
                 shrink: true,
               }}
-              style={{ maxWidth: "370px",width:'100%' }}
+              style={{ maxWidth: "370px", width: "100%" }}
             />
             <br />
             <br />
@@ -56,7 +73,7 @@ function Profile() {
               InputLabelProps={{
                 shrink: true,
               }}
-              style={{ maxWidth: "370px",width:"100%" }}
+              style={{ maxWidth: "370px", width: "100%" }}
             />
           </div>
           <br />
@@ -68,8 +85,9 @@ function Profile() {
                   inputFormat="MM/DD/YYYY"
                   value={value}
                   onChange={handleChange}
-                  renderInput={(params) => <TextField {...params}  className="dob" color="warning" />}
-                 
+                  renderInput={(params) => (
+                    <TextField {...params} className="dob" color="warning" />
+                  )}
                 />
               </Stack>
             </LocalizationProvider>
@@ -77,7 +95,12 @@ function Profile() {
           <br />
           <div className="RedioBtn">
             <FormControl>
-              <FormLabel id="demo-radio-buttons-group-label" style={{color:'#ff8e00'}}>Gender</FormLabel>
+              <FormLabel
+                id="demo-radio-buttons-group-label"
+                style={{ color: "#ff8e00" }}
+              >
+                Gender
+              </FormLabel>
               <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
                 defaultValue="female"
@@ -112,7 +135,7 @@ function Profile() {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                style={{ MaxWidth: "370px",width:"100%" }}
+                style={{ MaxWidth: "370px", width: "100%" }}
               />
             </div>
           </div>
@@ -121,16 +144,20 @@ function Profile() {
       <br />
       <div style={{ width: "100%", justifyContent: "center", display: "flex" }}>
         <div style={{ width: "400px", display: "flex" }}>
-          <Button variant="outlined" color="warning" style={{textTransform:"inherit"}}>
+          <Button
+            variant="outlined"
+            color="warning"
+            style={{ textTransform: "inherit" }}
+            onClick={() => {
+              Logout();
+            }}
+          >
             Logout
           </Button>
           <div
             style={{ display: "flex", justifyContent: "end", width: "100%" }}
           >
-            <Button
-              variant="contained"
-                className="profilesavebtn"
-            >
+            <Button variant="contained" className="profilesavebtn">
               Save
             </Button>
           </div>
