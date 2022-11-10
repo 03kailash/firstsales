@@ -180,6 +180,7 @@ function Campaign() {
                           onClick={() => {
                             handleNewopen();
                             setNewopen(true);
+                            setOpen2(false)
                           }}
                         >
                           Create New Campaign

@@ -9,7 +9,6 @@ import ChangePass from "./Components/ChangePass";
 import SideBar from "./SideBar/SideBar";
 import Payment from "./SideBarComponents/Payment/Payment";
 import Workshop from "./WorkshopModel/Workshop";
-
 function App() {
   return (
     <Router>

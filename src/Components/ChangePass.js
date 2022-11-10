@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import firstsales from "../Images/firstsales.jpg";
 import "./ChangePass.css";
+import { ApiURL } from "../ApiURL";
 
 export default function ChangePass(props) {
   const handleChange = (event) => {
@@ -34,6 +35,7 @@ export default function ChangePass(props) {
       setLen(false);
     }
   };
+  const [verifycode, setVerifycode] = useState("");
   const [newPass1, setNewPass1] = useState("");
   const [newPass2, setNewPass2] = useState("");
 
@@ -64,16 +66,25 @@ export default function ChangePass(props) {
   }, [newPass1, newPass2]);
 
   const Resetpwd = () => {
-    fetch("http://firstsales.fareof.com/api/reset-password", {
+    fetch(`${ApiURL}/reset-password`, {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: props.location.state.Email,
+        code:verifycode,
+        password:newPass1,
+        password_confirmation:newPass2
       }),
-    });
+    })
+    .then((res) => res.json())
+      .then((res) => {
+       if(res.message==="password has been successfully reset"){
+        props.history.push("/")
+       }
+      console.log(res)
+      });
   };
 
   return (
@@ -99,7 +110,9 @@ export default function ChangePass(props) {
             ***. Enter it below to reset your password.
           </div>
           <span className="codehead">Code</span>
-          <input className="codeverify" type="password" required />
+          <input className="codeverify" type="password" required  onChange={(event) => {
+              setVerifycode(event.target.value);      
+            }} />
           <span className="codehead">New Password</span>
           <input
             className="codeverify"

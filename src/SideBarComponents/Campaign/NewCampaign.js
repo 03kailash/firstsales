@@ -7,7 +7,7 @@ import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import TextField from "@mui/material/TextField";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
+// import StepLabel from "@mui/material/StepLabel";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -46,6 +46,10 @@ import ForkRightIcon from "@mui/icons-material/ForkRight";
 import FlagIcon from "@mui/icons-material/Flag";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import ClearIcon from "@mui/icons-material/Clear";
+import DeleteModelNewCamp from "./DeleteModelNewCamp";
+import StepButton from '@mui/material/StepButton';
+import ChangeTemplate from "./CampaignModel/ChangeTemplate";
+
 const columns = [
   { id: "Mail Account", label: "Mail Account", minWidth: "150px" },
   {
@@ -70,8 +74,8 @@ function NewCampaign(props) {
   };
   const [AndAdd, setAndAdd] = useState(false);
   // const [addOR,setaddOR] =useState(false);
-  const [, setRender] = useState({});
-  const reRender = () => setRender({});
+  // const [, setRender] = useState({});
+  // const reRender = () => setRender({});
   const [add, setadd] = useState(false);
   const [activeStep, setActiveStep] = React.useState(0);
   const [page, setPage] = React.useState(0);
@@ -82,6 +86,7 @@ function NewCampaign(props) {
   const [Connection, setconnection] = useState(false);
   const [TimeField, setTimeField] = useState(false);
   const [mail, setmail] = useState(true);
+  const [Sandmail, setSandmail] = useState(false);
   const [last, setlast] = useState(false);
   const [ConnectionField, setConnectionField] = useState(false);
   const [DropDownFilter, setDropDownFilter] = useState(false);
@@ -89,7 +94,17 @@ function NewCampaign(props) {
   const [createAt, setcreateAt] = useState(false);
   const [TimeElement,SetTimeElement] = useState(true);
   const [Connect,Setconnect] = useState(false)
-  const [SandMail,SetSandMail] = useState(false)
+  const [Changetemp,setChangeTemp] =useState (false);
+  const [SandMailbox,SetSandMailbox] = useState(false)
+  const [laststepbox,SetLaststepbox] = useState(true)
+  const [DeleteModel,setDeleteModel]= useState(false)
+
+  const closeChangeTemp=()=>{
+    setChangeTemp(false);
+  }
+  const closedeletemodal=()=>{
+    setDeleteModel(false)
+  }
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -123,6 +138,12 @@ function NewCampaign(props) {
   const [openAddModel, setOpenAddModel] = React.useState(false);
   const handleOpenAddModel = () => setOpenAddModel(true);
   const handleCloseAddModel = () => setOpenAddModel(false);
+
+  const handleStep = (step) => () => {
+    setActiveStep(step);
+};
+
+
 
   // const [addAnd, setAddAnd] = useState(0);
 
@@ -159,16 +180,14 @@ function NewCampaign(props) {
                       }}
                       className="Steper"
                     >
-                      <Stepper activeStep={activeStep} className="steppers">
+                      <Stepper activeStep={activeStep} nonLinear className="steppers">
                         {steps.map((label, index) => {
-                          const stepProps = {};
-                          const labelProps = {};
                           return (
-                            <Step key={label} {...stepProps}>
-                              <StepLabel {...labelProps} className="steps">
-                                {label}{" "}
-                              </StepLabel>
-                            </Step>
+                            <Step key={label}>
+                            <StepButton color="warning" onClick={handleStep(index)} defaultChecked>
+                                {label}
+                            </StepButton>
+                        </Step>
                           );
                         })}
                       </Stepper>
@@ -954,7 +973,6 @@ function NewCampaign(props) {
                                       />
                                     </div>
                                   </Button>
-
                                   {time && (
                                     <Button
                                       variant="outlined"
@@ -993,8 +1011,12 @@ function NewCampaign(props) {
                                           justifyContent: "center",
                                           alignItems: "center",
                                         }}
-                                      >
-                                        <DeleteOutlineIcon color="action" />
+                                      > <IconButton>
+                                      <DeleteOutlineIcon color="action" 
+                                      onClick={()=>{
+                                        setDeleteModel(true)
+                                      }}/>
+                                      </IconButton>
                                       </div>
                                     </Button>
                                   )}
@@ -1037,11 +1059,70 @@ function NewCampaign(props) {
                                           alignItems: "center",
                                         }}
                                       >
-                                        <DeleteOutlineIcon color="action" />
+                                         <IconButton>
+                                        <DeleteOutlineIcon color="action" 
+                                        onClick={()=>{
+                                          setDeleteModel(true)
+                                        }}/>
+                                        </IconButton>
                                       </div>
                                     </Button>
                                   )}
-
+                            { Sandmail && <div >
+                                  <div
+                                    variant="outlined"
+                                    className="mailIconButn"
+                                    onClick={() => {
+                                      setmail(true);
+                                      setTimeField(false);
+                                      setlast(false);
+                                      setConnectionField(false);
+                                    }}
+                                  >
+                                    <div
+                                      style={{
+                                        display: "flex",
+                                        justifyContent: "flex-start",
+                                        alignItems: "center",
+                                        gap: "6px ",
+                                      }}
+                                    >
+                                      <div className="mailIcon">
+                                        <MailIcon color="action" />
+                                      </div>
+                                      <div>
+                                        <span className="sandEmailText">
+                                          Send Mail
+                                        </span>
+                                      </div>
+                                      <div
+                                        style={{
+                                          display: "flex",
+                                          justifyContent: "center",
+                                          alignItems: "center",
+                                        }}
+                                      >
+                                        <ErrorOutlineIcon
+                                          style={{ color: "rgb(244, 67, 54)" }}
+                                        />
+                                      </div>
+                                    </div>
+                                    <div
+                                        style={{
+                                          display: "flex",
+                                          justifyContent: "center",
+                                          alignItems: "center",
+                                        }}
+                                      >
+                                        <IconButton>
+                                        <DeleteOutlineIcon color="action" 
+                                        onClick={()=>{
+                                          setDeleteModel(true)
+                                        }}/>
+                                        </IconButton>
+                                      </div>
+                                  </div>
+                                  </div>}
                                   {laststep && (
                                     <Button
                                       variant="outlined"
@@ -1095,7 +1176,12 @@ function NewCampaign(props) {
                                           alignItems: "center",
                                         }}
                                       >
-                                        <DeleteOutlineIcon color="action" />
+                                        <IconButton>
+                                        <DeleteOutlineIcon color="action" 
+                                        onClick={()=>{
+                                          setDeleteModel(true)
+                                        }}/>
+                                        </IconButton>
                                       </div>
                                     </Button>
                                   )}
@@ -1186,6 +1272,8 @@ function NewCampaign(props) {
                                                 SetTimeElement(false)
                                                 setAddStep(false)
                                                 Setconnect(true)
+                                                SetLaststepbox(false)
+                                               SetSandMailbox(true)
                                               }}
                                             >
                                               <AccessTimeIcon color="action" />
@@ -1210,7 +1298,7 @@ function NewCampaign(props) {
                                                 }
                                                 Setconnect(false)
                                                 setAddStep(false)
-                                                SetSandMail(true)
+                                                SetSandMailbox(true)
                                               }}
                                             >
                                              <ForkRightIcon color="action" />
@@ -1220,18 +1308,19 @@ function NewCampaign(props) {
                                               Condition
                                             </div>
                                           </div>}
-                                         {SandMail && <div className="paperBlock">
+                                         {SandMailbox && <div className="paperBlock">
                                             <div
                                               style={{
                                                 backgroundColor: "#e1bee7 ",
                                               }}
                                               className="FlagIconBlockBtn"
                                               onClick={() => {
-                                                if (SandMail) {
-                                                  SetSandMail(false);
+                                                if (SandMailbox) {
+                                                  SetSandMailbox(false);
                                                 } else {
-                                                  SetSandMail(true);
+                                                  SetSandMailbox(true);
                                                 }
+                                                setSandmail(true)
                                               }}
                                             >
                                               <MailIcon color="action" />
@@ -1240,7 +1329,7 @@ function NewCampaign(props) {
                                               Send Mail
                                             </div>
                                           </div>}
-                                          <div className="paperBlock">
+                                         {laststepbox && <div className="paperBlock">
                                             <div
                                               style={{
                                                 backgroundColor: "#e1bee7 ",
@@ -1253,6 +1342,9 @@ function NewCampaign(props) {
                                                   setlaststep(true);
                                                 }
                                                 setAddStep(false);
+                                                SetTimeElement(false)
+                                                Setconnect(false)
+                                                SetLaststepbox(false)
                                               }}
                                             >
                                               <FlagIcon color="action" />
@@ -1260,8 +1352,9 @@ function NewCampaign(props) {
                                             <div className="paperBlockTimeText">
                                               Last Step
                                             </div>
-                                          </div>
+                                          </div>}
                                         </div>
+                                       {laststep && <div className="nostepText">no step can be added after "Last Step".</div>}
                                       </Paper>
                                     </Box>
                                   </div>
@@ -1305,6 +1398,9 @@ function NewCampaign(props) {
                                       <Button
                                         variant="outlined"
                                         className="CreateNewTamplatebtn"
+                                        onClick={() => {
+                                          setChangeTemp(true);
+                                        }}
                                       >
                                         change template
                                       </Button>
@@ -1586,6 +1682,8 @@ function NewCampaign(props) {
         openAddModel={openAddModel}
         handleCloseAddModel={handleCloseAddModel}
       />
+      <DeleteModelNewCamp isOpen={DeleteModel} isClose={closedeletemodal}/>
+      <ChangeTemplate open={Changetemp} close={closeChangeTemp}/>
     </div>
   );
 }
