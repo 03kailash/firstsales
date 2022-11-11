@@ -6,6 +6,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import TextField from "@mui/material/TextField";
 import dayjs from "dayjs";
+import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -15,8 +16,26 @@ import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import { ApiURL } from "../../ApiURL";
 import { useState } from "react";
+import profileimg from "../../Images/profileimg.png";
+import { useEffect } from "react";
+import { Alert, InputLabel, MenuItem, Select } from "@mui/material";
 
 function Profile(props) {
+  const [Time, setTime] = useState(false);
+  const [Date, setDate] = useState("");
+  const [timeZoneList, setTimeZoneList] = useState([]);
+  const [timezonevalue, setTimezonevalue] = React.useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [gender, setGender] = useState("");
+  const [timeZone, setTimeZone] = useState("");
+  const [profilepic, setProfilepic] = useState();
+  const [timezoneinfo, setTimezoneinfo] = useState(false);
+
+  const uploadFiles = () => {
+    document.getElementById("img").click();
+  };
+
   const Logout = () => {
     fetch(`${ApiURL}/logout`, {
       method: "POST",
@@ -40,15 +59,15 @@ function Profile(props) {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Token: localStorage.getItem("token"),
       },
       body: JSON.stringify({
-        first_name: firstname,
-        last_name: lastname,
-        dob: birthdate.$d,
-        gender: gender,
-        timezone: timezone,
-        profile_img: profilepic,
+        id: 7,
+        first_name: "f8uh8htcfrt6y",
+        last_name: "guggugg",
+        dob: "2000 - 03 - 11",
+        gender: 1,
+        timezone: "Asia/calcutta",
       }),
     })
       .then((res) => res.json())
@@ -56,22 +75,57 @@ function Profile(props) {
         console.log(res);
       });
   };
+  console.log(localStorage.getItem("token"));
   const [birthdate, setBirthdate] = React.useState(
     dayjs("2014-08-18T21:11:54")
   );
   const handleChange = (newValue) => {
     setBirthdate(newValue);
   };
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [gender, setGender] = useState("");
-  const [timezone, setTimezone] = useState("");
-  const [profilepic, setProfilepic] = useState();
-  console.log(firstname, lastname, birthdate.$d, gender, timezone);
-
-  const uploadFiles = () => {
-    document.getElementById("img").click();
+  useEffect(() => {
+    fetchTimeZone();
+  }, []);
+  const fetchTimeZone = () => {
+    fetch(`${ApiURL}/timezone`, {
+      method: "get",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.status) {
+          setTimeZoneList(res.data);
+        }
+      });
   };
+  const handleChange1 = (event) => {
+    setTimezonevalue(event.target.value);
+    if (timezonevalue !== timeZone) {
+      setTimezoneinfo(true);
+    } else {
+      setTimezoneinfo(false);
+    }
+  };
+
+  useEffect(() => {
+    fetch(`${ApiURL}/current-time`, {
+      method: "get",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => setDate(res.date));
+  }, []);
+
+  useEffect(() => {
+    const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
+    setTimeZone(timeZone);
+  }, []);
+
   return (
     <div style={{ width: "100%", backgroundColor: "#fafbfb " }}>
       <div className="top_Div">
@@ -84,10 +138,16 @@ function Profile(props) {
               style={{ display: "none" }}
             />
             <div className="img_full">
-              <Avatar
+              {/* <Avatar
                 onClick={uploadFiles.bind()}
                 src="/broken-image.jpg"
                 style={{ width: "100%", height: "100%", maxWidth: "90px" }}
+              /> */}
+              <img
+                src={profileimg}
+                onClick={uploadFiles.bind()}
+                alt="ProfileImg"
+                className="profileimg"
               />
             </div>
             <div className="select_img">
@@ -180,24 +240,79 @@ function Profile(props) {
               </RadioGroup>
             </FormControl>
           </div>
-          <br />
-          <div>
-            <div>
-              <TextField
-                id="outlined-number"
-                label="Timezone"
-                type="text"
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              padding: "16px 0px",
+            }}
+          >
+            <FormControl style={{ width: "100%" }}>
+              <InputLabel
+                id="demo-simple-select-autowidth-label"
                 color="warning"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                style={{ MaxWidth: "370px", width: "100%" }}
-                onChange={(event) => {
-                  setTimezone(event.target.value);
-                }}
-              />
-            </div>
+                shrink
+              >
+                TimeZone
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-autowidth-label"
+                id="demo-simple-select-autowidth"
+                value={timezonevalue}
+                color="warning"
+                onChange={handleChange1}
+                label="Timezone"
+                notched
+              >
+                {timeZoneList &&
+                  timeZoneList.map((op, i) => (
+                    <MenuItem key={i} value={op.timezone}>
+                      {op.timezone}
+                    </MenuItem>
+                  ))}
+              </Select>
+            </FormControl>
           </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginBottom: "16px",
+            }}
+          >
+            <AccessTimeOutlinedIcon
+              color="warning"
+              style={{ opacity: "80%" }}
+            />
+            <span className="currenttime">
+              Current time at selected timezone:
+              <br />
+              {Date}
+            </span>
+          </div>
+          {timezoneinfo && (
+            <Alert severity="info" className="timeinfo">
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                Your timezone: {timeZone}
+                <Button
+                  onClick={() => {
+                    setTimezonevalue(timeZone);
+                    setTimezoneinfo(false);
+                  }}
+                  className="useitbtn"
+                >
+                  Use it
+                </Button>
+              </div>
+            </Alert>
+          )}
         </div>
       </div>
       <br />

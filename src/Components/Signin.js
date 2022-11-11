@@ -8,6 +8,7 @@ export default function Signin(props) {
   const [wrongmessage, setWrongmessage] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userid, setUserid] = useState([]);
 
   useEffect(() => {
     localStorage.removeItem("token");
@@ -27,7 +28,8 @@ export default function Signin(props) {
       .then((res) => res.json())
       .then((res) => {
         if (res.status) {
-          localStorage.setItem("token", res.token);
+          localStorage.setItem("token", res.data.token);
+          setUserid(res.data.id);
         } else {
           localStorage.removeItem("token");
         }
@@ -89,7 +91,12 @@ export default function Signin(props) {
                 await Login();
                 setWrongmessage(true);
                 if (localStorage.getItem("token") !== null) {
-                  props.history.push("/Dashboard/Profile");
+                  props.history.push({
+                    pathname: "/Dashboard/Profile",
+                    state: {
+                      id: userid,
+                    },
+                  });
                 }
               }
             }}
