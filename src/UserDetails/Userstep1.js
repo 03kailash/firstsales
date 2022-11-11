@@ -3,7 +3,6 @@ import "./Userstep1.css";
 import TextField from "@mui/material/TextField";
 import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import Button from "@mui/material/Button";
-import { useTheme } from '@mui/material/styles';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -12,48 +11,20 @@ import Select from '@mui/material/Select';
 import Alert from '@mui/material/Alert';
 import { ApiURL } from "../ApiURL";
 
-// const CountryLists=[
-//   "bubh",
-//   "gg"
-// ]
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-// function getStyles(CountryList,City,theme) {
-//   return {
-//     fontWeight:
-//      City.indexOf(CountryList) === -1
-//         ? theme.typography.fontWeightRegular
-//         : theme.typography.fontWeightMedium,
-//   };
-// }
-
 export default function Userstep1(props) {
-  useEffect(() => {
-    fetch(`${ApiURL}/timezone`, {
-      method: "get",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => console.log(res));
-  }, [])
-
+  const [Time,setTime] = useState(false)
+  const [timeZone,settimeZone] =useState("")
   const [FritName, setFristName] = useState("");
   const [LastName, setLastName] = useState("");
   const [Workspace, setWorkspace] = useState("");
   const [Date, setDate] = useState("");
+  const [age, setAge] = React.useState('');
+  const [timeZoneList, setTimeZoneList] = useState([]);
   // const [data,setdata] = useState("")
-  // const [ City,setCity] = useState([])
+
+  useEffect(() => {
+    fetchTimeZone();
+  }, [])
 
   useEffect (()=>{
     fetch(`${ApiURL}/current-time`, {
@@ -69,19 +40,29 @@ export default function Userstep1(props) {
 
   useEffect(() => {
     const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
-    console.log(timeZone);
+    settimeZone(timeZone);
   }, [])
-  console.log(FritName, LastName, Workspace)
 
-  // const handleChange = (event) => {
-  //   const {
-  //     target: { value },
-  //   } = event;
-  //   setCity(
-  //     // On autofill we get a stringified value.
-  //     typeof value === 'string' ? value.split(',') : value,
-  //   );
-  // };
+  console.log(FritName, LastName, Workspace)
+  const fetchTimeZone = () => {
+    fetch(`${ApiURL}/timezone`, {
+      method: "get",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        if (res.status) {
+          setTimeZoneList(res.data);
+        }
+      });
+  }
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
   return (
     <div style={{ padding: "0px 16px", maxWidth: "618px", width:"100%" }}>
       <div className="usercontainer">
@@ -137,29 +118,22 @@ export default function Userstep1(props) {
             padding: "16px 0px",
           }}
         >
-          <FormControl className="userinput">
-            <InputLabel id="demo-multiple-name-label" color="warning" shrink>TimeZone</InputLabel>
-            <Select
-              labelId="demo-multiple-name-label"
-              id="demo-multiple-name"
-              color="warning"
-             
-              multiple
-              input={<OutlinedInput label="TimeZone" color="warning" />}
-              MenuProps={MenuProps}
-              notched
-            >
-              {/* {CountryLists.map((CountryList) => (
-                <MenuItem
-                  key={CountryList}
-                  value={CountryList}
-                  style={getStyles(CountryList)}
-                >
-                  {CountryList}
-                </MenuItem>
-              ))} */}
-            </Select>
-          </FormControl>
+            <FormControl sx={{ m: 1, minWidth: 300 }}>  
+        <InputLabel id="demo-simple-select-autowidth-label" color="warning" shrink >TimeZone</InputLabel>
+        <Select
+          labelId="demo-simple-select-autowidth-label"
+          id="demo-simple-select-autowidth"
+          value={age}
+          color="warning"
+          onChange={handleChange}
+          label="Timezone"
+          notched
+        >  
+          {timeZoneList && timeZoneList.map((op, i) => 
+            <MenuItem key={i} value={op.timezone}>{op.timezone}</MenuItem>
+          )}
+        </Select>
+      </FormControl>
         </div>
         <div
           style={{
@@ -174,9 +148,13 @@ export default function Userstep1(props) {
             Current time at selected timezone:<br/>{Date}
           </span>
         </div>
-        <div className="TimeZoneDiv">
-          <Alert severity="info" className="TimezomeInfo"> <div className="TimeZoneinnerDiv">Your timezone:<br /> Asia/Calcutta </div><div><Button>Use it</Button></div> </Alert>
-        </div>
+        { Time && <div className="TimeZoneDiv">
+          <Alert severity="info" className="TimezomeInfo"> 
+          <div className="TimeZoneinnerDiv">Your timezone:<br />{timeZone} </div>
+          <div><Button onClick={()=>{
+            setTime()
+          }}>Use it</Button></div></Alert>
+        </div>}
         <br />
         <br />
         <h6 className="createworkspace">Create your Workspace</h6>

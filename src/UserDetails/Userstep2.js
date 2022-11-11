@@ -1,20 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Userstep2.css";
 import Button from "@mui/material/Button";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-
 import MenuItem from "@mui/material/MenuItem";
-
 import Select from "@mui/material/Select";
 import FormLabel from "@mui/material/FormLabel";
-
+import { ApiURL } from "../ApiURL";
 export default function Userstep2(props) {
   const [value, setValue] = React.useState("female");
   const [age, setAge] = React.useState("");
+  const [team,setteam] = useState("")
+  const [industry,setindustry] = useState("")
   const [crm, setCrm] = useState(false);
+  const [crmApi, setcrmApi] = useState([]);
+  const [teamsizeApi, setteamsizeApi] = useState([]);
+  const [ServicesApi, setServicesApi] = useState([]);
   const [toggle, setToggle] = useState({
     sales: false,
     marketing: false,
@@ -23,6 +26,12 @@ export default function Userstep2(props) {
     others: false,
   });
 
+  const handleChange4 = (event) => {
+    setindustry(event.target.value);
+  };
+  const handleChange3 = (event) => {
+    setteam(event.target.value);
+  };
   const handleChange2 = (event) => {
     setAge(event.target.value);
   };
@@ -30,6 +39,67 @@ export default function Userstep2(props) {
   const handleChange = (event) => {
     setValue(event.target.value);
   };
+
+  useEffect(() => {
+    fetchcrm();
+  },[])
+
+  const fetchcrm = () => {
+    fetch(`${ApiURL}/get-crm`, {
+      method: "get",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.status) {
+          setcrmApi(res.data);
+        }
+      });
+  };
+
+  useEffect(() => {
+    fetchteamsize();
+  },[])
+  const fetchteamsize = () => {
+    fetch(`${ApiURL}/team-size`, {
+      method: "get",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        if (res.status) {
+          setteamsizeApi(res.data);
+        }
+      });
+  };
+
+  useEffect(() => {
+    fetchindusrty();
+  },[])
+  const fetchindusrty = () => {
+    fetch(`${ApiURL}/industry`, {
+      method: "get",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        if (res.status) {
+          setServicesApi(res.data);
+        }
+      });
+  };
+
   return (
     <div style={{ padding: "0px 16px", maxWidth: "100%" }}>
       <div className="usercontainerstep2">
@@ -117,15 +187,9 @@ export default function Userstep2(props) {
                   onChange={handleChange2}
                   color="warning"
                 >
-                  <MenuItem value={1}>Zoho CRM</MenuItem>
-                  <MenuItem value={10}>Pipedrive</MenuItem>
-                  <MenuItem value={20}>Freshsales</MenuItem>
-                  <MenuItem value={30}>Close</MenuItem>
-                  <MenuItem value={30}>Copper</MenuItem>
-                  <MenuItem value={30}>Zendesk Sell</MenuItem>
-                  <MenuItem value={30}>Salesforce</MenuItem>
-                  <MenuItem value={30}>Microsoft Dynamics</MenuItem>
-                  <MenuItem value={30}>Others</MenuItem>
+                  {crmApi && crmApi.map((op, i) =>
+                    <MenuItem key={i} value={op.crm_name}>{op.crm_name}</MenuItem>
+                  )}
                 </Select>
               </FormControl>
             )}
@@ -136,14 +200,13 @@ export default function Userstep2(props) {
               <Select
                 labelId="demo-select-small"
                 id="demo-select-small"
-                value={age}
-                onChange={handleChange2}
+                value={team}
+                onChange={handleChange3}
                 color="warning"
               >
-                <MenuItem value={1}>Just me</MenuItem>
-                <MenuItem value={10}>2-5</MenuItem>
-                <MenuItem value={20}>5-20</MenuItem>
-                <MenuItem value={30}>20+</MenuItem>
+                {teamsizeApi && teamsizeApi.map((op, index) =>
+                  <MenuItem key={index} value={op.team_size}>{op.team_size}</MenuItem>
+                )}
               </Select>
             </FormControl>
 
@@ -153,16 +216,13 @@ export default function Userstep2(props) {
               <Select
                 labelId="demo-select-small"
                 id="demo-select-small"
-                value={age}
-                onChange={handleChange2}
+                value={industry}
+                onChange={handleChange4}
                 color="warning"
               >
-                <MenuItem value={1}>IT Services</MenuItem>
-                <MenuItem value={10}>Saas</MenuItem>
-                <MenuItem value={20}>Human Resources</MenuItem>
-                <MenuItem value={30}>Markting & Advertising</MenuItem>
-                <MenuItem value={10}>Internet</MenuItem>
-                <MenuItem value={10}>Other</MenuItem>
+                {ServicesApi && ServicesApi.map((op,i) =>
+                  <MenuItem key={i} value={op.industry}>{op.industry}</MenuItem>
+                )}
               </Select>
             </FormControl>
           </div>
