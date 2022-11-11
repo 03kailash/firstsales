@@ -35,6 +35,11 @@ export function SignUp(props) {
       });
   };
 
+ const SignUp=()=>{
+  localStorage.setItem("email",JSON.stringify(email))
+  localStorage.setItem("password",JSON.stringify(password))
+ }
+
   const handleChange = (event) => {
     var pass = event.target.value;
     var regLc = /(?=.*?[a-z])/;
@@ -136,6 +141,7 @@ export function SignUp(props) {
             type="submit"
             onClick={() => {
               if (lc && uc && num && len) SendOtp();
+              SignUp();
             }}
           >
             Sign up

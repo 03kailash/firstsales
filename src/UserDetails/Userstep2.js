@@ -44,6 +44,16 @@ export default function Userstep2(props) {
     fetchcrm();
   },[])
 
+  const Next=()=>{
+    localStorage.setItem("Crm_id", JSON.stringify(age));
+    localStorage.setItem("Teamsize", JSON.stringify(team))
+    localStorage.setItem("Industry", JSON.stringify(industry))
+    localStorage.setItem("crm", JSON.stringify(value))
+
+
+  }
+  // console.log(age,industry,team)
+  
   const fetchcrm = () => {
     fetch(`${ApiURL}/get-crm`, {
       method: "get",
@@ -188,7 +198,7 @@ export default function Userstep2(props) {
                   color="warning"
                 >
                   {crmApi && crmApi.map((op, i) =>
-                    <MenuItem key={i} value={op.crm_name}>{op.crm_name}</MenuItem>
+                    <MenuItem key={i} value={op.id}>{op.crm_name}</MenuItem>
                   )}
                 </Select>
               </FormControl>
@@ -205,7 +215,7 @@ export default function Userstep2(props) {
                 color="warning"
               >
                 {teamsizeApi && teamsizeApi.map((op, index) =>
-                  <MenuItem key={index} value={op.team_size}>{op.team_size}</MenuItem>
+                  <MenuItem key={index} value={op.id}>{op.team_size}</MenuItem>
                 )}
               </Select>
             </FormControl>
@@ -221,14 +231,17 @@ export default function Userstep2(props) {
                 color="warning"
               >
                 {ServicesApi && ServicesApi.map((op,i) =>
-                  <MenuItem key={i} value={op.industry}>{op.industry}</MenuItem>
+                  <MenuItem key={i} value={op.id}>{op.industry}</MenuItem>
                 )}
               </Select>
             </FormControl>
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <Button onClick={props.handleNext} className="btnNext2">
+          <Button  onClick={()=>{
+            props.handleNext();
+            Next();
+          }}className="btnNext2">
             <span>
               {props.activeStep === props.steps.length - 1 ? "Finish" : "Next"}
             </span>

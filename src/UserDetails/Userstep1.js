@@ -3,7 +3,6 @@ import "./Userstep1.css";
 import TextField from "@mui/material/TextField";
 import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import Button from "@mui/material/Button";
-import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -12,21 +11,20 @@ import Alert from '@mui/material/Alert';
 import { ApiURL } from "../ApiURL";
 
 export default function Userstep1(props) {
-  const [Time,setTime] = useState(false)
-  const [timeZone,settimeZone] =useState("")
-  const [FritName, setFristName] = useState("");
+  const [Time, setTime] = useState(false)
+  const [timeZone, settimeZone] = useState("")
+  const [FirstName, setFristName] = useState("");
   const [LastName, setLastName] = useState("");
   const [Workspace, setWorkspace] = useState("");
   const [Date, setDate] = useState("");
   const [age, setAge] = React.useState('');
   const [timeZoneList, setTimeZoneList] = useState([]);
-  // const [data,setdata] = useState("")
 
   useEffect(() => {
     fetchTimeZone();
   }, [])
 
-  useEffect (()=>{
+  useEffect(() => {
     fetch(`${ApiURL}/current-time`, {
       method: "get",
       headers: {
@@ -36,14 +34,22 @@ export default function Userstep1(props) {
     })
       .then((res) => res.json())
       .then((res) => setDate(res.date));
-  },[])
+  }, [])
 
   useEffect(() => {
     const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
     settimeZone(timeZone);
   }, [])
 
-  console.log(FritName, LastName, Workspace)
+  // console.log(FirstName, LastName, Workspace)
+// console.log(age);
+
+  const Next = () => {
+    localStorage.setItem("FirstName", JSON.stringify(FirstName))
+    localStorage.setItem("LastName", JSON.stringify(LastName))
+    localStorage.setItem(" Workspace", JSON.stringify(Workspace))
+    localStorage.setItem("Timezone", JSON.stringify(age))
+  }
   const fetchTimeZone = () => {
     fetch(`${ApiURL}/timezone`, {
       method: "get",
@@ -64,7 +70,7 @@ export default function Userstep1(props) {
     setAge(event.target.value);
   };
   return (
-    <div style={{ padding: "0px 16px", maxWidth: "618px", width:"100%" }}>
+    <div style={{ padding: "0px 16px", maxWidth: "618px", width: "100%" }}>
       <div className="usercontainer">
         <div className="step1head">Tell us about yourself</div>
 
@@ -118,42 +124,44 @@ export default function Userstep1(props) {
             padding: "16px 0px",
           }}
         >
-            <FormControl sx={{ m: 1, minWidth: 300 }}>  
-        <InputLabel id="demo-simple-select-autowidth-label" color="warning" shrink >TimeZone</InputLabel>
-        <Select
-          labelId="demo-simple-select-autowidth-label"
-          id="demo-simple-select-autowidth"
-          value={age}
-          color="warning"
-          onChange={handleChange}
-          label="Timezone"
-          notched
-        >  
-          {timeZoneList && timeZoneList.map((op, i) => 
-            <MenuItem key={i} value={op.timezone}>{op.timezone}</MenuItem>
-          )}
-        </Select>
-      </FormControl>
+          <FormControl sx={{ m: 1, minWidth: 300 }}>
+            <InputLabel id="demo-simple-select-autowidth-label" color="warning" shrink >TimeZone</InputLabel>
+            <Select
+              labelId="demo-simple-select-autowidth-label"
+              id="demo-simple-select-autowidth"
+              value={age}
+              color="warning"
+              onChange={handleChange}
+              label="Timezone"
+              notched
+              className="Timezonelist"
+            >
+              {timeZoneList && timeZoneList.map((op, i) =>
+                <MenuItem key={i} value={op.timezone}>{op.timezone}</MenuItem> 
+              )}
+            </Select>
+
+          </FormControl>
         </div>
         <div
           style={{
             display: "flex",
             alignItems: "center",
-            justifyContent:"center",
-            marginBottom:"16px",
+            justifyContent: "center",
+            marginBottom: "16px",
           }}
         >
           <AccessTimeOutlinedIcon color="warning" style={{ opacity: "80%" }} />
           <span className="currenttime">
-            Current time at selected timezone:<br/>{Date}
+            Current time at selected timezone:<br />{Date}
           </span>
         </div>
-        { Time && <div className="TimeZoneDiv">
-          <Alert severity="info" className="TimezomeInfo"> 
-          <div className="TimeZoneinnerDiv">Your timezone:<br />{timeZone} </div>
-          <div><Button onClick={()=>{
-            setTime()
-          }}>Use it</Button></div></Alert>
+        {Time && <div className="TimeZoneDiv">
+          <Alert severity="info" className="TimezomeInfo">
+            <div className="TimeZoneinnerDiv">Your timezone:<br />{timeZone} </div>
+            <div><Button onClick={() => {
+              setTime()
+            }}>Use it</Button></div></Alert>
         </div>}
         <br />
         <br />
@@ -181,7 +189,10 @@ export default function Userstep1(props) {
         </div>
 
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <Button onClick={props.handleNext} className="btnNext">
+          <Button onClick={()=>{
+            props.handleNext();
+            Next();
+          }} className="btnNext">
             <span>
               {props.activeStep === props.steps.length - 1 ? "Finish" : "Next"}
             </span>
