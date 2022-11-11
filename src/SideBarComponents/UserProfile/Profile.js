@@ -14,6 +14,7 @@ import FormLabel from "@mui/material/FormLabel";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import { ApiURL } from "../../ApiURL";
+import { useState } from "react";
 
 function Profile(props) {
   const Logout = () => {
@@ -27,28 +28,77 @@ function Profile(props) {
     })
       .then((res) => res.json())
       .then((res) => {
+        if (res.status) {
+          props.history.push("/Logoutscreen");
+        }
+      });
+  };
+
+  const ProfileUpdate = () => {
+    fetch(`${ApiURL}/profile-update`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify({
+        first_name: firstname,
+        last_name: lastname,
+        dob: birthdate.$d,
+        gender: gender,
+        timezone: timezone,
+        profile_img: profilepic,
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
         console.log(res);
       });
   };
-  const [value, setValue] = React.useState(dayjs("2014-08-18T21:11:54"));
-
+  const [birthdate, setBirthdate] = React.useState(
+    dayjs("2014-08-18T21:11:54")
+  );
   const handleChange = (newValue) => {
-    setValue(newValue);
+    setBirthdate(newValue);
+  };
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [gender, setGender] = useState("");
+  const [timezone, setTimezone] = useState("");
+  const [profilepic, setProfilepic] = useState();
+  console.log(firstname, lastname, birthdate.$d, gender, timezone);
+
+  const uploadFiles = () => {
+    document.getElementById("img").click();
   };
   return (
     <div style={{ width: "100%", backgroundColor: "#fafbfb " }}>
       <div className="top_Div">
         <div className="Profile_Container">
-          <div className="img_full">
-            <Avatar
-              src="/broken-image.jpg"
-              style={{ width: "100%", height: "100%", maxWidth: "90px" }}
+          <div>
+            <input
+              type="file"
+              accept="image/*"
+              id="img"
+              style={{ display: "none" }}
             />
-          </div>
-          <div className="select_img">
-            <Button color="warning" style={{ textTransform: "inherit" }}>
-              Select Image
-            </Button>
+            <div className="img_full">
+              <Avatar
+                onClick={uploadFiles.bind()}
+                src="/broken-image.jpg"
+                style={{ width: "100%", height: "100%", maxWidth: "90px" }}
+              />
+            </div>
+            <div className="select_img">
+              <Button
+                color="warning"
+                style={{ textTransform: "inherit" }}
+                onClick={uploadFiles.bind()}
+              >
+                Select Image
+              </Button>
+            </div>
           </div>
           <br />
           <div className="FirstName">
@@ -62,6 +112,10 @@ function Profile(props) {
                 shrink: true,
               }}
               style={{ maxWidth: "370px", width: "100%" }}
+              value={firstname}
+              onChange={(event) => {
+                setFirstname(event.target.value);
+              }}
             />
             <br />
             <br />
@@ -74,6 +128,9 @@ function Profile(props) {
                 shrink: true,
               }}
               style={{ maxWidth: "370px", width: "100%" }}
+              onChange={(event) => {
+                setLastname(event.target.value);
+              }}
             />
           </div>
           <br />
@@ -83,7 +140,7 @@ function Profile(props) {
                 <DesktopDatePicker
                   label="BirthDay"
                   inputFormat="MM/DD/YYYY"
-                  value={value}
+                  value={birthdate}
                   onChange={handleChange}
                   renderInput={(params) => (
                     <TextField {...params} className="dob" color="warning" />
@@ -105,19 +162,18 @@ function Profile(props) {
                 aria-labelledby="demo-radio-buttons-group-label"
                 defaultValue="female"
                 name="radio-buttons-group"
+                onChange={(event) => {
+                  setGender(event.target.value);
+                }}
               >
                 <FormControlLabel
-                  value="female"
+                  value="2"
                   control={<Radio />}
                   label="Female"
                 />
+                <FormControlLabel value="1" control={<Radio />} label="Male" />
                 <FormControlLabel
-                  value="male"
-                  control={<Radio />}
-                  label="Male"
-                />
-                <FormControlLabel
-                  value="other"
+                  value="3"
                   control={<Radio />}
                   label="Rather not Say"
                 />
@@ -136,6 +192,9 @@ function Profile(props) {
                   shrink: true,
                 }}
                 style={{ MaxWidth: "370px", width: "100%" }}
+                onChange={(event) => {
+                  setTimezone(event.target.value);
+                }}
               />
             </div>
           </div>
@@ -157,7 +216,13 @@ function Profile(props) {
           <div
             style={{ display: "flex", justifyContent: "end", width: "100%" }}
           >
-            <Button variant="contained" className="profilesavebtn">
+            <Button
+              variant="contained"
+              className="profilesavebtn"
+              onClick={() => {
+                ProfileUpdate();
+              }}
+            >
               Save
             </Button>
           </div>

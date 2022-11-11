@@ -22,11 +22,11 @@ body {
   background-color: #ffffff;
   border-radius: 8px;
 }
-.modalbody {
+.modelbody {
   position: relative;
   padding: 15px;
 }
-.confirmacbtn {
+.signinasbtn {
   font-size: 14px;
   font-weight: bold;
   margin: 32px 0px 24px 0px;
@@ -41,14 +41,14 @@ body {
   cursor: pointer;
   padding-top: 2px;
 }
-.newcode {
+.difuser {
   font-weight: 400;
   color: #337ab7;
   text-decoration: none;
   font-size: 14px;
   cursor: pointer;
 }
-.newcode:hover {
+.difuser:hover {
   color: #23527c;
   text-decoration: underline;
 }

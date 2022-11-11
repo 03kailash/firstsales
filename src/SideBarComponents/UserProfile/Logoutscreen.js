@@ -1,8 +1,8 @@
 import React from "react";
-import firstsales from ".../Images/firstsales.jpg";
+import firstsales from "../../Images/firstsales.jpg";
 import "./Logoutscreen.css";
 
-export default function Logoutscreen() {
+export default function Logoutscreen(props) {
   return (
     <div className="container">
       <div className="imagediv">
@@ -10,8 +10,15 @@ export default function Logoutscreen() {
           <img src={firstsales} alt="logo" className="firstlogo" />
         </center>
       </div>
-      <div className="modalbody">
-        <button className="confirmacbtn">Confirm account</button>
+      <div className="modelbody">
+        <button
+          className="signinasbtn"
+          onClick={() => {
+            props.history.push("/Dashboard/Profile");
+          }}
+        >
+          Sign In as somilkaushal89@gmail.com
+        </button>
         <div
           style={{
             justifyContent: "center",
@@ -20,7 +27,14 @@ export default function Logoutscreen() {
             marginTop: "3px",
           }}
         >
-          <a className="newcode">Send a new code</a>
+          <a
+            className="difuser"
+            onClick={() => {
+              props.history.push("/");
+            }}
+          >
+            Sign in as a different user?
+          </a>
         </div>
       </div>
     </div>

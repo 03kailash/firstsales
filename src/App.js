@@ -9,6 +9,7 @@ import ChangePass from "./Components/ChangePass";
 import SideBar from "./SideBar/SideBar";
 import Payment from "./SideBarComponents/Payment/Payment";
 import Workshop from "./WorkshopModel/Workshop";
+import Logoutscreen from "./SideBarComponents/UserProfile/Logoutscreen";
 function App() {
   return (
     <Router>
@@ -22,6 +23,7 @@ function App() {
         <Route path="/Dashboard" component={SideBar} />
         <Route path="/payment" component={Payment} />
         <Route path="/workspace" component={Workshop} />
+        <Route path="/Logoutscreen" component={Logoutscreen} />
       </Switch>
     </Router>
   );
