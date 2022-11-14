@@ -1,14 +1,17 @@
 import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ApiURL } from "../ApiURL";
 import firstsales from "../Images/firstsales.jpg";
 import "./Emailverify.css";
 
 export default function Emailverify(props) {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [otp, setOtp] = useState("");
   const [wrongOTP, setWrongOTP] = useState(false);
-  const charAfter = props.location.state.Email.split("");
+  const charAfter = location.state.Email.split("");
   let temp = 0;
-  const email1 = props.location.state.Email[0];
+  const email1 = location.state.Email[0];
   let email2 = "";
   charAfter.forEach((item, index) => {
     if (item === "@") temp++;
@@ -27,14 +30,14 @@ export default function Emailverify(props) {
       },
       body: JSON.stringify({
         otp: otp,
-        email: props.location.state.Email,
+        email: location.state.Email,
       }),
     })
       .then((res) => res.json())
       .then((res) => {
         setWrongOTP(!res.status);
         if (res.status) {
-          props.history.push("/Userdetail");
+          navigate("/Userdetail");
         }
       });
   };
@@ -47,7 +50,7 @@ export default function Emailverify(props) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: props.location.state.Email,
+        email: location.state.Email,
       }),
     })
       .then((res) => res.json())

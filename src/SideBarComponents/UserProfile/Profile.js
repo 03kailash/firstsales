@@ -20,7 +20,7 @@ import { useEffect } from "react";
 import { Alert, InputLabel, MenuItem, Select, Snackbar } from "@mui/material";
 import ReactCrop from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Profile(props) {
   const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
@@ -32,6 +32,7 @@ function Profile(props) {
   const [gender, setGender] = useState("");
   const [timezoneinfo, setTimezoneinfo] = useState(false);
   const [snackOpen, setSnackOpen] = React.useState(false);
+  const navigate = useNavigate();
   const location = useLocation();
 
   const [crop, setCrop] = useState({
@@ -150,7 +151,7 @@ function Profile(props) {
       .then((res) => res.json())
       .then((res) => {
         if (res.status) {
-          props.history.push("/Logoutscreen");
+          navigate("/Logoutscreen");
         }
       });
   };

@@ -1,8 +1,10 @@
 import React from "react";
 import firstsales from "../../Images/firstsales.jpg";
 import "./Logoutscreen.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Logoutscreen(props) {
+  const navigate = useNavigate();
   return (
     <div className="container">
       <div className="imagediv">
@@ -14,7 +16,7 @@ export default function Logoutscreen(props) {
         <button
           className="signinasbtn"
           onClick={() => {
-            props.history.push("/Dashboard/Profile");
+            navigate("/Dashboard/Profile");
           }}
         >
           Sign In as {localStorage.getItem("email")}
@@ -30,7 +32,7 @@ export default function Logoutscreen(props) {
           <a
             className="difuser"
             onClick={() => {
-              props.history.push("/");
+              navigate("/");
               localStorage.removeItem("email");
             }}
           >

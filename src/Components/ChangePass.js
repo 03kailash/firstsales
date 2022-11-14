@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import firstsales from "../Images/firstsales.jpg";
 import "./ChangePass.css";
 import { ApiURL } from "../ApiURL";
@@ -38,7 +38,8 @@ export default function ChangePass(props) {
   const [verifycode, setVerifycode] = useState("");
   const [newPass1, setNewPass1] = useState("");
   const [newPass2, setNewPass2] = useState("");
-
+  const navigate = useNavigate();
+  const location = useLocation();
   const [lc, setLc] = useState(false);
   const [uc, setUc] = useState(false);
   const [num, setNum] = useState(false);
@@ -46,9 +47,9 @@ export default function ChangePass(props) {
   const [match, setMatch] = useState(false);
   const [validations, setValidations] = useState(false);
   const [wrongOTP, setWrongOTP] = useState(false);
-  const charAfter = props.location.state.Email.split("");
+  const charAfter = location.state.Email.split("");
   let temp = 0;
-  const email1 = props.location.state.Email[0];
+  const email1 = location.state.Email[0];
   let email2 = "";
   charAfter.forEach((item, index) => {
     if (item === "@") temp++;
@@ -73,17 +74,17 @@ export default function ChangePass(props) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        code:verifycode,
-        password:newPass1,
-        password_confirmation:newPass2
+        code: verifycode,
+        password: newPass1,
+        password_confirmation: newPass2,
       }),
     })
-    .then((res) => res.json())
+      .then((res) => res.json())
       .then((res) => {
-       if(res.message==="password has been successfully reset"){
-        props.history.push("/")
-       }
-      console.log(res)
+        if (res.message === "password has been successfully reset") {
+          navigate("/");
+        }
+        console.log(res);
       });
   };
 
@@ -110,9 +111,14 @@ export default function ChangePass(props) {
             ***. Enter it below to reset your password.
           </div>
           <span className="codehead">Code</span>
-          <input className="codeverify" type="password" required  onChange={(event) => {
-              setVerifycode(event.target.value);      
-            }} />
+          <input
+            className="codeverify"
+            type="password"
+            required
+            onChange={(event) => {
+              setVerifycode(event.target.value);
+            }}
+          />
           <span className="codehead">New Password</span>
           <input
             className="codeverify"

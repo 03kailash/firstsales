@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./SignUp.css";
 import firstsales from "../Images/firstsales.jpg";
 import { ApiURL } from "../ApiURL";
+import { useNavigate } from "react-router-dom";
 
 export function SignUp(props) {
   const [lc, setLc] = useState(false);
@@ -9,7 +10,7 @@ export function SignUp(props) {
   const [num, setNum] = useState(false);
   const [len, setLen] = useState(false);
   const [validations, setValidations] = useState(false);
-
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -27,10 +28,7 @@ export function SignUp(props) {
       .then((res) => res.json())
       .then((res) => {
         if (res.status) {
-          props.history.push({
-            pathname: "/Emailverify",
-            state: { Email: email },
-          });
+          navigate("/Emailverify", { state: { Email: email } });
         }
       });
   };
@@ -153,7 +151,7 @@ export function SignUp(props) {
             <a
               className="signuplink"
               onClick={() => {
-                props.history.push("/");
+                navigate("/");
               }}
             >
               Sign in

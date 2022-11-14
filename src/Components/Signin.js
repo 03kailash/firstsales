@@ -84,7 +84,7 @@ export default function Signin(props) {
           <a
             className="forgotpass"
             onClick={() => {
-              props.history.push("/ForgotPass");
+              navigate("/ForgotPass");
             }}
           >
             Forgot your password?
@@ -107,7 +107,7 @@ export default function Signin(props) {
             <span>Need an account?</span>&nbsp;
             <a
               onClick={() => {
-                props.history.push("/SignUp");
+                navigate("/SignUp");
               }}
               className="signuplink"
             >

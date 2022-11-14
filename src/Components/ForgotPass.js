@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import firstsales from "../Images/firstsales.jpg";
 import "./ForgotPass.css";
 import { ApiURL } from "../ApiURL";
+import { useNavigate } from "react-router-dom";
 
 export default function Forgotpass(props) {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const Forgotpassword = () => {
     fetch(`${ApiURL}/forgot-password`, {
@@ -19,10 +22,7 @@ export default function Forgotpass(props) {
       .then((res) => res.json())
       .then((res) => {
         if (res.success) {
-          props.history.push({
-            pathname: "/Changepass",
-            state: { Email: email },
-          });
+          navigate("/Changepass", { state: { Email: email } });
         }
       });
   };
@@ -55,8 +55,6 @@ export default function Forgotpass(props) {
               setEmail(event.target.value);
             }}
           />
-
-          {/* <Link to="/Changepass"> */}
           <button
             type="submit"
             className="resetpassbtn"
@@ -66,7 +64,6 @@ export default function Forgotpass(props) {
           >
             Reset my password
           </button>
-          {/* </Link> */}
         </form>
       </div>
     </div>
