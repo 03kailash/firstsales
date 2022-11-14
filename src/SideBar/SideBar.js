@@ -36,7 +36,7 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import Settings from "../SideBarComponents/Settings/Settings";
 import { Link } from "react-router-dom";
-import { Route, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 const drawerWidth = 278;
 
@@ -284,15 +284,15 @@ function SideBar() {
             </Drawer>
           </Box>
         )}
-        <Switch>
-          <Route path="/Dashboard/Profile" component={Profile} />
-          <Route path="/Dashboard/Contacts" component={Contact} />
-          <Route path="/Dashboard/Content" component={Content} />
-          <Route path="/Dashboard/Campaigns" component={Campaign} />
-          <Route path="/Dashboard/EmailWarmUp" component={EmailWarm} />
-          <Route path="/Dashboard/Analytics" component={Analytics} />
-          <Route path="/Dashboard/Settings" component={Settings} />
-        </Switch>
+        <Routes>
+          <Route path="/Dashboard/Profile" element={<Profile />} />
+          <Route path="/Dashboard/Contacts" element={<Contact />} />
+          <Route path="/Dashboard/Content" element={<Content />} />
+          <Route path="/Dashboard/Campaigns" element={<Campaign />} />
+          <Route path="/Dashboard/EmailWarmUp" element={<EmailWarm />} />
+          <Route path="/Dashboard/Analytics" element={<Analytics />} />
+          <Route path="/Dashboard/Settings" element={<Settings />} />
+        </Routes>
       </Box>
       <Drawer
         open={sidebarOpen}

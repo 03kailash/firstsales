@@ -20,6 +20,7 @@ import { useEffect } from "react";
 import { Alert, InputLabel, MenuItem, Select, Snackbar } from "@mui/material";
 import ReactCrop from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
+import { useLocation } from "react-router-dom";
 
 function Profile(props) {
   const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
@@ -31,6 +32,8 @@ function Profile(props) {
   const [gender, setGender] = useState("");
   const [timezoneinfo, setTimezoneinfo] = useState(false);
   const [snackOpen, setSnackOpen] = React.useState(false);
+  const location = useLocation();
+
   const [crop, setCrop] = useState({
     height: 365,
     unit: "px",
@@ -45,16 +48,17 @@ function Profile(props) {
   };
 
   const ProfileImgUpdate = () => {
+    const formData = new FormData();
+    formData.append("id", location.state.id);
+    formData.append("profile_img", image);
     fetch(`${ApiURL}/profileImg-update`, {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json",
+        "Content-Type": "multipart/form-data",
         token: localStorage.getItem("token"),
       },
-      body: JSON.stringify({
-        id: props.location.state.id,
-      }),
+      body: formData,
     })
       .then((res) => res.json())
       .then((res) => {
@@ -71,7 +75,7 @@ function Profile(props) {
         token: localStorage.getItem("token"),
       },
       body: JSON.stringify({
-        id: props.location.state.id,
+        id: location.state.id,
         first_name: firstname,
         last_name: lastname,
         dob: birthdate,

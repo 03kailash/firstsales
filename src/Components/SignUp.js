@@ -35,10 +35,10 @@ export function SignUp(props) {
       });
   };
 
- const SignUp=()=>{
-  localStorage.setItem("email",JSON.stringify(email))
-  localStorage.setItem("password",JSON.stringify(password))
- }
+  const SignUp = () => {
+    localStorage.setItem("email", JSON.stringify(email));
+    localStorage.setItem("password", JSON.stringify(password));
+  };
 
   const handleChange = (event) => {
     var pass = event.target.value;

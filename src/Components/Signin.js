@@ -3,12 +3,13 @@ import "./Signin.css";
 import firstsales from "../Images/firstsales.jpg";
 import { useEffect } from "react";
 import { ApiURL } from "../ApiURL";
+import { useNavigate } from "react-router-dom";
 
 export default function Signin(props) {
   const [wrongmessage, setWrongmessage] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   useEffect(() => {
     localStorage.removeItem("token");
   }, []);
@@ -30,8 +31,7 @@ export default function Signin(props) {
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("email", email);
           if (localStorage.getItem("token") !== null) {
-            props.history.push({
-              pathname: "/Dashboard/Profile",
+            navigate("/Dashboard/Profile", {
               state: {
                 id: res.data.id,
               },
