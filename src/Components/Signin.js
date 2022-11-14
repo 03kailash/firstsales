@@ -8,7 +8,6 @@ export default function Signin(props) {
   const [wrongmessage, setWrongmessage] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userid, setUserid] = useState([]);
 
   useEffect(() => {
     localStorage.removeItem("token");
@@ -29,13 +28,20 @@ export default function Signin(props) {
       .then((res) => {
         if (res.status) {
           localStorage.setItem("token", res.data.token);
-          setUserid(res.data.id);
+          localStorage.setItem("email", email);
+          if (localStorage.getItem("token") !== null) {
+            props.history.push({
+              pathname: "/Dashboard/Profile",
+              state: {
+                id: res.data.id,
+              },
+            });
+          }
         } else {
           localStorage.removeItem("token");
         }
       });
   };
-
   return (
     <div className="container">
       <div className="imagediv">
@@ -90,14 +96,6 @@ export default function Signin(props) {
               if (email !== "" && password !== "") {
                 await Login();
                 setWrongmessage(true);
-                if (localStorage.getItem("token") !== null) {
-                  props.history.push({
-                    pathname: "/Dashboard/Profile",
-                    state: {
-                      id: userid,
-                    },
-                  });
-                }
               }
             }}
           >

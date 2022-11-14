@@ -13,43 +13,52 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Button from "@mui/material/Button";
-import Avatar from "@mui/material/Avatar";
 import { ApiURL } from "../../ApiURL";
 import { useState } from "react";
 import profileimg from "../../Images/profileimg.png";
 import { useEffect } from "react";
-import { Alert, InputLabel, MenuItem, Select } from "@mui/material";
+import { Alert, InputLabel, MenuItem, Select, Snackbar } from "@mui/material";
+import ReactCrop from "react-image-crop";
+import "react-image-crop/dist/ReactCrop.css";
 
 function Profile(props) {
-  const [Time, setTime] = useState(false);
+  const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
   const [Date, setDate] = useState("");
   const [timeZoneList, setTimeZoneList] = useState([]);
-  const [timezonevalue, setTimezonevalue] = React.useState("");
+  const [timezonevalue, setTimezonevalue] = React.useState(timeZone);
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [gender, setGender] = useState("");
-  const [timeZone, setTimeZone] = useState("");
-  const [profilepic, setProfilepic] = useState();
   const [timezoneinfo, setTimezoneinfo] = useState(false);
+  const [snackOpen, setSnackOpen] = React.useState(false);
+  const [crop, setCrop] = useState({
+    height: 365,
+    unit: "px",
+    width: 365,
+    x: 4,
+    y: 0,
+  });
+  const [image, setImage] = useState("");
 
-  const uploadFiles = () => {
+  const uploadFiles = (e) => {
     document.getElementById("img").click();
   };
 
-  const Logout = () => {
-    fetch(`${ApiURL}/logout`, {
+  const ProfileImgUpdate = () => {
+    fetch(`${ApiURL}/profileImg-update`, {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        token: localStorage.getItem("token"),
       },
-      body: JSON.stringify({}),
+      body: JSON.stringify({
+        id: props.location.state.id,
+      }),
     })
       .then((res) => res.json())
       .then((res) => {
-        if (res.status) {
-          props.history.push("/Logoutscreen");
-        }
+        console.log(res);
       });
   };
 
@@ -59,32 +68,29 @@ function Profile(props) {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Token: localStorage.getItem("token"),
+        token: localStorage.getItem("token"),
       },
       body: JSON.stringify({
-        id: 7,
-        first_name: "f8uh8htcfrt6y",
-        last_name: "guggugg",
-        dob: "2000 - 03 - 11",
-        gender: 1,
-        timezone: "Asia/calcutta",
+        id: props.location.state.id,
+        first_name: firstname,
+        last_name: lastname,
+        dob: birthdate,
+        gender: gender,
+        timezone: timezonevalue,
       }),
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
+        if (res.status) {
+          setSnackOpen(true);
+        }
       });
   };
-  console.log(localStorage.getItem("token"));
-  const [birthdate, setBirthdate] = React.useState(
-    dayjs("2014-08-18T21:11:54")
-  );
+  const [birthdate, setBirthdate] = React.useState(dayjs("2014-08-18"));
   const handleChange = (newValue) => {
     setBirthdate(newValue);
   };
-  useEffect(() => {
-    fetchTimeZone();
-  }, []);
+
   const fetchTimeZone = () => {
     fetch(`${ApiURL}/timezone`, {
       method: "get",
@@ -100,16 +106,21 @@ function Profile(props) {
         }
       });
   };
+  useEffect(() => {
+    fetchTimeZone();
+  }, []);
   const handleChange1 = (event) => {
     setTimezonevalue(event.target.value);
+  };
+  useEffect(() => {
     if (timezonevalue !== timeZone) {
       setTimezoneinfo(true);
     } else {
       setTimezoneinfo(false);
     }
-  };
+  }, [timezonevalue]);
 
-  useEffect(() => {
+  const currentTime = () => {
     fetch(`${ApiURL}/current-time`, {
       method: "get",
       headers: {
@@ -119,13 +130,27 @@ function Profile(props) {
     })
       .then((res) => res.json())
       .then((res) => setDate(res.date));
-  }, []);
-
+  };
   useEffect(() => {
-    const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
-    setTimeZone(timeZone);
+    currentTime();
   }, []);
 
+  const Logout = () => {
+    fetch(`${ApiURL}/logout`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.status) {
+          props.history.push("/Logoutscreen");
+        }
+      });
+  };
+  console.log(image);
   return (
     <div style={{ width: "100%", backgroundColor: "#fafbfb " }}>
       <div className="top_Div">
@@ -136,13 +161,9 @@ function Profile(props) {
               accept="image/*"
               id="img"
               style={{ display: "none" }}
+              onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))}
             />
             <div className="img_full">
-              {/* <Avatar
-                onClick={uploadFiles.bind()}
-                src="/broken-image.jpg"
-                style={{ width: "100%", height: "100%", maxWidth: "90px" }}
-              /> */}
               <img
                 src={profileimg}
                 onClick={uploadFiles.bind()}
@@ -160,10 +181,37 @@ function Profile(props) {
               </Button>
             </div>
           </div>
+          <ReactCrop
+            crop={crop}
+            onChange={(c) => {
+              setCrop(c);
+            }}
+          >
+            <img src={image} />
+          </ReactCrop>
           <br />
+          {image !== "" && (
+            <div className="saveimgbtndiv">
+              <Button
+                className="cancelimgbtn"
+                onClick={() => {
+                  setImage("");
+                }}
+              >
+                Cancel
+              </Button>
+              <Button
+                className="saveimg"
+                onClick={() => {
+                  ProfileImgUpdate();
+                }}
+              >
+                Save Image
+              </Button>
+            </div>
+          )}
           <div className="FirstName">
             <TextField
-              size="mediu"
               id="outlined-number"
               label="First Name"
               type="text"
@@ -263,10 +311,11 @@ function Profile(props) {
                 onChange={handleChange1}
                 label="Timezone"
                 notched
+                className="timebolte"
               >
                 {timeZoneList &&
                   timeZoneList.map((op, i) => (
-                    <MenuItem key={i} value={op.timezone}>
+                    <MenuItem key={i} value={op.timezone} color="warning">
                       {op.timezone}
                     </MenuItem>
                   ))}
@@ -343,6 +392,12 @@ function Profile(props) {
           </div>
         </div>
       </div>
+      <Snackbar
+        open={snackOpen}
+        autoHideDuration={4000}
+        onClose={() => setSnackOpen(false)}
+        message="Profile saved"
+      />
     </div>
   );
 }

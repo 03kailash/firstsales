@@ -15,6 +15,14 @@
   border: 1px;
   box-shadow: rgb(0 0 0 / 10%) 0px 2px 3px;
 }
+.cancelimgbtn {
+  text-transform: inherit !important;
+  margin: 16px 0px !important;
+  color: rgb(255, 142, 0) !important;
+}
+.cancelimgbtn:hover {
+  background-color: rgba(255, 142, 0, 0.04) !important;
+}
 .img_full {
   text-align: center;
   display: flex;
@@ -22,6 +30,25 @@
   width: 100%;
   margin: 0px;
   cursor: pointer;
+}
+.saveimgbtndiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 16px;
+}
+.saveimg {
+  margin: 16px 0px !important;
+  color: rgb(255, 255, 255) !important;
+  background-color: rgb(255, 142, 0) !important;
+  padding: 6px 16px !important;
+  text-transform: inherit !important;
+}
+.saveimg:hover {
+  background-color: rgb(178, 99, 0) !important;
+  box-shadow: rgb(0 0 0 / 31%) 0px 0px 1px 0px,
+    rgb(0 0 0 / 25%) 0px 3px 4px -2px !important;
 }
 .timeinfo {
   height: 48px;

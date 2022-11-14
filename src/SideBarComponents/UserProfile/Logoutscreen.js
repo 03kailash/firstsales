@@ -17,7 +17,7 @@ export default function Logoutscreen(props) {
             props.history.push("/Dashboard/Profile");
           }}
         >
-          Sign In as somilkaushal89@gmail.com
+          Sign In as {localStorage.getItem("email")}
         </button>
         <div
           style={{
@@ -31,6 +31,7 @@ export default function Logoutscreen(props) {
             className="difuser"
             onClick={() => {
               props.history.push("/");
+              localStorage.removeItem("email");
             }}
           >
             Sign in as a different user?
