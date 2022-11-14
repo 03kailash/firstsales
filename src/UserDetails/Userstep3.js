@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Userstep3.css";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import { ApiURL } from "../ApiURL";
-export default function Userstep3(props) {
-  // const [Register,setRegister] = useState("");
-  // console.log(localStorage.getItem("Crm"))
 
+export default function Userstep3(props) {
+  const navigate = useNavigate();
   const RegisterApi = () => {
     fetch(`${ApiURL}/register`, {
       method: "POST",
@@ -33,11 +33,8 @@ export default function Userstep3(props) {
       .then((res) => res.json())
       .then((res) => {
         if (res.status) {
-          props.history.push("/");
-        }else{
-          props.history.push("/");
+          navigate("/Dashboard/Profile");
         }
-     
       });
   }
   return (

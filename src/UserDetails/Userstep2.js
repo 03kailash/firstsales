@@ -83,7 +83,6 @@ export default function Userstep2(props) {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         if (res.status) {
           setteamsizeApi(res.data);
         }
@@ -103,7 +102,6 @@ export default function Userstep2(props) {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         if (res.status) {
           setServicesApi(res.data);
         }
