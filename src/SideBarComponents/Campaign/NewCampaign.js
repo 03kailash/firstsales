@@ -49,6 +49,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import DeleteModelNewCamp from "./DeleteModelNewCamp";
 import StepButton from '@mui/material/StepButton';
 import ChangeTemplate from "./CampaignModel/ChangeTemplate";
+import { Tooltip } from "@mui/material";
 
 const columns = [
   { id: "Mail Account", label: "Mail Account", minWidth: "150px" },
@@ -92,17 +93,17 @@ function NewCampaign(props) {
   const [DropDownFilter, setDropDownFilter] = useState(false);
   const [DropDownFilterSource, setDropDownFilterSource] = useState(false)
   const [createAt, setcreateAt] = useState(false);
-  const [TimeElement,SetTimeElement] = useState(true);
-  const [Connect,Setconnect] = useState(false)
-  const [Changetemp,setChangeTemp] =useState (false);
-  const [SandMailbox,SetSandMailbox] = useState(false)
-  const [laststepbox,SetLaststepbox] = useState(true)
-  const [DeleteModel,setDeleteModel]= useState(false)
+  const [TimeElement, SetTimeElement] = useState(true);
+  const [Connect, Setconnect] = useState(false)
+  const [Changetemp, setChangeTemp] = useState(false);
+  const [SandMailbox, SetSandMailbox] = useState(false)
+  const [laststepbox, SetLaststepbox] = useState(true)
+  const [DeleteModel, setDeleteModel] = useState(false)
 
-  const closeChangeTemp=()=>{
+  const closeChangeTemp = () => {
     setChangeTemp(false);
   }
-  const closedeletemodal=()=>{
+  const closedeletemodal = () => {
     setDeleteModel(false)
   }
   const handleNext = () => {
@@ -141,7 +142,7 @@ function NewCampaign(props) {
 
   const handleStep = (step) => () => {
     setActiveStep(step);
-};
+  };
 
 
 
@@ -184,10 +185,10 @@ function NewCampaign(props) {
                         {steps.map((label, index) => {
                           return (
                             <Step key={label}>
-                            <StepButton color="warning" onClick={handleStep(index)} defaultChecked>
+                              <StepButton color="warning" onClick={handleStep(index)} defaultChecked>
                                 {label}
-                            </StepButton>
-                        </Step>
+                              </StepButton>
+                            </Step>
                           );
                         })}
                       </Stepper>
@@ -427,11 +428,11 @@ function NewCampaign(props) {
                                                   Any cold contact
                                                 </MenuItem>
                                                 <MenuItem value="created"
-                                                 onClick={() => {
-                                                  setDropDownFilterSource(false);
-                                                  setDropDownFilter(false)
-                                                  setcreateAt(true);
-                                                }}>
+                                                  onClick={() => {
+                                                    setDropDownFilterSource(false);
+                                                    setDropDownFilter(false)
+                                                    setcreateAt(true);
+                                                  }}>
                                                   Created At
                                                 </MenuItem>
                                               </Select>
@@ -492,56 +493,56 @@ function NewCampaign(props) {
                                                 </Select>
                                               </FormControl>
                                             </div>}
-                                            { createAt && <div style={{display:"flex",alignItems:'center'}}>
+                                            {createAt && <div style={{ display: "flex", alignItems: 'center' }}>
                                               <div>
-                                                  <FormControl
-                                                    sx={{ m: 1, minWidth: 200 }}
-                                                    size="small"
+                                                <FormControl
+                                                  sx={{ m: 1, minWidth: 200 }}
+                                                  size="small"
+                                                >
+                                                  <InputLabel
+                                                    id="demo-select-small"
+                                                    color="warning"
                                                   >
-                                                    <InputLabel
-                                                      id="demo-select-small"
-                                                      color="warning"
-                                                    >
-                                                    </InputLabel>
-                                                    <Select
-                                                      labelId="demo-select-small"
-                                                      id="demo-select-small"
-                                                      value={Tags}
-                                                      color="warning"
-                                                      onChange={handleChangeee}
-                                                      InputLabelProps={{
-                                                        shrink: true,
-                                                      }}
-                                                    >
-                                                      <MenuItem value="hast">
-                                                        Before
-                                                      </MenuItem>
-                                                      <MenuItem value="nottag">
-                                                        After
-                                                      </MenuItem>
-                                                    </Select>
-                                                  </FormControl>
-                                                </div>
-                                                <div>
-                                                  <LocalizationProvider
-                                                    dateAdapter={AdapterDayjs}
+                                                  </InputLabel>
+                                                  <Select
+                                                    labelId="demo-select-small"
+                                                    id="demo-select-small"
+                                                    value={Tags}
+                                                    color="warning"
+                                                    onChange={handleChangeee}
+                                                    InputLabelProps={{
+                                                      shrink: true,
+                                                    }}
                                                   >
-                                                    <DateTimePicker
-                                                      label="Date&Time picker"
-                                                      value={value}
-                                                      onChange={handleChangeeee}
-                                                      renderInput={(params) => (
-                                                        <TextField
-                                                          {...params}
-                                                          className="timePiker"
-                                                          size="small"
-                                                          color="warning"
-                                                        />
-                                                      )}
-                                                    />
-                                                  </LocalizationProvider>
-                                                </div>
-                                              </div>}
+                                                    <MenuItem value="hast">
+                                                      Before
+                                                    </MenuItem>
+                                                    <MenuItem value="nottag">
+                                                      After
+                                                    </MenuItem>
+                                                  </Select>
+                                                </FormControl>
+                                              </div>
+                                              <div>
+                                                <LocalizationProvider
+                                                  dateAdapter={AdapterDayjs}
+                                                >
+                                                  <DateTimePicker
+                                                    label="Date&Time picker"
+                                                    value={value}
+                                                    onChange={handleChangeeee}
+                                                    renderInput={(params) => (
+                                                      <TextField
+                                                        {...params}
+                                                        className="timePiker"
+                                                        size="small"
+                                                        color="warning"
+                                                      />
+                                                    )}
+                                                  />
+                                                </LocalizationProvider>
+                                              </div>
+                                            </div>}
                                             <div
                                               style={{
                                                 display: "flex",
@@ -794,7 +795,7 @@ function NewCampaign(props) {
                                     gap: "6px",
                                   }}
                                 >
-                                  <div>Sequence</div>
+                                  <div>Sequences</div>
                                   <Chip
                                     label="New"
                                     variant="outlined"
@@ -823,7 +824,9 @@ function NewCampaign(props) {
                                     size="small"
                                     style={{ minWidth: "0px" }}
                                   >
-                                    <ArchiveRoundedIcon />
+                                    <Tooltip title="Move to Campaign to archive" placement="top">
+                                      <ArchiveRoundedIcon />
+                                    </Tooltip>
                                   </Button>
                                 </div>
                                 <div>
@@ -838,13 +841,14 @@ function NewCampaign(props) {
                                 </div>
                                 <div>
                                   <Button
+                                  className="PlayCircleBtn"
                                     style={{
                                       backgroundColor: "#ff8e00",
                                       color: "#ffffff",
                                     }}
                                   >
                                     Start Campaign{" "}
-                                    <PlayCircleOutlineRoundedIcon color="none" />
+                                    <PlayCircleOutlineRoundedIcon color="none" className="PlayCircleRoundedIcon"/>
                                   </Button>
                                 </div>
                               </div>
@@ -959,9 +963,11 @@ function NewCampaign(props) {
                                           alignItems: "center",
                                         }}
                                       >
-                                        <ErrorOutlineIcon
-                                          style={{ color: "rgb(244, 67, 54)" }}
-                                        />
+                                        <Tooltip title="No template selected" placement="top">
+                                          <ErrorOutlineIcon
+                                            style={{ color: "rgb(244, 67, 54)" }}
+                                          />
+                                        </Tooltip>
                                       </div>
                                     </div>
                                     <div style={{ textTransform: "inherit" }}>
@@ -1012,11 +1018,11 @@ function NewCampaign(props) {
                                           alignItems: "center",
                                         }}
                                       > <IconButton>
-                                      <DeleteOutlineIcon color="action" 
-                                      onClick={()=>{
-                                        setDeleteModel(true)
-                                      }}/>
-                                      </IconButton>
+                                          <DeleteOutlineIcon color="action"
+                                            onClick={() => {
+                                              setDeleteModel(true)
+                                            }} />
+                                        </IconButton>
                                       </div>
                                     </Button>
                                   )}
@@ -1059,41 +1065,53 @@ function NewCampaign(props) {
                                           alignItems: "center",
                                         }}
                                       >
-                                         <IconButton>
-                                        <DeleteOutlineIcon color="action" 
-                                        onClick={()=>{
-                                          setDeleteModel(true)
-                                        }}/>
+                                        <IconButton>
+                                          <DeleteOutlineIcon color="action"
+                                            onClick={() => {
+                                              setDeleteModel(true)
+                                            }} />
                                         </IconButton>
                                       </div>
                                     </Button>
                                   )}
-                            { Sandmail && <div >
-                                  <div
-                                    variant="outlined"
-                                    className="mailIconButn"
-                                    onClick={() => {
-                                      setmail(true);
-                                      setTimeField(false);
-                                      setlast(false);
-                                      setConnectionField(false);
-                                    }}
-                                  >
+                                  {Sandmail && <div >
                                     <div
-                                      style={{
-                                        display: "flex",
-                                        justifyContent: "flex-start",
-                                        alignItems: "center",
-                                        gap: "6px ",
+                                      variant="outlined"
+                                      className="mailIconButn"
+                                      onClick={() => {
+                                        setmail(true);
+                                        setTimeField(false);
+                                        setlast(false);
+                                        setConnectionField(false);
                                       }}
                                     >
-                                      <div className="mailIcon">
-                                        <MailIcon color="action" />
-                                      </div>
-                                      <div>
-                                        <span className="sandEmailText">
-                                          Send Mail
-                                        </span>
+                                      <div
+                                        style={{
+                                          display: "flex",
+                                          justifyContent: "flex-start",
+                                          alignItems: "center",
+                                          gap: "6px ",
+                                        }}
+                                      >
+                                        <div className="mailIcon">
+                                          <MailIcon color="action" />
+                                        </div>
+                                        <div>
+                                          <span className="sandEmailText">
+                                            Send Mail
+                                          </span>
+                                        </div>
+                                        <div
+                                          style={{
+                                            display: "flex",
+                                            justifyContent: "center",
+                                            alignItems: "center",
+                                          }}
+                                        >
+                                          <ErrorOutlineIcon
+                                            style={{ color: "rgb(244, 67, 54)" }}
+                                          />
+                                        </div>
                                       </div>
                                       <div
                                         style={{
@@ -1102,26 +1120,14 @@ function NewCampaign(props) {
                                           alignItems: "center",
                                         }}
                                       >
-                                        <ErrorOutlineIcon
-                                          style={{ color: "rgb(244, 67, 54)" }}
-                                        />
-                                      </div>
-                                    </div>
-                                    <div
-                                        style={{
-                                          display: "flex",
-                                          justifyContent: "center",
-                                          alignItems: "center",
-                                        }}
-                                      >
                                         <IconButton>
-                                        <DeleteOutlineIcon color="action" 
-                                        onClick={()=>{
-                                          setDeleteModel(true)
-                                        }}/>
+                                          <DeleteOutlineIcon color="action"
+                                            onClick={() => {
+                                              setDeleteModel(true)
+                                            }} />
                                         </IconButton>
                                       </div>
-                                  </div>
+                                    </div>
                                   </div>}
                                   {laststep && (
                                     <Button
@@ -1177,10 +1183,10 @@ function NewCampaign(props) {
                                         }}
                                       >
                                         <IconButton>
-                                        <DeleteOutlineIcon color="action" 
-                                        onClick={()=>{
-                                          setDeleteModel(true)
-                                        }}/>
+                                          <DeleteOutlineIcon color="action"
+                                            onClick={() => {
+                                              setDeleteModel(true)
+                                            }} />
                                         </IconButton>
                                       </div>
                                     </Button>
@@ -1242,9 +1248,9 @@ function NewCampaign(props) {
                                             }}
                                           >
                                             <IconButton
-                                            onClick={()=>{
-                                              setAddStep(false)
-                                            }}>
+                                              onClick={() => {
+                                                setAddStep(false)
+                                              }}>
                                               <ClearIcon />
                                             </IconButton>
                                           </div>
@@ -1257,7 +1263,7 @@ function NewCampaign(props) {
                                             marginTop: "16px ",
                                           }}
                                         >
-                                           {TimeElement &&<div className="paperBlock">
+                                          {TimeElement && <div className="paperBlock">
                                             <div
                                               style={{
                                                 backgroundColor: "#bbdefb",
@@ -1273,7 +1279,7 @@ function NewCampaign(props) {
                                                 setAddStep(false)
                                                 Setconnect(true)
                                                 SetLaststepbox(false)
-                                               SetSandMailbox(true)
+                                                SetSandMailbox(true)
                                               }}
                                             >
                                               <AccessTimeIcon color="action" />
@@ -1301,14 +1307,14 @@ function NewCampaign(props) {
                                                 SetSandMailbox(true)
                                               }}
                                             >
-                                             <ForkRightIcon color="action" />
+                                              <ForkRightIcon color="action" />
                                             </div>
                                             <div className="paperBlockTimeText">
                                               {" "}
                                               Condition
                                             </div>
                                           </div>}
-                                         {SandMailbox && <div className="paperBlock">
+                                          {SandMailbox && <div className="paperBlock">
                                             <div
                                               style={{
                                                 backgroundColor: "#e1bee7 ",
@@ -1329,7 +1335,7 @@ function NewCampaign(props) {
                                               Send Mail
                                             </div>
                                           </div>}
-                                         {laststepbox && <div className="paperBlock">
+                                          {laststepbox && <div className="paperBlock">
                                             <div
                                               style={{
                                                 backgroundColor: "#e1bee7 ",
@@ -1354,7 +1360,7 @@ function NewCampaign(props) {
                                             </div>
                                           </div>}
                                         </div>
-                                       {laststep && <div className="nostepText">no step can be added after "Last Step".</div>}
+                                        {laststep && <div className="nostepText">no step can be added after "Last Step".</div>}
                                       </Paper>
                                     </Box>
                                   </div>
@@ -1423,6 +1429,10 @@ function NewCampaign(props) {
                                       <Button
                                         variant="outlined"
                                         className="CreateNewTamplatebtn"
+                                        onClick={() => {
+                                          setChangeTemp(true);
+                                         props.setCreatetemp(true);
+                                        }}
                                       >
                                         Create a new template
                                       </Button>
@@ -1507,7 +1517,7 @@ function NewCampaign(props) {
                                     </div>
                                     <div>
                                       <span className="sandEmailText2">
-                                       Condition
+                                        Condition
                                       </span>
                                     </div>
                                   </div>
@@ -1580,7 +1590,7 @@ function NewCampaign(props) {
                                       <span className="sandEmailText2">
                                         Last Step
                                       </span>
-                                    </div> 
+                                    </div>
                                   </div>
                                   <div className="WaitForText">
                                     If email was :
@@ -1682,8 +1692,8 @@ function NewCampaign(props) {
         openAddModel={openAddModel}
         handleCloseAddModel={handleCloseAddModel}
       />
-      <DeleteModelNewCamp isOpen={DeleteModel} isClose={closedeletemodal}/>
-      <ChangeTemplate open={Changetemp} close={closeChangeTemp}/>
+      <DeleteModelNewCamp isOpen={DeleteModel} isClose={closedeletemodal} />
+      <ChangeTemplate open={Changetemp} close={closeChangeTemp} />
     </div>
   );
 }

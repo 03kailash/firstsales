@@ -40,10 +40,6 @@ export default function Userstep1(props) {
     const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
     settimeZone(timeZone);
   }, [])
-
-  // console.log(FirstName, LastName, Workspace)
-// console.log(age);
-
   const Next = () => {
     localStorage.setItem("FirstName", JSON.stringify(FirstName))
     localStorage.setItem("LastName", JSON.stringify(LastName))

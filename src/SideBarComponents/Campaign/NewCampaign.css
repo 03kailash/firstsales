@@ -283,7 +283,25 @@
 .timePiker {
   height: 40px !important;
 }
-
+.PlayCircleBtn{
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  font-weight: 500;
+  font-size: 0.8125rem !important;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  min-width: 64px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(255, 142, 0);
+  box-shadow: rgb(0 0 0 / 31%) 0px 0px 1px 0px, rgb(0 0 0 / 25%) 0px 2px 2px -2px !important;
+  text-transform: none;
+}
+.PlayCircleRoundedIcon{
+  font-size: 18 !important;
+}
 .AddCampaignDrawer > div:nth-child(3) {
   box-sizing: border-box;
   width: 1337px;

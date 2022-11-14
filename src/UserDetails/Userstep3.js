@@ -7,47 +7,39 @@ import AlertTitle from "@mui/material/AlertTitle";
 import { ApiURL } from "../ApiURL";
 export default function Userstep3(props) {
   // const [Register,setRegister] = useState("");
- console.log(localStorage.getItem("Crm"))
+  // console.log(localStorage.getItem("Crm"))
 
-   const RegisterApi=()=>{
+  const RegisterApi = () => {
     fetch(`${ApiURL}/register`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-           "Content-Type": "application/json",
-         },
-         body: JSON.stringify({
-          email:localStorage.getItem("email",JSON.stringify("email")),
-          password:localStorage.getItem("password",JSON.stringify("password")),
-          first_name:localStorage.getItem(JSON.stringify("FirstName")),
-          last_name:localStorage.getItem(JSON.stringify("LastName")),
-          timezone:localStorage.getItem(JSON.stringify("Timezone")),
-          workspace_name:localStorage.getItem(JSON.stringify("Workspace")),
-          who_using_firstsale:localStorage.getItem(JSON.stringify("marketing")),
-          crm:localStorage.getItem(JSON.stringify("yes")),
-          crm_id:localStorage.getItem(JSON.stringify("id")),
-          team_id:localStorage.getItem(JSON.stringify("id")),
-          insdusty_id:localStorage.getItem(JSON.stringify("id")),
-          // email:"nerta@gmail.com",
-          // password:'123456789',
-          // first_name:"neeta",
-          // last_name:"Bopche",
-          // timezone:"india",
-          // workspace_name:"yhn",
-          // who_using_firstsale:"j",
-          // crm:"yes",
-          // crm_id:1,
-          // team_id:2,
-          // insdusty_id:1,
-         }),
-       })
-         .then((res) => res.json())
-         .then((res) => {console.log(res)
-        
-        });
-    }
-    console.log(localStorage.getItem("email"))
-    console.log(localStorage.getItem("password"))
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: localStorage.getItem("email"),
+        password: localStorage.getItem("password"),
+        first_name: localStorage.getItem("FirstName"),
+        last_name: localStorage.getItem("LastName"),
+        timezone: localStorage.getItem("Timezone"),
+        workspace_name: localStorage.getItem(" Workspace"),
+        who_using_firstsale: localStorage.getItem("who_use_First_sales"),
+        crm: localStorage.getItem("crm"),
+        crm_id: localStorage.getItem("Crm_id"),
+        team_id: localStorage.getItem("Teamsize"),
+        insdusty_id: localStorage.getItem("Industry"),
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.status) {
+          props.history.push("/");
+        }else{
+          props.history.push("/");
+        }
+     
+      });
+  }
   return (
     <div style={{ padding: "0px 16px", maxWidth: "100%" }}>
       <div className="usercontainerstep3">
@@ -165,13 +157,14 @@ export default function Userstep3(props) {
           }}
         >
           <div
-          
+
             style={{ display: "flex", justifyContent: "center" }}
           >
             <button className="laterbtn"
-            onClick={()=>{
-              RegisterApi();
-            }}>I'll do it later</button>
+              onClick={() => {
+                RegisterApi();
+                // props.history.push("/Dashboard/Profile");
+              }}>I'll do it later</button>
           </div>
         </div>
       </div>

@@ -18,6 +18,7 @@ export default function Userstep2(props) {
   const [crmApi, setcrmApi] = useState([]);
   const [teamsizeApi, setteamsizeApi] = useState([]);
   const [ServicesApi, setServicesApi] = useState([]);
+  const [FirstSales,setFirstSales] = useState(" ")
   const [toggle, setToggle] = useState({
     sales: false,
     marketing: false,
@@ -49,11 +50,10 @@ export default function Userstep2(props) {
     localStorage.setItem("Teamsize", JSON.stringify(team))
     localStorage.setItem("Industry", JSON.stringify(industry))
     localStorage.setItem("crm", JSON.stringify(value))
+    localStorage.setItem("who_use_First_sales", JSON.stringify(FirstSales))
 
 
-  }
-  // console.log(age,industry,team)
-  
+}
   const fetchcrm = () => {
     fetch(`${ApiURL}/get-crm`, {
       method: "get",
@@ -121,7 +121,9 @@ export default function Userstep2(props) {
             <br />
             <Button
               className={toggle.sales ? "tooglebtnActive" : "tooglebtn"}
-              onClick={() => setToggle({ sales: true })}
+              onClick={() =>{ setToggle({ sales: true })
+              setFirstSales("Sales Team")
+              }}
               style={{ margin: "16px 8px 8px 0px" }}
             >
               Sales Team
@@ -129,27 +131,35 @@ export default function Userstep2(props) {
             <Button
               className={toggle.marketing ? "tooglebtnActive" : "tooglebtn"}
               style={{ margin: " 16px 8px 8px" }}
-              onClick={() => setToggle({ marketing: true })}
+              onClick={() => {setToggle({ marketing: true })
+              setFirstSales("Marketing Team")
+            }}
             >
               Marketing Team
             </Button>
             <Button
               className={toggle.recrutiers ? "tooglebtnActive" : "tooglebtn"}
-              onClick={() => setToggle({ recrutiers: true })}
+              onClick={() =>{setToggle({ recrutiers: true })
+              setFirstSales(" Recrutiers")
+            }}
               style={{ margin: "8px 8px 8px 0px" }}
             >
               Recrutiers
             </Button>
             <Button
               className={toggle.agency ? "tooglebtnActive" : "tooglebtn"}
-              onClick={() => setToggle({ agency: true })}
+              onClick={() =>{setToggle({ agency: true })
+              setFirstSales(" Agency Team")
+            }}
               style={{ margin: "8px" }}
             >
               Agency Team
             </Button>
             <Button
               className={toggle.others ? "tooglebtnActive" : "tooglebtn"}
-              onClick={() => setToggle({ others: true })}
+              onClick={() =>{ setToggle({ others: true })
+              setFirstSales("Other")
+              }}
               style={{ marginTop: "8px" }}
             >
               Other
