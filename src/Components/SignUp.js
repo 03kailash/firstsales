@@ -11,8 +11,8 @@ export function SignUp(props) {
   const [len, setLen] = useState(false);
   const [validations, setValidations] = useState(false);
   const navigate = useNavigate();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleChange = (event) => {
     var pass = event.target.value;
@@ -115,8 +115,8 @@ export function SignUp(props) {
             type="submit"
             onClick={async () => {
               if (lc && uc && num && len && (await SendOtp(email))) {
-                localStorage.setItem("email", JSON.stringify(email));
-                localStorage.setItem("password", JSON.stringify(password));
+                localStorage.setItem("email", (email));
+                localStorage.setItem("password",(password));
                 navigate("/Emailverify", { state: { Email: email } });
               }
             }}

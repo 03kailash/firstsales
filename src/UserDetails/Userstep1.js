@@ -41,10 +41,10 @@ export default function Userstep1(props) {
     settimeZone(timeZone);
   }, [])
   const Next = () => {
-    localStorage.setItem("FirstName", JSON.stringify(FirstName))
-    localStorage.setItem("LastName", JSON.stringify(LastName))
-    localStorage.setItem(" Workspace", JSON.stringify(Workspace))
-    localStorage.setItem("Timezone", JSON.stringify(age))
+    localStorage.setItem("FirstName", (FirstName))
+    localStorage.setItem("LastName",(LastName))
+    localStorage.setItem(" Workspace",(Workspace))
+    localStorage.setItem("Timezone",(age))
   }
   const fetchTimeZone = () => {
     fetch(`${ApiURL}/timezone`, {

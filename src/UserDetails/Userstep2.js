@@ -46,11 +46,11 @@ export default function Userstep2(props) {
   },[])
 
   const Next=()=>{
-    localStorage.setItem("Crm_id", JSON.stringify(age));
-    localStorage.setItem("Teamsize", JSON.stringify(team))
-    localStorage.setItem("Industry", JSON.stringify(industry))
-    localStorage.setItem("crm", JSON.stringify(value))
-    localStorage.setItem("who_use_First_sales", JSON.stringify(FirstSales))
+    localStorage.setItem("Crm_id",(age));
+    localStorage.setItem("Teamsize",(team))
+    localStorage.setItem("Industry",(industry))
+    localStorage.setItem("crm",(value))
+    localStorage.setItem("who_use_First_sales",(FirstSales))
 
 
 }
