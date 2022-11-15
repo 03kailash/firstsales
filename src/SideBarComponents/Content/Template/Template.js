@@ -24,6 +24,7 @@ import Snackbar from "@mui/material/Snackbar";
 import TemplateBuilder from "./TemplateBuilder";
 import Chip from "@mui/material/Chip";
 import { IconButton } from "@mui/material";
+import { CreateTemplate } from "../../../UserServices";
 
 const columns = [
   { id: "Template", label: "Template", minWidth: "532px" },
@@ -62,7 +63,7 @@ export default function Template() {
   const [chipData, setChipData] = React.useState([
     { label: "Author: Somil Kaushal" },
   ]);
-
+  const [addtemplate, setAddtemplate] = useState("");
   const [btn2, setBtn2] = React.useState(false);
   const [aut, setAut] = React.useState("");
   const [author, setAuthor] = useState(false);
@@ -142,6 +143,9 @@ export default function Template() {
                         }}
                         size="small"
                         className="titleinput"
+                        onChange={(e) => {
+                          setAddtemplate(e.target.value);
+                        }}
                       />
                       <div
                         style={{
@@ -150,15 +154,22 @@ export default function Template() {
                           marginTop: "40px",
                         }}
                       >
-                        <Button
-                          className="newtemplatebtn"
-                          onClick={() => {
-                            handleClick();
-                            setOpen2(false);
-                          }}
-                        >
-                          Create new Template
-                        </Button>
+                        {addtemplate == "" ? (
+                          <Button className="newtemplatedisablebtn" disabled>
+                            Create new Template
+                          </Button>
+                        ) : (
+                          <Button
+                            className="newtemplatebtn"
+                            onClick={() => {
+                              handleClick();
+                              setOpen2(false);
+                              CreateTemplate(addtemplate);
+                            }}
+                          >
+                            Create new Template
+                          </Button>
+                        )}
                       </div>
                     </div>
                   </Box>

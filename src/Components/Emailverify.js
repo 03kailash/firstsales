@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ApiURL } from "../ApiURL";
 import firstsales from "../Images/firstsales.jpg";
+import { ResendOTP, VerifyOTP } from "../UserServices";
 import "./Emailverify.css";
 
 export default function Emailverify(props) {
   const navigate = useNavigate();
   const location = useLocation();
-  const [otp, setOtp] = useState("");
+  const [email, setEmail] = useState(location.state.Email);
+  const [otp, setOtp] = useState();
   const [wrongOTP, setWrongOTP] = useState(false);
   const charAfter = location.state.Email.split("");
   let temp = 0;
@@ -21,43 +23,27 @@ export default function Emailverify(props) {
     }
   });
 
-  const VerifyOTP = () => {
-    fetch(`${ApiURL}/verify-otp`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        otp: otp,
-        email: location.state.Email,
-      }),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        setWrongOTP(!res.status);
-        if (res.status) {
-          navigate("/Userdetail");
-        }
-      });
-  };
+  // const VerifyOTP = () => {
+  //   fetch(`${ApiURL}/verify-otp`, {
+  //     method: "POST",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       otp: otp,
+  //       email: email,
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       setWrongOTP(!res.status);
+  //       if (res.status) {
+  //         navigate("/Userdetail");
+  //       }
+  //     });
+  // };
 
-  const ResendOTP = () => {
-    fetch(`${ApiURL}/send-otp`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: location.state.Email,
-      }),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-      });
-  };
   return (
     <div className="container">
       <div className="imagediv">
@@ -90,7 +76,15 @@ export default function Emailverify(props) {
             }}
           />
         </div>
-        <button className="confirmacbtn" onClick={VerifyOTP}>
+        <button
+          className="confirmacbtn"
+          onClick={async () => {
+            // setWrongOTP(await VerifyOTP(otp, email));
+            if (!otp == "" && (await VerifyOTP(otp, email))) {
+              navigate("/Userdetail");
+            }
+          }}
+        >
           Confirm account
         </button>
         <div
@@ -102,7 +96,12 @@ export default function Emailverify(props) {
           }}
         >
           <span className="receivedcode">Didn't receive a code?</span>
-          <a className="newcode" onClick={ResendOTP}>
+          <a
+            className="newcode"
+            onClick={() => {
+              ResendOTP(email);
+            }}
+          >
             Send a new code
           </a>
         </div>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./SignUp.css";
 import firstsales from "../Images/firstsales.jpg";
-import { ApiURL } from "../ApiURL";
 import { useNavigate } from "react-router-dom";
+import { SendOtp } from "../UserServices";
 
 export function SignUp(props) {
   const [lc, setLc] = useState(false);
@@ -11,32 +11,8 @@ export function SignUp(props) {
   const [len, setLen] = useState(false);
   const [validations, setValidations] = useState(false);
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const SendOtp = () => {
-    fetch(`${ApiURL}/send-otp`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email,
-      }),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.status) {
-          navigate("/Emailverify", { state: { Email: email } });
-        }
-      });
-  };
-
-  const SignUp = () => {
-    localStorage.setItem("email", JSON.stringify(email));
-    localStorage.setItem("password", JSON.stringify(password));
-  };
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
 
   const handleChange = (event) => {
     var pass = event.target.value;
@@ -137,9 +113,12 @@ export function SignUp(props) {
                 : "signupbtn"
             }
             type="submit"
-            onClick={() => {
-              if (lc && uc && num && len) SendOtp();
-              SignUp();
+            onClick={async () => {
+              if (lc && uc && num && len && (await SendOtp(email))) {
+                localStorage.setItem("email", JSON.stringify(email));
+                localStorage.setItem("password", JSON.stringify(password));
+                navigate("/Emailverify", { state: { Email: email } });
+              }
             }}
           >
             Sign up
