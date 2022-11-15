@@ -56,7 +56,6 @@ export default function Userstep1(props) {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         if (res.status) {
           setTimeZoneList(res.data);
         }

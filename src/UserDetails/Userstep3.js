@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Userstep3.css";
 import TextField from "@mui/material/TextField";
@@ -9,6 +9,36 @@ import { ApiURL } from "../ApiURL";
 
 export default function Userstep3(props) {
   const navigate = useNavigate();
+  const [token,settoken] =useState("");
+  const [Workspace,setWorkspace] =useState("");
+
+
+  // const WorkspaceApi = () => {
+  //   fetch(`${ApiURL}/createWorkspace`, {
+  //     method: "POST",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //       token: `Bearer ${token}`,
+  //     },
+  //     body: JSON.stringify({
+  //       first_name: localStorage.getItem("FirstName"),
+  //       last_name: localStorage.getItem("LastName"),
+  //       timezone: localStorage.getItem("Timezone"),
+  //       workspace_name: localStorage.getItem(" Workspace"),
+  //       who_using_firstsale: localStorage.getItem("who_use_First_sales"),
+  //       crm: localStorage.getItem("crm"),
+  //       crm_id: localStorage.getItem("Crm_id"),
+  //       team_id: localStorage.getItem("Teamsize"),
+  //       insdusty_id: localStorage.getItem("Industry"),
+  //     })
+  //       .then((res) => res.json())
+  //       .then((res) => {
+  //         console.log(res)
+  //       })
+  //   })
+  // }
+
   const RegisterApi = () => {
     fetch(`${ApiURL}/register`, {
       method: "POST",
@@ -34,9 +64,12 @@ export default function Userstep3(props) {
       .then((res) => {
         if (res.status) {
           navigate("/Dashboard/Profile");
+          settoken(res.token);
+          setWorkspace(res.Workspace);
         }
       });
   }
+
   return (
     <div style={{ padding: "0px 16px", maxWidth: "100%" }}>
       <div className="usercontainerstep3">
@@ -160,7 +193,7 @@ export default function Userstep3(props) {
             <button className="laterbtn"
               onClick={() => {
                 RegisterApi();
-                // props.history.push("/Dashboard/Profile");
+                // WorkspaceApi();
               }}>I'll do it later</button>
           </div>
         </div>

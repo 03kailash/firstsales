@@ -27,24 +27,28 @@ a:-webkit-any-link {
 .EmsBar {
   width: 228px;
   height: 92px;
-
-  background-color: transparent;
-  outline: 0px;
-  border: 0px;
-  cursor: pointer;
-  vertical-align: middle;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  position: relative;
   text-decoration: none;
-  min-width: 0px;
-  box-sizing: border-box;
-  text-align: left;
-  padding: 8px 16px;
+  padding: 8px 10px;
   transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   border-radius: 8px;
   margin: 8px 16px;
+}
+.WorkspaceName{
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  display: block;
+  color: rgba(0, 0, 0, 0.87);
+}
+.DateandTime{
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.43;
+    letter-spacing: 0.01071em;
+    color: rgba(0, 0, 0, 0.6) !important;
 }
 .EmsBar:hover {
   background-color: rgba(0, 0, 0, 0.04);

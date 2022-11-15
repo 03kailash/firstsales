@@ -7,11 +7,12 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import Chip from "@mui/material/Chip";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import AddIcon from "@mui/icons-material/Add";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function Workshop() {
   const [open, setOpen] = React.useState(true);
-
+  // const navigate = useNavigate();
+  // const location = useLocation();
   const handleClose = () => {
     setOpen(false);
   };

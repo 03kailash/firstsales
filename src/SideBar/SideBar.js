@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./SideBar.css";
 import Profile from "../SideBarComponents/UserProfile/Profile";
 import Contact from "../SideBarComponents/Contacts/Contact";
@@ -35,14 +35,31 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import Settings from "../SideBarComponents/Settings/Settings";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
+import { ApiURL } from "../ApiURL";
 
 const drawerWidth = 278;
 
 function SideBar() {
   const ismobile = useMediaQuery("(max-width: 1200px)");
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [Date, setDate] = useState("");
+
+  // const navigate = useNavigate();
+  // const location = useLocation();
+
+  useEffect(() => {
+    fetch(`${ApiURL}/current-time`, {
+      method: "get",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => setDate(res.date));
+  }, [])
 
   const drawer = (
     <div style={{ backgroundColor: "#f3f3f3" }}>
@@ -62,7 +79,8 @@ function SideBar() {
       <hr style={{ width: "210px", margin: "8px 24px" }} />
       <Link to="/workspace">
         <div className="EmsBar">
-          <span>Ems</span>
+          <div><span className="WorkspaceName">{localStorage.getItem(" Workspace")}</span></div>
+          <div className="DateandTime">{Date}</div>
         </div>
       </Link>
       <Divider />
