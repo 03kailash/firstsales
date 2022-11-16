@@ -5,16 +5,22 @@ import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Snackbar from "@mui/material/Snackbar";
+import { useState } from "react";
+import { useEffect } from "react";
+import { ArchiveTemplate } from "../../../UserServices";
 
-export const ArchiveModal = ({ isOpen, isClose, close }) => {
+export const ArchiveModal = (props) => {
   const [snackOpen, setSnackOpen] = React.useState(false);
-
+  const [archivetitle, setArchivetitle] = useState(props.addtemplate);
+  useEffect(() => {
+    setArchivetitle(props.addtemplate);
+  }, [props.addtemplate]);
   return (
     <React.Fragment>
       <Modal
         keepMounted
-        open={isOpen}
-        onClose={isClose}
+        open={props.isOpen}
+        onClose={props.isClose}
         style={{
           display: "flex",
           justifyContent: "center",
@@ -38,7 +44,7 @@ export const ArchiveModal = ({ isOpen, isClose, close }) => {
               color: " rgba(0, 0, 0, 0.6)",
             }}
           >
-            Are you sure to archive y?
+            Are you sure to archive <strong>{archivetitle}</strong>?
           </Typography>
           <Typography
             id="keep-mounted-modal-description"
@@ -47,7 +53,7 @@ export const ArchiveModal = ({ isOpen, isClose, close }) => {
             <Button
               className="builderarchiveCancelbtn"
               size="small"
-              onClick={isClose}
+              onClick={props.isClose}
             >
               Cancel
             </Button>
@@ -55,10 +61,12 @@ export const ArchiveModal = ({ isOpen, isClose, close }) => {
               className="builderarchiveOkbtn"
               style={{ textTransform: "none", color: "rgb(255 142 0)" }}
               size="small"
-              onClick={() => {
-                close();
-                isClose();
-                setSnackOpen(true);
+              onClick={async () => {
+                if (await ArchiveTemplate()) {
+                  props.close();
+                  props.isClose();
+                  setSnackOpen(true);
+                }
               }}
             >
               Ok

@@ -24,46 +24,16 @@ import Snackbar from "@mui/material/Snackbar";
 import TemplateBuilder from "./TemplateBuilder";
 import Chip from "@mui/material/Chip";
 import { IconButton } from "@mui/material";
-import { CreateTemplate } from "../../../UserServices";
-
-const columns = [
-  { id: "Template", label: "Template", minWidth: "532px" },
-
-  {
-    id: "Unsubscribe",
-    label: "Unsubscribe",
-    minWidth: 112,
-    align: "right",
-    format: (value) => value.toLocaleString("en-US"),
-  },
-  {
-    id: "Send/Reply",
-    label: "Send/Reply",
-    minWidth: 105,
-    align: "right",
-    format: (value) => value.toLocaleString("en-US"),
-  },
-  {
-    id: "Open/Click",
-    label: "Open/Click",
-    minWidth: 103,
-    align: "right",
-    format: (value) => value.toFixed(2),
-  },
-];
-
-function createData(name, code, population, size) {
-  const density = population / size;
-  return { name, code, population, size, density };
-}
-
-const rows = [createData("no template")];
+import { CreateTemplate, FilterTemplate } from "../../../UserServices";
+import { ApiURL } from "../../../ApiURL";
+import { useEffect } from "react";
 
 export default function Template() {
   const [chipData, setChipData] = React.useState([
     { label: "Author: Somil Kaushal" },
   ]);
   const [addtemplate, setAddtemplate] = useState("");
+  const [filtertemplate, setFiltertemplate] = useState("");
   const [btn2, setBtn2] = React.useState(false);
   const [aut, setAut] = React.useState("");
   const [author, setAuthor] = useState(false);
@@ -73,6 +43,7 @@ export default function Template() {
   const [open2, setOpen2] = React.useState(false);
   const [chip, setChip] = useState(false);
   const [snackOpen, setSnackOpen] = React.useState(false);
+  const [data, setData] = useState([]);
 
   const handleClick = () => {
     setOpen(true);
@@ -91,6 +62,75 @@ export default function Template() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      FilterTemplate(filtertemplate);
+    }
+  };
+
+  const ViewTemplate = async () => {
+    await fetch(`${ApiURL}/template-view`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        token: localStorage.getItem("token"),
+      },
+      body: JSON.stringify({
+        workspace_id: 1,
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setData(res.data);
+      });
+  };
+
+  useEffect(() => {
+    ViewTemplate();
+  }, []);
+
+  const columns = [
+    { id: "Template", label: "Template", minWidth: "532px" },
+
+    {
+      id: "Unsubscribe",
+      label: "Unsubscribe",
+      minWidth: 112,
+      align: "center",
+      format: (value) => value.toLocaleString("en-US"),
+    },
+    {
+      id: "SendReply",
+      label: "Send/Reply",
+      minWidth: 105,
+      align: "center",
+      format: (value) => value.toLocaleString("en-US"),
+    },
+    {
+      id: "OpenClick",
+      label: "Open/Click",
+      minWidth: 103,
+      align: "center",
+      format: (value) => value.toFixed(2),
+    },
+  ];
+
+  function createData(Template, Unsubscribe, SendReply, OpenClick) {
+    return { Template, Unsubscribe, SendReply, OpenClick };
+  }
+
+  const rows = data.map((item) => {
+    return createData(
+      <>
+        <div className="titlename">{item.title}</div>
+        <div className="titletime">{item.created_at}</div>
+      </>,
+      "0",
+      "0/0",
+      "0/0"
+    );
+  });
 
   return (
     <div style={{ justifyContent: "center", display: "flex" }}>
@@ -98,7 +138,15 @@ export default function Template() {
         <div className="containerdiv">
           <div className="contentdiv">
             <div className="contentsearchinputdiv">
-              <input type="text" placeholder="Search" className="searchinput" />
+              <input
+                type="text"
+                placeholder="Search"
+                className="searchinput"
+                onChange={(e) => {
+                  setFiltertemplate(e.target.value);
+                }}
+                onKeyDown={handleKeyDown}
+              />
               <IconButton
                 onClick={() => {
                   if (author) {
@@ -161,10 +209,11 @@ export default function Template() {
                         ) : (
                           <Button
                             className="newtemplatebtn"
-                            onClick={() => {
-                              handleClick();
-                              setOpen2(false);
-                              CreateTemplate(addtemplate);
+                            onClick={async () => {
+                              if (await CreateTemplate(addtemplate)) {
+                                handleClick();
+                                setOpen2(false);
+                              }
                             }}
                           >
                             Create new Template
@@ -267,7 +316,7 @@ export default function Template() {
             </Box>
           </div>
           <Paper sx={{ width: "100%", overflow: "hidden" }}>
-            <TableContainer sx={{ maxHeight: 440 }}>
+            <TableContainer>
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                   <TableRow>
@@ -275,7 +324,10 @@ export default function Template() {
                       <TableCell
                         key={column.id}
                         align={column.align}
-                        style={{ minWidth: column.minWidth }}
+                        style={{
+                          minWidth: column.minWidth,
+                          padding: "6px 16px",
+                        }}
                       >
                         {column.label}
                       </TableCell>
@@ -288,6 +340,7 @@ export default function Template() {
                     .map((row) => {
                       return (
                         <TableRow
+                          style={{ cursor: "pointer" }}
                           hover
                           role="checkbox"
                           tabIndex={-1}
@@ -296,7 +349,11 @@ export default function Template() {
                           {columns.map((column) => {
                             const value = row[column.id];
                             return (
-                              <TableCell key={column.id} align={column.align}>
+                              <TableCell
+                                key={column.id}
+                                align={column.align}
+                                style={{ padding: "6px 16px " }}
+                              >
                                 {column.format && typeof value === "number"
                                   ? column.format(value)
                                   : value}
@@ -326,7 +383,11 @@ export default function Template() {
           onClose={() => setSnackOpen(false)}
           message="Template created"
         />
-        <TemplateBuilder isOpen={open} isClose={handleClose} />
+        <TemplateBuilder
+          isOpen={open}
+          isClose={handleClose}
+          addtemplate={addtemplate}
+        />
       </div>
     </div>
   );

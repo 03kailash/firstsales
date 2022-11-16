@@ -75,7 +75,11 @@ const arr = [
   },
 ];
 
-export default function TemplateBuilder({ isOpen, isClose }) {
+export default function TemplateBuilder(props) {
+  const [templateTitle, setTemplateTitle] = useState(props.addtemplate);
+  useEffect(() => {
+    setTemplateTitle(props.addtemplate);
+  }, [props.addtemplate]);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -164,12 +168,12 @@ export default function TemplateBuilder({ isOpen, isClose }) {
     <React.Fragment>
       <Drawer
         anchor={"right"}
-        open={isOpen}
-        onClose={isClose}
+        open={props.isOpen}
+        onClose={props.isClose}
         className="tempbuiltdrawer"
       >
         <Box role="presentation">
-          <IconButton style={{ margin: "8px" }} onClick={isClose}>
+          <IconButton style={{ margin: "8px" }} onClick={props.isClose}>
             <ClearOutlinedIcon color="action" />
           </IconButton>
           <br />
@@ -201,6 +205,10 @@ export default function TemplateBuilder({ isOpen, isClose }) {
                         <CreateOutlinedIcon color="action" />
                       </InputAdornment>
                     ),
+                  }}
+                  value={templateTitle}
+                  onChange={(e) => {
+                    setTemplateTitle(e.target.value);
                   }}
                 />
               </div>
@@ -964,7 +972,8 @@ export default function TemplateBuilder({ isOpen, isClose }) {
       <ArchiveModal
         isOpen={archiveModal}
         isClose={handleClose}
-        close={isClose}
+        close={props.isClose}
+        addtemplate={props.addtemplate}
       />
       <TemplateAddsubject open={adsubject} close={handleclose2} />
       <TemplateAddsignature open={adsignature} close={handleclose3} />

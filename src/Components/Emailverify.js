@@ -23,27 +23,6 @@ export default function Emailverify(props) {
     }
   });
 
-  // const VerifyOTP = () => {
-  //   fetch(`${ApiURL}/verify-otp`, {
-  //     method: "POST",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       otp: otp,
-  //       email: email,
-  //     }),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((res) => {
-  //       setWrongOTP(!res.status);
-  //       if (res.status) {
-  //         navigate("/Userdetail");
-  //       }
-  //     });
-  // };
-
   return (
     <div className="container">
       <div className="imagediv">
@@ -79,9 +58,12 @@ export default function Emailverify(props) {
         <button
           className="confirmacbtn"
           onClick={async () => {
-            // setWrongOTP(await VerifyOTP(otp, email));
-            if (!otp == "" && (await VerifyOTP(otp, email))) {
-              navigate("/Userdetail");
+            if (!otp == "") {
+              if (await VerifyOTP(otp, email)) {
+                navigate("/Userdetail");
+              } else {
+                setWrongOTP(true);
+              }
             }
           }}
         >

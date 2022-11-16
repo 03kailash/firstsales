@@ -90,6 +90,20 @@
 .titleinput {
   width: 100%;
 }
+.titlename {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  color: rgba(0, 0, 0, 0.87);
+}
+.titletime {
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.66;
+  letter-spacing: 0.03333em;
+  color: rgba(0, 0, 0, 0.6);
+}
 .newtemplatebtn {
   text-transform: inherit !important;
   background-color: #ff8e00 !important;

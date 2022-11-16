@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import "./Profile.css";
 import Stack from "@mui/material/Stack";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
@@ -21,6 +22,7 @@ import { Alert, InputLabel, MenuItem, Select, Snackbar } from "@mui/material";
 import ReactCrop from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Logout } from "../../UserServices";
 
 function Profile(props) {
   const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
@@ -49,24 +51,38 @@ function Profile(props) {
   };
 
   const ProfileImgUpdate = () => {
-    const formData = new FormData();
-    formData.append("id", location.state.id);
-    formData.append("profile_img", image);
-    fetch(`${ApiURL}/profileImg-update`, {
-      method: "POST",
+    const config = {
       headers: {
         Accept: "application/json",
         "Content-Type": "multipart/form-data",
         token: localStorage.getItem("token"),
       },
-      body: formData,
-    })
-      .then((res) => res.json())
+    };
+    const formData = new FormData();
+    formData.append("id", location.state.id);
+    formData.append("profile_img", image);
+    return axios
+      .post(`${ApiURL}/profileImg-update`, formData, config)
       .then((res) => {
-        console.log(res);
+        alert("File Upload success");
       });
-  };
+    // fetch(`${ApiURL}/profileImg-update`, {
+    //   method: "POST",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "multipart/form-data",
+    //     token: localStorage.getItem("token"),
+    //   },
+    //   body: formData({
 
+    //   })
+    // })
+    //   .then((res) => res.json())
+    //   .then((res) => {
+    //     console.log(res);
+    //   });
+  };
+  // setImage(URL.createObjectURL(e.target.files[0]))
   const ProfileUpdate = () => {
     fetch(`${ApiURL}/profile-update`, {
       method: "POST",
@@ -140,21 +156,6 @@ function Profile(props) {
     currentTime();
   }, []);
 
-  const Logout = () => {
-    fetch(`${ApiURL}/logout`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.status) {
-          navigate("/Logoutscreen");
-        }
-      });
-  };
   console.log(image);
   return (
     <div style={{ width: "100%", backgroundColor: "#fafbfb " }}>
@@ -166,7 +167,7 @@ function Profile(props) {
               accept="image/*"
               id="img"
               style={{ display: "none" }}
-              onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))}
+              onChange={(e) => setImage(e.target.files[0])}
             />
             <div className="img_full">
               <img
@@ -376,8 +377,10 @@ function Profile(props) {
             variant="outlined"
             color="warning"
             style={{ textTransform: "inherit" }}
-            onClick={() => {
-              Logout();
+            onClick={async () => {
+              if (await Logout()) {
+                navigate("/Logoutscreen");
+              }
             }}
           >
             Logout
