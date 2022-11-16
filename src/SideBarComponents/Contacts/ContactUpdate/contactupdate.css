@@ -1,0 +1,101 @@
+.Contactupdetedrawer > div:nth-child(3) {
+    box-sizing: border-box;
+    width: 662px;
+    max-width: 90%;
+    z-index: 1210;
+  }
+  .TabRow{
+    width: 100% !important;
+  }
+  .TabRowList{
+    width: 177.33px !important;
+  }
+  .ReportMainDiv{
+    padding: 0px 8px !important;
+  }
+  .ProductBtn {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 500 !important;
+    font-size: 0.955rem !important;
+    line-height: 1.57;
+    letter-spacing: 0.00714em;
+    color: rgba(0, 0, 0, 0.87) !important;
+    
+  }
+  .ProductBtn:focus {
+    background-color: #e8f0f7 !important;
+  }
+  .ProductBtn:hover {
+    background-color: rgba(0, 0, 0, 0.04) !important;
+  }
+  
+  .BtnIcon {
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    fill: currentcolor;
+    flex-shrink: 0;
+    transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    font-size: 1.25rem !important;
+  }
+  .ProductText {
+    padding: 0px 0px 0px 6px !important;
+  }
+  .filter {
+    width: 100%;
+    min-height: 88px;
+    background-color: #f2f3f3;
+    display: flex;
+    align-items: center;
+  }
+  .EmailSenttext {
+    padding-left: 20px !important;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 18px !important;
+    line-height: 1.6;
+    letter-spacing: 0.0075em;
+    color: rgba(0, 0, 0, 0.87) !important;
+  }
+  .arrowIcon {
+    width: 100%;
+    max-height: 448px;
+    background-color: #ffff;
+    display: flex;
+    padding: 16px;
+  }
+  .HelpIcon{
+   font-size: 20px !important;
+   color: #ff8e00 !important;
+  }
+  .ReprtsBtn{
+    display: flex;
+    align-items: center;
+    gap: 10px ;
+  }
+  .DetailsListDropDown{
+    display: flex;
+    justify-content: space-between;
+    align-items: center !important;
+    height: 53px;
+  }
+  .DetailsListDropDownMainDiv{
+    width: 100% !important;
+    max-height: 53px !important;
+    background-color: #f3f3f3 !important;
+  }
+.TabPanelDetails{
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  background-color: rgb(245, 245, 245);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.AVtardiv{
+  height: 76px !important;
+}
+

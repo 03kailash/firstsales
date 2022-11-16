@@ -61,6 +61,7 @@ export default function Userstep1(props) {
         }
       });
   }
+  
   const handleChange = (event) => {
     setAge(event.target.value);
   };

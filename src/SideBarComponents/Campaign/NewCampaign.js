@@ -99,6 +99,7 @@ function NewCampaign(props) {
   const [SandMailbox, SetSandMailbox] = useState(false)
   const [laststepbox, SetLaststepbox] = useState(true)
   const [DeleteModel, setDeleteModel] = useState(false)
+  const [count, setcount] = useState([0])
 
   const closeChangeTemp = () => {
     setChangeTemp(false);
@@ -339,249 +340,46 @@ function NewCampaign(props) {
                               className="ContactBlockDiv"
                             >
                               <div className="divContainer">
-                                <div
-                                  style={{
-                                    display: "flex",
-                                    justifyContent: "center",
-                                  }}
-                                >
-                                  {add === false && (
-                                    <div className="divContainer1">
-                                      <Alert severity="info">
-                                        <AlertTitle>
-                                          No contact filters
-                                        </AlertTitle>
-                                        Add some filters to filter out which
-                                        contacts will be used to run this
-                                        campaign
-                                      </Alert>
-                                    </div>
-                                  )}
-                                  {add && (
-                                    <div className="DeleteDiv1">
-                                      <div style={{ display: "flex" }}>
-                                        <div className="If">IF</div>
-                                        <div style={{ width: "100%" }}>
-                                          <div
-                                            style={{
-                                              paddingLeft: "16px",
-                                              display: "flex",
-                                              justifyContent: "space-between",
-                                              alignItems: "center"
-                                            }}
-                                          >
-                                            <FormControl
-                                              sx={{
-                                                maxWidth: 200,
-                                                width: "100%",
-                                              }}
-                                              size="small"
-                                            >
-                                              <InputLabel
-                                                id="demo-select-small"
-                                                color="warning"
-                                              >
-                                                Filter
-                                              </InputLabel>
-                                              <Select
-                                                labelId="demo-select-small"
-                                                id="demo-select-small"
-                                                value={Filter}
-                                                label="   Filter"
-                                                color="warning"
-                                                onChange={handleChhangeee}
-                                                InputLabelProps={{
-                                                  shrink: true,
-                                                }}
-                                              >
-                                                <MenuItem value="hast"
-                                                  onClick={() => {
-                                                    setDropDownFilter(true);
-                                                    setDropDownFilterSource(false);
-                                                    setcreateAt(false);
-                                                  }}
-                                                >
-                                                  Has Tag
-                                                </MenuItem>
-                                                <MenuItem value="nottag"
-                                                  onClick={() => {
-                                                    setDropDownFilter(true);
-                                                    setDropDownFilterSource(false);
-                                                    setcreateAt(false);
-                                                  }}>
-                                                  Does not have Tag
-                                                </MenuItem>
-                                                <MenuItem value="source"
-                                                  onClick={() => {
-                                                    setDropDownFilterSource(true);
-                                                    setDropDownFilter(false)
-                                                    setcreateAt(false);
-                                                  }}>
-                                                  Source
-                                                </MenuItem>
-                                                <MenuItem value="coldcon"
-                                                  onClick={() => {
-                                                    setDropDownFilterSource(false);
-                                                    setDropDownFilter(false)
-                                                    setcreateAt(false);
-                                                  }}>
-                                                  Any cold contact
-                                                </MenuItem>
-                                                <MenuItem value="created"
-                                                  onClick={() => {
-                                                    setDropDownFilterSource(false);
-                                                    setDropDownFilter(false)
-                                                    setcreateAt(true);
-                                                  }}>
-                                                  Created At
-                                                </MenuItem>
-                                              </Select>
-                                            </FormControl>
-                                            {DropDownFilter && <div>
-                                              <FormControl
-                                                sx={{ m: 1, minWidth: 200 }}
-                                                size="small"
-                                              >
-                                                <InputLabel
-                                                  id="demo-select-small"
-                                                  color="warning"
-                                                >
-                                                  Tags
-                                                </InputLabel>
-                                                <Select
-                                                  labelId="demo-select-small"
-                                                  id="demo-select-small"
-                                                  value={Tags}
-                                                  label="Tags"
-                                                  color="warning"
-                                                  onChange={handleChangeee}
-                                                  InputLabelProps={{
-                                                    shrink: true,
-                                                  }}
-                                                >
-                                                  <MenuItem value="">
-                                                    <em>None</em>
-                                                  </MenuItem>
-                                                </Select>
-                                              </FormControl>
-                                            </div>}
-                                            {DropDownFilterSource && <div>
-                                              <FormControl
-                                                sx={{ m: 1, minWidth: 200 }}
-                                                size="small"
-                                              >
-                                                <InputLabel
-                                                  id="demo-select-small"
-                                                  color="warning"
-                                                >
-                                                  Source
-                                                </InputLabel>
-                                                <Select
-                                                  labelId="demo-select-small"
-                                                  id="demo-select-small"
-                                                  value={Tags}
-                                                  label="Source"
-                                                  color="warning"
-                                                  onChange={handleChangeee}
-                                                  InputLabelProps={{
-                                                    shrink: true,
-                                                  }}
-                                                >
-                                                  <MenuItem value="">
-                                                    <em>None</em>
-                                                  </MenuItem>
-                                                </Select>
-                                              </FormControl>
-                                            </div>}
-                                            {createAt && <div style={{ display: "flex", alignItems: 'center' }}>
-                                              <div>
-                                                <FormControl
-                                                  sx={{ m: 1, minWidth: 200 }}
-                                                  size="small"
-                                                >
-                                                  <InputLabel
-                                                    id="demo-select-small"
-                                                    color="warning"
-                                                  >
-                                                  </InputLabel>
-                                                  <Select
-                                                    labelId="demo-select-small"
-                                                    id="demo-select-small"
-                                                    value={Tags}
-                                                    color="warning"
-                                                    onChange={handleChangeee}
-                                                    InputLabelProps={{
-                                                      shrink: true,
-                                                    }}
-                                                  >
-                                                    <MenuItem value="hast">
-                                                      Before
-                                                    </MenuItem>
-                                                    <MenuItem value="nottag">
-                                                      After
-                                                    </MenuItem>
-                                                  </Select>
-                                                </FormControl>
-                                              </div>
-                                              <div>
-                                                <LocalizationProvider
-                                                  dateAdapter={AdapterDayjs}
-                                                >
-                                                  <DateTimePicker
-                                                    label="Date&Time picker"
-                                                    value={value}
-                                                    onChange={handleChangeeee}
-                                                    renderInput={(params) => (
-                                                      <TextField
-                                                        {...params}
-                                                        className="timePiker"
-                                                        size="small"
-                                                        color="warning"
-                                                      />
-                                                    )}
-                                                  />
-                                                </LocalizationProvider>
-                                              </div>
-                                            </div>}
-                                            <div
-                                              style={{
-                                                display: "flex",
-                                                justifyContent: "end",
-                                              }}
-                                            >
-                                              <IconButton
-                                                onClick={() => {
-                                                  setadd(false);
-                                                }}
-                                              >
-                                                <DeleteIcon />
-                                              </IconButton>
-                                            </div>
+                                {count.map((index) => {
+                                  return (
+                                    <div>
+                                      <div
+                                        style={{
+                                          display: "flex",
+                                          justifyContent: "center",
+                                        }}
+                                      >
+                                        {add === false && (
+                                          <div className="divContainer1">
+                                            <Alert severity="info">
+                                              <AlertTitle>
+                                                No contact filters
+                                              </AlertTitle>
+                                              Add some filters to filter out which
+                                              contacts will be used to run this
+                                              campaign
+                                            </Alert>
                                           </div>
-                                          {AndAdd && (
-                                            <div>
-                                              <div
-                                                style={{
-                                                  padding: "16px 0px 0px 16px",
-                                                }}
-                                              >
-                                                {" "}
-                                                <Chip
-                                                  label="AND"
-                                                  className="chipAnd"
-                                                />
-                                              </div>
+                                        )}
 
-                                              { } <div
-                                                style={{
-                                                  display: "flex",
-                                                  alignItems: "center",
-                                                  padding: "16px 0px 0px 16px",
-                                                }}
-                                              >
-                                                <div>
+                                        {add && (
+                                          <div className="DeleteDiv1">
+                                            <div style={{ display: "flex" }}>
+                                              <div className="If">IF</div>
+                                              <div style={{ width: "100%" }}>
+                                                <div
+                                                  style={{
+                                                    paddingLeft: "16px",
+                                                    display: "flex",
+                                                    justifyContent: "space-between",
+                                                    alignItems: "center"
+                                                  }}
+                                                >
                                                   <FormControl
-                                                    sx={{ minWidth: 200 }}
+                                                    sx={{
+                                                      maxWidth: 200,
+                                                      width: "100%",
+                                                    }}
                                                     size="small"
                                                   >
                                                     <InputLabel
@@ -594,121 +392,334 @@ function NewCampaign(props) {
                                                       labelId="demo-select-small"
                                                       id="demo-select-small"
                                                       value={Filter}
-                                                      label=" Filter"
+                                                      label="   Filter"
                                                       color="warning"
                                                       onChange={handleChhangeee}
                                                       InputLabelProps={{
                                                         shrink: true,
                                                       }}
                                                     >
-                                                      <MenuItem value="hast">
+                                                      <MenuItem value="hast"
+                                                        onClick={() => {
+                                                          setDropDownFilter(true);
+                                                          setDropDownFilterSource(false);
+                                                          setcreateAt(false);
+                                                        }}
+                                                      >
                                                         Has Tag
                                                       </MenuItem>
-                                                      <MenuItem value="nottag">
+                                                      <MenuItem value="nottag"
+                                                        onClick={() => {
+                                                          setDropDownFilter(true);
+                                                          setDropDownFilterSource(false);
+                                                          setcreateAt(false);
+                                                        }}>
                                                         Does not have Tag
                                                       </MenuItem>
-                                                      <MenuItem value="source">
+                                                      <MenuItem value="source"
+                                                        onClick={() => {
+                                                          setDropDownFilterSource(true);
+                                                          setDropDownFilter(false)
+                                                          setcreateAt(false);
+                                                        }}>
                                                         Source
                                                       </MenuItem>
-                                                      <MenuItem value="coldcon">
+                                                      <MenuItem value="coldcon"
+                                                        onClick={() => {
+                                                          setDropDownFilterSource(false);
+                                                          setDropDownFilter(false)
+                                                          setcreateAt(false);
+                                                        }}>
                                                         Any cold contact
                                                       </MenuItem>
-                                                      <MenuItem value="created">
+                                                      <MenuItem value="created"
+                                                        onClick={() => {
+                                                          setDropDownFilterSource(false);
+                                                          setDropDownFilter(false)
+                                                          setcreateAt(true);
+                                                        }}>
                                                         Created At
                                                       </MenuItem>
                                                     </Select>
                                                   </FormControl>
-                                                </div>
-                                                <div>
-                                                  <FormControl
-                                                    sx={{ m: 1, minWidth: 200 }}
-                                                    size="small"
-                                                  >
-                                                    <InputLabel
-                                                      id="demo-select-small"
-                                                      color="warning"
+                                                  {DropDownFilter && <div>
+                                                    <FormControl
+                                                      sx={{ m: 1, minWidth: 200 }}
+                                                      size="small"
                                                     >
-                                                    </InputLabel>
-                                                    <Select
-                                                      labelId="demo-select-small"
-                                                      id="demo-select-small"
-                                                      value={Tags}
-                                                      color="warning"
-                                                      onChange={handleChangeee}
-                                                      InputLabelProps={{
-                                                        shrink: true,
+                                                      <InputLabel
+                                                        id="demo-select-small"
+                                                        color="warning"
+                                                      >
+                                                        Tags
+                                                      </InputLabel>
+                                                      <Select
+                                                        labelId="demo-select-small"
+                                                        id="demo-select-small"
+                                                        value={Tags}
+                                                        label="Tags"
+                                                        color="warning"
+                                                        onChange={handleChangeee}
+                                                        InputLabelProps={{
+                                                          shrink: true,
+                                                        }}
+                                                      >
+                                                        <MenuItem value="">
+                                                          <em>None</em>
+                                                        </MenuItem>
+                                                      </Select>
+                                                    </FormControl>
+                                                  </div>}
+                                                  {DropDownFilterSource && <div>
+                                                    <FormControl
+                                                      sx={{ m: 1, minWidth: 200 }}
+                                                      size="small"
+                                                    >
+                                                      <InputLabel
+                                                        id="demo-select-small"
+                                                        color="warning"
+                                                      >
+                                                        Source
+                                                      </InputLabel>
+                                                      <Select
+                                                        labelId="demo-select-small"
+                                                        id="demo-select-small"
+                                                        value={Tags}
+                                                        label="Source"
+                                                        color="warning"
+                                                        onChange={handleChangeee}
+                                                        InputLabelProps={{
+                                                          shrink: true,
+                                                        }}
+                                                      >
+                                                        <MenuItem value="">
+                                                          <em>None</em>
+                                                        </MenuItem>
+                                                      </Select>
+                                                    </FormControl>
+                                                  </div>}
+                                                  {createAt && <div style={{ display: "flex", alignItems: 'center' }}>
+                                                    <div>
+                                                      <FormControl
+                                                        sx={{ m: 1, minWidth: 200 }}
+                                                        size="small"
+                                                      >
+                                                        <InputLabel
+                                                          id="demo-select-small"
+                                                          color="warning"
+                                                        >
+                                                        </InputLabel>
+                                                        <Select
+                                                          labelId="demo-select-small"
+                                                          id="demo-select-small"
+                                                          value={Tags}
+                                                          color="warning"
+                                                          onChange={handleChangeee}
+                                                          InputLabelProps={{
+                                                            shrink: true,
+                                                          }}
+                                                        >
+                                                          <MenuItem value="hast">
+                                                            Before
+                                                          </MenuItem>
+                                                          <MenuItem value="nottag">
+                                                            After
+                                                          </MenuItem>
+                                                        </Select>
+                                                      </FormControl>
+                                                    </div>
+                                                    <div>
+                                                      <LocalizationProvider
+                                                        dateAdapter={AdapterDayjs}
+                                                      >
+                                                        <DateTimePicker
+                                                          label="Date&Time picker"
+                                                          value={value}
+                                                          onChange={handleChangeeee}
+                                                          renderInput={(params) => (
+                                                            <TextField
+                                                              {...params}
+                                                              className="timePiker"
+                                                              size="small"
+                                                              color="warning"
+                                                            />
+                                                          )}
+                                                        />
+                                                      </LocalizationProvider>
+                                                    </div>
+                                                  </div>}
+                                                  <div
+                                                    style={{
+                                                      display: "flex",
+                                                      justifyContent: "end",
+                                                    }}
+                                                  >
+                                                    <IconButton
+                                                      onClick={() => {
+                                                        setadd(false);
                                                       }}
                                                     >
-                                                      <MenuItem value="hast">
-                                                        Before
-                                                      </MenuItem>
-                                                      <MenuItem value="nottag">
-                                                        After
-                                                      </MenuItem>
-                                                    </Select>
-                                                  </FormControl>
+                                                      <DeleteIcon />
+                                                    </IconButton>
+                                                  </div>
                                                 </div>
-                                                <div>
-                                                  <LocalizationProvider
-                                                    dateAdapter={AdapterDayjs}
-                                                  >
-                                                    <DateTimePicker
-                                                      label="Date&Time picker"
-                                                      value={value}
-                                                      onChange={handleChangeeee}
-                                                      renderInput={(params) => (
-                                                        <TextField
-                                                          {...params}
-                                                          className="timePiker"
-                                                          size="small"
-                                                          color="warning"
-                                                        />
-                                                      )}
-                                                    />
-                                                  </LocalizationProvider>
-                                                </div>
+                                                {AndAdd && (
+                                                  <div>
+                                                    <div
+                                                      style={{
+                                                        padding: "16px 0px 0px 16px",
+                                                      }}
+                                                    >
+                                                      {" "}
+                                                      <Chip
+                                                        label="AND"
+                                                        className="chipAnd"
+                                                      />
+                                                    </div>
 
-                                                <IconButton
-                                                  onClick={() => {
-                                                    setAndAdd(false);
+                                                    { } <div
+                                                      style={{
+                                                        display: "flex",
+                                                        alignItems: "center",
+                                                        padding: "16px 0px 0px 16px",
+                                                      }}
+                                                    >
+                                                      <div>
+                                                        <FormControl
+                                                          sx={{ minWidth: 200 }}
+                                                          size="small"
+                                                        >
+                                                          <InputLabel
+                                                            id="demo-select-small"
+                                                            color="warning"
+                                                          >
+                                                            Filter
+                                                          </InputLabel>
+                                                          <Select
+                                                            labelId="demo-select-small"
+                                                            id="demo-select-small"
+                                                            value={Filter}
+                                                            label=" Filter"
+                                                            color="warning"
+                                                            onChange={handleChhangeee}
+                                                            InputLabelProps={{
+                                                              shrink: true,
+                                                            }}
+                                                          >
+                                                            <MenuItem value="hast">
+                                                              Has Tag
+                                                            </MenuItem>
+                                                            <MenuItem value="nottag">
+                                                              Does not have Tag
+                                                            </MenuItem>
+                                                            <MenuItem value="source">
+                                                              Source
+                                                            </MenuItem>
+                                                            <MenuItem value="coldcon">
+                                                              Any cold contact
+                                                            </MenuItem>
+                                                            <MenuItem value="created">
+                                                              Created At
+                                                            </MenuItem>
+                                                          </Select>
+                                                        </FormControl>
+                                                      </div>
+                                                      <div>
+                                                        <FormControl
+                                                          sx={{ m: 1, minWidth: 200 }}
+                                                          size="small"
+                                                        >
+                                                          <InputLabel
+                                                            id="demo-select-small"
+                                                            color="warning"
+                                                          >
+                                                          </InputLabel>
+                                                          <Select
+                                                            labelId="demo-select-small"
+                                                            id="demo-select-small"
+                                                            value={Tags}
+                                                            color="warning"
+                                                            onChange={handleChangeee}
+                                                            InputLabelProps={{
+                                                              shrink: true,
+                                                            }}
+                                                          >
+                                                            <MenuItem value="hast">
+                                                              Before
+                                                            </MenuItem>
+                                                            <MenuItem value="nottag">
+                                                              After
+                                                            </MenuItem>
+                                                          </Select>
+                                                        </FormControl>
+                                                      </div>
+                                                      <div>
+                                                        <LocalizationProvider
+                                                          dateAdapter={AdapterDayjs}
+                                                        >
+                                                          <DateTimePicker
+                                                            label="Date&Time picker"
+                                                            value={value}
+                                                            onChange={handleChangeeee}
+                                                            renderInput={(params) => (
+                                                              <TextField
+                                                                {...params}
+                                                                className="timePiker"
+                                                                size="small"
+                                                                color="warning"
+                                                              />
+                                                            )}
+                                                          />
+                                                        </LocalizationProvider>
+                                                      </div>
+
+                                                      <IconButton
+                                                        onClick={() => {
+                                                          setAndAdd(false);
+                                                        }}
+                                                      >
+                                                        <DeleteIcon />
+                                                      </IconButton>
+                                                    </div>
+                                                  </div>
+                                                )}
+
+                                                <div
+                                                  style={{
+                                                    padding: "16px 0px 0px 16px",
                                                   }}
                                                 >
-                                                  <DeleteIcon />
-                                                </IconButton>
+                                                  <Button
+                                                    variant="outlined"
+                                                    className="ADDnadBtn"
+                                                    onClick={() => {
+                                                      if (AndAdd) {
+                                                        setAndAdd(false);
+                                                      } else {
+                                                        setAndAdd(true);
+                                                      }
+                                                    }}
+                                                  >
+                                                    {" "}
+                                                    <AddOutlinedIcon />
+                                                    Add AND
+                                                  </Button>
+                                                </div>
                                               </div>
                                             </div>
-                                          )}
-
-                                          <div
-                                            style={{
-                                              padding: "16px 0px 0px 16px",
-                                            }}
-                                          >
-                                            <Button
-                                              variant="outlined"
-                                              className="ADDnadBtn"
-                                              onClick={() => {
-                                                if (AndAdd) {
-                                                  setAndAdd(false);
-                                                } else {
-                                                  setAndAdd(true);
-                                                }
-                                              }}
-                                            >
-                                              {" "}
-                                              <AddOutlinedIcon />
-                                              Add AND
-                                            </Button>
                                           </div>
-                                        </div>
+                                        )}
+
+                                        <br />
                                       </div>
-                                    </div>
-                                  )}
-                                  <br />
-                                </div>
+                                    </div>)
+                                })}
                                 <Button
                                   className="ADDORBTN"
-                                  onClick={() => setadd(true)}
+                                  onClick={() => {
+                                    setadd(true);
+                                    setcount([...count, count.length]);
+                                  }}
                                   style={{ marginTop: "52px" }}
                                 >
                                   <AddOutlinedIcon
@@ -841,14 +852,14 @@ function NewCampaign(props) {
                                 </div>
                                 <div>
                                   <Button
-                                  className="PlayCircleBtn"
+                                    className="PlayCircleBtn"
                                     style={{
                                       backgroundColor: "#ff8e00",
                                       color: "#ffffff",
                                     }}
                                   >
                                     Start Campaign{" "}
-                                    <PlayCircleOutlineRoundedIcon color="none" className="PlayCircleRoundedIcon"/>
+                                    <PlayCircleOutlineRoundedIcon color="none" className="PlayCircleRoundedIcon" />
                                   </Button>
                                 </div>
                               </div>
@@ -1431,7 +1442,7 @@ function NewCampaign(props) {
                                         className="CreateNewTamplatebtn"
                                         onClick={() => {
                                           setChangeTemp(true);
-                                         props.setCreatetemp(true);
+                                          props.setCreatetemp(true);
                                         }}
                                       >
                                         Create a new template

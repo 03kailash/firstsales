@@ -22,6 +22,7 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Snackbar from "@mui/material/Snackbar";
+import ContactUpdate from "./ContactUpdate/ContactUpdate";
 const columns = [
   { id: "Checkbox", label: "", minWidth: "89px" },
 
@@ -96,15 +97,17 @@ function Contact() {
   const [pages, setPages] = React.useState(0);
   const [rowsPerPages, setRowsPerPages] = React.useState(10);
   const [openAdd, setOpenAdd] = React.useState(false);
+  const [ContactUpdatepage, setContactupdatepage] = useState(false)
   const handleOpenAdd = () => setOpenAdd(true);
   const handleCloseAdd = () => setOpenAdd(false);
-
   const [active, setactive] = useState(false);
 
   const handleClick = () => {
     setOpen(true);
     setSnackOpen(true);
   };
+
+
 
   const handleChange = (event) => {
     const {
@@ -172,7 +175,10 @@ function Contact() {
                   <div className=" BoxHead1">
                     <h4 className="InnerDiv">Bounced</h4>
                     <h2 className="InnerDiv0">0</h2>
-                    <div className="block3">0%</div>
+                    <div className="block3"
+                    onClick={()=>{
+                      setContactupdatepage(true);
+                    }}>0%</div>
                   </div>
                 </div>
               </div>
@@ -291,7 +297,8 @@ function Contact() {
               </div>
             )}
 
-            <div className="group">
+            <div className="group"
+            >
               <div style={{fontSize:"0.875rem" ,color:"rgba(0, 0, 0, 0.6)"}}>Group action : </div>
               <Button
                 size="small"
@@ -378,6 +385,7 @@ function Contact() {
           </div>
           <Export open={open} handleClose={handleClose} />
           <AddContact openAdd={openAdd} handleCloseAdd={handleCloseAdd} />
+          <ContactUpdate isopen ={ContactUpdatepage} />
         </div>
   );
 }

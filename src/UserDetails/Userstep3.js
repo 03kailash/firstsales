@@ -9,35 +9,36 @@ import { ApiURL } from "../ApiURL";
 
 export default function Userstep3(props) {
   const navigate = useNavigate();
-  const [token,settoken] =useState("");
-  const [Workspace,setWorkspace] =useState("");
+  const [Workspace, setWorkspace] = useState("");
 
 
-  // const WorkspaceApi = () => {
-  //   fetch(`${ApiURL}/createWorkspace`, {
-  //     method: "POST",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //       token: `Bearer ${token}`,
-  //     },
-  //     body: JSON.stringify({
-  //       first_name: localStorage.getItem("FirstName"),
-  //       last_name: localStorage.getItem("LastName"),
-  //       timezone: localStorage.getItem("Timezone"),
-  //       workspace_name: localStorage.getItem(" Workspace"),
-  //       who_using_firstsale: localStorage.getItem("who_use_First_sales"),
-  //       crm: localStorage.getItem("crm"),
-  //       crm_id: localStorage.getItem("Crm_id"),
-  //       team_id: localStorage.getItem("Teamsize"),
-  //       insdusty_id: localStorage.getItem("Industry"),
-  //     })
-  //       .then((res) => res.json())
-  //       .then((res) => {
-  //         console.log(res)
-  //       })
-  //   })
-  // }
+  const WorkspaceApi = () => {
+    fetch(`${ApiURL}/createWorkspace`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        token: localStorage.getItem("token")
+      },
+      body: JSON.stringify({
+        first_name: localStorage.getItem("FirstName"),
+        last_name: localStorage.getItem("LastName"),
+        timezone: localStorage.getItem("Timezone"),
+        workspace_name: localStorage.getItem(" Workspace"),
+        who_using_firstsale: localStorage.getItem("who_use_First_sales"),
+        crm: localStorage.getItem("crm"),
+        crm_id: localStorage.getItem("Crm_id"),
+        team_id: localStorage.getItem("Teamsize"),
+        insdusty_id: localStorage.getItem("Industry"),
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+       if(res.status){
+        navigate("/Dashboard/Profile");
+       }
+      });
+  }
 
   const RegisterApi = () => {
     fetch(`${ApiURL}/register`, {
@@ -59,12 +60,12 @@ export default function Userstep3(props) {
         team_id: localStorage.getItem("Teamsize"),
         insdusty_id: localStorage.getItem("Industry"),
       }),
-    })
+    })  
       .then((res) => res.json())
       .then((res) => {
         if (res.status) {
-          navigate("/Dashboard/Profile");
-          settoken(res.token);
+          navigate("/Dashboard/Profile"); 
+          localStorage.setItem("token",res.token);
           setWorkspace(res.Workspace);
         }
       });
@@ -170,7 +171,9 @@ export default function Userstep3(props) {
               width: "100%",
             }}
           >
-            <Button onClick={props.handleNext} className="btnNext">
+            <Button onClick={() => {
+              WorkspaceApi();
+            }} className="btnNext">
               <span>
                 {props.activeStep === props.steps.length - 1
                   ? "Finish"
