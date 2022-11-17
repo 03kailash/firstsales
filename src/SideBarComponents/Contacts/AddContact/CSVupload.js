@@ -67,7 +67,6 @@ function CSVupload(props) {
   };
 
   const [activeStep, setActiveStep] = React.useState(0);
-  console.log("activeStep", activeStep);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -515,8 +514,8 @@ function CSVupload(props) {
                         sx={{ display: "flex", flexDirection: "row", pt: 2 }}
                       >
                         <Button className="ConfirmBtn" onClick={()=>{
-                        { activeStep===0 && handleNext();}
-                         {activeStep===1 && setOpencsvDone(true); }
+                        { activeStep === 0 && handleNext();}
+                         {activeStep === 1 && setOpencsvDone(true); }
                           }}>
                           {activeStep === steps.length - 1
                             ? "Upload Contacts"

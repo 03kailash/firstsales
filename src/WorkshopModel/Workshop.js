@@ -12,7 +12,8 @@ import { ApiURL } from "../ApiURL";
 
 export default function Workshop() {
   const [open, setOpen] = useState(true);
-  const [workSpaceList,setWorkSpaceList]= useState([]);  
+  const [workSpaceList,setWorkSpaceList]= useState([]); 
+  // const [selectWorkSpace,setselectWorkSpace] = useState()
   const navigate = useNavigate();
   
  useEffect(()=>{
@@ -31,16 +32,14 @@ export default function Workshop() {
     .then((res) => res.json())
     .then((res) => { 
       if (res.status) {
-        setWorkSpaceList(res.data)       
+        setWorkSpaceList(res.data)   
       }
     });
 };
-useEffect(()=>{
-  fetchSelectWorkspace();
-})
-const fetchSelectWorkspace = () => {
-  fetch(`${ApiURL}/selectWorkspace`, {
-    method: "get",
+
+const fetchSelectWorkspace = (id) => {
+  fetch(`${ApiURL}/selectWorkspace/${id}`, {
+    method: "post",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -50,7 +49,11 @@ const fetchSelectWorkspace = () => {
     .then((res) => res.json())
     .then((res) => { 
       if (res.status) {
-       console.log(res);       
+        // setselectWorkSpace(res.data);    
+        console.log(res.data.workspace_name);   
+        localStorage.setItem("Workspace_id",res.data.id)
+        localStorage.setItem("Workspace_Name",res.data.workspace_name)
+
       }
     });
 };
@@ -87,13 +90,17 @@ const fetchSelectWorkspace = () => {
             <div className="workspaceNavigation"
             onClick={()=>{
               navigate("/Dashboard/Profile")
+              fetchSelectWorkspace(item.id)
             }}>
+              {/* {setid(item.id)}
+              {console.log(item.id)} */}
               <div className="NameDiv">
                 <div>
                   <div style={{ width: "240px", maxWidth: "240px" }}>
                     <div style={{ fontSize: "14px", fontWeight: "700" }}>
                       {item.workspase_name}
                     </div>
+
                     <div style={{ padding: "3px 0px" }}>
                       Role :{" "}
                       <Chip

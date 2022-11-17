@@ -73,13 +73,16 @@ function SideBar() {
         }}
       >
         <div className="fullImg">
+          <div style={{minWidth:"50px"}}>
           <Avatar src="/broken-image.jpg" />
+          </div>
+          {localStorage.getItem("email")}
         </div>
       </Link>
       <hr style={{ width: "210px", margin: "8px 24px" }} />
       <Link to="/workspace">
         <div className="EmsBar">
-          <div><span className="WorkspaceName">{localStorage.getItem(" Workspace")}</span></div>
+          <div><span className="WorkspaceName">{localStorage.getItem("Workspace_Name")}</span></div>
           <div className="DateandTime">{Date}</div>
         </div>
       </Link>
