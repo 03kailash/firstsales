@@ -31,11 +31,7 @@ export default function Signin(props) {
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("email", email);
           if (localStorage.getItem("token") !== null) {
-            navigate("/Dashboard/Profile", {
-              state: {
-                id: res.data.id,
-              },
-            });
+            navigate("/workspace");
           }
         } else {
           localStorage.removeItem("token");

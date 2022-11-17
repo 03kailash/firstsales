@@ -92,7 +92,7 @@ export default function Template() {
         token: localStorage.getItem("token"),
       },
       body: JSON.stringify({
-        workspace_id: 1,
+        workspace_id: localStorage.getItem("Workspace_id"),
       }),
     })
       .then((res) => res.json())
@@ -114,7 +114,7 @@ export default function Template() {
         token: localStorage.getItem("token"),
       },
       body: JSON.stringify({
-        workspace_id: 1,
+        workspace_id: localStorage.getItem("Workspace_id"),
       }),
     })
       .then((res) => res.json())

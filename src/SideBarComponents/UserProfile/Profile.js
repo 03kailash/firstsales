@@ -24,7 +24,7 @@ import "react-image-crop/dist/ReactCrop.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Logout } from "../../UserServices";
 
-function Profile(props) {
+function Profile() {
   const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
   const [Date, setDate] = useState("");
   const [timeZoneList, setTimeZoneList] = useState([]);
@@ -59,7 +59,7 @@ function Profile(props) {
       },
     };
     const formData = new FormData();
-    formData.append("id", location.state.id);
+    formData.append("id", localStorage.getItem("Workspace_id"));
     formData.append("profile_img", image);
     return axios
       .post(`${ApiURL}/profileImg-update`, formData, config)
@@ -68,21 +68,6 @@ function Profile(props) {
           setImage("");
         }
       });
-    // fetch(`${ApiURL}/profileImg-update`, {
-    //   method: "POST",
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "multipart/form-data",
-    //     token: localStorage.getItem("token"),
-    //   },
-    //   body: formData({
-
-    //   })
-    // })
-    //   .then((res) => res.json())
-    //   .then((res) => {
-    //     console.log(res);
-    //   });
   };
   // setImage(URL.createObjectURL(e.target.files[0]))
   const ProfileUpdate = () => {
@@ -94,7 +79,7 @@ function Profile(props) {
         token: localStorage.getItem("token"),
       },
       body: JSON.stringify({
-        id: location.state.id,
+        id: localStorage.getItem("Workspace_id"),
         first_name: firstname,
         last_name: lastname,
         dob: birthdate,
