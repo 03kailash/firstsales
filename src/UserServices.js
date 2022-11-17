@@ -93,10 +93,13 @@ export const FilterTemplate = async (filtertemplate) => {
       "Content-Type": "application/json",
       token: localStorage.getItem("token"),
     },
+    body: JSON.stringify({
+      workspace_id: 1,
+    }),
   })
     .then((res) => res.json())
     .then((res) => {
-      return res.status;
+      return res;
     });
 };
 

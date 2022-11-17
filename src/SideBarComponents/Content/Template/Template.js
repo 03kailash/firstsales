@@ -21,6 +21,7 @@ import Drawer from "@mui/material/Drawer";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import TextField from "@mui/material/TextField";
 import Snackbar from "@mui/material/Snackbar";
+import UnarchiveIcon from "@mui/icons-material/Unarchive";
 import TemplateBuilder from "./TemplateBuilder";
 import Chip from "@mui/material/Chip";
 import { IconButton } from "@mui/material";
@@ -37,13 +38,17 @@ export default function Template() {
   const [btn2, setBtn2] = React.useState(false);
   const [aut, setAut] = React.useState("");
   const [author, setAuthor] = useState(false);
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [temppage, setTempPage] = React.useState(0);
+  const [temprowsPerPage, setTempRowsPerPage] = React.useState(10);
+  const [tempArchivepage, setTempArchivePage] = React.useState(0);
+  const [tempArchiverowsPerPage, setTempArchiveRowsPerPage] =
+    React.useState(10);
   const [open, setOpen] = React.useState(false);
   const [open2, setOpen2] = React.useState(false);
   const [chip, setChip] = useState(false);
   const [snackOpen, setSnackOpen] = React.useState(false);
   const [data, setData] = useState([]);
+  const [archivedata, setArchiveData] = useState([]);
 
   const handleClick = () => {
     setOpen(true);
@@ -54,17 +59,27 @@ export default function Template() {
     setOpen(false);
   };
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
+  const TemphandleChangePage = (event, newPage) => {
+    setTempPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
+  const TemphandleChangeRowsPerPage = (event) => {
+    setTempRowsPerPage(+event.target.value);
+    setTempPage(0);
   };
-  const handleKeyDown = (event) => {
+
+  const TempArchivehandleChangePage = (event, newPage) => {
+    setTempArchivePage(newPage);
+  };
+
+  const TempArchivehandleChangeRowsPerPage = (event) => {
+    setTempArchiveRowsPerPage(+event.target.value);
+    setTempArchivePage(0);
+  };
+  const handleKeyDown = async (event) => {
     if (event.key === "Enter") {
-      FilterTemplate(filtertemplate);
+      const a = await FilterTemplate(filtertemplate);
+      setData(a.data);
     }
   };
 
@@ -90,7 +105,29 @@ export default function Template() {
     ViewTemplate();
   }, []);
 
-  const columns = [
+  const ViewTemplateArchive = async () => {
+    await fetch(`${ApiURL}/template-archive-view`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        token: localStorage.getItem("token"),
+      },
+      body: JSON.stringify({
+        workspace_id: 1,
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setArchiveData(res.data);
+      });
+  };
+
+  useEffect(() => {
+    ViewTemplateArchive();
+  }, []);
+
+  const Templatecolumns = [
     { id: "Template", label: "Template", minWidth: "532px" },
 
     {
@@ -116,12 +153,12 @@ export default function Template() {
     },
   ];
 
-  function createData(Template, Unsubscribe, SendReply, OpenClick) {
+  function TempcreateData(Template, Unsubscribe, SendReply, OpenClick) {
     return { Template, Unsubscribe, SendReply, OpenClick };
   }
 
-  const rows = data.map((item) => {
-    return createData(
+  const Temprows = data.map((item) => {
+    return TempcreateData(
       <>
         <div className="titlename">{item.title}</div>
         <div className="titletime">{item.created_at}</div>
@@ -131,7 +168,70 @@ export default function Template() {
       "0/0"
     );
   });
+  const TemplateArchivecolumns = [
+    { id: "Template", label: "Template", minWidth: "490px" },
 
+    {
+      id: "Unsubscribe",
+      label: "Unsubscribe",
+      minWidth: 112,
+      align: "center",
+      format: (value) => value.toLocaleString("en-US"),
+    },
+    {
+      id: "SendReply",
+      label: "Send/Reply",
+      minWidth: 105,
+      align: "center",
+      format: (value) => value.toLocaleString("en-US"),
+    },
+    {
+      id: "OpenClick",
+      label: "Open/Click",
+      minWidth: 103,
+      align: "center",
+      format: (value) => value.toFixed(2),
+    },
+    {
+      id: "Restore",
+      label: "",
+    },
+  ];
+
+  function TempArchivecreateData(
+    Template,
+    Unsubscribe,
+    SendReply,
+    OpenClick,
+    Restore
+  ) {
+    return { Template, Unsubscribe, SendReply, OpenClick, Restore };
+  }
+
+  const TempArchiverows = archivedata.map((item) => {
+    return TempArchivecreateData(
+      <>
+        <div className="titlename">
+          <Chip
+            label="Archived"
+            size="small"
+            style={{
+              color: "rgb(255, 255, 255)",
+              backgroundColor: "rgb(120, 144, 156)",
+            }}
+          />{" "}
+          {item.title}
+        </div>
+        <div className="titletime">{item.deleted_at}</div>
+      </>,
+      "0",
+      "0/0",
+      "0/0",
+      <IconButton>
+        <UnarchiveIcon color="action" />
+      </IconButton>
+    );
+  });
   return (
     <div style={{ justifyContent: "center", display: "flex" }}>
       <div className="templatecontainer">
@@ -315,67 +415,136 @@ export default function Template() {
               <LinearProgress color="warning" />
             </Box>
           </div>
-          <Paper sx={{ width: "100%", overflow: "hidden" }}>
-            <TableContainer>
-              <Table stickyHeader aria-label="sticky table">
-                <TableHead>
-                  <TableRow>
-                    {columns.map((column) => (
-                      <TableCell
-                        key={column.id}
-                        align={column.align}
-                        style={{
-                          minWidth: column.minWidth,
-                          padding: "6px 16px",
-                        }}
-                      >
-                        {column.label}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {rows
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((row) => {
-                      return (
-                        <TableRow
-                          style={{ cursor: "pointer" }}
-                          hover
-                          role="checkbox"
-                          tabIndex={-1}
-                          key={row.code}
-                        >
-                          {columns.map((column) => {
-                            const value = row[column.id];
-                            return (
-                              <TableCell
-                                key={column.id}
-                                align={column.align}
-                                style={{ padding: "6px 16px " }}
-                              >
-                                {column.format && typeof value === "number"
-                                  ? column.format(value)
-                                  : value}
-                              </TableCell>
-                            );
-                          })}
-                        </TableRow>
-                      );
-                    })}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Paper>
-          <TablePagination
-            rowsPerPageOptions={[10, 25, 100]}
-            component="div"
-            count={rows.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
+          {btn2 ? (
+            <>
+              <Paper sx={{ width: "100%", overflow: "hidden" }}>
+                <TableContainer>
+                  <Table stickyHeader aria-label="sticky table">
+                    <TableHead>
+                      <TableRow>
+                        {TemplateArchivecolumns.map((column) => (
+                          <TableCell
+                            key={column.id}
+                            align={column.align}
+                            style={{
+                              minWidth: column.minWidth,
+                              padding: "6px 16px",
+                            }}
+                          >
+                            {column.label}
+                          </TableCell>
+                        ))}
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {TempArchiverows.slice(
+                        tempArchivepage * tempArchiverowsPerPage,
+                        tempArchivepage * tempArchiverowsPerPage +
+                          tempArchiverowsPerPage
+                      ).map((row) => {
+                        return (
+                          <TableRow
+                            role="checkbox"
+                            tabIndex={-1}
+                            key={row.code}
+                          >
+                            {TemplateArchivecolumns.map((column) => {
+                              const value = row[column.id];
+                              return (
+                                <TableCell
+                                  key={column.id}
+                                  align={column.align}
+                                  style={{ padding: "6px 16px " }}
+                                >
+                                  {column.format && typeof value === "number"
+                                    ? column.format(value)
+                                    : value}
+                                </TableCell>
+                              );
+                            })}
+                          </TableRow>
+                        );
+                      })}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </Paper>
+              <TablePagination
+                rowsPerPageOptions={[10, 25, 100]}
+                component="div"
+                count={TempArchiverows.length}
+                rowsPerPage={tempArchiverowsPerPage}
+                page={tempArchivepage}
+                onPageChange={TempArchivehandleChangePage}
+                onRowsPerPageChange={TempArchivehandleChangeRowsPerPage}
+              />
+            </>
+          ) : (
+            <>
+              <Paper sx={{ width: "100%", overflow: "hidden" }}>
+                <TableContainer>
+                  <Table stickyHeader aria-label="sticky table">
+                    <TableHead>
+                      <TableRow>
+                        {Templatecolumns.map((tempcolumn) => (
+                          <TableCell
+                            key={tempcolumn.id}
+                            align={tempcolumn.align}
+                            style={{
+                              minWidth: tempcolumn.minWidth,
+                              padding: "6px 16px",
+                            }}
+                          >
+                            {tempcolumn.label}
+                          </TableCell>
+                        ))}
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {Temprows.slice(
+                        temppage * temprowsPerPage,
+                        temppage * temprowsPerPage + temprowsPerPage
+                      ).map((row) => {
+                        return (
+                          <TableRow
+                            style={{ cursor: "pointer" }}
+                            hover
+                            role="checkbox"
+                            tabIndex={-1}
+                            key={row.code}
+                          >
+                            {Templatecolumns.map((column) => {
+                              const value = row[column.id];
+                              return (
+                                <TableCell
+                                  key={column.id}
+                                  align={column.align}
+                                  style={{ padding: "6px 16px " }}
+                                >
+                                  {column.format && typeof value === "number"
+                                    ? column.format(value)
+                                    : value}
+                                </TableCell>
+                              );
+                            })}
+                          </TableRow>
+                        );
+                      })}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </Paper>
+              <TablePagination
+                rowsPerPageOptions={[10, 25, 100]}
+                component="div"
+                count={Temprows.length}
+                rowsPerPage={temprowsPerPage}
+                page={temppage}
+                onPageChange={TemphandleChangePage}
+                onRowsPerPageChange={TemphandleChangeRowsPerPage}
+              />
+            </>
+          )}
         </div>
         <Snackbar
           open={snackOpen}

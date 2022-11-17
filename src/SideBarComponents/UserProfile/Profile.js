@@ -64,7 +64,9 @@ function Profile(props) {
     return axios
       .post(`${ApiURL}/profileImg-update`, formData, config)
       .then((res) => {
-        alert("File Upload success");
+        if (res.status) {
+          setImage("");
+        }
       });
     // fetch(`${ApiURL}/profileImg-update`, {
     //   method: "POST",
@@ -156,7 +158,7 @@ function Profile(props) {
     currentTime();
   }, []);
 
-  console.log(image);
+  console.log(crop);
   return (
     <div style={{ width: "100%", backgroundColor: "#fafbfb " }}>
       <div className="top_Div">
@@ -167,7 +169,7 @@ function Profile(props) {
               accept="image/*"
               id="img"
               style={{ display: "none" }}
-              onChange={(e) => setImage(e.target.files[0])}
+              onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))}
             />
             <div className="img_full">
               <img
