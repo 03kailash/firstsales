@@ -22,7 +22,7 @@ import { Alert, InputLabel, MenuItem, Select, Snackbar } from "@mui/material";
 import ReactCrop from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Logout } from "../../UserServices";
+import { Logout, ProfileUpdate } from "../../UserServices";
 
 function Profile() {
   const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
@@ -69,31 +69,9 @@ function Profile() {
         }
       });
   };
+
   // setImage(URL.createObjectURL(e.target.files[0]))
-  const ProfileUpdate = () => {
-    fetch(`${ApiURL}/profile-update`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        token: localStorage.getItem("token"),
-      },
-      body: JSON.stringify({
-        id: localStorage.getItem("Workspace_id"),
-        first_name: firstname,
-        last_name: lastname,
-        dob: birthdate,
-        gender: gender,
-        timezone: timezonevalue,
-      }),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.status) {
-          setSnackOpen(true);
-        }
-      });
-  };
+
   const [birthdate, setBirthdate] = React.useState(dayjs("2014-08-18"));
   const handleChange = (newValue) => {
     setBirthdate(newValue);
@@ -378,8 +356,18 @@ function Profile() {
             <Button
               variant="contained"
               className="profilesavebtn"
-              onClick={() => {
-                ProfileUpdate();
+              onClick={async () => {
+                if (
+                  await ProfileUpdate(
+                    firstname,
+                    lastname,
+                    birthdate,
+                    gender,
+                    timezonevalue
+                  )
+                ) {
+                  setSnackOpen(true);
+                }
               }}
             >
               Save

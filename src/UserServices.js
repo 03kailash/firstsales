@@ -52,6 +52,35 @@ export const ResendOTP = async (email) => {
     });
 };
 
+export const ProfileUpdate = async (
+  firstname,
+  lastname,
+  birthdate,
+  gender,
+  timezonevalue
+) => {
+  return await fetch(`${ApiURL}/profile-update`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      token: localStorage.getItem("token"),
+    },
+    body: JSON.stringify({
+      id: localStorage.getItem("Workspace_id"),
+      first_name: firstname,
+      last_name: lastname,
+      dob: birthdate,
+      gender: gender,
+      timezone: timezonevalue,
+    }),
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      return res.status;
+    });
+};
+
 export const Logout = async () => {
   return await fetch(`${ApiURL}/logout`, {
     method: "POST",
@@ -81,7 +110,7 @@ export const CreateTemplate = async (addtemplate) => {
   })
     .then((res) => res.json())
     .then((res) => {
-      return res.status;
+      return res;
     });
 };
 
@@ -103,14 +132,53 @@ export const FilterTemplate = async (filtertemplate) => {
     });
 };
 
-export const ArchiveTemplate = async () => {
-  return await fetch(`${ApiURL}/template-archive/42`, {
+export const FilterArchiveTemplate = async (filtertemplate) => {
+  return await fetch(`${ApiURL}/template-archive-search/${filtertemplate}`, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
       token: localStorage.getItem("token"),
     },
+    body: JSON.stringify({
+      workspace_id: localStorage.getItem("Workspace_id"),
+    }),
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      return res;
+    });
+};
+
+export const ArchiveTemplate = async () => {
+  return await fetch(
+    `${ApiURL}/template-archive/${localStorage.getItem("Template_id")}`,
+    {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        token: localStorage.getItem("token"),
+      },
+    }
+  )
+    .then((res) => res.json())
+    .then((res) => {
+      return res.success;
+    });
+};
+
+export const RestoreArchiveTemplate = async (id) => {
+  return await fetch(`${ApiURL}/template-archive-restore/${id}`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      token: localStorage.getItem("token"),
+    },
+    body: JSON.stringify({
+      workspace_id: localStorage.getItem("Workspace_id"),
+    }),
   })
     .then((res) => res.json())
     .then((res) => {

@@ -25,7 +25,12 @@ import UnarchiveIcon from "@mui/icons-material/Unarchive";
 import TemplateBuilder from "./TemplateBuilder";
 import Chip from "@mui/material/Chip";
 import { IconButton } from "@mui/material";
-import { CreateTemplate, FilterTemplate } from "../../../UserServices";
+import {
+  CreateTemplate,
+  FilterArchiveTemplate,
+  FilterTemplate,
+  RestoreArchiveTemplate,
+} from "../../../UserServices";
 import { ApiURL } from "../../../ApiURL";
 import { useEffect } from "react";
 
@@ -78,8 +83,11 @@ export default function Template() {
   };
   const handleKeyDown = async (event) => {
     if (event.key === "Enter") {
-      const a = await FilterTemplate(filtertemplate);
-      setData(a.data);
+      const tempres = await FilterTemplate(filtertemplate);
+      setData(tempres.data);
+      console.log(tempres.data.length);
+      const temparchiveres = await FilterArchiveTemplate(filtertemplate);
+      setArchiveData(temparchiveres.data);
     }
   };
 
@@ -151,21 +159,32 @@ export default function Template() {
       align: "center",
       format: (value) => value.toFixed(2),
     },
+    {
+      id: "Restore",
+      label: "",
+    },
   ];
 
-  function TempcreateData(Template, Unsubscribe, SendReply, OpenClick) {
-    return { Template, Unsubscribe, SendReply, OpenClick };
+  function TempcreateData(
+    Template,
+    Unsubscribe,
+    SendReply,
+    OpenClick,
+    Restore
+  ) {
+    return { Template, Unsubscribe, SendReply, OpenClick, Restore };
   }
 
   const Temprows = data.map((item) => {
     return TempcreateData(
       <>
         <div className="titlename">{item.title}</div>
-        <div className="titletime">{item.created_at}</div>
+        <div className="titletime">{item.updated_at}</div>
       </>,
       "0",
       "0/0",
-      "0/0"
+      "0/0",
+      ""
     );
   });
   const TemplateArchivecolumns = [
@@ -227,7 +246,16 @@ export default function Template() {
       "0",
       "0/0",
       "0/0",
-      <IconButton>
+      <IconButton
+        onClick={async () => {
+          archivedata.map(async (item) => {
+            if (await RestoreArchiveTemplate(item.id)) {
+              ViewTemplateArchive();
+              ViewTemplate();
+            }
+          });
+        }}
+      >
         <UnarchiveIcon color="action" />
       </IconButton>
     );
@@ -248,12 +276,14 @@ export default function Template() {
                 onKeyDown={handleKeyDown}
               />
               <IconButton
-                onClick={() => {
+                onClick={async () => {
                   if (author) {
                     setAuthor(false);
                   } else {
                     setAuthor(true);
                   }
+                  const a = await FilterTemplate(filtertemplate);
+                  setData(a.data);
                 }}
               >
                 <TuneOutlinedIcon color="action" />
@@ -310,9 +340,15 @@ export default function Template() {
                           <Button
                             className="newtemplatebtn"
                             onClick={async () => {
-                              if (await CreateTemplate(addtemplate)) {
+                              const res = await CreateTemplate(addtemplate);
+                              localStorage.setItem(
+                                "Template_id",
+                                res.data[0].id
+                              );
+                              if (res.status) {
                                 handleClick();
                                 setOpen2(false);
+                                ViewTemplate();
                               }
                             }}
                           >
