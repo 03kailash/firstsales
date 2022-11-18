@@ -56,9 +56,10 @@ const rows = [
 ];
 
 const steps = ["Option", "Mapping"];
+
 function CSVupload(props) {
   const [opencsvDone, setOpencsvDone] = React.useState(false);
-    const handleClosecsvDone = () => setOpencsvDone(false);
+  const handleClosecsvDone = () => setOpencsvDone(false);
 
   const [feild, setfield] = useState(false)
   const [value, setValue] = React.useState("Only Add new");
@@ -119,35 +120,25 @@ function CSVupload(props) {
                               >
                                 <TableHead className="th">
                                   <TableRow>
-                                    <TableCell className="Trow">
-                                      Email
-                                    </TableCell>
-                                    <TableCell className="Trow1" align="left">
-                                      Contacts
-                                    </TableCell>
+                                    <tr>
+                                      {props.tableRows.map((rows, index) => {
+                                        return <th key={index}>{rows}</th>;
+                                      })}
+                                    </tr>
                                   </TableRow>
                                 </TableHead>
                                 <TableBody
                                   style={{ width: "756px", height: "96.05px" }}
                                 >
-                                  {rows.map((row) => (
-                                    <TableRow
-                                      className="Tablerow"
-                                      key={row.name}
-                                      sx={{
-                                        "&:last-child td, &:last-child th": {
-                                          border: 0,
-                                        },
-                                      }}
-                                    >
-                                      <TableCell component="th" scope="row">
-                                        {row.Email}
-                                      </TableCell>
-                                      <TableCell align="left">
-                                        {row.Contact}
-                                      </TableCell>
-                                    </TableRow>
-                                  ))}
+                                  {props.values.map((value, index) => {
+                                    return (
+                                      <tr key={index}>
+                                        {value.map((val, i) => {
+                                          return <td key={i}>{val}</td>;
+                                        })}
+                                      </tr>
+                                    );
+                                  })}
                                 </TableBody>
                               </Table>
                             </TableContainer>
@@ -260,35 +251,25 @@ function CSVupload(props) {
                               >
                                 <TableHead className="th">
                                   <TableRow>
-                                    <TableCell className="Trow">
-                                      Email
-                                    </TableCell>
-                                    <TableCell className="Trow1" align="left">
-                                      Contacts
-                                    </TableCell>
+                                  <tr>
+                                      {props.tableRows.map((rows, index) => {
+                                        return <th key={index}>{rows}</th>;
+                                      })}
+                                    </tr>
                                   </TableRow>
                                 </TableHead>
                                 <TableBody
                                   style={{ width: "756px", height: "96.05px" }}
                                 >
-                                  {rows.map((row) => (
-                                    <TableRow
-                                      className="Tablerow"
-                                      key={row.name}
-                                      sx={{
-                                        "&:last-child td, &:last-child th": {
-                                          border: 0,
-                                        },
-                                      }}
-                                    >
-                                      <TableCell component="th" scope="row">
-                                        {row.Email}
-                                      </TableCell>
-                                      <TableCell align="left">
-                                        {row.Contact}
-                                      </TableCell>
-                                    </TableRow>
-                                  ))}
+                                  {props.values.map((value, index) => {
+                                    return (
+                                      <tr key={index}>
+                                        {value.map((val, i) => {
+                                          return <td key={i}>{val}</td>;
+                                        })}
+                                      </tr>
+                                    );
+                                  })}
                                 </TableBody>
                               </Table>
                             </TableContainer>
@@ -513,10 +494,10 @@ function CSVupload(props) {
                       <Box
                         sx={{ display: "flex", flexDirection: "row", pt: 2 }}
                       >
-                        <Button className="ConfirmBtn" onClick={()=>{
-                        { activeStep === 0 && handleNext();}
-                         {activeStep === 1 && setOpencsvDone(true); }
-                          }}>
+                        <Button className="ConfirmBtn" onClick={() => {
+                          { activeStep === 0 && handleNext(); }
+                          { activeStep === 1 && setOpencsvDone(true); }
+                        }}>
                           {activeStep === steps.length - 1
                             ? "Upload Contacts"
                             : "Comfirm Options"}
@@ -539,7 +520,7 @@ function CSVupload(props) {
           </Modal>
         </div>
       </div>
-      <CsvImportDone open={opencsvDone} close={handleClosecsvDone} isclose={props.handleCloseUP}/>
+      <CsvImportDone open={opencsvDone} close={handleClosecsvDone} isclose={props.handleCloseUP} />
     </div>
   );
 }

@@ -40,8 +40,8 @@ export default function ContactUpdate({ isopen, isclose }) {
                             </Box>
                             <TabPanel value="1">
                                 <div className='TabPanelDetails'>
-                                   <div className='Avtardiv'>
-                                    <Avatar/>
+                                   <div>
+                                    <Avatar className='Avtardiv'/>
                                    </div>
                                 </div>
 

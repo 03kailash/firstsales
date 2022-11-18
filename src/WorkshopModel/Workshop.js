@@ -13,7 +13,6 @@ import { ApiURL } from "../ApiURL";
 export default function Workshop() {
   const [open, setOpen] = useState(true);
   const [workSpaceList,setWorkSpaceList]= useState([]); 
-  // const [selectWorkSpace,setselectWorkSpace] = useState()
   const navigate = useNavigate();
   
  useEffect(()=>{
@@ -48,12 +47,9 @@ const fetchSelectWorkspace = (id) => {
   })
     .then((res) => res.json())
     .then((res) => { 
-      if (res.status) {
-        // setselectWorkSpace(res.data);    
-        console.log(res.data.workspace_name);   
+      if (res.status) { 
         localStorage.setItem("Workspace_id",res.data.id)
         localStorage.setItem("Workspace_Name",res.data.workspace_name)
-
       }
     });
 };
@@ -92,8 +88,6 @@ const fetchSelectWorkspace = (id) => {
               navigate("/Dashboard/Profile")
               fetchSelectWorkspace(item.id)
             }}>
-              {/* {setid(item.id)}
-              {console.log(item.id)} */}
               <div className="NameDiv">
                 <div>
                   <div style={{ width: "240px", maxWidth: "240px" }}>
