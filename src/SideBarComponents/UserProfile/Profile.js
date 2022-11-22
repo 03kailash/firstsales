@@ -35,7 +35,6 @@ function Profile() {
   const [timezoneinfo, setTimezoneinfo] = useState(false);
   const [snackOpen, setSnackOpen] = React.useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
 
   const [crop, setCrop] = useState({
     height: 365,

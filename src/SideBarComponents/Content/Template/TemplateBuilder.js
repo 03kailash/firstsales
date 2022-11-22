@@ -76,10 +76,10 @@ const arr = [
 ];
 
 export default function TemplateBuilder(props) {
-  const [templateTitle, setTemplateTitle] = useState(props.addtemplate);
+  const [templateTitle, setTemplateTitle] = useState("");
   useEffect(() => {
-    setTemplateTitle(props.addtemplate);
-  }, [props.addtemplate]);
+    setTemplateTitle("");
+  }, []);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -973,7 +973,6 @@ export default function TemplateBuilder(props) {
         isOpen={archiveModal}
         isClose={handleClose}
         close={props.isClose}
-        addtemplate={props.addtemplate}
       />
       <TemplateAddsubject open={adsubject} close={handleclose2} />
       <TemplateAddsignature open={adsignature} close={handleclose3} />

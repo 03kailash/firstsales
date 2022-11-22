@@ -20,7 +20,9 @@ export default function Content() {
     setValue(newValue);
   };
   return (
-    <div style={{ height: "100vh", width: "100%", backgroundColor: "#fafbfb" }}>
+    <div
+      style={{ minHeight: "100vh", width: "100%", backgroundColor: "#fafbfb" }}
+    >
       <div style={{ padding: "0px 8px" }}>
         <div className="contentmaindiv">
           <div style={{ display: "flex", justifyContent: "center" }}>

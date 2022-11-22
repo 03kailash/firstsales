@@ -28,6 +28,9 @@ import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import Subjectedit from "./Subjectedit";
 import { IconButton, InputAdornment, Menu } from "@mui/material";
+import { CreateSubject } from "../../../UserServices";
+import { ApiURL } from "../../../ApiURL";
+import { useEffect } from "react";
 
 const options = [
   "{{contact.email}}",
@@ -48,39 +51,9 @@ const options = [
   "{{contact.Email Id}}",
 ];
 
-const columns = [
-  { id: "Subject", label: "Subject", minWidth: "532px" },
-
-  {
-    id: "Unsubscribe",
-    label: "Unsubscribe",
-    minWidth: 112,
-    align: "right",
-    format: (value) => value.toLocaleString("en-US"),
-  },
-  {
-    id: "Send/Reply",
-    label: "Send/Reply",
-    minWidth: 105,
-    align: "right",
-    format: (value) => value.toLocaleString("en-US"),
-  },
-  {
-    id: "Open/Click",
-    label: "Open/Click",
-    minWidth: 103,
-    align: "right",
-    format: (value) => value.toFixed(2),
-  },
-];
-
-function createData(name, code, population, size) {
-  const density = population / size;
-  return { name, code, population, size, density };
-}
-
-const rows = [createData("no template")];
 export default function Subject() {
+  const [addsubject, setAddsubject] = useState("");
+  const [subjectData, setSubjectData] = useState([]);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const Addplaceopen = Boolean(anchorEl);
@@ -88,7 +61,7 @@ export default function Subject() {
     setAnchorEl(event.currentTarget);
   };
   const handleCloseAddplace = (e) => {
-    setSubjectline(subjectline + e.target.innerText);
+    setAddsubject(addsubject + e.target.innerText);
     setAnchorEl(null);
   };
 
@@ -98,7 +71,6 @@ export default function Subject() {
   };
 
   const [emoji, setEmoji] = useState(false);
-  const [subjectline, setSubjectline] = useState("");
   const [chipData, setChipData] = React.useState([
     { label: "Author: Somil Kaushal" },
   ]);
@@ -106,8 +78,8 @@ export default function Subject() {
   const [btn2, setBtn2] = React.useState(false);
   const [aut, setAut] = React.useState("");
   const [author, setAuthor] = useState(false);
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [subjectpage, setSubjectPage] = React.useState(0);
+  const [subrowsPerPage, setSubRowsPerPage] = React.useState(10);
   const [open, setOpen] = React.useState(false);
 
   const [chip, setChip] = useState(false);
@@ -123,13 +95,83 @@ export default function Subject() {
   };
 
   const handleChangePage = (event, newPage) => {
-    setPage(newPage);
+    setSubjectPage(newPage);
   };
 
   const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
+    setSubRowsPerPage(+event.target.value);
+    setSubjectPage(0);
   };
+
+  const ViewSubject = async () => {
+    await fetch(`${ApiURL}/subject-view`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        token: localStorage.getItem("token"),
+      },
+      body: JSON.stringify({
+        workspace_id: localStorage.getItem("Workspace_id"),
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setSubjectData(res.data);
+      });
+  };
+
+  useEffect(() => {
+    ViewSubject();
+  }, []);
+
+  const Subjectcolumn = [
+    { id: "Subject", label: "Subject", minWidth: "532px" },
+
+    {
+      id: "Unsubscribe",
+      label: "Unsubscribe",
+      minWidth: 112,
+      align: "right",
+      format: (value) => value.toLocaleString("en-US"),
+    },
+    {
+      id: "SendReply",
+      label: "Send/Reply",
+      minWidth: 105,
+      align: "right",
+      format: (value) => value.toLocaleString("en-US"),
+    },
+    {
+      id: "OpenClick",
+      label: "Open/Click",
+      minWidth: 103,
+      align: "right",
+      format: (value) => value.toFixed(2),
+    },
+    {
+      id: "Restore",
+      label: "",
+    },
+  ];
+
+  function SubcreateData(Subject, Unsubscribe, SendReply, OpenClick, Restore) {
+    return { Subject, Unsubscribe, SendReply, OpenClick, Restore };
+  }
+
+  const Subjectrows = subjectData.map((item) => {
+    return SubcreateData(
+      <>
+        <div className="titlename">{item.title}</div>
+        <div className="titletime">{item.updated_at}</div>
+      </>,
+      "0",
+      "0/0",
+      "0/0",
+      "",
+      <>{item.id}</>
+    );
+  });
 
   return (
     <div style={{ justifyContent: "center", display: "flex" }}>
@@ -202,8 +244,8 @@ export default function Subject() {
                           }}
                           size="small"
                           className="titleinput"
-                          value={subjectline}
-                          onChange={(e) => setSubjectline(e.target.value)}
+                          value={addsubject}
+                          onChange={(e) => setAddsubject(e.target.value)}
                         />
                       </div>
                       <div
@@ -217,7 +259,7 @@ export default function Subject() {
                           <Picker
                             data={data}
                             onEmojiSelect={(item) =>
-                              setSubjectline(subjectline + item.native)
+                              setAddsubject(addsubject + item.native)
                             }
                             sets="apple"
                           />
@@ -277,9 +319,13 @@ export default function Subject() {
                       >
                         <Button
                           className="Savetemplatebtn"
-                          onClick={() => {
-                            handleClick();
-                            setOpen(false);
+                          onClick={async () => {
+                            const res = await CreateSubject(addsubject);
+                            if (res.status) {
+                              handleClick();
+                              setOpen(false);
+                              ViewSubject();
+                            }
                           }}
                         >
                           Create new Subject
@@ -382,15 +428,18 @@ export default function Subject() {
             </Box>
           </div>
           <Paper sx={{ width: "100%", overflow: "hidden" }}>
-            <TableContainer sx={{ maxHeight: 440 }}>
+            <TableContainer>
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                   <TableRow>
-                    {columns.map((column) => (
+                    {Subjectcolumn.map((column) => (
                       <TableCell
                         key={column.id}
                         align={column.align}
-                        style={{ minWidth: column.minWidth }}
+                        style={{
+                          minWidth: column.minWidth,
+                          padding: "6px 16px",
+                        }}
                       >
                         {column.label}
                       </TableCell>
@@ -398,29 +447,35 @@ export default function Subject() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {rows
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((row) => {
-                      return (
-                        <TableRow
-                          hover
-                          role="checkbox"
-                          tabIndex={-1}
-                          key={row.code}
-                        >
-                          {columns.map((column) => {
-                            const value = row[column.id];
-                            return (
-                              <TableCell key={column.id} align={column.align}>
-                                {column.format && typeof value === "number"
-                                  ? column.format(value)
-                                  : value}
-                              </TableCell>
-                            );
-                          })}
-                        </TableRow>
-                      );
-                    })}
+                  {Subjectrows.slice(
+                    subjectpage * subrowsPerPage,
+                    subjectpage * subrowsPerPage + subrowsPerPage
+                  ).map((row) => {
+                    return (
+                      <TableRow
+                        style={{ cursor: "pointer" }}
+                        hover
+                        role="checkbox"
+                        tabIndex={-1}
+                        key={row.code}
+                      >
+                        {Subjectcolumn.map((column) => {
+                          const value = row[column.id];
+                          return (
+                            <TableCell
+                              key={column.id}
+                              align={column.align}
+                              style={{ padding: "6px 16px " }}
+                            >
+                              {column.format && typeof value === "number"
+                                ? column.format(value)
+                                : value}
+                            </TableCell>
+                          );
+                        })}
+                      </TableRow>
+                    );
+                  })}
                 </TableBody>
               </Table>
             </TableContainer>
@@ -428,11 +483,12 @@ export default function Subject() {
           <TablePagination
             rowsPerPageOptions={[10, 25, 100]}
             component="div"
-            count={rows.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
+            count={Subjectrows.length}
+            rowsPerPage={subrowsPerPage}
+            page={subjectpage}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
+            color="warning"
           />
         </div>
         <Snackbar

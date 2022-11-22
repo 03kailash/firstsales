@@ -24,12 +24,13 @@ import Snackbar from "@mui/material/Snackbar";
 import UnarchiveIcon from "@mui/icons-material/Unarchive";
 import TemplateBuilder from "./TemplateBuilder";
 import Chip from "@mui/material/Chip";
-import { IconButton } from "@mui/material";
+import { IconButton, Tooltip } from "@mui/material";
 import {
   CreateTemplate,
   FilterArchiveTemplate,
   FilterTemplate,
   RestoreArchiveTemplate,
+  SelectTemplate,
 } from "../../../UserServices";
 import { ApiURL } from "../../../ApiURL";
 import { useEffect } from "react";
@@ -52,6 +53,7 @@ export default function Template() {
   const [open2, setOpen2] = React.useState(false);
   const [chip, setChip] = useState(false);
   const [snackOpen, setSnackOpen] = React.useState(false);
+  const [archivesnackOpen, setArchiveSnackOpen] = React.useState(false);
   const [data, setData] = useState([]);
   const [archivedata, setArchiveData] = useState([]);
 
@@ -170,9 +172,10 @@ export default function Template() {
     Unsubscribe,
     SendReply,
     OpenClick,
-    Restore
+    Restore,
+    id
   ) {
-    return { Template, Unsubscribe, SendReply, OpenClick, Restore };
+    return { Template, Unsubscribe, SendReply, OpenClick, Restore, id };
   }
 
   const Temprows = data.map((item) => {
@@ -184,7 +187,8 @@ export default function Template() {
       "0",
       "0/0",
       "0/0",
-      ""
+      "",
+      <>{item.id}</>
     );
   });
   const TemplateArchivecolumns = [
@@ -246,18 +250,19 @@ export default function Template() {
       "0",
       "0/0",
       "0/0",
-      <IconButton
-        onClick={async () => {
-          archivedata.map(async (item) => {
+      <Tooltip title="Restore item" arrow placement="top">
+        <IconButton
+          onClick={async () => {
             if (await RestoreArchiveTemplate(item.id)) {
               ViewTemplateArchive();
               ViewTemplate();
+              setArchiveSnackOpen(true);
             }
-          });
-        }}
-      >
-        <UnarchiveIcon color="action" />
-      </IconButton>
+          }}
+        >
+          <UnarchiveIcon color="action" />
+        </IconButton>
+      </Tooltip>
     );
   });
   return (
@@ -349,6 +354,7 @@ export default function Template() {
                                 handleClick();
                                 setOpen2(false);
                                 ViewTemplate();
+                                setAddtemplate("");
                               }
                             }}
                           >
@@ -548,6 +554,18 @@ export default function Template() {
                             role="checkbox"
                             tabIndex={-1}
                             key={row.code}
+                            onClick={async () => {
+                              const res = await SelectTemplate(
+                                row.id.props.children
+                              );
+                              if (res.status) {
+                                localStorage.setItem(
+                                  "Template_id",
+                                  res.data.id
+                                );
+                                setOpen(true);
+                              }
+                            }}
                           >
                             {Templatecolumns.map((column) => {
                               const value = row[column.id];
@@ -588,11 +606,13 @@ export default function Template() {
           onClose={() => setSnackOpen(false)}
           message="Template created"
         />
-        <TemplateBuilder
-          isOpen={open}
-          isClose={handleClose}
-          addtemplate={addtemplate}
+        <Snackbar
+          open={archivesnackOpen}
+          autoHideDuration={4000}
+          onClose={() => setArchiveSnackOpen(false)}
+          message="Archived template restored"
         />
+        <TemplateBuilder isOpen={open} isClose={handleClose} />
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import { ApiURL } from "./ApiURL";
+import axios from "axios";
 
 export const SendOtp = async (email) => {
   return await fetch(`${ApiURL}/send-otp`, {
@@ -35,6 +36,23 @@ export const VerifyOTP = async (otp, email) => {
     });
 };
 
+export const Forgotpassword = async (email) => {
+  return await fetch(`${ApiURL}/forgot-password`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: email,
+    }),
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      return res;
+    });
+};
+
 export const ResendOTP = async (email) => {
   return await fetch(`${ApiURL}/send-otp`, {
     method: "POST",
@@ -49,6 +67,25 @@ export const ResendOTP = async (email) => {
     .then((res) => res.json())
     .then((res) => {
       console.log(res);
+    });
+};
+
+export const Login = async (email, password) => {
+  return await fetch(`${ApiURL}/login`, {
+    method: "POST",
+
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: email,
+      password: password,
+    }),
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      return res;
     });
 };
 
@@ -114,6 +151,24 @@ export const CreateTemplate = async (addtemplate) => {
     });
 };
 
+export const SelectTemplate = async (id) => {
+  return await fetch(`${ApiURL}/template-select/${id}`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      token: localStorage.getItem("token"),
+    },
+    body: JSON.stringify({
+      workspace_id: localStorage.getItem("Workspace_id"),
+    }),
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      return res;
+    });
+};
+
 export const FilterTemplate = async (filtertemplate) => {
   return await fetch(`${ApiURL}/template-search/${filtertemplate}`, {
     method: "POST",
@@ -164,7 +219,7 @@ export const ArchiveTemplate = async () => {
   )
     .then((res) => res.json())
     .then((res) => {
-      return res.success;
+      return res.status;
     });
 };
 
@@ -183,5 +238,44 @@ export const RestoreArchiveTemplate = async (id) => {
     .then((res) => res.json())
     .then((res) => {
       return res.status;
+    });
+};
+
+export const TemplateUpdate = async () => {
+  const config = {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "multipart/form-data",
+      token: localStorage.getItem("token"),
+    },
+  };
+  const formData = new FormData();
+  formData.append("title", "somil");
+  formData.append("template_subject", "s");
+  formData.append("template_body", "df");
+  formData.append("template_signature", "ds");
+  return axios
+    .post(`${ApiURL}/template-update`, formData, config)
+    .then((res) => {
+      return res;
+    });
+};
+
+export const CreateSubject = async (addSubject) => {
+  return await fetch(`${ApiURL}/subject-add`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      token: localStorage.getItem("token"),
+    },
+    body: JSON.stringify({
+      workspace_id: localStorage.getItem("Workspace_id"),
+      title: addSubject,
+    }),
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      return res;
     });
 };

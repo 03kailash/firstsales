@@ -11,10 +11,10 @@ import { ArchiveTemplate } from "../../../UserServices";
 
 export const ArchiveModal = (props) => {
   const [snackOpen, setSnackOpen] = React.useState(false);
-  const [archivetitle, setArchivetitle] = useState(props.addtemplate);
+  const [archivetitle, setArchivetitle] = useState("");
   useEffect(() => {
-    setArchivetitle(props.addtemplate);
-  }, [props.addtemplate]);
+    setArchivetitle("");
+  }, []);
   return (
     <React.Fragment>
       <Modal

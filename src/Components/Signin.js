@@ -4,6 +4,7 @@ import firstsales from "../Images/firstsales.jpg";
 import { useEffect } from "react";
 import { ApiURL } from "../ApiURL";
 import { useNavigate } from "react-router-dom";
+import { Login } from "../UserServices";
 
 export default function Signin(props) {
   const [wrongmessage, setWrongmessage] = useState(false);
@@ -13,32 +14,7 @@ export default function Signin(props) {
   useEffect(() => {
     localStorage.removeItem("token");
   }, []);
-  const Login = async () => {
-    await fetch(`${ApiURL}/login`, {
-      method: "POST",
 
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.status) {
-          localStorage.setItem("token", res.data.token);
-          localStorage.setItem("email", email);
-          if (localStorage.getItem("token") !== null) {
-            navigate("/workspace");
-          }
-        } else {
-          localStorage.removeItem("token");
-        }
-      });
-  };
   return (
     <div className="container">
       <div className="imagediv">
@@ -91,8 +67,20 @@ export default function Signin(props) {
             type="submit"
             onClick={async () => {
               if (email !== "" && password !== "") {
-                await Login();
-                setWrongmessage(true);
+                const res = await Login(email, password);
+                if (res.status) {
+                  if (res.status) {
+                    localStorage.setItem("token", res.data.token);
+                    localStorage.setItem("email", email);
+                    if (localStorage.getItem("token") !== null) {
+                      navigate("/workspace");
+                    }
+                  } else {
+                    localStorage.removeItem("token");
+                  }
+                } else {
+                  setWrongmessage(true);
+                }
               }
             }}
           >
