@@ -22,9 +22,10 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import TextField from "@mui/material/TextField";
-import { IconButton } from "@mui/material";
+import { Chip, IconButton, MenuItem, Select } from "@mui/material";
 import CsvImportDone from "./CsvImportDone";
-
+import axios from "axios";
+import { ApiURL } from "../../../ApiURL"
 const modalWrapper = {
   overflow: "auto",
   maxHeight: "100vh",
@@ -47,32 +48,65 @@ const modalContentStyle = {
   mb: 3,
   borderRadius: "10px",
 };
-function createData(Email, Contact) {
-  return { Email, Contact };
-}
-const rows = [
-  createData("kailash03choudhary@mail.com", 9575542300),
-  createData("kailash03choudhary@mail.com", 9575542300),
-];
-
 const steps = ["Option", "Mapping"];
-
 function CSVupload(props) {
-  const [opencsvDone, setOpencsvDone] = React.useState(false);
+  const [opencsvDone, setOpencsvDone] = useState(false);
   const handleClosecsvDone = () => setOpencsvDone(false);
-
-  const [feild, setfield] = useState(false)
-  const [value, setValue] = React.useState("Only Add new");
+  const [feild, setfield] = useState(false);
+  const [Update, setFullUpdate] = useState(false);
+  const [contact, setContact] = useState("");
+  const [first, setFirst] = useState("");
+  const [last, setLast] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [zipcode, setZipCode] = useState("");
+  const [country, setCountry] = useState("");
+  const [title, setTitle] = useState("");
+  const [number, setnumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [gender, setGender] = useState("");
+  const [region, setRegion] = useState("");
+  const [orgnizition, setOrgnizition] = useState("");
+  const [website, setwebsite] = useState("");
+  const [value, setValue] = useState("Only Add new");
+  const [file, setFile] = useState("");
+  const [TagChip, setTagChip]= useState([]);
   const handleChange = (event) => {
     setValue(event.target.value);
   };
-
+  const Next = () => {
+    localStorage.setItem("Update", (Update))
+  }
   const [activeStep, setActiveStep] = React.useState(0);
-
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
+  const handleDelete = (chipToDelete) => () => {
+    setTagChip((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));
+  };
+
+  const uploadCsvFile = () => {
+    const config = {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "multipart/form-data",
+        token: localStorage.getItem("token"),
+      },
+    };
+    const formData = new FormData();
+    formData.append("import_csv",props.Filess);
+    formData.append("workspace_id", localStorage.getItem("Workspace_id"));
+    formData.append("tags",TagChip);
+    formData.append("Csv_file_Name", props.CsvFile);
+    return axios
+      .post(`${ApiURL}/import-csv`, formData, config)
+      .then((res) => {
+        if(res.status){
+          setFile();
+        }
+      });
+  }
   return (
     <div className="OuterDiv">
       <div className="OuterLayer">
@@ -84,7 +118,6 @@ function CSVupload(props) {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           // style={{display:"flex",justifyContent:"center",alignItems:"center"}}
-
           >
             <Box sx={modalContentStyle}>
               <h5 className="h2">CSV import</h5>
@@ -113,30 +146,22 @@ function CSVupload(props) {
                         <>
                           <div className="Table">
                             <TableContainer component={Paper}>
-                              <Table
-                                sx={{ minWidth: 786 }}
-                                size="small"
-                                aria-label="a dense table"
-                              >
+                              <Table>
                                 <TableHead className="th">
                                   <TableRow>
-                                    <tr>
-                                      {props.tableRows.map((rows, index) => {
-                                        return <th key={index}>{rows}</th>;
-                                      })}
-                                    </tr>
+                                    {props.tableRows.map((rows, index) => {
+                                      return <TableCell style={{ padding: "4px 14px" }} key={index}>{rows}</TableCell>;
+                                    })}
                                   </TableRow>
                                 </TableHead>
-                                <TableBody
-                                  style={{ width: "756px", height: "96.05px" }}
-                                >
+                                <TableBody>
                                   {props.values.map((value, index) => {
                                     return (
-                                      <tr key={index}>
+                                      <TableRow key={index}>
                                         {value.map((val, i) => {
-                                          return <td key={i}>{val}</td>;
+                                          return <TableCell style={{ padding: "4px 16px" }} key={i}>{val}</TableCell>;
                                         })}
-                                      </tr>
+                                      </TableRow>
                                     );
                                   })}
                                 </TableBody>
@@ -146,7 +171,7 @@ function CSVupload(props) {
                               <Stack sx={{ width: "100%" }} spacing={2}>
                                 <Alert severity="success" fontSize="22px">
                                   <div className="massage">
-                                    Total rows in your CSV file 2. You can
+                                    Total rows in your CSV file {props.values.length}. You can
                                     preview some in table above.
                                   </div>
                                 </Alert>
@@ -175,11 +200,17 @@ function CSVupload(props) {
                                     value="Only Add new"
                                     control={<Radio />}
                                     label="Only Add new"
+                                    onClick={() => {
+                                      setFullUpdate(true)
+                                    }}
                                   />
                                   <FormControlLabel
                                     value="Full Update"
                                     control={<Radio />}
                                     label="Full Update"
+                                    onClick={() => {
+                                      setFullUpdate(false)
+                                    }}
                                   />
                                 </RadioGroup>
                               </FormControl>
@@ -201,7 +232,9 @@ function CSVupload(props) {
                               color="warning"
                               size="small"
                             >
-                              <OutlinedInput />
+                              <OutlinedInput 
+                              value={props.CsvFile}>  
+                              </OutlinedInput>
                             </FormControl>
                           </div>
                           <div
@@ -230,10 +263,18 @@ function CSVupload(props) {
                                 shrink: true,
                               }}
                               style={{ width: "300px" }}
-                            />
+                              onChange={(event)=>{ setTagChip(event.target.value);}}
+                              value={TagChip}
+                            >
+                            <Chip label={TagChip} onDelete={handleDelete} />
+                            </TextField>
+
                             <Button
                               variant="outlined"
                               style={{ marginLeft: "20px" }}
+                              // onClick={()=>{
+                              //   setTagChip();
+                              // }}
                             >
                               Add
                             </Button>
@@ -244,30 +285,22 @@ function CSVupload(props) {
                         <>
                           <div className="Table">
                             <TableContainer component={Paper}>
-                              <Table
-                                sx={{ minWidth: 786 }}
-                                size="small"
-                                aria-label="a dense table"
-                              >
+                              <Table>
                                 <TableHead className="th">
                                   <TableRow>
-                                  <tr>
-                                      {props.tableRows.map((rows, index) => {
-                                        return <th key={index}>{rows}</th>;
-                                      })}
-                                    </tr>
+                                    {props.tableRows.map((rows, index) => {
+                                      return <TableCell style={{ padding: "4px 14px" }} key={index}>{rows}</TableCell>;
+                                    })}
                                   </TableRow>
                                 </TableHead>
-                                <TableBody
-                                  style={{ width: "756px", height: "96.05px" }}
-                                >
+                                <TableBody>
                                   {props.values.map((value, index) => {
                                     return (
-                                      <tr key={index}>
+                                      <TableRow key={index}>
                                         {value.map((val, i) => {
-                                          return <td key={i}>{val}</td>;
+                                          return <TableCell style={{ padding: "4px 16px" }} key={i}>{val}</TableCell>;
                                         })}
-                                      </tr>
+                                      </TableRow>
                                     );
                                   })}
                                 </TableBody>
@@ -277,7 +310,7 @@ function CSVupload(props) {
                               <Stack sx={{ width: "100%" }} spacing={2}>
                                 <Alert severity="success" fontSize="22px">
                                   <div className="massage">
-                                    Total rows in your CSV file 2. You can
+                                    Total rows in your CSV file {props.values.length}. You can
                                     preview some in table above.
                                   </div>
                                 </Alert>
@@ -286,15 +319,24 @@ function CSVupload(props) {
                           </div>
                           <p style={{ marginBottom: "0px" }}>Email</p>
                           <div style={{ display: 'flex', gap: '20px' }}>
-                            <TextField
-                              id="outlined-select-currency"
-                              select
-                              onChange={handleChange}
-                              size='small'
-                              color="warning"
-                              style={{ width: "300px", maxWidth: '300px' }}
-                            >
-                            </TextField>
+                            <FormControl style={{ width: "300px", maxWidth: '300px' }}>
+                              <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                size="small"
+                                color="warning"
+                                value={email}
+                                onChange={(event) => { setValue(event.target.value); }}
+                              >
+                                {props.values.map((value, index) => {
+                                  return (
+                                    <MenuItem key={index} value={value}>
+                                      {value[1]}
+                                    </MenuItem>
+                                  );
+                                })}
+                              </Select>
+                            </FormControl>
                             <div>
                               {feild === false && <Button onClick={() => {
                                 setfield(true)
@@ -304,148 +346,172 @@ function CSVupload(props) {
                           {feild && <div>
                             <div style={{ paddingTop: '10px' }}>
                               <div>First Name</div>
-                              <TextField
-                                id="outlined-select-currency"
-                                select
-                                onChange={handleChange}
-                                size='small'
-                                color="warning"
-                                style={{ width: "300px", maxWidth: '300px' }}
-                              >
-                              </TextField>
+                              <FormControl style={{ width: "300px", maxWidth: '300px' }}>
+                                <Select
+                                  labelId="demo-simple-select-label"
+                                  id="demo-simple-select"
+                                  size="small"
+                                  color="warning"
+                                  value={first}
+                                  onChange={(event) => { setFirst(event.target.value); }}
+                                >
+                                </Select>
+                              </FormControl>
                             </div>
                             <div style={{ paddingTop: '10px' }}>
                               <div>Last Name</div>
-                              <TextField
-                                id="outlined-select-currency"
-                                select
-                                onChange={handleChange}
-                                size='small'
-                                color="warning"
-                                style={{ width: "300px", maxWidth: '300px' }}
-                              >
-                              </TextField>
+                              <FormControl style={{ width: "300px", maxWidth: '300px' }}>
+                                <Select
+                                  labelId="demo-simple-select-label"
+                                  id="demo-simple-select"
+                                  size="small"
+                                  color="warning"
+                                  value={last}
+                                  onChange={(event) => { setLast(event.target.value); }}
+                                >
+                                </Select>
+                              </FormControl>
                             </div>
                             <div style={{ paddingTop: '10px' }}>
                               <div>Gender</div>
-                              <TextField
-                                id="outlined-select-currency"
-                                select
-                                onChange={handleChange}
-                                size='small'
-                                color="warning"
-                                style={{ width: "300px", maxWidth: '300px' }}
-                              >
-                              </TextField>
+                              <FormControl style={{ width: "300px", maxWidth: '300px' }}>
+                                <Select
+                                  labelId="demo-simple-select-label"
+                                  id="demo-simple-select"
+                                  size="small"
+                                  color="warning"
+                                  value={gender}
+                                  onChange={(event) => { setGender(event.target.value); }}
+                                >
+                                </Select>
+                              </FormControl>
                             </div>
                             <div style={{ paddingTop: '10px' }}>
                               <div>Orgnizition</div>
-                              <TextField
-                                id="outlined-select-currency"
-                                select
-                                onChange={handleChange}
-                                size='small'
-                                color="warning"
-                                style={{ width: "300px", maxWidth: '300px' }}
-                              >
-                              </TextField>
+                              <FormControl style={{ width: "300px", maxWidth: '300px' }}>
+                                <Select
+                                  labelId="demo-simple-select-label"
+                                  id="demo-simple-select"
+                                  size="small"
+                                  color="warning"
+                                  value={orgnizition}
+                                  onChange={(event) => { setOrgnizition(event.target.value); }}
+                                >
+                                </Select>
+                              </FormControl>
                             </div>
                             <div style={{ paddingTop: '10px' }}>
                               <div>website</div>
-                              <TextField
-                                id="outlined-select-currency"
-                                select
-                                onChange={handleChange}
-                                size='small'
-                                color="warning"
-                                style={{ width: "300px", maxWidth: '300px' }}
-                              >
-                              </TextField>
+                              <FormControl style={{ width: "300px", maxWidth: '300px' }}>
+                                <Select
+                                  labelId="demo-simple-select-label"
+                                  id="demo-simple-select"
+                                  size="small"
+                                  color="warning"
+                                  value={website}
+                                  onChange={(event) => { setwebsite(event.target.value); }}
+                                >
+                                </Select>
+                              </FormControl>
                             </div>
                             <div style={{ paddingTop: '10px' }}>
                               <div>Title</div>
-                              <TextField
-                                id="outlined-select-currency"
-                                select
-                                onChange={handleChange}
-                                size='small'
-                                color="warning"
-                                style={{ width: "300px", maxWidth: '300px' }}
-                              >
-                              </TextField>
+                              <FormControl style={{ width: "300px", maxWidth: '300px' }}>
+                                <Select
+                                  labelId="demo-simple-select-label"
+                                  id="demo-simple-select"
+                                  size="small"
+                                  color="warning"
+                                  value={title}
+                                  onChange={(event) => { setTitle(event.target.value); }}
+                                >
+                                </Select>
+                              </FormControl>
                             </div>
                             <div style={{ paddingTop: '10px' }}>
                               <div>Phone number</div>
-                              <TextField
-                                id="outlined-select-currency"
-                                select
-                                onChange={handleChange}
-                                size='small'
-                                color="warning"
-                                style={{ width: "300px", maxWidth: '300px' }}
-                              >
-                              </TextField>
+                              <FormControl style={{ width: "300px", maxWidth: '300px' }}>
+                                <Select
+                                  labelId="demo-simple-select-label"
+                                  id="demo-simple-select"
+                                  size="small"
+                                  color="warning"
+                                  value={number}
+                                  onChange={(event) => { setnumber(event.target.value); }}
+                                >
+                                </Select>
+                              </FormControl>
                             </div>
                             <div style={{ paddingTop: '10px' }}>
                               <div>Address</div>
-                              <TextField
-                                id="outlined-select-currency"
-                                select
-                                onChange={handleChange}
-                                size='small'
-                                color="warning"
-                                style={{ width: "300px", maxWidth: '300px' }}
-                              >
-                              </TextField>
+                              <FormControl style={{ width: "300px", maxWidth: '300px' }}>
+                                <Select
+                                  labelId="demo-simple-select-label"
+                                  id="demo-simple-select"
+                                  size="small"
+                                  color="warning"
+                                  value={address}
+                                  onChange={(event) => { setAddress(event.target.value); }}
+                                >
+                                </Select>
+                              </FormControl>
                             </div>
                             <div style={{ paddingTop: '10px' }}>
                               <div>City</div>
-                              <TextField
-                                id="outlined-select-currency"
-                                select
-                                onChange={handleChange}
-                                size='small'
-                                color="warning"
-                                style={{ width: "300px", maxWidth: '300px' }}
-                              >
-                              </TextField>
+                              <FormControl style={{ width: "300px", maxWidth: '300px' }}>
+                                <Select
+                                  labelId="demo-simple-select-label"
+                                  id="demo-simple-select"
+                                  size="small"
+                                  color="warning"
+                                  value={city}
+                                  onChange={(event) => { setCity(event.target.value); }}
+                                >
+                                </Select>
+                              </FormControl>
                             </div>
                             <div style={{ paddingTop: '10px' }}>
                               <div>Status / Region</div>
-                              <TextField
-                                id="outlined-select-currency"
-                                select
-                                onChange={handleChange}
-                                size='small'
-                                color="warning"
-                                style={{ width: "300px", maxWidth: '300px' }}
-                              >
-                              </TextField>
+                              <FormControl style={{ width: "300px", maxWidth: '300px' }}>
+                                <Select
+                                  labelId="demo-simple-select-label"
+                                  id="demo-simple-select"
+                                  size="small"
+                                  color="warning"
+                                  value={region}
+                                  onChange={(event) => { setRegion(event.target.value); }}
+                                >
+                                </Select>
+                              </FormControl>
                             </div>
                             <div style={{ paddingTop: '10px' }}>
                               <div>Country</div>
-                              <TextField
-                                id="outlined-select-currency"
-                                select
-                                onChange={handleChange}
-                                size='small'
-                                color="warning"
-                                style={{ width: "300px", maxWidth: '300px' }}
-                              >
-                              </TextField>
+                              <FormControl style={{ width: "300px", maxWidth: '300px' }}>
+                                <Select
+                                  labelId="demo-simple-select-label"
+                                  id="demo-simple-select"
+                                  size="small"
+                                  color="warning"
+                                  value={country}
+                                  onChange={(event) => { setCountry(event.target.value); }}
+                                >
+                                </Select>
+                              </FormControl>
                             </div>
                             <div style={{ paddingTop: '10px' }}>
                               <div>ZipCode</div>
                               <div style={{ display: 'flex', gap: '10px' }}>
-                                <TextField
-                                  id="outlined-select-currency"
-                                  select
-                                  onChange={handleChange}
-                                  size='small'
-                                  color="warning"
-                                  style={{ width: "300px", maxWidth: '300px' }}
-                                >
-                                </TextField>
+                                <FormControl style={{ width: "300px", maxWidth: '300px' }}>
+                                  <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    size="small"
+                                    color="warning"
+                                    value={zipcode}
+                                    onChange={(event) => { setZipCode(event.target.value); }}
+                                  >
+                                  </Select>
+                                </FormControl>
                                 <Button className='HideFieldText' onClick={() => {
                                   setfield(false)
                                 }}>hide unused default feilds</Button>
@@ -459,15 +525,24 @@ function CSVupload(props) {
                           </div>
                           <p style={{ marginBottom: "0px" }}>Email Id</p>
                           <div style={{ display: "flex", gap: '5px' }}>
-                            <TextField
-                              id="outlined-select-currency"
-                              select
-                              onChange={handleChange}
-                              size='small'
-                              color="warning"
-                              style={{ width: "300px", maxWidth: '300px' }}
-                            >
-                            </TextField>
+                            <FormControl style={{ width: "300px", maxWidth: '300px' }}>
+                              <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                size="small"
+                                color="warning"
+                                value={email}
+                                onChange={(event) => { setEmail(event.target.value); }}
+                              >
+                                {props.values.map((value, index) => {
+                                  return (
+                                    <MenuItem key={index} value={value}>
+                                      {value[1]}
+                                    </MenuItem>
+                                  );
+                                })}
+                              </Select>
+                            </FormControl>
                             <IconButton>
                               <CloseOutlinedIcon />
                             </IconButton>
@@ -475,15 +550,24 @@ function CSVupload(props) {
 
                           <p style={{ marginBottom: "0px" }}>Contact no.</p>
                           <div style={{ display: "flex", gap: '5px' }}>
-                            <TextField
-                              id="outlined-select-currency"
-                              select
-                              onChange={handleChange}
-                              size='small'
-                              color="warning"
-                              style={{ width: "300px", maxWidth: '300px' }}
-                            >
-                            </TextField>
+                            <FormControl style={{ width: "300px", maxWidth: '300px' }}>
+                              <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                size="small"
+                                color="warning"
+                                value={contact}
+                                onChange={(event) => { setContact(event.target.value); }}
+                              >
+                                {props.values.map((value, index) => {
+                                  return (
+                                    <MenuItem key={index} value={value}>
+                                      {value[2]}
+                                    </MenuItem>
+                                  );
+                                })}
+                              </Select>
+                            </FormControl>
                             <IconButton>
                               <CloseOutlinedIcon />
                             </IconButton>
@@ -495,8 +579,10 @@ function CSVupload(props) {
                         sx={{ display: "flex", flexDirection: "row", pt: 2 }}
                       >
                         <Button className="ConfirmBtn" onClick={() => {
+                          Next();
                           { activeStep === 0 && handleNext(); }
-                          { activeStep === 1 && setOpencsvDone(true); }
+                          { activeStep === 1 && setOpencsvDone(true);
+                            uploadCsvFile(); }
                         }}>
                           {activeStep === steps.length - 1
                             ? "Upload Contacts"

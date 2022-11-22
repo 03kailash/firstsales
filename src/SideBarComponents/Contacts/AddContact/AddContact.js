@@ -16,32 +16,12 @@ function AddContact(props) {
   const uploadFiles = (e) => {
     document.getElementById("file").click();
   };
-  // const uploadCsvFile = () => {
-  //   const config = {
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "multipart/form-data",
-  //       token: localStorage.getItem("token"), 
-  //     },
-  //   };
-  //   const formData = new FormData();
-  //   // formData.append("id", location.state.id);
-  //   formData.append("import_csv", file);
-  //   formData.append("workspace_id", localStorage.getItem("Workspace_id"));
-  //   formData.append("csv_source_name", );
-  //   // formData.append("tags", file);
-
-  //   return axios
-  //     .post(`${ApiURL}/import-csv`, formData, config)
-  //     .then((res) => {
-  //       alert("File Upload success");
-  //     });
-  //   }
-
 
   const [tableRows, setTableRows] = useState([]);
   const [values, setValues] = useState([]);
-
+  const [CsvFile,setCsvFile] =useState("")
+  const [lastModifiedDate,setlastModifiedDate] =useState("")
+const [Filess,setFiless] = useState("")
   const changeHandler = (event) => {
     Papa.parse(event.target.files[0], {
       header: true,
@@ -53,15 +33,20 @@ function AddContact(props) {
         results.data.map((d) => {
           rowsArray.push(Object.keys(d));
           valuesArray.push(Object.values(d));
+
         });
         setTableRows(rowsArray[0]);
         setValues(valuesArray);
         handleOpenUP();
         props.handleCloseAdd();
+        setCsvFile(event.target.files[0].name);
+        // setlastModifiedDate(event.target.files[0].lastModifiedDate);
+        setFiless(event.target.files[0]);
+        console.log(event.target.files[0]);
       },
     });
+
   };
-  console.log(tableRows, values);
 
   return (
     <div>
@@ -126,9 +111,10 @@ function AddContact(props) {
           </div>
         </Box>
       </Modal>
-      <CSVupload openUP={openUP} handleCloseUP={handleCloseUP} tableRows={tableRows} values={values} />
+      <CSVupload openUP={openUP} handleCloseUP={handleCloseUP} 
+      tableRows={tableRows} values={values}  Filess={Filess}
+      CsvFile={CsvFile} lastModifiedDate={lastModifiedDate}  />
     </div>
   );
 }
-
 export default AddContact;

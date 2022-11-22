@@ -46,15 +46,13 @@
   margin: 0px 48px;
 }
 .Table {
-  width: 756px !important;
-  height: 197.06 !important;
-  margin: 16px 0px !important;
+  margin: 16px 0px !important; 
 }
 
 .th {
   background-color: #919191 !important;
-  width: 756px !important;
-  height: 37px !important;
+  /* width: 756px !important;
+  height: 37px !important; */
 }
 .Trow {
   width: 527px !important;
