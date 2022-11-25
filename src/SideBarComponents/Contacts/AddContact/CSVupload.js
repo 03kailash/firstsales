@@ -26,7 +26,7 @@ import { IconButton, MenuItem, Select } from "@mui/material";
 import CsvImportDone from "./CsvImportDone";
 import axios from "axios";
 import { ApiURL } from "../../../ApiURL"
-import ChipInput from "material-ui-chip-input";
+// import ChipInput from "material-ui-chip-input";
 
 const modalWrapper = {
   overflow: "auto",
@@ -267,7 +267,7 @@ console.log(yourChips);
                             These will be applied to all contacts from this CSV.
                           </pre>
                           <div style={{ marginTop: "8px" }}>
-                            {/* <TextField
+                            <TextField
                               id="outlined-number"
                               label="Tags"
                               size="small"
@@ -277,18 +277,18 @@ console.log(yourChips);
                                 shrink: true,
                               }}
                               style={{ width: "300px" }}
-                            // onChange={(event) => { setTagChip(event.target.value); }}
-                            // value={TagChip}
+                            onChange={(event) => { setTagChip(event.target.value); }}
+                            value={TagChip}
                             >
                              
-                            </TextField> */}
-                            <>
+                            </TextField>
+                            {/* <>
                                 <ChipInput
                                   value={yourChips}
                                   onAdd={(chip) => handleAddChip(chip)}
                                   onDelete={(chip, index) => handleDeleteChip(chip, index)}
                                 />
-                              </>
+                              </> */}
 
                             <Button
                               variant="outlined"
