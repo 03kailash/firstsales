@@ -11,18 +11,16 @@ import Alert from '@mui/material/Alert';
 import { ApiURL } from "../ApiURL";
 
 export default function Userstep1(props) {
-  const [Time, setTime] = useState(false)
-  const [timeZone, settimeZone] = useState("")
+  const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
   const [FirstName, setFristName] = useState("");
   const [LastName, setLastName] = useState("");
   const [Workspace, setWorkspace] = useState("");
   const [Date, setDate] = useState("");
-  const [age, setAge] = React.useState('');
+  const [age, setAge] = useState('');
   const [timeZoneList, setTimeZoneList] = useState([]);
+  const [timezoneinfo, setTimezoneinfo] = useState(false);
+  const [timezonevalue, setTimezonevalue] = useState(timeZone);
 
-  useEffect(() => {
-    fetchTimeZone();
-  }, [])
 
   useEffect(() => {
     fetch(`${ApiURL}/current-time`, {
@@ -37,14 +35,18 @@ export default function Userstep1(props) {
   }, [])
 
   useEffect(() => {
-    const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
-    settimeZone(timeZone);
-  }, [])
+    if (timezonevalue !== timeZone) {
+      setTimezoneinfo(true);
+    } else {
+      setTimezoneinfo(false);
+    }
+  }, [timezonevalue]);
+
   const Next = () => {
     localStorage.setItem("FirstName", (FirstName))
-    localStorage.setItem("LastName",(LastName))
-    localStorage.setItem(" Workspace",(Workspace))
-    localStorage.setItem("Timezone",(age))
+    localStorage.setItem("LastName", (LastName))
+    localStorage.setItem(" Workspace", (Workspace))
+    localStorage.setItem("Timezone", (timezonevalue))
   }
   const fetchTimeZone = () => {
     fetch(`${ApiURL}/timezone`, {
@@ -61,9 +63,12 @@ export default function Userstep1(props) {
         }
       });
   }
-  
+  useEffect(() => {
+    fetchTimeZone();
+  }, [])
+
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setTimezonevalue(event.target.value);
   };
   return (
     <div style={{ padding: "0px 16px", maxWidth: "618px", width: "100%" }}>
@@ -125,7 +130,7 @@ export default function Userstep1(props) {
             <Select
               labelId="demo-simple-select-autowidth-label"
               id="demo-simple-select-autowidth"
-              value={age}
+              value={timezonevalue}
               color="warning"
               onChange={handleChange}
               label="Timezone"
@@ -133,7 +138,7 @@ export default function Userstep1(props) {
               className="Timezonelist"
             >
               {timeZoneList && timeZoneList.map((op, i) =>
-                <MenuItem key={i} value={op.timezone}>{op.timezone}</MenuItem> 
+                <MenuItem key={i} value={op.timezone}>{op.timezone}</MenuItem>
               )}
             </Select>
 
@@ -152,11 +157,12 @@ export default function Userstep1(props) {
             Current time at selected timezone:<br />{Date}
           </span>
         </div>
-        {Time && <div className="TimeZoneDiv">
+        {timezoneinfo && <div className="TimeZoneDiv">
           <Alert severity="info" className="TimezomeInfo">
             <div className="TimeZoneinnerDiv">Your timezone:<br />{timeZone} </div>
             <div><Button onClick={() => {
-              setTime()
+              setTimezonevalue(timeZone);
+              setTimezoneinfo(false);
             }}>Use it</Button></div></Alert>
         </div>}
         <br />
@@ -185,7 +191,7 @@ export default function Userstep1(props) {
         </div>
 
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <Button onClick={()=>{
+          <Button onClick={() => {
             props.handleNext();
             Next();
           }} className="btnNext">

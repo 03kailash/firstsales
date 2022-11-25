@@ -22,10 +22,12 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import TextField from "@mui/material/TextField";
-import { Chip, IconButton, MenuItem, Select } from "@mui/material";
+import { IconButton, MenuItem, Select } from "@mui/material";
 import CsvImportDone from "./CsvImportDone";
 import axios from "axios";
 import { ApiURL } from "../../../ApiURL"
+import ChipInput from "material-ui-chip-input";
+
 const modalWrapper = {
   overflow: "auto",
   maxHeight: "100vh",
@@ -62,7 +64,7 @@ function CSVupload(props) {
   const [zipcode, setZipCode] = useState("");
   const [country, setCountry] = useState("");
   const [title, setTitle] = useState("");
-  const [number, setnumber] = useState("");
+  const [number, setnumber] = useState([]);
   const [email, setEmail] = useState("");
   const [gender, setGender] = useState("");
   const [region, setRegion] = useState("");
@@ -70,7 +72,19 @@ function CSVupload(props) {
   const [website, setwebsite] = useState("");
   const [value, setValue] = useState("Only Add new");
   const [file, setFile] = useState("");
-  const [TagChip, setTagChip]= useState([]);
+  const [TagChip, setTagChip] = useState([]);
+
+  const [yourChips, setYourChips] = useState([]);
+
+  const handleAddChip = (chip) => {
+    setYourChips([...yourChips, chip]);
+  };
+  const handleDeleteChip = (index) => {
+    let chips = yourChips.filter((c, i) => i !== index);
+  };
+
+
+
   const handleChange = (event) => {
     setValue(event.target.value);
   };
@@ -82,10 +96,9 @@ function CSVupload(props) {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
-  const handleDelete = (chipToDelete) => () => {
-    setTagChip((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));
-  };
-
+  // const handleDelete = () => {
+  //   console.info('You clicked the delete icon.');
+  // };
   const uploadCsvFile = () => {
     const config = {
       headers: {
@@ -95,18 +108,19 @@ function CSVupload(props) {
       },
     };
     const formData = new FormData();
-    formData.append("import_csv",props.Filess);
+    formData.append("import_csv", props.Filess);
     formData.append("workspace_id", localStorage.getItem("Workspace_id"));
-    formData.append("tags",TagChip);
-    formData.append("Csv_file_Name", props.CsvFile);
+    formData.append("tags", [yourChips]);
+    formData.append("csv_source_name", props.CsvFile);
     return axios
       .post(`${ApiURL}/import-csv`, formData, config)
       .then((res) => {
-        if(res.status){
+        if (res.status) {
           setFile();
         }
       });
   }
+console.log(yourChips);
   return (
     <div className="OuterDiv">
       <div className="OuterLayer">
@@ -232,8 +246,8 @@ function CSVupload(props) {
                               color="warning"
                               size="small"
                             >
-                              <OutlinedInput 
-                              value={props.CsvFile}>  
+                              <OutlinedInput
+                                value={props.CsvFile}>
                               </OutlinedInput>
                             </FormControl>
                           </div>
@@ -253,7 +267,7 @@ function CSVupload(props) {
                             These will be applied to all contacts from this CSV.
                           </pre>
                           <div style={{ marginTop: "8px" }}>
-                            <TextField
+                            {/* <TextField
                               id="outlined-number"
                               label="Tags"
                               size="small"
@@ -263,18 +277,25 @@ function CSVupload(props) {
                                 shrink: true,
                               }}
                               style={{ width: "300px" }}
-                              onChange={(event)=>{ setTagChip(event.target.value);}}
-                              value={TagChip}
+                            // onChange={(event) => { setTagChip(event.target.value); }}
+                            // value={TagChip}
                             >
-                            <Chip label={TagChip} onDelete={handleDelete} />
-                            </TextField>
+                             
+                            </TextField> */}
+                            <>
+                                <ChipInput
+                                  value={yourChips}
+                                  onAdd={(chip) => handleAddChip(chip)}
+                                  onDelete={(chip, index) => handleDeleteChip(chip, index)}
+                                />
+                              </>
 
                             <Button
                               variant="outlined"
                               style={{ marginLeft: "20px" }}
-                              // onClick={()=>{
-                              //   setTagChip();
-                              // }}
+                            // onClick={()=>{
+                            //   setTagChip();
+                            // }}
                             >
                               Add
                             </Button>
@@ -581,8 +602,10 @@ function CSVupload(props) {
                         <Button className="ConfirmBtn" onClick={() => {
                           Next();
                           { activeStep === 0 && handleNext(); }
-                          { activeStep === 1 && setOpencsvDone(true);
-                            uploadCsvFile(); }
+                          {
+                            activeStep === 1 && setOpencsvDone(true);
+                            uploadCsvFile();
+                          }
                         }}>
                           {activeStep === steps.length - 1
                             ? "Upload Contacts"

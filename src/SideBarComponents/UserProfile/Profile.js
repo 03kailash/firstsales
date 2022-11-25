@@ -97,6 +97,7 @@ function Profile() {
   const handleChange1 = (event) => {
     setTimezonevalue(event.target.value);
   };
+
   useEffect(() => {
     if (timezonevalue !== timeZone) {
       setTimezoneinfo(true);

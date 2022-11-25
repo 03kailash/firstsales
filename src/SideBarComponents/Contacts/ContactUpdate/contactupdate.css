@@ -7,6 +7,30 @@
   .TabRow{
     width: 100% !important;
   }
+  .editButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .TabPanelDetailsBodyDiv{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .ModeIcon{
+   display: flex;
+   justify-content: center;
+   gap:8px ;
+   align-items: center !important;
+  }
+  .DropDownEdil{
+    width: 100% !important;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+  }
   .TabRowList{
     width: 177.33px !important;
   }
@@ -98,6 +122,23 @@
 .AVtardiv{
   height: 60px !important;
   width: 60px !important;
-
+}
+.DetailedInformationText{
+  margin: 0px 0px 24px;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    letter-spacing: 0.0075em;
+    color: rgba(0, 0, 0, 0.87);
+}
+.DetailedInformation{
+  color: rgba(0, 0, 0, 0.6) !important;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.4375em;
+  letter-spacing: 0.00938em;
+  max-width: 100%;
+  font-size: 16px !important;
 }
 

@@ -42,7 +42,7 @@ const [Filess,setFiless] = useState("")
         setCsvFile(event.target.files[0].name);
         // setlastModifiedDate(event.target.files[0].lastModifiedDate);
         setFiless(event.target.files[0]);
-        console.log(event.target.files[0]);
+        // console.log(event.target.files[0]);
       },
     });
 

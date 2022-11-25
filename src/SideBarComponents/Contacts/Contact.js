@@ -25,7 +25,8 @@ import Snackbar from "@mui/material/Snackbar";
 import ContactUpdate from "./ContactUpdate/ContactUpdate";
 import { ApiURL } from "../../ApiURL";
 import Checkbox from '@mui/material/Checkbox';
-import { IconButton } from "@mui/material";
+import ContactDelete from "./ContactUpdate/ContactDelete";
+import { Chip, IconButton } from "@mui/material";
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -67,11 +68,46 @@ function Contact() {
   const [rowsPerPages, setRowsPerPages] = React.useState(10);
   const [openAdd, setOpenAdd] = React.useState(false);
   const [ContactUpdatepage, setContactupdatepage] = useState(false)
+  // const [ContactDeletePage, setContactContactDeletePage] = useState(false)
   const handleOpenAdd = () => setOpenAdd(true);
   const handleCloseAdd = () => setOpenAdd(false);
   const [active, setactive] = useState(false);
   const [contactData, setContactData] = useState([]);
+  const [SourceDropdown, setSourceDropdown] = useState([])
+  const [ContactFilter, setContactFilter] = useState("")
+  const [tagDropdown,setTagDropdown] = useState([])
+  const [DeleteModelOpen, setDeleteModelOpen] = React.useState(false);
+  const handleCloseDeleteModel = () => setDeleteModelOpen(false);
 
+  const updateclose = () => {
+    setContactupdatepage(false)
+  }
+
+  // const [checked, setChecked] = useState([]);
+
+  const FilterSearch = () => {
+    fetch(`${ApiURL}/contact-search/${ContactFilter}`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        token: localStorage.getItem("token")
+      },
+      body: JSON.stringify({
+        workspace_id: localStorage.getItem("Workspace_id")
+      })
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setContactData(res.data);
+      });
+  };
+
+  const handleKeyDown = async (event) => {
+    if (event.key === "Enter") {
+      FilterSearch()
+    }
+  };
   const fetchViweContact = () => {
     fetch(`${ApiURL}/contact-view`, {
       method: "POST",
@@ -89,11 +125,94 @@ function Contact() {
         setContactData(res.data);
       });
   };
-
-
   useEffect(() => {
     fetchViweContact();
   }, [])
+
+  const fetchTagContact = () => {
+    fetch(`${ApiURL}/get-tag`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        token: localStorage.getItem("token")
+      },
+      body: JSON.stringify({
+        workspace_id: localStorage.getItem("Workspace_id")
+      })
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        // setTagDropdown(res.data)
+        console.log(res);
+      });
+  };
+  useEffect(() => {
+    fetchTagContact();
+  }, [])
+
+  const fetchSourceContact = () => {
+    fetch(`${ApiURL}/csv-source`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        token: localStorage.getItem("token")
+      },
+      body: JSON.stringify({
+        workspace_id: localStorage.getItem("Workspace_id")
+      })
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setSourceDropdown(res.data);
+        // console.log(SourceDropdown);
+      });
+  };
+  useEffect(() => {
+    fetchSourceContact();
+  }, [])
+
+  // const ContactAllDelete = (id) => {
+  //   fetch(`${ApiURL}/contact_Alldelete/${id}`, {
+  //     method: "POST",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //       token: localStorage.getItem("token")
+  //     },
+  //     body: JSON.stringify({
+  //       id:[]
+  //     })
+  //   })
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       console.log(res);
+  //     });
+  // };
+  // useEffect(()=>{
+  //   ContactAllDelete();
+  // })
+
+  const ContactSelect = (id) => {
+    fetch(`${ApiURL}/contact-select/${id}`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        token: localStorage.getItem("token")
+      },
+      body: JSON.stringify({
+        id: id
+      })
+    })
+      .then((res) => res.json())
+      .then((res) => {
+         if(res.status){
+          setContactupdatepage(true)
+         }
+      });
+  };
 
   const handleChange = (event) => {
     const {
@@ -123,9 +242,11 @@ function Contact() {
     setPages(0);
   };
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-  const Contactcolumns = [
-    { id: "Checkbox", label: <><Checkbox {...label} /></>, minWidth: "89px" },
 
+  const Contactcolumns = [
+    {
+      id: "Checkbox", label: <><Checkbox {...label} /></>, minWidth: "89px"
+    },
     { id: "NameandEmail", label: " Name and email", minWidth: "343px" },
     {
       id: "Status",
@@ -163,22 +284,27 @@ function Contact() {
     SendReply,
     OpenClick,
     Delete,
+    id
   ) {
-    return { Checkbox, NameandEmail, Status, SendReply, OpenClick, Delete };
+    return { Checkbox, NameandEmail, Status, SendReply, OpenClick, Delete, id };
   }
   const ContactRow = contactData.map((item) => {
     return ContactTable(
-      <> <Checkbox {...label} /></>,
+      <><Checkbox {...label} /></>,
       <>
-        <div>{item.email}</div>
-        <div>{item.Tags}</div>
+        <div className="EmailTableList">{item.email}</div>
+        <div className="FirstAndLastName">{item.first_name} {item.last_name}</div>
+        <div><Chip label={item.tags} variant="outlined" color="primary" size="small" /></div>
       </>,
-      "0",
+      <Chip label="Cold" color="primary" size="small" />,
       "0/0",
       "0/0",
-      <IconButton>
+      <IconButton onClick={() => {
+        setDeleteModelOpen(true)
+      }}>
         <DeleteOutlineOutlinedIcon color="none" />
-      </IconButton>
+      </IconButton>,
+      <>{item.id}</>
     )
   })
   return (
@@ -220,9 +346,7 @@ function Contact() {
                 <h4 className="InnerDiv">Bounced</h4>
                 <h2 className="InnerDiv0">0</h2>
                 <div className="block3"
-                  onClick={() => {
-                    setContactupdatepage(true);
-                  }}>0%</div>
+                >0%</div>
               </div>
             </div>
           </div>
@@ -236,6 +360,10 @@ function Contact() {
             type="text"
             placeholder="Search"
             className="searchinputcontact"
+            onKeyDown={handleKeyDown}
+            onChange={(e) => {
+              setContactFilter(e.target.value);
+            }}
           />
           <TuneOutlinedIcon
             color="action"
@@ -277,7 +405,6 @@ function Contact() {
               </InputLabel>
               <Select
                 labelId="demo-multiple-checkbox-label"
-                multiple
                 size="small"
                 color="warning"
                 value={contact}
@@ -299,7 +426,6 @@ function Contact() {
               <InputLabel id="demo-multiple-checkbox-label" color="warning" shrink>Tags</InputLabel>
               <Select
                 labelId="demo-multiple-checkbox-label"
-                multiple
                 size="small"
                 color="warning"
                 value={Tags}
@@ -309,11 +435,9 @@ function Contact() {
                 MenuProps={MenuProps}
                 notched
               >
-                {names.map((name) => (
-                  <MenuItem key={name} value={name}>
-                    <ListItemText primary={name} />
-                  </MenuItem>
-                ))}
+                { tagDropdown && tagDropdown.map((item,i) =>
+                  <MenuItem key={i} value={item.tags}>{item.tags}</MenuItem>
+               )}
               </Select>
             </FormControl>
 
@@ -321,7 +445,6 @@ function Contact() {
               <InputLabel id="demo-multiple-checkbox-label" color="warning" shrink>Source</InputLabel>
               <Select
                 labelId="demo-multiple-checkbox-label"
-                multiple
                 size="small"
                 color="warning"
                 value={personName}
@@ -331,11 +454,9 @@ function Contact() {
                 MenuProps={MenuProps}
                 notched
               >
-                {names.map((name) => (
-                  <MenuItem key={name} value={name}>
-                    <ListItemText primary={name} />
-                  </MenuItem>
-                ))}
+                {SourceDropdown && SourceDropdown.map((item, i) =>
+                  <MenuItem key={i} value={item.csv_source_name}>{item.csv_source_name}</MenuItem>
+                )}
               </Select>
             </FormControl>
           </div>
@@ -353,6 +474,10 @@ function Contact() {
               borderColor: "#707070",
             }}
             disabled
+            onClick={() => {
+              // ContactAllDelete(item.id);
+              // contactData()
+            }}
           >
             <DeleteOutlineIcon
               className="DeleteIcon"
@@ -393,6 +518,9 @@ function Contact() {
                           role="checkbox"
                           tabIndex={-1}
                           key={row.code}
+                          onClick={() => {
+                            ContactSelect(row.id.props.children);
+                          }}
                         >
                           {Contactcolumns.map((column) => {
                             const value = row[column.id];
@@ -431,7 +559,8 @@ function Contact() {
       </div>
       <Export open={open} handleClose={handleClose} />
       <AddContact openAdd={openAdd} handleCloseAdd={handleCloseAdd} />
-      <ContactUpdate isopen={ContactUpdatepage} />
+      <ContactUpdate isopen={ContactUpdatepage} isclose={updateclose} />
+      <ContactDelete isOpen={DeleteModelOpen} isClose={handleCloseDeleteModel}/>
     </div>
   );
 }
