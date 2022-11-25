@@ -104,6 +104,15 @@
   letter-spacing: 0.03333em;
   color: rgba(0, 0, 0, 0.6);
 }
+.authorchip {
+  background-color: #673ab7 !important;
+  color: #fafbfb !important;
+  height: 24px !important;
+  width: 100% !important;
+  margin-top: 12px !important;
+  max-width: 163px !important;
+  font-size: 12px !important;
+}
 .newtemplatebtn {
   text-transform: inherit !important;
   background-color: #ff8e00 !important;

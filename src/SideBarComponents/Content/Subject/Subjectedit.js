@@ -17,6 +17,7 @@ import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import Snackbar from "@mui/material/Snackbar";
 import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
+import { ArchiveSubject } from "../../../UserServices";
 
 const options = [
   "{{contact.email}}",
@@ -174,9 +175,11 @@ export default function Subjectedit({ isopen, isclose }) {
                 variant="outlined"
                 className="archivebtnsubedit"
                 style={{ padding: "5px 35px" }}
-                onClick={() => {
-                  handleClick();
-                  isclose();
+                onClick={async () => {
+                  if (await ArchiveSubject()) {
+                    handleClick();
+                    isclose();
+                  }
                 }}
               >
                 <Inventory2OutlinedIcon className="archivelogo" /> Move to

@@ -1,5 +1,10 @@
 import { ApiURL } from "./ApiURL";
 import axios from "axios";
+import {
+  CreateTempDataRequest,
+  CreateTempDataSuccess,
+} from "./Redux/Actions/CreateTemplateAction";
+import { store } from "../src/Redux/Store";
 
 export const SendOtp = async (email) => {
   return await fetch(`${ApiURL}/send-otp`, {
@@ -272,6 +277,93 @@ export const CreateSubject = async (addSubject) => {
     body: JSON.stringify({
       workspace_id: localStorage.getItem("Workspace_id"),
       title: addSubject,
+    }),
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      return res;
+    });
+};
+
+export const ArchiveSubject = async () => {
+  return await fetch(`${ApiURL}/subject-archive/3`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      token: localStorage.getItem("token"),
+    },
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      return res.status;
+    });
+};
+
+export const FilterSubject = async (filterSubject) => {
+  return await fetch(`${ApiURL}/subject-search/${filterSubject}`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      token: localStorage.getItem("token"),
+    },
+    body: JSON.stringify({
+      workspace_id: localStorage.getItem("Workspace_id"),
+    }),
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      return res;
+    });
+};
+
+export const FilterArchiveSubject = async (filterSubject) => {
+  return await fetch(`${ApiURL}/subject-archive-search/${filterSubject}`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      token: localStorage.getItem("token"),
+    },
+    body: JSON.stringify({
+      workspace_id: localStorage.getItem("Workspace_id"),
+    }),
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      return res;
+    });
+};
+
+export const RestoreArchiveSubject = async (id) => {
+  return await fetch(`${ApiURL}/subject-archive-restore/${id}`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      token: localStorage.getItem("token"),
+    },
+    body: JSON.stringify({
+      workspace_id: localStorage.getItem("Workspace_id"),
+    }),
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      return res.status;
+    });
+};
+
+export const SelectSubject = async (id) => {
+  return await fetch(`${ApiURL}/subject-select/${id}`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      token: localStorage.getItem("token"),
+    },
+    body: JSON.stringify({
+      workspace_id: localStorage.getItem("Workspace_id"),
     }),
   })
     .then((res) => res.json())

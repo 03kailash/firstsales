@@ -59,7 +59,7 @@ function SideBar() {
     })
       .then((res) => res.json())
       .then((res) => setDate(res.date));
-  }, [])
+  }, []);
 
   const drawer = (
     <div style={{ backgroundColor: "#f3f3f3" }}>
@@ -73,8 +73,8 @@ function SideBar() {
         }}
       >
         <div className="fullImg">
-          <div style={{minWidth:"50px"}}>
-          <Avatar src="/broken-image.jpg" />
+          <div style={{ minWidth: "50px" }}>
+            <Avatar src="/broken-image.jpg" />
           </div>
           {localStorage.getItem("email")}
         </div>
@@ -82,7 +82,11 @@ function SideBar() {
       <hr style={{ width: "210px", margin: "8px 24px" }} />
       <Link to="/workspace">
         <div className="EmsBar">
-          <div><span className="WorkspaceName">{localStorage.getItem("Workspace_Name")}</span></div>
+          <div>
+            <span className="WorkspaceName">
+              {localStorage.getItem("Workspace_Name")}
+            </span>
+          </div>
           <div className="DateandTime">{Date}</div>
         </div>
       </Link>
@@ -132,7 +136,7 @@ function SideBar() {
 
       <List>
         {["Campaigns"].map((text, index) => (
-          <ListItem key={text} disablePadding>
+          <ListItem key={index} disablePadding>
             <Link to="/Dashboard/Campaigns">
               <ListItemButton
                 className="ListBtn"

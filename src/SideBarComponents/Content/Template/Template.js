@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./Template.css";
 import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
@@ -34,6 +35,14 @@ import {
 } from "../../../UserServices";
 import { ApiURL } from "../../../ApiURL";
 import { useEffect } from "react";
+import {
+  ViewTemplateDataRequest,
+  ViewTemplateDataSuccess,
+} from "../../../Redux/Actions/ViewTemplateAction";
+import {
+  ViewTempArchiveDataRequest,
+  ViewTempArchiveDataSuccess,
+} from "../../../Redux/Actions/ViewTempArchiveAction";
 
 export default function Template() {
   const [chipData, setChipData] = React.useState([
@@ -54,8 +63,17 @@ export default function Template() {
   const [chip, setChip] = useState(false);
   const [snackOpen, setSnackOpen] = React.useState(false);
   const [archivesnackOpen, setArchiveSnackOpen] = React.useState(false);
-  const [data, setData] = useState([]);
-  const [archivedata, setArchiveData] = useState([]);
+
+  const dispatch = useDispatch();
+
+  const { ViewTemplatedata, ViewTemplateloading, ViewTemplateerror } =
+    useSelector((state) => state.ViewTemplatereducer);
+
+  const { ViewTempArchivedata, ViewTempArchiveloading, ViewTempArchiveerror } =
+    useSelector((state) => state.ViewTempArchivereducer);
+
+  const { CreateTemplatedata, CreateTemplateloading, CreateTemplateerror } =
+    useSelector((state) => state.CreateTemplatereducer);
 
   const handleClick = () => {
     setOpen(true);
@@ -86,14 +104,25 @@ export default function Template() {
   const handleKeyDown = async (event) => {
     if (event.key === "Enter") {
       const tempres = await FilterTemplate(filtertemplate);
-      setData(tempres.data);
+      dispatch(ViewTemplateDataSuccess(tempres.data));
       console.log(tempres.data.length);
       const temparchiveres = await FilterArchiveTemplate(filtertemplate);
-      setArchiveData(temparchiveres.data);
+      dispatch(ViewTempArchiveDataSuccess(temparchiveres.data));
     }
   };
 
+  // useEffect(() => {
+  //   if (CreateTemplatedata.status) {
+  //     localStorage.setItem("Template_id", CreateTemplatedata.data[0].id);
+  //     handleClick();
+  //     setOpen2(false);
+  //     ViewTemplate();
+  //     setAddtemplate("");
+  //   }
+  // }, [CreateTemplatedata]);
+
   const ViewTemplate = async () => {
+    dispatch(ViewTemplateDataRequest());
     await fetch(`${ApiURL}/template-view`, {
       method: "POST",
       headers: {
@@ -107,7 +136,7 @@ export default function Template() {
     })
       .then((res) => res.json())
       .then((res) => {
-        setData(res.data);
+        dispatch(ViewTemplateDataSuccess(res.data));
       });
   };
 
@@ -116,6 +145,7 @@ export default function Template() {
   }, []);
 
   const ViewTemplateArchive = async () => {
+    dispatch(ViewTempArchiveDataRequest());
     await fetch(`${ApiURL}/template-archive-view`, {
       method: "POST",
       headers: {
@@ -129,7 +159,7 @@ export default function Template() {
     })
       .then((res) => res.json())
       .then((res) => {
-        setArchiveData(res.data);
+        dispatch(ViewTempArchiveDataSuccess(res.data));
       });
   };
 
@@ -178,10 +208,12 @@ export default function Template() {
     return { Template, Unsubscribe, SendReply, OpenClick, Restore, id };
   }
 
-  const Temprows = data.map((item) => {
+  const Temprows = ViewTemplatedata.map((item) => {
     return TempcreateData(
       <>
-        <div className="titlename">{item.title}</div>
+        <div className="titlename" key={item.id}>
+          {item.title}
+        </div>
         <div className="titletime">{item.updated_at}</div>
       </>,
       "0",
@@ -231,7 +263,7 @@ export default function Template() {
     return { Template, Unsubscribe, SendReply, OpenClick, Restore };
   }
 
-  const TempArchiverows = archivedata.map((item) => {
+  const TempArchiverows = ViewTempArchivedata.map((item) => {
     return TempArchivecreateData(
       <>
         <div className="titlename">
@@ -287,8 +319,8 @@ export default function Template() {
                   } else {
                     setAuthor(true);
                   }
-                  const a = await FilterTemplate(filtertemplate);
-                  setData(a.data);
+                  const res = await FilterTemplate(filtertemplate);
+                  dispatch(ViewTemplateDataSuccess(res.data));
                 }}
               >
                 <TuneOutlinedIcon color="action" />
@@ -337,7 +369,7 @@ export default function Template() {
                           marginTop: "40px",
                         }}
                       >
-                        {addtemplate == "" ? (
+                        {addtemplate === "" ? (
                           <Button className="newtemplatedisablebtn" disabled>
                             Create new Template
                           </Button>
@@ -437,15 +469,7 @@ export default function Template() {
                   onDelete={() => {
                     setChip(false);
                   }}
-                  style={{
-                    backgroundColor: "#673ab7",
-                    color: "#fafbfb ",
-                    height: "24px",
-                    width: "163px ",
-                    marginTop: "12px",
-                    maxWidth: "100%",
-                    fontSize: " 12px",
-                  }}
+                  className="authorchip"
                 />
               );
             })}
@@ -454,7 +478,7 @@ export default function Template() {
         <div style={{ width: "100%" }}>
           <div style={{ justifyContent: "center", display: "flex" }}>
             <Box sx={{ width: "90%", paddingTop: "64px" }}>
-              <LinearProgress color="warning" />
+              {ViewTemplateloading && <LinearProgress color="warning" />}
             </Box>
           </div>
           {btn2 ? (

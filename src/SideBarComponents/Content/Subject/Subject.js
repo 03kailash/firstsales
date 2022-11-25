@@ -27,10 +27,22 @@ import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import Subjectedit from "./Subjectedit";
-import { IconButton, InputAdornment, Menu } from "@mui/material";
-import { CreateSubject } from "../../../UserServices";
+import { IconButton, InputAdornment, Menu, Tooltip } from "@mui/material";
+import {
+  CreateSubject,
+  FilterArchiveSubject,
+  FilterSubject,
+  RestoreArchiveSubject,
+  SelectSubject,
+} from "../../../UserServices";
 import { ApiURL } from "../../../ApiURL";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import UnarchiveIcon from "@mui/icons-material/Unarchive";
+import {
+  ViewSubjectDataRequest,
+  ViewSubjectDataSuccess,
+} from "../../../Redux/Actions/ViewSubjectAction";
 
 const options = [
   "{{contact.email}}",
@@ -53,8 +65,10 @@ const options = [
 
 export default function Subject() {
   const [addsubject, setAddsubject] = useState("");
+  const [filterSubject, setFilterSubject] = useState("");
   const [subjectData, setSubjectData] = useState([]);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [Subarchivedata, setSubArchiveData] = useState([]);
 
   const Addplaceopen = Boolean(anchorEl);
   const handleClickAddplace = (event) => {
@@ -81,9 +95,15 @@ export default function Subject() {
   const [subjectpage, setSubjectPage] = React.useState(0);
   const [subrowsPerPage, setSubRowsPerPage] = React.useState(10);
   const [open, setOpen] = React.useState(false);
-
+  const [subArchivepage, setSubArchivePage] = React.useState(0);
+  const [subArchiverowsPerPage, setSubArchiveRowsPerPage] = React.useState(10);
   const [chip, setChip] = useState(false);
   const [snackOpen, setSnackOpen] = React.useState(false);
+  const [archivesnackOpen, setArchiveSnackOpen] = React.useState(false);
+  const dispatch = useDispatch();
+  const { ViewSubjectdata, ViewSubjectloading, ViewSubjecterror } = useSelector(
+    (state) => state.ViewSubjectreducer
+  );
 
   const handleClick = () => {
     setSubjectedits(true);
@@ -103,7 +123,26 @@ export default function Subject() {
     setSubjectPage(0);
   };
 
+  const SubArchivehandleChangePage = (event, newPage) => {
+    setSubArchivePage(newPage);
+  };
+
+  const SubArchivehandleChangeRowsPerPage = (event) => {
+    setSubArchiveRowsPerPage(+event.target.value);
+    setSubArchivePage(0);
+  };
+
+  const handleKeyDown = async (event) => {
+    if (event.key === "Enter") {
+      const subres = await FilterSubject(filterSubject);
+      dispatch(ViewSubjectDataSuccess(subres.data));
+      const subarchiveres = await FilterArchiveSubject(filterSubject);
+      setSubArchiveData(subarchiveres.data);
+    }
+  };
+
   const ViewSubject = async () => {
+    dispatch(ViewSubjectDataRequest());
     await fetch(`${ApiURL}/subject-view`, {
       method: "POST",
       headers: {
@@ -117,12 +156,34 @@ export default function Subject() {
     })
       .then((res) => res.json())
       .then((res) => {
-        setSubjectData(res.data);
+        dispatch(ViewSubjectDataSuccess(res.data));
       });
   };
 
   useEffect(() => {
     ViewSubject();
+  }, []);
+
+  const ViewSubjectArchive = async () => {
+    await fetch(`${ApiURL}/subject-archive-view`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        token: localStorage.getItem("token"),
+      },
+      body: JSON.stringify({
+        workspace_id: localStorage.getItem("Workspace_id"),
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setSubArchiveData(res.data);
+      });
+  };
+
+  useEffect(() => {
+    ViewSubjectArchive();
   }, []);
 
   const Subjectcolumn = [
@@ -155,11 +216,18 @@ export default function Subject() {
     },
   ];
 
-  function SubcreateData(Subject, Unsubscribe, SendReply, OpenClick, Restore) {
-    return { Subject, Unsubscribe, SendReply, OpenClick, Restore };
+  function SubcreateData(
+    Subject,
+    Unsubscribe,
+    SendReply,
+    OpenClick,
+    Restore,
+    id
+  ) {
+    return { Subject, Unsubscribe, SendReply, OpenClick, Restore, id };
   }
 
-  const Subjectrows = subjectData.map((item) => {
+  const Subjectrows = ViewSubjectdata.map((item) => {
     return SubcreateData(
       <>
         <div className="titlename">{item.title}</div>
@@ -173,20 +241,105 @@ export default function Subject() {
     );
   });
 
+  const SubjectArchivecolumns = [
+    { id: "Subject", label: "Subject", minWidth: "490px" },
+
+    {
+      id: "Unsubscribe",
+      label: "Unsubscribe",
+      minWidth: 112,
+      align: "center",
+      format: (value) => value.toLocaleString("en-US"),
+    },
+    {
+      id: "SendReply",
+      label: "Send/Reply",
+      minWidth: 105,
+      align: "center",
+      format: (value) => value.toLocaleString("en-US"),
+    },
+    {
+      id: "OpenClick",
+      label: "Open/Click",
+      minWidth: 103,
+      align: "center",
+      format: (value) => value.toFixed(2),
+    },
+    {
+      id: "Restore",
+      label: "",
+    },
+  ];
+
+  function SubArchivecreateData(
+    Subject,
+    Unsubscribe,
+    SendReply,
+    OpenClick,
+    Restore
+  ) {
+    return { Subject, Unsubscribe, SendReply, OpenClick, Restore };
+  }
+
+  const SubArchiverows = Subarchivedata.map((item) => {
+    return SubArchivecreateData(
+      <>
+        <div className="titlename">
+          <Chip
+            label="Archived"
+            size="small"
+            style={{
+              color: "rgb(255, 255, 255)",
+              backgroundColor: "rgb(120, 144, 156)",
+            }}
+          />{" "}
+          {item.title}
+        </div>
+        <div className="titletime">{item.deleted_at}</div>
+      </>,
+      "0",
+      "0/0",
+      "0/0",
+      <Tooltip title="Restore item" arrow placement="top">
+        <IconButton
+          onClick={async () => {
+            if (await RestoreArchiveSubject(item.id)) {
+              ViewSubject();
+              ViewSubjectArchive();
+              setArchiveSnackOpen(true);
+            }
+          }}
+        >
+          <UnarchiveIcon color="action" />
+        </IconButton>
+      </Tooltip>
+    );
+  });
+
   return (
     <div style={{ justifyContent: "center", display: "flex" }}>
       <div style={{ maxwidth: "900px" }} className="templatecontainer">
         <div className="containerdiv">
           <div className="contentdiv">
             <div className="contentsearchinputdiv">
-              <input type="text" placeholder="Search" className="searchinput" />
+              <input
+                type="text"
+                placeholder="Search"
+                className="searchinput"
+                onChange={(e) => {
+                  setFilterSubject(e.target.value);
+                }}
+                onKeyDown={handleKeyDown}
+              />
               <IconButton
-                onClick={() => {
+                onClick={async () => {
                   if (author) {
                     setAuthor(false);
                   } else {
                     setAuthor(true);
                   }
+                  const subres = await FilterSubject(filterSubject);
+                  dispatch(ViewSubjectDataSuccess(subres.data));
                 }}
               >
                 <TuneOutlinedIcon color="action" />
@@ -317,19 +470,25 @@ export default function Subject() {
                           marginTop: "36px",
                         }}
                       >
-                        <Button
-                          className="Savetemplatebtn"
-                          onClick={async () => {
-                            const res = await CreateSubject(addsubject);
-                            if (res.status) {
-                              handleClick();
-                              setOpen(false);
-                              ViewSubject();
-                            }
-                          }}
-                        >
-                          Create new Subject
-                        </Button>
+                        {addsubject === "" ? (
+                          <Button className="newsubjectdisablebtn" disabled>
+                            Create new Subject
+                          </Button>
+                        ) : (
+                          <Button
+                            className="Savesubjectbtn"
+                            onClick={async () => {
+                              const res = await CreateSubject(addsubject);
+                              if (res.status) {
+                                handleClick();
+                                setOpen(false);
+                                ViewSubject();
+                              }
+                            }}
+                          >
+                            Create new Subject
+                          </Button>
+                        )}
                       </div>
                     </div>
                   </Box>
@@ -424,78 +583,161 @@ export default function Subject() {
         <div style={{ width: "100%" }}>
           <div style={{ justifyContent: "center", display: "flex" }}>
             <Box sx={{ width: "90%", paddingTop: "64px" }}>
-              <LinearProgress color="warning" />
+              {ViewSubjectloading && <LinearProgress color="warning" />}
             </Box>
           </div>
-          <Paper sx={{ width: "100%", overflow: "hidden" }}>
-            <TableContainer>
-              <Table stickyHeader aria-label="sticky table">
-                <TableHead>
-                  <TableRow>
-                    {Subjectcolumn.map((column) => (
-                      <TableCell
-                        key={column.id}
-                        align={column.align}
-                        style={{
-                          minWidth: column.minWidth,
-                          padding: "6px 16px",
-                        }}
-                      >
-                        {column.label}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {Subjectrows.slice(
-                    subjectpage * subrowsPerPage,
-                    subjectpage * subrowsPerPage + subrowsPerPage
-                  ).map((row) => {
-                    return (
-                      <TableRow
-                        style={{ cursor: "pointer" }}
-                        hover
-                        role="checkbox"
-                        tabIndex={-1}
-                        key={row.code}
-                      >
-                        {Subjectcolumn.map((column) => {
-                          const value = row[column.id];
-                          return (
-                            <TableCell
-                              key={column.id}
-                              align={column.align}
-                              style={{ padding: "6px 16px " }}
-                            >
-                              {column.format && typeof value === "number"
-                                ? column.format(value)
-                                : value}
-                            </TableCell>
-                          );
-                        })}
+          {btn2 ? (
+            <>
+              <Paper sx={{ width: "100%", overflow: "hidden" }}>
+                <TableContainer>
+                  <Table stickyHeader aria-label="sticky table">
+                    <TableHead>
+                      <TableRow>
+                        {SubjectArchivecolumns.map((column) => (
+                          <TableCell
+                            key={column.id}
+                            align={column.align}
+                            style={{
+                              minWidth: column.minWidth,
+                              padding: "6px 16px",
+                            }}
+                          >
+                            {column.label}
+                          </TableCell>
+                        ))}
                       </TableRow>
-                    );
-                  })}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Paper>
-          <TablePagination
-            rowsPerPageOptions={[10, 25, 100]}
-            component="div"
-            count={Subjectrows.length}
-            rowsPerPage={subrowsPerPage}
-            page={subjectpage}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-            color="warning"
-          />
+                    </TableHead>
+                    <TableBody>
+                      {SubArchiverows.slice(
+                        subArchivepage * subArchiverowsPerPage,
+                        subArchivepage * subArchiverowsPerPage +
+                          subArchiverowsPerPage
+                      ).map((row) => {
+                        return (
+                          <TableRow
+                            role="checkbox"
+                            tabIndex={-1}
+                            key={row.code}
+                          >
+                            {SubjectArchivecolumns.map((column) => {
+                              const value = row[column.id];
+                              return (
+                                <TableCell
+                                  key={column.id}
+                                  align={column.align}
+                                  style={{ padding: "6px 16px " }}
+                                >
+                                  {column.format && typeof value === "number"
+                                    ? column.format(value)
+                                    : value}
+                                </TableCell>
+                              );
+                            })}
+                          </TableRow>
+                        );
+                      })}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </Paper>
+              <TablePagination
+                rowsPerPageOptions={[10, 25, 100]}
+                component="div"
+                count={SubArchiverows.length}
+                rowsPerPage={subArchiverowsPerPage}
+                page={subArchivepage}
+                onPageChange={SubArchivehandleChangePage}
+                onRowsPerPageChange={SubArchivehandleChangeRowsPerPage}
+              />
+            </>
+          ) : (
+            <>
+              <Paper sx={{ width: "100%", overflow: "hidden" }}>
+                <TableContainer>
+                  <Table stickyHeader aria-label="sticky table">
+                    <TableHead>
+                      <TableRow>
+                        {Subjectcolumn.map((column) => (
+                          <TableCell
+                            key={column.id}
+                            align={column.align}
+                            style={{
+                              minWidth: column.minWidth,
+                              padding: "6px 16px",
+                            }}
+                          >
+                            {column.label}
+                          </TableCell>
+                        ))}
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {Subjectrows.slice(
+                        subjectpage * subrowsPerPage,
+                        subjectpage * subrowsPerPage + subrowsPerPage
+                      ).map((row) => {
+                        return (
+                          <TableRow
+                            style={{ cursor: "pointer" }}
+                            hover
+                            role="checkbox"
+                            tabIndex={-1}
+                            key={row.code}
+                            onClick={async () => {
+                              const res = await SelectSubject(
+                                row.id.props.children
+                              );
+                              if (res.status) {
+                                localStorage.setItem("Subject_id", res.data.id);
+                                setSubjectedits(true);
+                              }
+                            }}
+                          >
+                            {Subjectcolumn.map((column) => {
+                              const value = row[column.id];
+                              return (
+                                <TableCell
+                                  key={column.id}
+                                  align={column.align}
+                                  style={{ padding: "6px 16px " }}
+                                >
+                                  {column.format && typeof value === "number"
+                                    ? column.format(value)
+                                    : value}
+                                </TableCell>
+                              );
+                            })}
+                          </TableRow>
+                        );
+                      })}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </Paper>
+              <TablePagination
+                rowsPerPageOptions={[10, 25, 100]}
+                component="div"
+                count={Subjectrows.length}
+                rowsPerPage={subrowsPerPage}
+                page={subjectpage}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                color="warning"
+              />
+            </>
+          )}
         </div>
         <Snackbar
           open={snackOpen}
           autoHideDuration={4000}
           onClose={() => setSnackOpen(false)}
           message="Subject created"
+        />
+        <Snackbar
+          open={archivesnackOpen}
+          autoHideDuration={4000}
+          onClose={() => setArchiveSnackOpen(false)}
+          message="Archived subject restored"
         />
       </div>
     </div>
