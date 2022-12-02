@@ -7,6 +7,16 @@
   .TabRow{
     width: 100% !important;
   }
+  .AvartarAndEmailDiv{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
+  .EmailandNameInfo{
+    align-items: center;
+    margin-left: 16px;
+  }
   .editButton{
     display: flex;
     justify-content: center;
@@ -122,12 +132,15 @@
 .AVtardiv{
   height: 60px !important;
   width: 60px !important;
+  color: rgb(250, 251, 251) !important;
+  background-color: rgb(255, 143, 0) !important;
+  opacity: 0.3 !important;
 }
 .DetailedInformationText{
   margin: 0px 0px 24px;
   font-family: Roboto, Helvetica, Arial, sans-serif;
     font-weight: 500;
-    font-size: 1.25rem;
+    font-size: 1rem;
     line-height: 1.6;
     letter-spacing: 0.0075em;
     color: rgba(0, 0, 0, 0.87);
@@ -136,9 +149,84 @@
   color: rgba(0, 0, 0, 0.6) !important;
   font-family: Roboto, Helvetica, Arial, sans-serif;
   font-weight: 400;
-  line-height: 1.4375em;
+  line-height: 1rem;
   letter-spacing: 0.00938em;
   max-width: 100%;
   font-size: 16px !important;
 }
-
+.TabRow >:nth-child(1)>:nth-child(2){
+ background-color: #ff8e00 !important;
+}
+.CustomFieldsInfo{
+  margin: 32px 0px;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  letter-spacing: 0.0075em;
+  color: rgba(0, 0, 0, 0.87);
+}
+.CreateNoteBtn{
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+  text-transform: inherit !important;
+}
+.TwoBtn{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0px 0px 0px;
+  margin: 16px 0px 16px ;
+}
+.CreateNote{
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  padding: 6px 16px;
+  border-radius: 4px;
+  color: rgb(255, 255, 255) !important;
+  background-color: rgb(255, 142, 0) !important;
+  box-shadow: rgb(0 0 0 / 31%) 0px 0px 1px 0px, rgb(0 0 0 / 25%) 0px 2px 2px -2px !important;
+  text-transform: inherit !important;
+  }
+.CreateNote:hover{
+    text-decoration: none;
+    background-color: rgb(178, 99, 0) !important;
+    box-shadow: rgb(0 0 0 / 31%) 0px 0px 1px 0px, rgb(0 0 0 / 25%) 0px 3px 4px -2px;
+  }
+.TextResponse{
+  margin: 8px;
+  padding: 8px;
+  background-color: rgb(255, 255, 255);
+  color: rgba(0, 0, 0, 0.87);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  }
+  .TextResponseInnerDiv{
+    padding: 16px;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+  }
+  .Createdtext{
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.43;
+    letter-spacing: 0.01071em;
+    color: rgba(0, 0, 0, 0.6);
+  }
+  .NoteRes{
+    padding: 16px;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5;
+    letter-spacing: 0.00938em;
+    color: rgba(0, 0, 0, 0.87);
+  }

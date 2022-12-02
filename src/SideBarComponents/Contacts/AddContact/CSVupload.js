@@ -75,6 +75,9 @@ function CSVupload(props) {
   const [TagChip, setTagChip] = useState([]);
 
   const [yourChips, setYourChips] = useState([]);
+  const handelClick = () => {
+    setYourChips([...yourChips,TagChip])
+  }
 
   const handleAddChip = (chip) => {
     setYourChips([...yourChips, chip]);
@@ -99,6 +102,8 @@ function CSVupload(props) {
   // const handleDelete = () => {
   //   console.info('You clicked the delete icon.');
   // };
+  console.log(yourChips);
+
   const uploadCsvFile = () => {
     const config = {
       headers: {
@@ -110,17 +115,18 @@ function CSVupload(props) {
     const formData = new FormData();
     formData.append("import_csv", props.Filess);
     formData.append("workspace_id", localStorage.getItem("Workspace_id"));
-    formData.append("tags", [yourChips]);
+    formData.append("tags", yourChips);
     formData.append("csv_source_name", props.CsvFile);
     return axios
       .post(`${ApiURL}/import-csv`, formData, config)
       .then((res) => {
+        console.log(res);
         if (res.status) {
           setFile();
+
         }
       });
   }
-console.log(yourChips);
   return (
     <div className="OuterDiv">
       <div className="OuterLayer">
@@ -277,10 +283,9 @@ console.log(yourChips);
                                 shrink: true,
                               }}
                               style={{ width: "300px" }}
-                            onChange={(event) => { setTagChip(event.target.value); }}
-                            value={TagChip}
+                              onChange={(event) => { setTagChip(event.target.value); }}
+                              value={TagChip}
                             >
-                             
                             </TextField>
                             {/* <>
                                 <ChipInput
@@ -293,9 +298,9 @@ console.log(yourChips);
                             <Button
                               variant="outlined"
                               style={{ marginLeft: "20px" }}
-                            // onClick={()=>{
-                            //   setTagChip();
-                            // }}
+                              onClick={() => {
+                                handelClick();
+                              }}
                             >
                               Add
                             </Button>
@@ -605,6 +610,7 @@ console.log(yourChips);
                           {
                             activeStep === 1 && setOpencsvDone(true);
                             uploadCsvFile();
+
                           }
                         }}>
                           {activeStep === steps.length - 1

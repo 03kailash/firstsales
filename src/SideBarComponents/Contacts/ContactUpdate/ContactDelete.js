@@ -6,8 +6,8 @@ import Modal from '@mui/material/Modal';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { ApiURL } from '../../../ApiURL';
 
-export default function ContactDelete({ isOpen, isClose }) {
-    
+export default function ContactDelete({ isOpen, isClose,deleteIcon }) {
+  console.log(deleteIcon); 
   const ContactDelete = (id) => {
     fetch(`${ApiURL}/contact-delete`, {
       method: "POST",
@@ -17,7 +17,7 @@ export default function ContactDelete({ isOpen, isClose }) {
         token: localStorage.getItem("token")
       },
       body: JSON.stringify({
-        id: id
+        id: deleteIcon
       })
     })
       .then((res) => res.json())
@@ -27,6 +27,7 @@ export default function ContactDelete({ isOpen, isClose }) {
         };
       });
   };
+
     return (
         <div>
             <div>
@@ -55,8 +56,8 @@ export default function ContactDelete({ isOpen, isClose }) {
                             }}>Cancle</Button></div>
                             <div><Button className='DeleteBtnIcon'
                             onClick={()=>{
-                                ContactDelete();
-                            }}>Delete</Button></div>
+                                ContactDelete(deleteIcon);
+                            }}>DELETE</Button></div>
                         </div>
                     </Box>
 

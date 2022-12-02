@@ -33,6 +33,7 @@
     line-height: 1.6;
     letter-spacing: 0.0075em;
     color: rgb(244, 67, 54) !important;
+    text-transform: inherit !important;
 }
 .groupBtn{
     display: flex;
